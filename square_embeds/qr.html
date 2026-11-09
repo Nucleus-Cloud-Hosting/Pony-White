@@ -1,0 +1,105 @@
+<style> @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&display=swap'); @import url('https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200'); /* Global Typography resets to bypass sandboxed iframe font blocks */ body, html { margin: 0 !important; padding: 0 !important; width: 100% !important; min-height: 100% !important; } body, html, * { font-family: 'Plus Jakarta Sans', ui-sans-serif, system-ui, -apple-system, sans-serif !important; } .material-symbols-outlined, .material-symbols-outlined * { font-family: 'Material Symbols Outlined' !important; } .font-serif, h1, .font-headline-xl, .font-headline-md, .font-headline-lg, .font-headline-xl-mobile { font-family: 'Playfair Display', ui-serif, Georgia, Cambria, serif !important; } /* Compiled Page Styles */ </style><!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Pony White Cafe - Welcome</title><script src="https://cdn.tailwindcss.com">
+    // Dynamic Font Injection to bypass iframe sandboxing font blocks
+    (function() {
+      function injectFont(url) {
+        try {
+          if (document.querySelector('link[href="' + url + '"]')) return;
+          const link = document.createElement('link');
+          link.rel = 'stylesheet';
+          link.href = url;
+          (document.head || document.documentElement).appendChild(link);
+        } catch (e) { console.error('Font injection failed:', e); }
+      }
+      injectFont('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&display=swap');
+      injectFont('https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200');
+    })();
+    // Dynamic Iframe Height Detection for Cross-Origin Embeds
+    (function() {
+      function sendHeight() {
+        const height = Math.max(document.body.scrollHeight, document.documentElement.scrollHeight, document.body.offsetHeight, document.documentElement.offsetHeight, document.body.clientHeight, document.documentElement.clientHeight);
+        window.parent.postMessage({ type: 'nucleus-embed-resize', height: height }, '*');
+      }
+      window.addEventListener('load', sendHeight);
+      if (window.ResizeObserver) {
+        new ResizeObserver(sendHeight).observe(document.body);
+      } else {
+        window.addEventListener('resize', sendHeight);
+      }
+      // Initial trigger in case load already fired
+      setTimeout(sendHeight, 100);
+    })();
+    // Square Online Iframe Navigation & Link Breakout Guard
+    (function() {
+      const SLUG_MAP = {
+        'home.html': '/',
+        'book-table.html': '/book-table',
+        'signature-drinks.html': '/signature-drinks',
+        'smoothies-juices.html': '/smoothies-juices',
+        'gift-cards.html': '/gift-cards',
+        'loyalty.html': '/loyalty',
+        'contact.html': '/contact',
+        'careers.html': '/careers',
+        'retail-top.html': '/retail',
+        'retail-bottom.html': '/retail',
+        'qr.html': '/qr',
+        'under-construction.html': '/'
+      };
+      function isLocalPreview() {
+        try {
+          const host = window.location.hostname || '';
+          return host === 'localhost' || host === '127.0.0.1' || window.location.protocol === 'file:';
+        } catch (e) { return false; }
+      }
+      function isEmbeddedInIframe() {
+        try { return window.self !== window.top; } catch (e) { return true; }
+      }
+      function upgradeLinks() {
+        const inIframe = isEmbeddedInIframe();
+        const local = isLocalPreview();
+        document.querySelectorAll('a[href]').forEach(function(a) {
+          const rawHref = (a.getAttribute('href') || '').trim();
+          if (!rawHref || rawHref.startsWith('#') || rawHref.startsWith('javascript:') || rawHref.startsWith('mailto:') || rawHref.startsWith('tel:')) return;
+          const cleanFile = rawHref.split('?')[0].split('#')[0].replace(/^(\.\/|\/)+/, '');
+          if (SLUG_MAP[cleanFile] && inIframe && !local) {
+            const hashPart = rawHref.includes('#') ? '#' + rawHref.split('#')[1] : '';
+            a.setAttribute('href', SLUG_MAP[cleanFile] + hashPart);
+            a.setAttribute('target', '_top');
+          } else if (/^https?:\/\//i.test(rawHref) && !a.getAttribute('target')) {
+            a.setAttribute('target', '_top');
+          }
+        });
+      }
+      if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', upgradeLinks);
+      } else {
+        upgradeLinks();
+      }
+      document.addEventListener('click', function(e) {
+        const anchor = e.target && e.target.closest ? e.target.closest('a[href]') : null;
+        if (!anchor) return;
+        const rawHref = (anchor.getAttribute('href') || '').trim();
+        const cleanFile = rawHref.split('?')[0].split('#')[0].replace(/^(\.\/|\/)+/, '');
+        if (SLUG_MAP[cleanFile] && isEmbeddedInIframe() && !isLocalPreview()) {
+          e.preventDefault();
+          const hashPart = rawHref.includes('#') ? '#' + rawHref.split('#')[1] : '';
+          const targetUrl = SLUG_MAP[cleanFile] + hashPart;
+          try { window.top.location.href = targetUrl; } catch (err) { window.open(targetUrl, '_top'); }
+        }
+      });
+    })();
+</script><link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&display=swap" rel="stylesheet"><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/><script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        serif: ['Playfair Display', 'serif'],
+                        sans: ['Plus Jakarta Sans', 'sans-serif'],
+                    },
+                    colors: {
+                        primary: '#00261b',
+                        secondary: '#735c00',
+                    }
+                }
+            }
+        }
+    </script><style> body, html { font-family: 'Plus Jakarta Sans', sans-serif; background-color: #00261b; color: #fbf9f8; height: 100%; margin: 0; padding: 0; } .font-serif { font-family: 'Playfair Display', serif; } .glass-panel { background: rgba(10, 22, 17, 0.7); backdrop-filter: blur(24px); -webkit-backdrop-filter: blur(24px); border: 1px solid rgba(255, 255, 255, 0.08); box-shadow: 0 30px 60px -15px rgba(0, 0, 0, 0.6); } .link-card { transition: all 0.3s ease; } .link-card:hover { transform: translateY(-2px); border-color: rgba(233, 195, 73, 0.4); box-shadow: 0 10px 25px -5px rgba(0,0,0,0.5); } </style></head><body class="flex items-center justify-center min-h-screen p-4 bg-cover bg-center bg-no-repeat relative" style="background-image: url('https://raw.githubusercontent.com/Nucleus-Cloud-Hosting/Pony-White/main/assets/hero-table.jpg');"><div class="absolute inset-0 bg-[#00261b]/80 backdrop-blur-sm z-0"></div><div class="glass-panel w-full max-w-md mx-auto p-8 rounded-3xl relative z-10 text-center"><div class="w-20 h-20 bg-white/90 rounded-full flex items-center justify-center mx-auto mb-6 shadow-lg border border-white/40 overflow-hidden"><img src="https://raw.githubusercontent.com/Nucleus-Cloud-Hosting/Pony-White/main/assets/logo.png" alt="Pony White Logo" class="w-full h-full object-cover"></div><h1 class="font-serif text-3xl font-bold mb-2">G'day!</h1><p class="text-white/80 mb-8 font-medium">What were you looking for?</p><div class="flex flex-col gap-4"><a href="home.html" class="link-card block w-full p-4 rounded-xl border border-white/10 bg-white/5 flex items-center justify-between text-left group"><div class="flex items-center gap-4"><div class="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center group-hover:bg-[#e9c349]/20 transition-colors"><span class="material-symbols-outlined text-white group-hover:text-[#e9c349]">home</span></div><div><span class="block font-bold text-white text-sm">Website</span><span class="text-[11px] text-white/60">View the full menu and info</span></div></div><span class="material-symbols-outlined text-white/30 group-hover:text-white/70">chevron_right</span></a><a href="book-table.html" class="link-card block w-full p-4 rounded-xl border border-white/10 bg-white/5 flex items-center justify-between text-left group"><div class="flex items-center gap-4"><div class="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center group-hover:bg-[#e9c349]/20 transition-colors"><span class="material-symbols-outlined text-white group-hover:text-[#e9c349]">restaurant</span></div><div><span class="block font-bold text-white text-sm">Bookings</span><span class="text-[11px] text-white/60">Reserve a table</span></div></div><span class="material-symbols-outlined text-white/30 group-hover:text-white/70">chevron_right</span></a><a href="contact.html" class="link-card block w-full p-4 rounded-xl border border-white/10 bg-white/5 flex items-center justify-between text-left group"><div class="flex items-center gap-4"><div class="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center group-hover:bg-[#e9c349]/20 transition-colors"><span class="material-symbols-outlined text-white group-hover:text-[#e9c349]">rate_review</span></div><div><span class="block font-bold text-white text-sm">Leave a review</span><span class="text-[11px] text-white/60">Share your experience</span></div></div><span class="material-symbols-outlined text-white/30 group-hover:text-white/70">chevron_right</span></a><a href="loyalty.html" class="link-card block w-full p-4 rounded-xl border border-white/10 bg-white/5 flex items-center justify-between text-left group"><div class="flex items-center gap-4"><div class="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center group-hover:bg-[#e9c349]/20 transition-colors"><span class="material-symbols-outlined text-white group-hover:text-[#e9c349]">loyalty</span></div><div><span class="block font-bold text-white text-sm">Sign up for Loyalty</span><span class="text-[11px] text-white/60">Or manage your cards</span></div></div><span class="material-symbols-outlined text-white/30 group-hover:text-white/70">chevron_right</span></a><a href="https://www.instagram.com/ponywhite.fitzroy" target="_blank" class="link-card block w-full p-4 rounded-xl border border-white/10 bg-white/5 flex items-center justify-between text-left group"><div class="flex items-center gap-4"><div class="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center group-hover:bg-[#e9c349]/20 transition-colors"><svg class="w-5 h-5 text-white group-hover:text-[#e9c349]" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M12.315 2c2.43 0 2.784.008 3.885.058 1.012.046 1.722.207 2.3.425a4.767 4.767 0 011.665 1.085 4.771 4.771 0 011.085 1.665c.218.578.379 1.288.425 2.3.05 1.101.058 1.455.058 3.885 0 2.43-.008 2.784-.058 3.885-.046 1.012-.207 1.722-.425 2.3a4.78 4.78 0 01-1.085 1.665 4.766 4.766 0 01-1.665 1.085c-.578.218-1.288.379-2.3.425-1.101.05-1.455.058-3.885.058-2.43 0-2.784-.008-3.885-.058-1.012-.046-1.722-.207-2.3-.425a4.79 4.79 0 01-1.665-1.085 4.778 4.778 0 01-1.085-1.665c-.218-.578-.379-1.288-.425-2.3-.05-1.101-.058-1.455-.058-3.885 0-2.43.008-2.784.058-3.885.046-1.012.207-1.722.425-2.3a4.765 4.765 0 011.085-1.665 4.766 4.766 0 011.665-1.085c.578-.218 1.288-.379 2.3-.425 1.101-.05 1.455-.058 3.885-.058zM12 6.865A5.135 5.135 0 1017.135 12 5.136 5.136 0 0012 6.865zm0 8.468a3.333 3.333 0 113.333-3.333 3.333 3.333 0 01-3.333 3.333zm5.902-8.351a1.2 1.2 0 100 2.4 1.2 1.2 0 000-2.4z" clip-rule="evenodd" /></svg></div><div><span class="block font-bold text-white text-sm">Instagram</span><span class="text-[11px] text-white/60">Follow our daily rituals</span></div></div><span class="material-symbols-outlined text-white/30 group-hover:text-white/70">chevron_right</span></a></div></div></body></html>

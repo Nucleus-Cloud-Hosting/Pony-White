@@ -98,7 +98,7 @@
             </h1>
             
             <p class="text-slate-400 text-lg leading-relaxed font-light">
-                Welcome to the developer preview dashboard. Here you can interactively preview all 9 mockup pages styled with premium typography, and instantly copy their single-line inlined codes ready to embed directly into Square Online.
+                Welcome to the developer preview dashboard. Here you can interactively preview all 12 custom pages styled with premium typography, and instantly copy their single-line inlined codes ready to embed directly into Square Online.
             </p>
         </header>
 
@@ -106,11 +106,38 @@
         <section class="mb-20">
             <div class="flex items-center justify-between mb-8">
                 <h2 class="font-serif text-2xl font-semibold text-white">Pages Directory</h2>
-                <span class="text-sm text-slate-500 font-medium">9 Custom Embeds</span>
+                <span class="text-sm text-slate-500 font-medium">13 Custom Embeds</span>
             </div>
             
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                 
+                <!-- Home V2 Card (Viral Chromatic Edition) -->
+                <div class="glass-card rounded-2xl p-6 flex flex-col justify-between border border-amber-400/30 relative overflow-hidden">
+                    <div>
+                        <div class="flex items-center justify-between gap-2 mb-4">
+                            <div class="flex items-center gap-3">
+                                <div class="w-10 h-10 rounded-xl bg-amber-500/15 flex items-center justify-center border border-amber-400/30">
+                                    <svg class="w-5 h-5 text-amber-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z"/></svg>
+                                </div>
+                                <h3 class="font-semibold text-lg text-white">Homepage V2</h3>
+                            </div>
+                            <span class="text-[10px] font-bold uppercase tracking-wider px-2.5 py-1 rounded-full bg-amber-500/20 text-amber-300 border border-amber-400/30">Viral Edition</span>
+                        </div>
+                        <p class="text-slate-400 text-sm leading-relaxed mb-6">
+                            Technicolour 2nd take on the homepage celebrating Pony White's viral TikTok/Reels pours &amp; plating: live video pour switcher with colour-shifting aura, chromatic drink lab, and interactive dish filmstrip synced with Square &amp; Nucleus CRM.
+                        </p>
+                    </div>
+                    <div class="flex gap-3">
+                        <a href="/src/pages/home-v2.html" target="_blank" class="flex-1 text-center py-2.5 px-4 rounded-xl bg-slate-900 border border-slate-800 text-xs font-semibold text-slate-300 hover:bg-slate-800 hover:text-white transition duration-200">
+                            Launch Preview
+                        </a>
+                        <button onclick="copyEmbedCode('home-v2.html', this)" class="flex-1 py-2.5 px-4 rounded-xl gold-shimmer text-xs font-bold text-white shadow-lg shadow-yellow-950/20 flex items-center justify-center gap-1.5">
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 5H6a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2v-1M8 5a2 2 0 002 2h2a2 2 0 002-2M8 5a2 2 0 012-2h2a2 2 0 012 2m0 0h2a2 2 0 012 2v3m2 4H10m0 0l3-3m-3 3l3 3"/></svg>
+                            Copy Embed
+                        </button>
+                    </div>
+                </div>
+
                 <!-- Home Card -->
                 <div class="glass-card rounded-2xl p-6 flex flex-col justify-between">
                     <div>
@@ -121,7 +148,7 @@
                             <h3 class="font-semibold text-lg text-white">Homepage</h3>
                         </div>
                         <p class="text-slate-400 text-sm leading-relaxed mb-6">
-                            The brand center. Features the premium hero card, chef-led culinary grid, daily patisserie showcase, drink sliders, beans collections, and physical location details.
+                            The brand center. Features the premium hero card, chef-led culinary grid synced live with Square &amp; Nucleus CRM, daily patisserie showcase, drink sliders, beans collections, and physical location details.
                         </p>
                     </div>
                     <div class="flex gap-3">
@@ -169,7 +196,7 @@
                             <h3 class="font-semibold text-lg text-white">Book a Table</h3>
                         </div>
                         <p class="text-slate-400 text-sm leading-relaxed mb-6">
-                            Table reservation request layout. Features a highly refined online form with fields for guests, timing, custom table selections, and special request items.
+                            Table reservation request layout. Features an interactive online booking form with guest count, timing, table zone selection, guest contact inputs, and instant confirmation.
                         </p>
                     </div>
                     <div class="flex gap-3">
@@ -193,7 +220,7 @@
                             <h3 class="font-semibold text-lg text-white">Gift Cards</h3>
                         </div>
                         <p class="text-slate-400 text-sm leading-relaxed mb-6">
-                            Buy digital or physical gift cards. Incorporates custom premium card designs, amount tier selections, customizable message slots, and purchasing buttons.
+                            Buy digital or physical gift cards. Incorporates custom premium card designs, amount tier selections, customizable message slots, and Square eGift checkout.
                         </p>
                     </div>
                     <div class="flex gap-3">
@@ -207,24 +234,48 @@
                     </div>
                 </div>
 
-                <!-- Retail Beans Card -->
+                <!-- Retail Beans Card (Top) -->
                 <div class="glass-card rounded-2xl p-6 flex flex-col justify-between">
                     <div>
                         <div class="flex items-center gap-3 mb-4">
                             <div class="w-10 h-10 rounded-xl bg-amber-500/10 flex items-center justify-center border border-amber-500/20">
                                 <svg class="w-5 h-5 text-amber-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"/></svg>
                             </div>
-                            <h3 class="font-semibold text-lg text-white">Retail Coffee Beans</h3>
+                            <h3 class="font-semibold text-lg text-white">Retail Coffee Beans (Top)</h3>
                         </div>
                         <p class="text-slate-400 text-sm leading-relaxed mb-6">
-                            Pony White beans inventory. Lists premium single-origin products, house blends, flavor profiles, roast indicators, weights, and customizable subscriptions.
+                            Pony White beans hero &amp; roasting showcase. Lists premium single-origin products, house blends, flavor profiles, roast indicators, weights, and brewing guides.
                         </p>
                     </div>
                     <div class="flex gap-3">
-                        <a href="/src/pages/retail.html" target="_blank" class="flex-1 text-center py-2.5 px-4 rounded-xl bg-slate-900 border border-slate-800 text-xs font-semibold text-slate-300 hover:bg-slate-800 hover:text-white transition duration-200">
+                        <a href="/src/pages/retail-top.html" target="_blank" class="flex-1 text-center py-2.5 px-4 rounded-xl bg-slate-900 border border-slate-800 text-xs font-semibold text-slate-300 hover:bg-slate-800 hover:text-white transition duration-200">
                             Launch Preview
                         </a>
-                        <button onclick="copyEmbedCode('retail.html', this)" class="flex-1 py-2.5 px-4 rounded-xl gold-shimmer text-xs font-bold text-white shadow-lg shadow-yellow-950/20 flex items-center justify-center gap-1.5">
+                        <button onclick="copyEmbedCode('retail-top.html', this)" class="flex-1 py-2.5 px-4 rounded-xl gold-shimmer text-xs font-bold text-white shadow-lg shadow-yellow-950/20 flex items-center justify-center gap-1.5">
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 5H6a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2v-1M8 5a2 2 0 002 2h2a2 2 0 002-2M8 5a2 2 0 012-2h2a2 2 0 012 2m0 0h2a2 2 0 012 2v3m2 4H10m0 0l3-3m-3 3l3 3"/></svg>
+                            Copy Embed
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Retail Boutique Shelf Card (Bottom) -->
+                <div class="glass-card rounded-2xl p-6 flex flex-col justify-between">
+                    <div>
+                        <div class="flex items-center gap-3 mb-4">
+                            <div class="w-10 h-10 rounded-xl bg-amber-500/10 flex items-center justify-center border border-amber-500/20">
+                                <svg class="w-5 h-5 text-amber-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4"/></svg>
+                            </div>
+                            <h3 class="font-semibold text-lg text-white">Retail Boutique Shelf (Bottom)</h3>
+                        </div>
+                        <p class="text-slate-400 text-sm leading-relaxed mb-6">
+                            Companion bottom section for the retail page. Showcases wholesale inquiries, brewing rituals, and curated boutique pantry &amp; coffee equipment notes.
+                        </p>
+                    </div>
+                    <div class="flex gap-3">
+                        <a href="/src/pages/retail-bottom.html" target="_blank" class="flex-1 text-center py-2.5 px-4 rounded-xl bg-slate-900 border border-slate-800 text-xs font-semibold text-slate-300 hover:bg-slate-800 hover:text-white transition duration-200">
+                            Launch Preview
+                        </a>
+                        <button onclick="copyEmbedCode('retail-bottom.html', this)" class="flex-1 py-2.5 px-4 rounded-xl gold-shimmer text-xs font-bold text-white shadow-lg shadow-yellow-950/20 flex items-center justify-center gap-1.5">
                             <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 5H6a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2v-1M8 5a2 2 0 002 2h2a2 2 0 002-2M8 5a2 2 0 012-2h2a2 2 0 012 2m0 0h2a2 2 0 012 2v3m2 4H10m0 0l3-3m-3 3l3 3"/></svg>
                             Copy Embed
                         </button>
@@ -265,7 +316,7 @@
                             <h3 class="font-semibold text-lg text-white">Contact &amp; Feedback</h3>
                         </div>
                         <p class="text-slate-400 text-sm leading-relaxed mb-6">
-                            Connect with customer service. Displays user query forms, location map pointers, physical opening hours, phone contacts, and quick mail shortcuts.
+                            Connect with customer service. Displays direct concierge inquiry form, interactive guest review routing, physical opening hours, and Fitzroy location map.
                         </p>
                     </div>
                     <div class="flex gap-3">
@@ -289,7 +340,7 @@
                             <h3 class="font-semibold text-lg text-white">Signature Drinks</h3>
                         </div>
                         <p class="text-slate-400 text-sm leading-relaxed mb-6">
-                            Liquid magic menu. Focuses on ceremonial organic matcha lattes, double-crema espresso pulls, cold brew craft coolers, and details about dairy/oat milk selections.
+                            Liquid magic menu synced live with Nucleus CRM. Focuses on ceremonial organic matcha lattes, espresso pulls, cold brew craft coolers, and video showcases.
                         </p>
                     </div>
                     <div class="flex gap-3">
@@ -313,7 +364,7 @@
                             <h3 class="font-semibold text-lg text-white">Under Construction</h3>
                         </div>
                         <p class="text-slate-400 text-sm leading-relaxed mb-6">
-                            Domain transfer splash page. Features a quiet luxury glassmorphic card, pulsing gold reservation button linking to Wix, and navigation to other live section targets.
+                            Domain transfer splash page. Features a quiet luxury glassmorphic card, live Melbourne store status indicator, and navigation to live section targets.
                         </p>
                     </div>
                     <div class="flex gap-3">
@@ -321,6 +372,54 @@
                             Launch Preview
                         </a>
                         <button onclick="copyEmbedCode('under-construction.html', this)" class="flex-1 py-2.5 px-4 rounded-xl gold-shimmer text-xs font-bold text-white shadow-lg shadow-yellow-950/20 flex items-center justify-center gap-1.5">
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 5H6a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2v-1M8 5a2 2 0 002 2h2a2 2 0 002-2M8 5a2 2 0 012-2h2a2 2 0 012 2m0 0h2a2 2 0 012 2v3m2 4H10m0 0l3-3m-3 3l3 3"/></svg>
+                            Copy Embed
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Smoothies & Juices Card -->
+                <div class="glass-card rounded-2xl p-6 flex flex-col justify-between">
+                    <div>
+                        <div class="flex items-center gap-3 mb-4">
+                            <div class="w-10 h-10 rounded-xl bg-amber-500/10 flex items-center justify-center border border-amber-500/20">
+                                <svg class="w-5 h-5 text-amber-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v8l9-11h-7z"/></svg>
+                            </div>
+                            <h3 class="font-semibold text-lg text-white">Smoothies &amp; Juices</h3>
+                        </div>
+                        <p class="text-slate-400 text-sm leading-relaxed mb-6">
+                            Interactive drink menu. Features a stunning 3D rotating wheel for smoothies and mobile-optimized swipe deck.
+                        </p>
+                    </div>
+                    <div class="flex gap-3">
+                        <a href="/src/pages/smoothies-juices.html" target="_blank" class="flex-1 text-center py-2.5 px-4 rounded-xl bg-slate-900 border border-slate-800 text-xs font-semibold text-slate-300 hover:bg-slate-800 hover:text-white transition duration-200">
+                            Launch Preview
+                        </a>
+                        <button onclick="copyEmbedCode('smoothies-juices.html', this)" class="flex-1 py-2.5 px-4 rounded-xl gold-shimmer text-xs font-bold text-white shadow-lg shadow-yellow-950/20 flex items-center justify-center gap-1.5">
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 5H6a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2v-1M8 5a2 2 0 002 2h2a2 2 0 002-2M8 5a2 2 0 012-2h2a2 2 0 012 2m0 0h2a2 2 0 012 2v3m2 4H10m0 0l3-3m-3 3l3 3"/></svg>
+                            Copy Embed
+                        </button>
+                    </div>
+                </div>
+
+                <!-- QR Funnel Card -->
+                <div class="glass-card rounded-2xl p-6 flex flex-col justify-between">
+                    <div>
+                        <div class="flex items-center gap-3 mb-4">
+                            <div class="w-10 h-10 rounded-xl bg-amber-500/10 flex items-center justify-center border border-amber-500/20">
+                                <svg class="w-5 h-5 text-amber-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v1m6 11h2m-6 0h-2v4m0-11v3m0 0h.01M12 12h4.01M16 20h4M4 12h4m12 0h.01M5 8h2a1 1 0 001-1V5a1 1 0 00-1-1H5a1 1 0 00-1 1v2a1 1 0 001 1zm14 0h2a1 1 0 001-1V5a1 1 0 00-1-1h-2a1 1 0 00-1 1v2a1 1 0 001 1zM5 20h2a1 1 0 001-1v-2a1 1 0 00-1-1H5a1 1 0 00-1 1v2a1 1 0 001 1z"/></svg>
+                            </div>
+                            <h3 class="font-semibold text-lg text-white">QR Funnel Landing</h3>
+                        </div>
+                        <p class="text-slate-400 text-sm leading-relaxed mb-6">
+                            In-store QR code landing page. Clean link-tree style navigation connecting physical visitors to online menus, bookings, loyalty, and reviews.
+                        </p>
+                    </div>
+                    <div class="flex gap-3">
+                        <a href="/src/pages/qr.html" target="_blank" class="flex-1 text-center py-2.5 px-4 rounded-xl bg-slate-900 border border-slate-800 text-xs font-semibold text-slate-300 hover:bg-slate-800 hover:text-white transition duration-200">
+                            Launch Preview
+                        </a>
+                        <button onclick="copyEmbedCode('qr.html', this)" class="flex-1 py-2.5 px-4 rounded-xl gold-shimmer text-xs font-bold text-white shadow-lg shadow-yellow-950/20 flex items-center justify-center gap-1.5">
                             <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 5H6a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2v-1M8 5a2 2 0 002 2h2a2 2 0 002-2M8 5a2 2 0 012-2h2a2 2 0 012 2m0 0h2a2 2 0 012 2v3m2 4H10m0 0l3-3m-3 3l3 3"/></svg>
                             Copy Embed
                         </button>
@@ -357,7 +456,7 @@
                     <div class="w-7 h-7 rounded-full bg-slate-900 flex items-center justify-center border border-white/10 flex-shrink-0 text-amber-400 font-bold text-xs">3</div>
                     <div>
                         <h4 class="font-semibold text-white mb-1.5">How Image Asset Hosting Works</h4>
-                        <p class="leading-relaxed text-slate-400">During compilation, local image URLs are automatically mapped to reference the public <strong class="text-white">jsDelivr CDN</strong> (<code class="text-amber-400/90 font-mono text-xs">https://cdn.jsdelivr.net/gh/Jaspi199/Pony-White@main/assets/...</code>). Once you push your local repository changes to your GitHub branch, all images will instantly load perfectly on the live Square site!</p>
+                        <p class="leading-relaxed text-slate-400">During compilation, local image URLs are automatically mapped to reference the public <strong class="text-white">GitHub Raw CDN</strong> (<code class="text-amber-400/90 font-mono text-xs">https://raw.githubusercontent.com/Nucleus-Cloud-Hosting/Pony-White/main/assets/...</code>) while live menu items on the Homepage and Signature Drinks pull directly from Nucleus CRM &amp; Square CDN.</p>
                     </div>
                 </div>
             </div>

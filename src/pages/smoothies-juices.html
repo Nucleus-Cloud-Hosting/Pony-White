@@ -180,11 +180,11 @@
 
             <!-- Card Content -->
             <div class="relative z-10 flex flex-col items-center justify-center h-full">
-                <span id="drink-category" class="font-label-sm uppercase tracking-widest text-secondary-fixed-dim font-bold text-xs block mb-2">Smoothies</span>
-                <h3 id="drink-title" class="font-serif text-3xl md:text-5xl text-white font-bold tracking-tight mb-2">Pitaya Pink Dragon</h3>
-                <span id="drink-price" class="font-headline-md text-lg md:text-xl gold-gradient-text font-bold mb-4">$10.50</span>
+                <span id="drink-category" class="font-label-sm uppercase tracking-widest text-secondary-fixed-dim font-bold text-xs block mb-2">Smoothie</span>
+                <h3 id="drink-title" class="font-serif text-3xl md:text-5xl text-white font-bold tracking-tight mb-2">Galaxy Smoothie</h3>
+                <span id="drink-price" class="font-headline-md text-lg md:text-xl gold-gradient-text font-bold mb-4">$14.00</span>
                 <p id="drink-desc" class="font-body-md text-sm md:text-base text-on-surface-variant leading-relaxed max-w-2xl mx-auto mb-6 min-h-[48px]">
-                    A vibrant tropical blend of antioxidant-rich pink dragonfruit, organic strawberries, chilled coconut milk, and organic chia seeds.
+                    Blueberry, pineapple, coyo, banana, goji berry, coconut milk &amp; water.
                 </p>
                 <a id="drink-order-btn" href="https://pony-white-cafe.square.site/s/order" class="gold-gradient-bg text-on-secondary-fixed px-8 py-3 rounded-full font-label-md text-sm hover:scale-105 active:scale-95 transition-all font-bold shadow-lg inline-flex items-center gap-2 no-underline">
                     Order Takeaway
@@ -235,91 +235,90 @@
 <!-- Footer -->
 
 <script>
-    // 10 Detailed Drinks Data (6 Smoothies, 4 Juices)
-    // 7 Detailed Smoothies Data
+    // 7 Authentic Square Smoothies Data
     const DRINKS_DATA = [
         {
             id: 0,
-            title: "Pitaya Pink Dragon",
+            title: "Dragonberry Glaze Smoothie",
             category: "smoothie",
             categoryLabel: "Smoothie",
-            price: "$10.50",
-            description: "A vibrant tropical blend of antioxidant-rich pink dragonfruit, organic strawberries, chilled coconut milk, and organic chia seeds.",
+            price: "$14.00",
+            description: "Dragonfruit, strawberry, banana, coyo, strawberry purée, coconut milk & water.",
             color: "#ff3b7e",
-            imgSrc: "placeholder-smoothie.png", // Custom premium local asset
-            tags: ["Vegan", "Antioxidant", "100% Raw"],
+            imgSrc: "smoothie-dragonberry.jpg",
+            tags: ["Dragonfruit", "Coyo", "Fresh"],
             orderUrl: "https://pony-white-cafe.square.site/s/order"
         },
         {
             id: 1,
-            title: "Blue Spirulina Power",
+            title: "Cocobliss Smoothie",
             category: "smoothie",
             categoryLabel: "Smoothie",
-            price: "$11.00",
-            description: "High-protein recovery fuel blending pure blue spirulina, rich peanut butter, fresh banana, plant-based milk, and organic maca root.",
+            price: "$14.00",
+            description: "Mango, pineapple, blue spirulina, coyo, coconut milk & water.",
             color: "#00a8e8",
-            imgSrc: "placeholder-smoothie.png",
-            tags: ["Protein Boost", "Vegan", "Recovery"],
+            imgSrc: "smoothie-cocobliss.png",
+            tags: ["Blue Spirulina", "Tropical", "Coyo"],
             orderUrl: "https://pony-white-cafe.square.site/s/order"
         },
         {
             id: 2,
-            title: "Super Green Detox",
+            title: "Green But Not Smoothie",
             category: "smoothie",
             categoryLabel: "Smoothie",
-            price: "$10.00",
-            description: "Nutrient-dense clean green fusion of baby spinach, organic kale, crisp green apple, zesty ginger root, and celery.",
+            price: "$14.00",
+            description: "Kale, spinach, mango, banana, coconut milk & water.",
             color: "#4caf50",
-            imgSrc: "placeholder-smoothie.png",
-            tags: ["Super Greens", "Cleanse", "Iron Rich"],
+            imgSrc: "smoothie-green-but-not.png",
+            tags: ["Super Greens", "Mango", "Dairy-Free"],
             orderUrl: "https://pony-white-cafe.square.site/s/order"
         },
         {
             id: 3,
-            title: "Berry Glow Probiotic",
+            title: "Galaxy Smoothie",
             category: "smoothie",
             categoryLabel: "Smoothie",
-            price: "$10.50",
-            description: "A gorgeous blend of vitamin-packed local mixed berries, fresh banana, organic wild honey, and thick, probiotic Greek yogurt.",
+            price: "$14.00",
+            description: "Blueberry, pineapple, coyo, banana, goji berry, coconut milk & water.",
             color: "#9c27b0",
-            imgSrc: "placeholder-smoothie.png",
-            tags: ["Probiotic", "Immunity", "Glow"],
+            imgSrc: "smoothie-galaxy.png",
+            tags: ["Antioxidant", "Goji Berry", "Coyo"],
             orderUrl: "https://pony-white-cafe.square.site/s/order"
         },
         {
             id: 4,
-            title: "Mango Passion Cleanse",
+            title: "Mango Tango Smoothie",
             category: "smoothie",
             categoryLabel: "Smoothie",
-            price: "$10.50",
-            description: "Tropical skin glow cleanse packed with sweet ripe mango, tangy passionfruit pulp, coconut water, and a touch of turmeric.",
+            price: "$14.00",
+            description: "Mango, raspberry, coconut milk & water.",
             color: "#ffc107",
-            imgSrc: "placeholder-smoothie.png",
-            tags: ["Hydrating", "Vitamin C", "Anti-Inflam"],
+            imgSrc: "smoothie-mango-tango.png",
+            tags: ["Mango", "Raspberry", "Refreshing"],
             orderUrl: "https://pony-white-cafe.square.site/s/order"
         },
         {
             id: 5,
-            title: "Salted Caramel Protein",
+            title: "Bananarific Smoothie",
             category: "smoothie",
             categoryLabel: "Smoothie",
-            price: "$11.50",
-            description: "Indulgent clean energy blend of organic vegan vanilla protein, Medjool dates, almond butter, and sweet banana with Himalayan pink salt.",
+            price: "$14.00",
+            description: "Banana, peanut butter, chia seeds, cinnamon, honey & milk.",
             color: "#a07855",
-            imgSrc: "placeholder-smoothie.png",
-            tags: ["20g Protein", "Pre-Workout", "No Sugar"],
+            imgSrc: "smoothie-bananarific.png",
+            tags: ["Peanut Butter", "Chia Seeds", "Energy"],
             orderUrl: "https://pony-white-cafe.square.site/s/order"
         },
         {
             id: 6,
-            title: "Avo-Coco Rejuvenator",
+            title: "Cherry Ripe Smoothie",
             category: "smoothie",
             categoryLabel: "Smoothie",
-            price: "$11.00",
-            description: "Creamy wellness blend of fresh avocado, organic coconut milk, vegan protein, sweet Medjool dates, and premium raw cacao nibs.",
-            color: "#7cb342",
-            imgSrc: "placeholder-smoothie.png",
-            tags: ["Healthy Fats", "Vegan", "Energizing"],
+            price: "$14.00",
+            description: "Nutella, fresh berries, coconut milk, and cacao nibs.",
+            color: "#880e4f",
+            imgSrc: "smoothie-cherry-ripe.png",
+            tags: ["Nutella", "Fresh Berries", "Cacao Nibs"],
             orderUrl: "https://pony-white-cafe.square.site/s/order"
         }
     ];
@@ -369,8 +368,8 @@
             card.innerHTML = `
                 <div class="w-full flex flex-col items-center">
                     <!-- Uncropped Direct Image with Drop Shadow -->
-                    <div class="relative w-[180px] h-[270px] mb-4 flex items-center justify-center">
-                        <img src="../../assets/${drink.imgSrc}" class="w-full h-full object-contain filter drop-shadow-[0_12px_24px_rgba(0,0,0,0.55)]" alt="${drink.title}">
+                    <div class="relative w-[190px] h-[250px] mb-4 flex items-center justify-center rounded-2xl overflow-hidden border border-white/15 shadow-2xl">
+                        <img src="../../assets/${drink.imgSrc}" class="w-full h-full object-cover" alt="${drink.title}">
                     </div>
                     <span class="font-label-sm uppercase tracking-widest text-secondary-fixed-dim font-bold text-[10px] block mb-1">Smoothie</span>
                     <h4 class="font-serif text-2xl text-white font-bold tracking-tight mb-1">${drink.title}</h4>
@@ -412,10 +411,10 @@
             item.style.transform = `rotate(${angle}deg) translateY(-${radius}px)`; // rotate items as they flow
             item.setAttribute("id", `wheel-item-${drink.id}`);
             
-            // No background container, just the high-quality image itself
+            // Framed studio card on the wheel
             item.innerHTML = `
-                <div class="relative w-full h-full flex items-center justify-center transition-all duration-500 group">
-                    <img src="../../assets/${drink.imgSrc}" class="w-full h-full object-contain filter drop-shadow-[0_12px_24px_rgba(0,0,0,0.55)] transition-all duration-500" alt="${drink.title}">
+                <div class="relative w-full h-full flex items-center justify-center transition-all duration-500 group p-2">
+                    <img src="../../assets/${drink.imgSrc}" class="w-full h-full object-cover rounded-2xl border border-white/20 filter drop-shadow-[0_12px_24px_rgba(0,0,0,0.55)] transition-all duration-500" alt="${drink.title}">
                 </div>
             `;
 
@@ -531,16 +530,7 @@
             if (drinkOrderBtn) drinkOrderBtn.setAttribute("href", data.orderUrl);
 
             if (bgImage) {
-                let targetImg = "../../assets/layered-smoothie.jpg";
-                if (data.id === 0) targetImg = "../../assets/layered-smoothie.jpg";
-                else if (data.id === 1) targetImg = "../../assets/placeholder-smoothie.png";
-                else if (data.id === 2) targetImg = "../../assets/layered-smoothie.jpg";
-                else if (data.id === 3) targetImg = "../../assets/matcha-strawberry.jpg";
-                else if (data.id === 4) targetImg = "../../assets/layered-smoothie.jpg";
-                else if (data.id === 5) targetImg = "../../assets/placeholder-smoothie.png";
-                else if (data.id === 6) targetImg = "../../assets/coconut-iced-latte.jpg";
-
-                bgImage.src = targetImg;
+                bgImage.src = `../../assets/${data.imgSrc}`;
                 bgImage.style.opacity = '0.35';
                 bgImage.style.transform = 'scale(1.05)';
             }

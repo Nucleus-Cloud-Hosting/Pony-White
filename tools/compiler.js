@@ -5,7 +5,7 @@ const juice = require('juice');
 // Configuration
 // You can customize your GitHub Username and Repository name here
 const CONFIG = {
-  githubUsername: 'Jaspi199', // Default fallback, can be updated by user
+  githubUsername: 'Nucleus-Cloud-Hosting', // Active GitHub organization/repo owner
   githubRepo: 'Pony-White',
   githubBranch: 'main',
   useCDN: true // Set to false during local development to use local paths
@@ -151,6 +151,11 @@ function compilePage(filePath) {
   linksToRemove.forEach(tag => {
     html = html.replace(tag, '');
   });
+
+  // Strip local-preview <body> wrapper tags if present (preserving qr.html full document)
+  if (pageName !== 'qr.html') {
+    html = html.replace(/<\/?body[^>]*>/gi, '');
+  }
   
   // Prepend robust font @imports, global typography resets, and compiled styles inside a clean style block at the top of the content.
   // Placing combinedCss directly inside this block retains 100% of responsive design layouts (media queries),
@@ -184,7 +189,7 @@ function compilePage(filePath) {
   console.log(`  - Processing asset paths (CDN: ${CONFIG.useCDN ? 'ENABLED' : 'DISABLED'})...`);
   let processedHtml = processAssetPaths(inlinedHtml, CONFIG.useCDN);
   
-  // Inject dynamic script fonts loading and height detection to guarantee bypass of iframe sandboxing limits
+  // Inject dynamic script fonts loading, height detection, and Square Online iframe navigation breakout
   const dynamicFontScript = `\n    // Dynamic Font Injection to bypass iframe sandboxing font blocks\n` +
                             `    (function() {\n` +
                             `      function injectFont(url) {\n` +
@@ -213,11 +218,74 @@ function compilePage(filePath) {
                             `      }\n` +
                             `      // Initial trigger in case load already fired\n` +
                             `      setTimeout(sendHeight, 100);\n` +
+                            `    })();\n` +
+                            `    // Square Online Iframe Navigation & Link Breakout Guard\n` +
+                            `    (function() {\n` +
+                            `      const SLUG_MAP = {\n` +
+                            `        'home.html': '/',\n` +
+                            `        'book-table.html': '/book-table',\n` +
+                            `        'signature-drinks.html': '/signature-drinks',\n` +
+                            `        'smoothies-juices.html': '/smoothies-juices',\n` +
+                            `        'gift-cards.html': '/gift-cards',\n` +
+                            `        'loyalty.html': '/loyalty',\n` +
+                            `        'contact.html': '/contact',\n` +
+                            `        'careers.html': '/careers',\n` +
+                            `        'retail-top.html': '/retail',\n` +
+                            `        'retail-bottom.html': '/retail',\n` +
+                            `        'qr.html': '/qr',\n` +
+                            `        'under-construction.html': '/'\n` +
+                            `      };\n` +
+                            `      function isLocalPreview() {\n` +
+                            `        try {\n` +
+                            `          const host = window.location.hostname || '';\n` +
+                            `          return host === 'localhost' || host === '127.0.0.1' || window.location.protocol === 'file:';\n` +
+                            `        } catch (e) { return false; }\n` +
+                            `      }\n` +
+                            `      function isEmbeddedInIframe() {\n` +
+                            `        try { return window.self !== window.top; } catch (e) { return true; }\n` +
+                            `      }\n` +
+                            `      function upgradeLinks() {\n` +
+                            `        const inIframe = isEmbeddedInIframe();\n` +
+                            `        const local = isLocalPreview();\n` +
+                            `        document.querySelectorAll('a[href]').forEach(function(a) {\n` +
+                            `          const rawHref = (a.getAttribute('href') || '').trim();\n` +
+                            `          if (!rawHref || rawHref.startsWith('#') || rawHref.startsWith('javascript:') || rawHref.startsWith('mailto:') || rawHref.startsWith('tel:')) return;\n` +
+                            `          const cleanFile = rawHref.split('?')[0].split('#')[0].replace(/^(\\.\\/|\\/)+/, '');\n` +
+                            `          if (SLUG_MAP[cleanFile] && inIframe && !local) {\n` +
+                            `            const hashPart = rawHref.includes('#') ? '#' + rawHref.split('#')[1] : '';\n` +
+                            `            a.setAttribute('href', SLUG_MAP[cleanFile] + hashPart);\n` +
+                            `            a.setAttribute('target', '_top');\n` +
+                            `          } else if (/^https?:\\/\\//i.test(rawHref) && !a.getAttribute('target')) {\n` +
+                            `            a.setAttribute('target', '_top');\n` +
+                            `          }\n` +
+                            `        });\n` +
+                            `      }\n` +
+                            `      if (document.readyState === 'loading') {\n` +
+                            `        document.addEventListener('DOMContentLoaded', upgradeLinks);\n` +
+                            `      } else {\n` +
+                            `        upgradeLinks();\n` +
+                            `      }\n` +
+                            `      document.addEventListener('click', function(e) {\n` +
+                            `        const anchor = e.target && e.target.closest ? e.target.closest('a[href]') : null;\n` +
+                            `        if (!anchor) return;\n` +
+                            `        const rawHref = (anchor.getAttribute('href') || '').trim();\n` +
+                            `        const cleanFile = rawHref.split('?')[0].split('#')[0].replace(/^(\\.\\/|\\/)+/, '');\n` +
+                            `        if (SLUG_MAP[cleanFile] && isEmbeddedInIframe() && !isLocalPreview()) {\n` +
+                            `          e.preventDefault();\n` +
+                            `          const hashPart = rawHref.includes('#') ? '#' + rawHref.split('#')[1] : '';\n` +
+                            `          const targetUrl = SLUG_MAP[cleanFile] + hashPart;\n` +
+                            `          try { window.top.location.href = targetUrl; } catch (err) { window.open(targetUrl, '_top'); }\n` +
+                            `        }\n` +
+                            `      });\n` +
                             `    })();\n`;
                             
-  processedHtml = processedHtml.replace(/<script[^>]*>/i, (match) => {
-    return `${match}${dynamicFontScript}`;
-  });
+  if (/<script[^>]*>/i.test(processedHtml)) {
+    processedHtml = processedHtml.replace(/<script[^>]*>/i, (match) => {
+      return `${match}${dynamicFontScript}`;
+    });
+  } else {
+    processedHtml += `\n<script>${dynamicFontScript}</script>`;
+  }
   
   // 3. Minify HTML
   console.log(`  - Minifying output...`);

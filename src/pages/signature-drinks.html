@@ -290,7 +290,8 @@
         font-size: 1.25rem !important;
       }
 
-      #drink-description button.bg-marble-white {
+      #drink-description button.bg-marble-white,
+      #drink-description a.bg-marble-white {
         padding: 0.65rem 1.25rem !important;
         font-size: 0.65rem !important;
       }
@@ -508,10 +509,10 @@
       </div>
       <!-- View Full Menu (Scrolls with list) -->
       <div class="pt-4 mb-2">
-        <a href="#" class="group flex items-center justify-between border border-white/10 hover:border-white/30 bg-white/[0.03] hover:bg-white/[0.08] px-5 py-3.5 rounded-2xl transition-all duration-300">
+        <a href="https://pony-white-cafe.square.site/s/order" class="group flex items-center justify-between border border-white/10 hover:border-white/30 bg-white/[0.03] hover:bg-white/[0.08] px-5 py-3.5 rounded-2xl transition-all duration-300 no-underline">
           <div class="flex flex-col gap-1">
             <span class="text-marble-white text-xs uppercase tracking-widest font-bold">View Full Menu</span>
-            <span class="text-marble-white/40 text-[9px] tracking-wide font-light">Explore all classic & seasonal beverages</span>
+            <span class="text-marble-white/40 text-[9px] tracking-wide font-light">Explore all classic &amp; seasonal beverages</span>
           </div>
           <span class="material-symbols-outlined text-base text-marble-white/40 group-hover:text-marble-white group-hover:translate-x-1 transition-all duration-300">arrow_forward</span>
         </a>
@@ -536,11 +537,11 @@
       <button onclick="setDrinkTemp('iced')" id="btn-temp-iced" class="px-5 py-1.5 rounded-full text-xs uppercase tracking-widest font-semibold transition-all duration-300">Iced</button>
     </div>
     <div class="w-12 h-px bg-white/10 mb-6"></div>
-    <p class="text-marble-white/85 text-base md:text-lg leading-relaxed font-light mb-8" id="drink-text">Housemade strawberry puree &amp; strawberry cream.</p>
+    <p class="text-marble-white/85 text-base md:text-lg leading-relaxed font-light mb-8" id="drink-text">Whisked matcha over housemade strawberry purée, topped with velvety strawberry cream.</p>
     <div class="flex items-center justify-between gap-4 mt-auto pt-6 border-t border-white/5">
       <div class="flex items-center gap-4 md:gap-8">
-        <button class="bg-marble-white text-primary px-6 md:px-8 py-3.5 md:py-4 rounded-full font-bold text-xs tracking-widest uppercase shadow-lg shadow-black/10 hover:bg-[#eae0d5] hover:scale-105 active:scale-95 transition-all duration-300">Order Now</button>
-        <span class="text-marble-white/90 text-lg md:text-xl font-semibold" id="drink-price">$9.50</span>
+        <a href="https://pony-white-cafe.square.site/s/order" class="bg-marble-white text-primary px-6 md:px-8 py-3.5 md:py-4 rounded-full font-bold text-xs tracking-widest uppercase shadow-lg shadow-black/10 hover:bg-[#eae0d5] hover:scale-105 active:scale-95 transition-all duration-300 no-underline inline-block">Order Now</a>
+        <span class="text-marble-white/90 text-lg md:text-xl font-semibold" id="drink-price">$10.00</span>
       </div>
       <!-- Tiny Frosted Nav Arrows -->
       <div class="flex items-center gap-2">
@@ -565,39 +566,39 @@
     const drinks = {
       'strawberries-cream-matcha': {
         title: 'Strawberries & Cream Matcha',
-        text: 'Housemade strawberry puree & strawberry cream.',
+        text: 'Whisked matcha over housemade strawberry purée, topped with velvety strawberry cream.',
         img: '../../assets/matcha-strawberry.jpg',
         video: '../../assets/Strawberries & Cream Matcha.mp4',
-        price: '$9.50',
+        price: '$10.00',
         ambient: '#1C2E1F'
       },
       'banoffee-matcha': {
         title: 'Banoffee Matcha',
-        text: 'Housemade caramel banana syrup & banana cream with premium ceremonial matcha.',
-        img: '',
+        text: 'Layered with housemade caramel, banana syrup, banana cream, and a crispy banana chip over ceremonial matcha.',
+        img: '../../assets/sig-banoffee.jpg',
         video: '../../assets/Banoffee Matcha.mp4',
         price: '$10.00',
         ambient: '#2C2B1B'
       },
       'iced-rose-matcha': {
         title: 'Iced Rose Matcha',
-        text: 'Fragrant rose latte topped with rose petals and premium ceremonial matcha.',
+        text: 'Fragrant rose latte topped with dried rose petals and whisked ceremonial matcha.',
         img: '../../assets/matcha-strawberry.jpg',
         video: '../../assets/Iced Rose Matcha.mp4',
-        price: '$9.50',
+        price: '$10.00',
         ambient: '#2E1A2C'
       },
       'coconut-cloud-matcha': {
         title: 'Coconut Cloud Matcha',
-        text: 'Coconut water, coconut cold foam & toasted coconut with premium ceremonial matcha.',
+        text: 'Coconut water topped with coconut cold foam, toasted coconut, and ceremonial matcha.',
         img: '../../assets/coconut-iced-latte.jpg',
         video: '../../assets/coconut cloud matcha.mp4',
-        price: '$9.50',
+        price: '$10.00',
         ambient: '#1A2A2E'
       },
       'pistachio-creme-brulee': {
-        title: 'Pistachio Creme Brulee',
-        text: 'Iced latte with our house made pistachio cream, bruleed with crushed pistachios.',
+        title: 'Pistachio Crème Brûlée',
+        text: 'Iced latte topped with house-made pistachio cream, brûléed with crushed pistachios.',
         img: '../../assets/coconut-iced-latte.jpg',
         video: '../../assets/Pistachio Creme Brulee.mp4',
         price: '$10.50',
@@ -605,50 +606,50 @@
       },
       'banoffee-coffee': {
         title: 'Banoffee Coffee',
-        text: 'Housemade caramel banana syrup & banana cream with a rich double shot of espresso.',
-        img: '',
+        text: 'Layered with housemade caramel, banana syrup, banana cream, and a crispy banana chip with a double shot of espresso.',
+        img: '../../assets/sig-banoffee.jpg',
         video: '../../assets/Banoffee Coffee.mp4',
         price: '$10.00',
         ambient: '#3A2E1D'
       },
       'iced-rose-coffee': {
         title: 'Iced Rose Coffee',
-        text: 'Fragrant rose latte topped with rose petals and a rich double shot of espresso.',
+        text: 'Fragrant rose latte topped with dried rose petals and a rich double shot of espresso.',
         img: '../../assets/matcha-strawberry.jpg',
         video: '../../assets/Iced Rose Coffee.mp4',
-        price: '$9.50',
+        price: '$10.00',
         ambient: '#351F2A'
       },
       'coconut-cloud-coffee': {
         title: 'Coconut Cloud Coffee',
-        text: 'Coconut water, coconut cold foam & toasted coconut with a rich double shot of espresso.',
+        text: 'Coconut water topped with coconut cold foam, toasted coconut, and a rich double shot of espresso.',
         img: '../../assets/coconut-iced-latte.jpg',
         video: '../../assets/coconut cloud coffee.mp4',
-        price: '$9.50',
+        price: '$10.00',
         ambient: '#212D3A'
       },
       'tiramisu-affogato': {
         title: 'Tiramisu Affogato',
-        text: 'Sea salt caramel ice cream, lady finger biscuits, salted caramel sauce, chocolate & double espresso.',
-        img: '',
+        text: 'Sea salt caramel ice cream, ladyfinger biscuits, salted caramel sauce, chocolate dusting, and a double shot of espresso.',
+        img: '../../assets/sig-tiramisu-affogato.jpg',
         video: '../../assets/Tiramisu Affogato.mp4',
         price: '$10.00',
         ambient: '#2D1D17'
       },
       'peach-cold-brew': {
         title: 'Peach Cold Brew',
-        text: 'Cold brew, sweet peach cream topped with dried peach.',
-        img: '',
+        text: 'Smooth slow-steeped cold brew coffee infused with sweet house-made peach over ice.',
+        img: '../../assets/sig-peach-cold-brew.jpg',
         video: '../../assets/peach cold brew.mp4',
-        price: '$9.50',
+        price: '$10.00',
         ambient: '#352119'
       },
       'coconut-cloud-chocolate': {
         title: 'Coconut Cloud Chocolate',
-        text: 'Coconut water, coconut cold foam & toasted coconut with premium rich chocolate.',
+        text: 'Coconut water topped with coconut cold foam, toasted coconut, and premium rich chocolate.',
         img: '../../assets/coconut-iced-latte.jpg',
         video: '../../assets/Coconut Cloud Chocolate.mp4',
-        price: '$9.50',
+        price: '$10.00',
         ambient: '#2D211A'
       },
       'hazelnut-chocolate': {
@@ -658,7 +659,7 @@
           text: 'Our signature rich chocolate infused with sweet roasted hazelnut syrup. Warm, velvety, and deeply comforting.',
           img: '../../assets/coconut-iced-latte.jpg',
           video: '../../assets/Hazelnut Hot Chocolate (Hot).mp4',
-          price: '$6.00',
+          price: '$6.50',
           ambient: '#301F18'
         },
         iced: {
@@ -673,35 +674,35 @@
       'iced-rose-turkish-delight': {
         title: 'Iced Rose Turkish Delight',
         text: 'An indulgent signature iced chocolate infused with fragrant rose water, served over ice and crowned with authentic Turkish delight pieces.',
-        img: '',
+        img: '../../assets/sig-iced-rose.png',
         video: '../../assets/Iced Rose Turkish.mp4',
-        price: '$10.00',
+        price: '$9.50',
         ambient: '#2D1B22'
       },
       'mont-blanc': {
         title: 'Mont Blanc',
         text: 'Rich, smooth cold brew topped with our house-made velvety sweet cream, mimicking the snow-capped peak of Mont Blanc.',
-        img: '',
+        img: '../../assets/sig-yuzu-honey-cold-brew.jpg',
         video: '../../assets/mont blanc.mp4',
-        price: '$9.50',
+        price: '$10.50',
         ambient: '#1E2530'
       },
       'rose-latte': {
         hasTempToggle: true,
         hot: {
           title: 'Hot Rose Latte',
-          text: 'Fragrant rose latte topped with delicate rose petals. A soothing, caffeine-free signature blend with no coffee or matcha added.',
+          text: 'Fragrant rose latte with silky textured milk and dried rose petals. A soothing, caffeine-free signature blend.',
           img: '../../assets/matcha-strawberry.jpg',
           video: '../../assets/Hot Rose Latte (Hot).mp4',
-          price: '$6.00',
+          price: '$6.50',
           ambient: '#3A1E27'
         },
         iced: {
           title: 'Iced Rose Latte',
-          text: 'Chilled rose latte served over ice and topped with rose petals and a premium scoop of vanilla ice cream. 100% caffeine-free.',
-          img: '../../assets/matcha-strawberry.jpg',
+          text: 'Chilled fragrant rose milk latte over crystal-clear ice, finished with dried rose petals. 100% caffeine-free.',
+          img: '../../assets/sig-iced-rose.png',
           video: '../../assets/Iced Rose Latte (Iced).mp4',
-          price: '$8.50',
+          price: '$7.00',
           ambient: '#2E1A2C'
         }
       },
@@ -712,34 +713,34 @@
           text: 'A stunning, nutrient-dense caffeine-free latte made with premium organic blue spirulina, steamed milk, and a delicate touch of vanilla sweetness.',
           img: '../../assets/coconut-iced-latte.jpg',
           video: '../../assets/Hot Blue Spirulina Latte (Hot).mp4',
-          price: '$6.00',
+          price: '$6.50',
           ambient: '#1A2C38'
         },
         iced: {
           title: 'Iced Blue Spirulina Latte',
-          text: 'Nutrient-rich blue spirulina and chilled milk over ice, crowned with a premium scoop of vanilla ice cream. Pure, refreshing, caffeine-free wellness.',
+          text: 'Nutrient-rich blue spirulina and chilled milk over ice. Pure, refreshing, caffeine-free wellness.',
           img: '../../assets/coconut-iced-latte.jpg',
           video: '../../assets/Iced Blue Spirulina Latte (Iced).mp4',
-          price: '$8.50',
+          price: '$7.00',
           ambient: '#1B3240'
         }
       },
       'taro-latte': {
         hasTempToggle: true,
         hot: {
-          title: 'Hot Taro Latte',
-          text: 'A velvety, smooth purple latte with a delicious, sweet and nutty taro root flavor. Comforting, cozy, and caffeine-free.',
-          img: '',
+          title: 'Hot Ube Taro Latte',
+          text: 'A velvety, smooth purple latte with a delicious, sweet and nutty ube taro root flavor. Comforting, cozy, and caffeine-free.',
+          img: '../../assets/sig-ube-taro-latte.jpg',
           video: '../../assets/Hot Taro Latte (Hot).mp4',
-          price: '$6.00',
+          price: '$6.50',
           ambient: '#291B33'
         },
         iced: {
-          title: 'Iced Taro Latte',
-          text: 'Creamy and nutty taro latte poured over ice, finished with a premium scoop of vanilla ice cream. The perfect sweet, caffeine-free escape.',
-          img: '',
+          title: 'Iced Ube Taro Latte',
+          text: 'Creamy and nutty ube taro latte poured over ice. The perfect sweet, caffeine-free escape.',
+          img: '../../assets/sig-ube-taro-latte.jpg',
           video: '../../assets/Iced Taro Latte (Iced).mp4',
-          price: '$8.50',
+          price: '$7.00',
           ambient: '#22162B'
         }
       }
@@ -1218,6 +1219,154 @@
       const firstItem = document.querySelector('.drink-nav-item');
       if (firstItem) {
         showDrink('strawberries-cream-matcha', firstItem);
+      }
+
+      // 9. Live Sync from Nucleus CRM (Public Read-Only Firestore Document)
+      syncDrinksFromNucleusCrm();
+    }
+
+    function unwrapFirestoreValue(val) {
+      if (!val || typeof val !== 'object') return val;
+      if ('stringValue' in val) return val.stringValue;
+      if ('booleanValue' in val) return Boolean(val.booleanValue);
+      if ('integerValue' in val) return Number(val.integerValue);
+      if ('doubleValue' in val) return Number(val.doubleValue);
+      if ('nullValue' in val) return null;
+      if ('arrayValue' in val) {
+        return ((val.arrayValue && val.arrayValue.values) || []).map(unwrapFirestoreValue);
+      }
+      if ('mapValue' in val) {
+        const fields = (val.mapValue && val.mapValue.fields) || {};
+        const out = {};
+        Object.keys(fields).forEach(k => {
+          out[k] = unwrapFirestoreValue(fields[k]);
+        });
+        return out;
+      }
+      return val;
+    }
+
+    async function syncDrinksFromNucleusCrm() {
+      const CRM_FIRESTORE_URL = 'https://firestore.googleapis.com/v1/projects/bizboard-67b4c/databases/(default)/documents/businesses/nYaZ4T5qRKS3Z9EG5mrl/public_data/signature_drinks';
+      try {
+        const res = await fetch(CRM_FIRESTORE_URL, { cache: 'no-store' });
+        if (!res.ok) return;
+        const rawDoc = await res.json();
+        if (!rawDoc || !rawDoc.fields) return;
+
+        const data = unwrapFirestoreValue({ mapValue: { fields: rawDoc.fields } });
+        if (!data || !Array.isArray(data.categories) || !Array.isArray(data.drinks)) return;
+
+        const visibleCategories = data.categories
+          .filter(c => c && c.visible !== false)
+          .sort((a, b) => (a.order || 0) - (b.order || 0));
+
+        const visibleDrinks = data.drinks
+          .filter(d => d && d.visible !== false)
+          .sort((a, b) => (a.order || 0) - (b.order || 0));
+
+        if (!visibleCategories.length || !visibleDrinks.length) return;
+
+        // Rebuild live drinks lookup dictionary in exact submenu + item order
+        Object.keys(drinks).forEach(k => delete drinks[k]);
+
+        const navEl = document.querySelector('aside.sidebar-slide nav');
+        if (!navEl) return;
+
+        // Preserve the "View Full Menu" footer block inside <nav>
+        const footerCta = navEl.querySelector('.pt-4.mb-2');
+        navEl.innerHTML = '';
+
+        visibleCategories.forEach((cat, catIdx) => {
+          const catDrinks = visibleDrinks.filter(d => d.categoryId === cat.id);
+          if (!catDrinks.length) return;
+
+          const groupDiv = document.createElement('div');
+          groupDiv.className = 'category-group';
+          groupDiv.id = cat.id;
+
+          const headerBtn = document.createElement('button');
+          headerBtn.className = 'w-full flex items-center justify-between text-marble-white/50 hover:text-marble-white transition-custom py-2 uppercase tracking-[0.2em] text-xs font-bold';
+          headerBtn.innerHTML = `
+            <span class="pointer-events-none">${cat.name}</span>
+            <span class="material-symbols-outlined text-sm transition-custom category-chevron pointer-events-none">expand_more</span>
+          `;
+          headerBtn.addEventListener('click', (e) => {
+            e.preventDefault();
+            toggleCategory(cat.id);
+          });
+          groupDiv.addEventListener('mouseenter', () => hoverCategory(cat.id));
+
+          const contentDiv = document.createElement('div');
+          contentDiv.className = 'category-content flex flex-col gap-4 pl-2 border-l border-white/5';
+
+          catDrinks.forEach((d) => {
+            const key = d.key || d.id;
+            drinks[key] = {
+              title: d.title,
+              text: d.text,
+              img: d.img,
+              video: d.video,
+              price: d.price,
+              ambient: d.ambient || '#1C2E1F',
+              hasTempToggle: Boolean(d.hasTempToggle),
+              hot: d.hot || null,
+              iced: d.iced || null
+            };
+
+            const itemBtn = document.createElement('button');
+            const isActive = key === currentDrinkKey;
+            itemBtn.className = `drink-nav-item group flex items-center gap-4 text-left transition-custom ${isActive ? '' : 'opacity-50 hover:opacity-100'}`;
+            itemBtn.setAttribute('data-drink-key', key);
+            itemBtn.innerHTML = `
+              <span class="nav-line ${isActive ? 'active-nav-line' : 'inactive-nav-line group-hover:w-10'} h-px transition-custom"></span>
+              <span class="text-marble-white text-base tracking-wide font-light transition-custom">${d.title}</span>
+            `;
+            itemBtn.addEventListener('click', (e) => {
+              e.preventDefault();
+              showDrink(key, itemBtn);
+            });
+            contentDiv.appendChild(itemBtn);
+          });
+
+          groupDiv.appendChild(headerBtn);
+          groupDiv.appendChild(contentDiv);
+          navEl.appendChild(groupDiv);
+
+          if (catIdx === 0) {
+            groupDiv.classList.add('category-open');
+            setTimeout(() => {
+              contentDiv.style.maxHeight = contentDiv.scrollHeight + 'px';
+            }, 20);
+          }
+        });
+
+        if (footerCta) {
+          navEl.appendChild(footerCta);
+        }
+
+        // If the currently displayed drink was hidden in CRM, switch to the first visible drink
+        if (!drinks[currentDrinkKey]) {
+          const firstKey = Object.keys(drinks)[0];
+          const firstBtn = navEl.querySelector('.drink-nav-item');
+          if (firstKey && firstBtn) {
+            showDrink(firstKey, firstBtn);
+          }
+        } else {
+          // Refresh current drink text & price in case it was edited in Nucleus CRM
+          const activeDrink = drinks[currentDrinkKey];
+          const activeCfg = activeDrink.hasTempToggle ? (activeDrink[currentDrinkTemp] || activeDrink) : activeDrink;
+          if (activeCfg) {
+            const titleEl = document.getElementById('drink-title');
+            const textEl = document.getElementById('drink-text');
+            const priceEl = document.getElementById('drink-price');
+            if (titleEl) titleEl.innerText = activeCfg.title;
+            if (textEl) textEl.innerText = activeCfg.text;
+            if (priceEl) priceEl.innerText = activeCfg.price;
+          }
+        }
+      } catch (err) {
+        console.warn('Nucleus CRM live sync skipped (using compiled fallback):', err);
       }
     }
 

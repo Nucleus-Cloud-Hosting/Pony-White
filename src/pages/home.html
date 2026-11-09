@@ -87,6 +87,7 @@
             transform: translateX(-50%) !important;
         }
     </style>
+<body>
 
 <!-- Top Navigation Bar -->
 
@@ -104,12 +105,12 @@
 <h1 class="font-headline-xl text-headline-xl mb-6 text-primary">Artisanal Flavours, Warmly Served</h1>
 <p class="font-body-lg text-body-lg text-on-surface-variant mb-10">A neighborhood sanctuary where gourmet breakfast meets meticulous roasting. Join us at the heart of Fitzroy.</p>
 <div class="flex flex-col sm:flex-row gap-4 justify-center">
-<button class="bg-primary text-on-primary px-8 py-4 rounded-full font-label-md hover:bg-primary-container transition-all duration-300 transform active:scale-95">
+<a href="https://pony-white-cafe.square.site/s/order" target="_blank" rel="noopener noreferrer" class="bg-primary text-on-primary px-8 py-4 rounded-full font-label-md hover:bg-primary-container transition-all duration-300 transform active:scale-95 no-underline inline-flex items-center justify-center">
                         Order for Pickup
-                    </button>
-<button class="bg-transparent text-primary border-2 border-secondary-fixed-dim px-8 py-4 rounded-full font-label-md hover:bg-secondary-fixed/10 transition-all duration-300 transform active:scale-95">
+                    </a>
+<a href="#kitchen-showcase" class="bg-transparent text-primary border-2 border-secondary-fixed-dim px-8 py-4 rounded-full font-label-md hover:bg-secondary-fixed/10 transition-all duration-300 transform active:scale-95 no-underline inline-flex items-center justify-center">
                         Explore Menu
-                    </button>
+                    </a>
 </div>
 </div>
 </div>
@@ -118,9 +119,9 @@
 <section id="kitchen-showcase" class="py-24 bg-surface-container-low overflow-hidden relative">
 <div class="max-w-container-max mx-auto px-gutter">
 <div class="text-center mb-16">
-<span class="font-label-sm uppercase tracking-widest mb-4 block gold-gradient-text font-bold">The Kitchen Showcase</span>
-<h2 class="font-headline-xl text-headline-xl text-primary font-bold">Artisanal Dining</h2>
-<p class="font-body-lg text-body-lg text-on-surface-variant max-w-xl mx-auto mt-4">
+<span id="kitchen-showcase-subtitle" class="font-label-sm uppercase tracking-widest mb-4 block gold-gradient-text font-bold">The Kitchen Showcase</span>
+<h2 id="kitchen-showcase-title" class="font-headline-xl text-headline-xl text-primary font-bold">Artisanal Dining</h2>
+<p id="kitchen-showcase-desc" class="font-body-lg text-body-lg text-on-surface-variant max-w-xl mx-auto mt-4">
         Discover our chef's hand-crafted signature dishes, made daily with fresh, locally sourced ingredients.
       </p>
 </div>
@@ -128,48 +129,63 @@
 <div class="lg:col-span-6 relative group overflow-hidden rounded-[2.5rem_6rem_2.5rem_6rem] shadow-2xl h-[350px] md:h-[500px] lg:h-[600px] border border-secondary/15 bg-primary-container/10 isolate">
 <div id="slideshow-image-container" class="w-full h-full relative overflow-hidden rounded-[2.5rem_6rem_2.5rem_6rem] isolate">
 <!-- Images are loaded statically for native preloading and smooth crossfade transitions -->
-<img src="../../assets/salmon-benedict.jpg" class="absolute inset-0 w-full h-full object-cover transition-all duration-[800ms] ease-in-out transform scale-100 opacity-0 pointer-events-none z-0 rounded-[2.5rem_6rem_2.5rem_6rem]" id="slide-img-0" alt="Okonomiyaki Benedict">
-<img src="../../assets/avocado-toast.jpg" class="absolute inset-0 w-full h-full object-cover transition-all duration-[800ms] ease-in-out transform scale-100 opacity-0 pointer-events-none z-0 rounded-[2.5rem_6rem_2.5rem_6rem]" id="slide-img-1" alt="Gourmet Avocado Toast">
-<img src="../../assets/gourmet-burger.jpg" class="absolute inset-0 w-full h-full object-cover transition-all duration-[800ms] ease-in-out transform scale-100 opacity-0 pointer-events-none z-0 rounded-[2.5rem_6rem_2.5rem_6rem]" id="slide-img-2" alt="Georgie's Burger">
-<img src="../../assets/french-toast.jpg" class="absolute inset-0 w-full h-full object-cover transition-all duration-[800ms] ease-in-out transform scale-100 opacity-0 pointer-events-none z-0 rounded-[2.5rem_6rem_2.5rem_6rem]" id="slide-img-3" alt="Lemon Meringue French Toast">
-<img src="../../assets/wild-mushroom.jpg" class="absolute inset-0 w-full h-full object-cover transition-all duration-[800ms] ease-in-out transform scale-100 opacity-0 pointer-events-none z-0 rounded-[2.5rem_6rem_2.5rem_6rem]" id="slide-img-4" alt="Wild Mushroom Toast">
-<img src="../../assets/acai-bowl.jpg" class="absolute inset-0 w-full h-full object-cover transition-all duration-[800ms] ease-in-out transform scale-100 opacity-0 pointer-events-none z-0 rounded-[2.5rem_6rem_2.5rem_6rem]" id="slide-img-5" alt="Açaí Bowl">
+<img src="../../assets/salmon-benedict.jpg" decoding="async" class="absolute inset-0 w-full h-full object-cover transition-all duration-[800ms] ease-in-out transform scale-105 opacity-100 pointer-events-auto z-10 rounded-[2.5rem_6rem_2.5rem_6rem]" id="slide-img-0" alt="Okonomiyaki Benedict">
+<img src="../../assets/avocado-toast.jpg" decoding="async" class="absolute inset-0 w-full h-full object-cover transition-all duration-[800ms] ease-in-out transform scale-100 opacity-0 pointer-events-none z-0 rounded-[2.5rem_6rem_2.5rem_6rem]" id="slide-img-1" alt="Avocado Toast">
+<img src="../../assets/gourmet-burger.jpg" decoding="async" class="absolute inset-0 w-full h-full object-cover transition-all duration-[800ms] ease-in-out transform scale-100 opacity-0 pointer-events-none z-0 rounded-[2.5rem_6rem_2.5rem_6rem]" id="slide-img-2" alt="Pony's Classic Burger">
+<img src="../../assets/french-toast.jpg" decoding="async" class="absolute inset-0 w-full h-full object-cover transition-all duration-[800ms] ease-in-out transform scale-100 opacity-0 pointer-events-none z-0 rounded-[2.5rem_6rem_2.5rem_6rem]" id="slide-img-3" alt="French Toast Dé Matcha">
+<img src="../../assets/wild-mushroom.jpg" decoding="async" class="absolute inset-0 w-full h-full object-cover transition-all duration-[800ms] ease-in-out transform scale-100 opacity-0 pointer-events-none z-0 rounded-[2.5rem_6rem_2.5rem_6rem]" id="slide-img-4" alt="Wild Mushroom">
+<img src="../../assets/acai-bowl.jpg" decoding="async" class="absolute inset-0 w-full h-full object-cover transition-all duration-[800ms] ease-in-out transform scale-100 opacity-0 pointer-events-none z-0 rounded-[2.5rem_6rem_2.5rem_6rem]" id="slide-img-5" alt="Açaí Bowl">
+<img src="../../assets/chilli-cheese-croissant.jpg" decoding="async" class="absolute inset-0 w-full h-full object-cover transition-all duration-[800ms] ease-in-out transform scale-100 opacity-0 pointer-events-none z-0 rounded-[2.5rem_6rem_2.5rem_6rem]" id="slide-img-6" alt="Chilli Cheese Croissant">
+<img src="../../assets/spaghetti-marinara.jpg" decoding="async" class="absolute inset-0 w-full h-full object-cover transition-all duration-[800ms] ease-in-out transform scale-100 opacity-0 pointer-events-none z-0 rounded-[2.5rem_6rem_2.5rem_6rem]" id="slide-img-7" alt="Spaghetti Marinara">
+<img src="../../assets/zaalouk-prawns.jpg" decoding="async" class="absolute inset-0 w-full h-full object-cover transition-all duration-[800ms] ease-in-out transform scale-100 opacity-0 pointer-events-none z-0 rounded-[2.5rem_6rem_2.5rem_6rem]" id="slide-img-8" alt="Zaalou'k Prawns">
+<img src="../../assets/big-breakfast.jpg" decoding="async" class="absolute inset-0 w-full h-full object-cover transition-all duration-[800ms] ease-in-out transform scale-100 opacity-0 pointer-events-none z-0 rounded-[2.5rem_6rem_2.5rem_6rem]" id="slide-img-9" alt="Big Breakfast">
 </div>
-<div class="absolute inset-x-6 top-1/2 -translate-y-1/2 flex justify-between items-center pointer-events-none z-20">
-<button id="prev-slide" class="w-12 h-12 rounded-full bg-white/90 backdrop-blur-md text-primary flex items-center justify-center border border-secondary/20 shadow-md pointer-events-auto hover:bg-primary hover:text-white transition-all active:scale-95 duration-300">
-<span class="material-symbols-outlined text-2xl">arrow_back</span>
+<div class="absolute inset-x-6 top-1/2 -translate-y-1/2 flex justify-between items-center pointer-events-none z-20" style="z-index: 30; pointer-events: none;">
+<button id="prev-slide" type="button" onclick="window.prevKitchenSlide && window.prevKitchenSlide(event)" aria-label="Previous dish" style="pointer-events: auto; z-index: 30; cursor: pointer;" class="w-12 h-12 rounded-full bg-white/90 backdrop-blur-md text-primary flex items-center justify-center border border-secondary/20 shadow-md pointer-events-auto hover:bg-primary hover:text-white transition-all active:scale-95 duration-300">
+<span class="material-symbols-outlined text-2xl pointer-events-none">arrow_back</span>
 </button>
-<button id="next-slide" class="w-12 h-12 rounded-full bg-white/90 backdrop-blur-md text-primary flex items-center justify-center border border-secondary/20 shadow-md pointer-events-auto hover:bg-primary hover:text-white transition-all active:scale-95 duration-300">
-<span class="material-symbols-outlined text-2xl">arrow_forward</span>
+<button id="next-slide" type="button" onclick="window.nextKitchenSlide && window.nextKitchenSlide(event)" aria-label="Next dish" style="pointer-events: auto; z-index: 30; cursor: pointer;" class="w-12 h-12 rounded-full bg-white/90 backdrop-blur-md text-primary flex items-center justify-center border border-secondary/20 shadow-md pointer-events-auto hover:bg-primary hover:text-white transition-all active:scale-95 duration-300">
+<span class="material-symbols-outlined text-2xl pointer-events-none">arrow_forward</span>
 </button>
 </div>
 </div>
-<div id="slideshow-card" class="lg:col-span-6 bg-white p-8 md:p-12 pb-16 md:pb-20 rounded-xl shadow-xl relative overflow-hidden border border-secondary/15 h-[550px] md:h-[500px] lg:h-[600px] flex flex-col justify-between transition-all duration-500">
+<div id="slideshow-card" class="lg:col-span-6 bg-white p-8 md:p-12 pb-16 md:pb-20 rounded-xl shadow-xl relative overflow-hidden border border-secondary/15 min-h-[540px] md:min-h-[520px] lg:h-[600px] flex flex-col justify-between transition-all duration-500">
 <div>
 <div class="flex justify-between items-center mb-6">
-<span id="slide-category" class="font-label-sm uppercase tracking-widest gold-gradient-text font-bold transition-all duration-300 transform">Signature Kitchen</span>
-<span id="slide-price" class="font-headline-md text-secondary font-bold text-2xl transition-all duration-300 transform">$26.50</span>
+<span id="slide-category" class="font-label-sm uppercase tracking-widest gold-gradient-text font-bold transition-all duration-300 transform">All Day Meals</span>
+<span id="slide-price" class="font-headline-md text-secondary font-bold text-2xl transition-all duration-300 transform">$28.00</span>
 </div>
 <h3 id="slide-title" class="font-headline-xl text-primary mb-6 transition-all duration-300 transform">Okonomiyaki Benedict</h3>
 <p id="slide-desc" class="font-body-lg text-body-lg text-on-surface-variant mb-4 leading-relaxed transition-all duration-300 min-h-[110px] transform">
-            A house favorite from our kitchen: crispy white cabbage and sweetcorn pancakes topped with perfectly poached eggs, rich hollandaise, traditional Japanese BBQ sauce, pickled ginger, and delicate bonito flakes.
+            Crispy white cabbage &amp; sweetcorn fritters with poached eggs, smoky hollandaise, crispy kale, special sauce, pickled ginger, lotus chips, sumac &amp; bonito flakes. Add bacon +$6.0 | smoked salmon +$6.0. (VO, GF)
           </p>
 <ul id="slide-features" class="space-y-2 mb-6 transition-all duration-300 transform">
-<!-- Dynamically populated features -->
+<li class="flex items-center gap-3 text-on-surface-variant">
+  <span class="material-symbols-outlined text-secondary text-lg flex-shrink-0" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+  <span class="font-body-md">Crispy white cabbage &amp; sweetcorn fritters with poached eggs</span>
+</li>
+<li class="flex items-center gap-3 text-on-surface-variant">
+  <span class="material-symbols-outlined text-secondary text-lg flex-shrink-0" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+  <span class="font-body-md">Smoky hollandaise, crispy kale, pickled ginger &amp; lotus chips</span>
+</li>
+<li class="flex items-center gap-3 text-on-surface-variant">
+  <span class="material-symbols-outlined text-secondary text-lg flex-shrink-0" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+  <span class="font-body-md">Finished with special sauce, sumac &amp; bonito flakes (VO, GF)</span>
+</li>
 </ul>
 </div>
 <div class="mt-auto">
 <div class="flex flex-col sm:flex-row gap-4 items-center justify-start w-full">
-<a id="order-btn" href="https://pony-white-cafe.square.site/s/order" class="bg-primary text-on-primary px-8 py-4 rounded-full font-label-md hover:bg-primary-container transition-all duration-300 shadow-md flex items-center justify-center gap-2 group text-center flex-1 sm:flex-none no-underline">
+<a id="order-btn" href="https://pony-white-cafe.square.site/s/order" target="_blank" rel="noopener noreferrer" class="bg-primary text-on-primary px-8 py-4 rounded-full font-label-md hover:bg-primary-container transition-all duration-300 shadow-md flex items-center justify-center gap-2 group text-center flex-1 sm:flex-none no-underline">
                 Order Takeaway
                 <span class="material-symbols-outlined text-secondary group-hover:scale-110 transition-transform">restaurant_menu</span>
 </a>
-<a href="book-table.html" class="bg-transparent text-primary border-2 border-secondary-fixed-dim px-8 py-4 rounded-full font-label-md hover:bg-secondary-fixed/10 transition-all duration-300 text-center flex-1 sm:flex-none no-underline flex items-center justify-center">
+<a id="book-table-btn" href="book-table.html" class="bg-transparent text-primary border-2 border-secondary-fixed-dim px-8 py-4 rounded-full font-label-md hover:bg-secondary-fixed/10 transition-all duration-300 text-center flex-1 sm:flex-none no-underline flex items-center justify-center">
                 Book a Table
               </a>
 </div>
 </div>
-<div id="slideshow-dots" class="flex gap-2 justify-center absolute bottom-5 left-1/2 -translate-x-1/2 z-20">
+<div id="slideshow-dots" class="flex gap-2 justify-center absolute bottom-5 left-1/2 -translate-x-1/2 z-20" style="z-index: 30; pointer-events: auto;">
 <!-- Dynamically populated dots -->
 </div>
 <div class="absolute bottom-0 left-0 w-full h-[3px] bg-surface-container">
@@ -362,9 +378,9 @@
   "Such a gem in Fitzroy! Their specialty drinks are next level! We tried the Banaoffee and the Tiramisu Affogato, both were absolutely delicious. Food was amazing too—the prawn marinara was rich and prawns were fresh, the salmon bagel was spot on, and the Okonomiyaki Benedict was such a unique twist! Definitely coming back here."
 </p>
 <p class="font-label-md uppercase tracking-wider text-secondary font-bold mt-4 mb-12">— Shanyan Hai</p>
-<button class="bg-white text-primary border-2 border-secondary-fixed-dim px-8 py-4 rounded-full font-label-md hover:bg-primary hover:text-white transition-all duration-300 shadow-sm">
+<a href="contact.html" class="bg-white text-primary border-2 border-secondary-fixed-dim px-8 py-4 rounded-full font-label-md hover:bg-primary hover:text-white transition-all duration-300 shadow-sm no-underline inline-block">
                 Leave us a Review
-            </button>
+            </a>
 </div>
 </section>
 <!-- Instagram Section -->
@@ -495,8 +511,8 @@
               <span class="text-xs font-bold font-body-md text-[#00261b]/40">E-GIFT CARD</span>
             </div>
             <!-- Small brand mark -->
-            <div class="w-12 h-12 rounded-full flex items-center justify-center opacity-90">
-              <img alt="Pony White Cafe Brand Mark" class="w-full h-full rounded-full object-cover" src="../../assets/White Color Overlay Design.png"/>
+            <div class="w-8 h-8 rounded-full bg-[#00261b]/90 backdrop-blur-sm border border-[#00261b]/20 flex items-center justify-center p-1.5 shadow-sm">
+              <img src="../../assets/White Color Overlay Design.png" alt="Pony White Logo" class="w-full h-full object-contain" />
             </div>
           </div>
           
@@ -527,14 +543,15 @@
     <!-- 3-Column Information Grid -->
     <div class="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-12 border-t border-secondary/10 pt-8">
       <!-- Our Home -->
-      <a href="https://www.google.com/maps/dir/?api=1&destination=379+George+St,+Fitzroy+VIC+3065+Australia" target="_blank" class="flex items-start gap-4 group no-underline hover:opacity-95 transition-opacity block">
+      <a href="https://www.google.com/maps/dir/?api=1&destination=379-381+George+St,+Fitzroy+VIC+3065+Australia" target="_blank" rel="noopener noreferrer" class="flex items-start gap-4 group no-underline hover:opacity-95 transition-opacity block">
         <span class="material-symbols-outlined text-secondary mt-1 group-hover:scale-110 transition-transform">location_on</span>
         <div>
           <h4 class="font-headline-md text-headline-md mb-2 flex items-center gap-1.5 text-primary group-hover:text-secondary transition-colors">
             Our Home
             <span class="material-symbols-outlined text-xs opacity-0 group-hover:opacity-100 transition-opacity">open_in_new</span>
           </h4>
-          <p class="text-body-lg text-on-surface-variant underline decoration-secondary/20 group-hover:decoration-secondary transition-all">379 George St, Fitzroy,<br/>VIC 3065, Australia</p>
+          <p class="text-body-lg text-on-surface-variant underline decoration-secondary/20 group-hover:decoration-secondary transition-all">379-381 George Street, Fitzroy,<br/>VIC 3065, Australia</p>
+          <p class="text-xs text-on-surface-variant/75 font-body-md mt-2">(03) 9314 7273 • info@ponywhite.com.au</p>
         </div>
       </a>
       
@@ -544,11 +561,13 @@
         <div>
           <h4 class="font-headline-md text-headline-md mb-2">Opening Hours</h4>
           <p class="text-body-lg text-on-surface-variant font-body-md">
-            Weekdays: 7am — 3pm<br/>
-            Sat: 7:30am — 3:30pm<br/>
-            Sun: 8am — 3:30pm
+            Mon – Thu: 7am — 3pm<br/>
+            Friday: 7am — 3:30pm<br/>
+            Saturday: 7:30am — 3:30pm<br/>
+            Sunday: 8am — 3:30pm
           </p>
-          <p class="text-label-sm gold-gradient-text font-bold mt-2">Kitchen closes at 2:30pm</p>
+          <p class="text-label-sm gold-gradient-text font-bold mt-2">Kitchen closes at 2:30pm daily</p>
+          <div class="store-state-indicator mt-3 text-xs bg-white text-primary px-3.5 py-2.5 rounded-xl border border-secondary/30 shadow-sm leading-relaxed max-w-xs"></div>
         </div>
       </div>
       
@@ -610,76 +629,137 @@
         const DISHES_DATA = [
             {
                 title: "Okonomiyaki Benedict",
-                category: "Signature Kitchen",
-                price: "$26.50",
-                description: "Crispy white cabbage and sweetcorn pancakes topped with perfectly poached eggs, rich hollandaise, traditional Japanese BBQ sauce, pickled ginger, and delicate bonito flakes. Add bacon for an additional charge.",
+                category: "All Day Meals",
+                price: "$28.00",
+                description: "Crispy white cabbage & sweetcorn fritters with poached eggs, smoky hollandaise, crispy kale, special sauce, pickled ginger, lotus chips, sumac & bonito flakes. Add bacon +$6.0 | smoked salmon +$6.0. (VO, GF)",
                 features: [
-                    "Crispy white cabbage and sweetcorn pancake base",
-                    "Soft poached eggs with velvet golden hollandaise",
-                    "Traditional savory Japanese BBQ sauce & bonito flakes"
+                    "Crispy white cabbage & sweetcorn fritters with poached eggs",
+                    "Smoky hollandaise, crispy kale, pickled ginger & lotus chips",
+                    "Finished with special sauce, sumac & bonito flakes (VO, GF)"
                 ],
                 orderUrl: "https://pony-white-cafe.square.site/s/order"
             },
             {
-                title: "Gourmet Avocado Toast",
-                category: "All-Day Classics",
+                title: "Avocado Toast",
+                category: "All Day Breakfast",
                 price: "$26.00",
-                description: "Enjoy our signature Avocado Toast, prepared fresh daily on artisanal multigrain sourdough. Served with perfectly smashed avocado, heirloom cherry tomatoes, crumbled Danish feta, and toasted pepitas.",
+                description: "Sliced avocado, cherry tomatoes, goats whipped feta, poached egg, mixed seeds, pickled beetroot & zaatar on multigrain bread with beetroot hummus & herb oil. (V, VGO, GFO)",
                 features: [
-                    "Artisanal local multigrain sourdough toast",
-                    "Perfectly smashed avocado with heirloom cherry tomatoes",
-                    "Creamy crumbled Danish feta & crunchy pepitas"
+                    "Sliced avocado, cherry tomatoes & goats whipped feta",
+                    "Poached egg, pickled beetroot & beetroot hummus on multigrain",
+                    "Toasted mixed seeds, zaatar & fragrant herb oil (V, VGO, GFO)"
                 ],
                 orderUrl: "https://pony-white-cafe.square.site/s/order"
             },
             {
-                title: "Georgie's Burger",
-                category: "Savory Lunch",
+                title: "Pony's Classic Burger",
+                category: "Burgers & Sandwiches",
                 price: "$28.00",
-                description: "Black Angus beef, Cheddar, butter lettuce, sweet & sour pickles, tomato, onion, house-made burger sauce, and tomato sauce toasted on brioche buns with fries and salad.",
+                description: "Black angus beef, american cheese, fried egg, butter lettuce, pickles, tomato, onions, special burger sauce & chips with tomato sauce.",
                 features: [
-                    "Flame-grilled premium Black Angus beef patty",
-                    "Melted Cheddar, pickles, and chef's special burger sauce",
-                    "Served toasted on soft brioche with fries and salad"
+                    "Juicy Black Angus beef patty with melted American cheese",
+                    "Fried egg, butter lettuce, pickles, tomato & house burger sauce",
+                    "Served with golden crunchy chips & tomato sauce (GFO)"
                 ],
                 orderUrl: "https://pony-white-cafe.square.site/s/order"
             },
             {
-                title: "Lemon Meringue French Toast",
-                category: "Dessert & Sweet",
+                title: "French Toast Dé Matcha",
+                category: "All Day Breakfast",
                 price: "$28.00",
-                description: "Brioche French toast with coffee mascarpone, candied pistachios, blueberry coulis, and fresh mixed berries topped with Biscoff spread and biscuit.",
+                description: "Classic french toast with matcha mascarpone, vanilla ice-cream, strawberry bliss, pashmak, seasonal fruits & white chocolate strawberries. (V)",
                 features: [
-                    "Golden brioche dipped and griddled to perfection",
-                    "Rich coffee mascarpone and sweet blueberry coulis",
-                    "Topped with fresh berries, Biscoff spread & biscuit"
+                    "Classic golden French toast with velvety matcha mascarpone",
+                    "Vanilla ice-cream, strawberry bliss & delicate pink pashmak",
+                    "Topped with seasonal fruits & white chocolate strawberries (V)"
                 ],
                 orderUrl: "https://pony-white-cafe.square.site/s/order"
             },
             {
-                title: "Wild Mushroom Toast",
-                category: "Savory Mains",
+                title: "Wild Mushroom",
+                category: "All Day Breakfast",
                 price: "$28.00",
-                description: "Medley of seasonal roasted mushrooms with sage burnt butter, thyme, Persian feta, pangrattato, soft poached eggs, and truffle oil on multigrain.",
+                description: "Sautéed mushrooms with whipped ricotta, spinach, poached eggs, pesto, herb oil, crispy enoki & sweet potato crisps on multigrain. (V, VGO, GFO)",
                 features: [
-                    "Medley of seasonal roasted mushrooms",
-                    "Rich sage burnt butter & fragrant thyme herbs",
-                    "Persian feta, truffle oil, and soft poached eggs"
+                    "Sautéed mushrooms, whipped ricotta & baby spinach on multigrain",
+                    "Poached eggs, house basil pesto & fragrant herb oil",
+                    "Crunchy crispy enoki & sweet potato crisps (V, VGO, GFO)"
                 ],
                 orderUrl: "https://pony-white-cafe.square.site/s/order"
             },
             {
                 title: "Açaí Bowl",
-                category: "Healthy & Fresh",
+                category: "All Day Meals",
                 price: "$22.00",
-                description: "Açaí berry smoothie topped with a vibrant arrangement of seasonal fresh fruits, premium toasted grains, and house-made honey granola.",
+                description: "Açaí berry smoothie, seasonal fruits, grains, and granola.",
                 features: [
-                    "Organic Açaí berry smoothie base",
-                    "Assorted fresh seasonal sliced fruits",
-                    "House-made crunchy toasted granola & grains"
+                    "Velvety organic Açaí berry smoothie base",
+                    "Hand-sliced fresh seasonal fruits & berries",
+                    "Wholesome toasted grains & crunchy granola"
+                ],
+                orderUrl: "https://pony-white-cafe.square.site/s/order"
+            },
+            {
+                title: "Chilli Cheese Croissant",
+                category: "All Day Breakfast",
+                price: "$27.50",
+                description: "Scrambled eggs with chilli corn salsa & mozzarella, served on a croissant with spring onions, angel chilli hair, parmesan & shichimi togarashi. (V, GFO)",
+                features: [
+                    "Flaky butter croissant with folded mozzarella scrambled eggs",
+                    "House chilli corn salsa & shaved parmesan",
+                    "Finished with spring onions, angel chilli hair & shichimi togarashi (V, GFO)"
+                ],
+                orderUrl: "https://pony-white-cafe.square.site/s/order"
+            },
+            {
+                title: "Spaghetti Marinara",
+                category: "All Day Lunch",
+                price: "$30.00",
+                description: "Squid ink spaghetti, seafood mix, chilli blend, confit garlic, roquette, butter wine sauce, fresh parsley & parmesan.",
+                features: [
+                    "Artisanal squid ink spaghetti tossed in butter wine sauce",
+                    "Sautéed premium seafood mix with confit garlic & chilli blend",
+                    "Fresh roquette, parsley & shaved parmesan"
+                ],
+                orderUrl: "https://pony-white-cafe.square.site/s/order"
+            },
+            {
+                title: "Zaalou'k Prawns",
+                category: "All Day Lunch",
+                price: "$32.00",
+                description: "Sautéed chilli garlic prawns with sweet pepper eggplant zaalouk served with coriander zhoug & preserved lemon. (GF)",
+                features: [
+                    "Sautéed chilli garlic prawns over smoky sweet pepper eggplant zaalouk",
+                    "Vibrant house-made coriander zhoug",
+                    "Finished with aromatic preserved lemon (GF)"
+                ],
+                orderUrl: "https://pony-white-cafe.square.site/s/order"
+            },
+            {
+                title: "Big Breakfast",
+                category: "All Day Breakfast",
+                price: "$30.00",
+                description: "Eggs your way with sautéed spinach, bacon, chorizo, mushroom, roasted tomato & hashbrowns on your choice of toast. (VO, GFO)",
+                features: [
+                    "Free-range eggs your way on your choice of artisanal toast",
+                    "Smoky bacon, seared chorizo & golden crunchy hashbrowns",
+                    "Sautéed mushrooms, baby spinach & roasted vine tomato (VO, GFO)"
                 ],
                 orderUrl: "https://pony-white-cafe.square.site/s/order"
             }
+        ];
+
+        const LOCAL_SLIDE_FALLBACKS = [
+            "../../assets/salmon-benedict.jpg",
+            "../../assets/avocado-toast.jpg",
+            "../../assets/gourmet-burger.jpg",
+            "../../assets/french-toast.jpg",
+            "../../assets/wild-mushroom.jpg",
+            "../../assets/acai-bowl.jpg",
+            "../../assets/chilli-cheese-croissant.jpg",
+            "../../assets/spaghetti-marinara.jpg",
+            "../../assets/zaalouk-prawns.jpg",
+            "../../assets/big-breakfast.jpg"
         ];
 
         let currentSlide = 0;
@@ -688,6 +768,7 @@
         const SLIDE_DURATION = 10000; // 10 seconds
         const PROGRESS_INTERVAL = 50; // Update progress bar every 50ms
         let slideshowInterval = null;
+        let slideTransitionTimeout = null;
 
         // DOM elements
         const slideTitle = document.getElementById('slide-title');
@@ -696,6 +777,7 @@
         const slideDesc = document.getElementById('slide-desc');
         const slideFeaturesList = document.getElementById('slide-features');
         const orderBtn = document.getElementById('order-btn');
+        const bookTableBtn = document.getElementById('book-table-btn');
         const dotsContainer = document.getElementById('slideshow-dots');
         const progressBar = document.getElementById('progress-bar');
         const prevBtn = document.getElementById('prev-slide');
@@ -707,11 +789,15 @@
             // Build navigation dots
             if (dotsContainer) {
                 dotsContainer.innerHTML = '';
-                DISHES_DATA.forEach((_, idx) => {
+                DISHES_DATA.forEach((dish, idx) => {
                     const dot = document.createElement('button');
+                    dot.type = 'button';
+                    dot.style.cursor = 'pointer';
                     dot.className = `w-2.5 h-2.5 rounded-full transition-all duration-300 ${idx === 0 ? 'bg-secondary w-6' : 'bg-secondary/30 hover:bg-secondary/60'}`;
-                    dot.setAttribute('aria-label', `Go to slide ${idx + 1}`);
-                    dot.addEventListener('click', () => {
+                    dot.setAttribute('aria-label', `Go to slide ${idx + 1}: ${dish.title}`);
+                    dot.addEventListener('click', (e) => {
+                        e.preventDefault();
+                        e.stopPropagation();
                         goToSlide(idx);
                     });
                     dotsContainer.appendChild(dot);
@@ -728,11 +814,24 @@
             if (slideshowSection) {
                 slideshowSection.addEventListener('mouseenter', () => { isPaused = true; });
                 slideshowSection.addEventListener('mouseleave', () => { isPaused = false; });
-            }
 
-            // Arrow buttons
-            if (prevBtn) prevBtn.addEventListener('click', prevSlide);
-            if (nextBtn) nextBtn.addEventListener('click', nextSlide);
+                // Touch swipe support for mobile
+                let touchStartX = 0;
+                slideshowSection.addEventListener('touchstart', (e) => {
+                    if (e.changedTouches && e.changedTouches.length > 0) {
+                        touchStartX = e.changedTouches[0].screenX;
+                    }
+                }, { passive: true });
+                slideshowSection.addEventListener('touchend', (e) => {
+                    if (e.changedTouches && e.changedTouches.length > 0) {
+                        const diff = e.changedTouches[0].screenX - touchStartX;
+                        if (Math.abs(diff) > 50) {
+                            if (diff < 0) nextSlide();
+                            else prevSlide();
+                        }
+                    }
+                }, { passive: true });
+            }
         }
 
         function startTimer() {
@@ -760,11 +859,15 @@
                 const img = document.getElementById(`slide-img-${idx}`);
                 if (img) {
                     if (idx === index) {
+                        img.classList.remove('opacity-0', 'scale-100', 'pointer-events-none', 'z-0');
+                        img.classList.add('opacity-100', 'scale-105', 'pointer-events-auto', 'z-10');
                         img.style.opacity = '1';
                         img.style.transform = 'scale(1.05)';
                         img.style.pointerEvents = 'auto';
                         img.style.zIndex = '10';
                     } else {
+                        img.classList.remove('opacity-100', 'scale-105', 'pointer-events-auto', 'z-10');
+                        img.classList.add('opacity-0', 'scale-100', 'pointer-events-none', 'z-0');
                         img.style.opacity = '0';
                         img.style.transform = 'scale(1)';
                         img.style.pointerEvents = 'none';
@@ -774,6 +877,11 @@
             });
 
             // 2. Animate details card text content (elegant fade and lift transition)
+            if (slideTransitionTimeout) {
+                clearTimeout(slideTransitionTimeout);
+                slideTransitionTimeout = null;
+            }
+
             if (animate) {
                 const animClass = ['opacity-0', 'translate-y-2', 'scale-[0.99]'];
                 
@@ -783,12 +891,12 @@
                 });
 
                 // Update text after opacity has faded
-                setTimeout(() => {
+                slideTransitionTimeout = setTimeout(() => {
                     if (slideTitle) slideTitle.textContent = data.title;
                     if (slideCategory) slideCategory.textContent = data.category;
                     if (slidePrice) slidePrice.textContent = data.price;
                     if (slideDesc) slideDesc.textContent = data.description;
-                    if (orderBtn) orderBtn.setAttribute('href', data.orderUrl);
+                    if (orderBtn && data.orderUrl) orderBtn.setAttribute('href', data.orderUrl);
 
                     // Update features list
                     if (slideFeaturesList) {
@@ -808,14 +916,14 @@
                     [slideCategory, slidePrice, slideTitle, slideDesc, slideFeaturesList].forEach(el => {
                         if (el) el.classList.remove(...animClass);
                     });
-                }, 200);
+                }, 180);
             } else {
                 // Instant update without transition (first load)
                 if (slideTitle) slideTitle.textContent = data.title;
                 if (slideCategory) slideCategory.textContent = data.category;
                 if (slidePrice) slidePrice.textContent = data.price;
                 if (slideDesc) slideDesc.textContent = data.description;
-                if (orderBtn) orderBtn.setAttribute('href', data.orderUrl);
+                if (orderBtn && data.orderUrl) orderBtn.setAttribute('href', data.orderUrl);
 
                 if (slideFeaturesList) {
                     slideFeaturesList.innerHTML = '';
@@ -852,14 +960,162 @@
             updateSlideDOM(index, true);
         }
 
-        function nextSlide() {
+        function nextSlide(e) {
+            if (e && e.preventDefault) {
+                e.preventDefault();
+                e.stopPropagation();
+            }
+            if (!DISHES_DATA.length) return;
             let nextIdx = (currentSlide + 1) % DISHES_DATA.length;
             goToSlide(nextIdx);
         }
 
-        function prevSlide() {
+        function prevSlide(e) {
+            if (e && e.preventDefault) {
+                e.preventDefault();
+                e.stopPropagation();
+            }
+            if (!DISHES_DATA.length) return;
             let prevIdx = (currentSlide - 1 + DISHES_DATA.length) % DISHES_DATA.length;
             goToSlide(prevIdx);
+        }
+
+        // Expose globally for inline onclick handlers
+        window.nextKitchenSlide = nextSlide;
+        window.prevKitchenSlide = prevSlide;
+        window.goToKitchenSlide = goToSlide;
+
+        // ==========================================
+        // Nucleus CRM Live Sync (Homepage Kitchen Showcase)
+        // Reads from public_data/homepage_kitchen with zero Vault access needed
+        // ==========================================
+        const NUCLEUS_BUSINESS_ID = 'nYaZ4T5qRKS3Z9EG5mrl';
+        const NUCLEUS_KITCHEN_FIRESTORE_URL = `https://firestore.googleapis.com/v1/projects/bizboard-67b4c/databases/(default)/documents/businesses/${NUCLEUS_BUSINESS_ID}/public_data/homepage_kitchen`;
+
+        function parseFirestoreVal(val) {
+            if (!val || typeof val !== 'object') return val;
+            if ('stringValue' in val) return val.stringValue;
+            if ('booleanValue' in val) return val.booleanValue;
+            if ('integerValue' in val) return Number(val.integerValue);
+            if ('doubleValue' in val) return Number(val.doubleValue);
+            if ('nullValue' in val) return null;
+            if ('arrayValue' in val) {
+                return (val.arrayValue.values || []).map(parseFirestoreVal);
+            }
+            if ('mapValue' in val) {
+                const out = {};
+                const fields = val.mapValue.fields || {};
+                for (const k of Object.keys(fields)) {
+                    out[k] = parseFirestoreVal(fields[k]);
+                }
+                return out;
+            }
+            return val;
+        }
+
+        async function syncKitchenShowcaseFromNucleusCrm() {
+            try {
+                const res = await fetch(NUCLEUS_KITCHEN_FIRESTORE_URL, { cache: 'no-store' });
+                if (!res.ok) return;
+                const rawDoc = await res.json();
+                if (!rawDoc || !rawDoc.fields) return;
+
+                const config = parseFirestoreVal({ mapValue: { fields: rawDoc.fields } });
+                if (!config || !Array.isArray(config.slides)) return;
+
+                const visibleSlides = config.slides
+                    .filter(s => s && s.visible !== false)
+                    .sort((a, b) => (a.order ?? 0) - (b.order ?? 0));
+
+                if (visibleSlides.length === 0) return;
+
+                // Update section header text if customized in Nucleus CRM
+                const subEl = document.getElementById('kitchen-showcase-subtitle');
+                const titleEl = document.getElementById('kitchen-showcase-title');
+                const descEl = document.getElementById('kitchen-showcase-desc');
+                if (subEl && config.sectionSubtitle) subEl.textContent = config.sectionSubtitle;
+                if (titleEl && config.sectionTitle) titleEl.textContent = config.sectionTitle;
+                if (descEl && config.sectionDescription) descEl.textContent = config.sectionDescription;
+                if (bookTableBtn && config.bookTableUrl) bookTableBtn.setAttribute('href', config.bookTableUrl);
+
+                // Replace DISHES_DATA with live Square-synced CRM slides
+                DISHES_DATA.length = 0;
+                visibleSlides.forEach((slide, idx) => {
+                    const fallbackLocal = LOCAL_SLIDE_FALLBACKS[idx % LOCAL_SLIDE_FALLBACKS.length] || '../../assets/salmon-benedict.jpg';
+                    const activeImg =
+                        slide.img ||
+                        (slide.imageSource === 'square'
+                            ? slide.squareImageUrl || slide.customImageUrl
+                            : slide.imageSource === 'studio'
+                            ? slide.studioImageUrl || slide.squareImageUrl || slide.customImageUrl
+                            : slide.customImageUrl || slide.squareImageUrl) ||
+                        fallbackLocal;
+
+                    DISHES_DATA.push({
+                        title: slide.title || 'Chef Special',
+                        category: slide.category || 'All Day Kitchen',
+                        price: slide.price || '',
+                        description: slide.description || '',
+                        features: Array.isArray(slide.features) ? slide.features : [],
+                        orderUrl: slide.orderUrl || config.orderUrl || 'https://pony-white-cafe.square.site/s/order',
+                        img: activeImg,
+                        fallbackImg: fallbackLocal
+                    });
+                });
+
+                // Preserve whichever slide index the user may have already navigated to
+                const activeIdx = currentSlide < DISHES_DATA.length ? currentSlide : 0;
+
+                // Rebuild slide images inside #slideshow-image-container (eagerly loaded for instant crossfade)
+                const imgContainer = document.getElementById('slideshow-image-container');
+                if (imgContainer) {
+                    imgContainer.innerHTML = '';
+                    DISHES_DATA.forEach((dish, idx) => {
+                        const img = document.createElement('img');
+                        img.src = dish.img;
+                        img.id = `slide-img-${idx}`;
+                        img.alt = dish.title;
+                        img.decoding = 'async';
+                        img.onerror = function () {
+                            if (this.src !== dish.fallbackImg) {
+                                this.src = dish.fallbackImg;
+                            }
+                        };
+                        const isCurrent = idx === activeIdx;
+                        img.className = isCurrent
+                            ? 'absolute inset-0 w-full h-full object-cover transition-all duration-[800ms] ease-in-out transform scale-105 opacity-100 pointer-events-auto z-10 rounded-[2.5rem_6rem_2.5rem_6rem]'
+                            : 'absolute inset-0 w-full h-full object-cover transition-all duration-[800ms] ease-in-out transform scale-100 opacity-0 pointer-events-none z-0 rounded-[2.5rem_6rem_2.5rem_6rem]';
+                        img.style.opacity = isCurrent ? '1' : '0';
+                        img.style.transform = isCurrent ? 'scale(1.05)' : 'scale(1)';
+                        img.style.pointerEvents = isCurrent ? 'auto' : 'none';
+                        img.style.zIndex = isCurrent ? '10' : '0';
+                        imgContainer.appendChild(img);
+                    });
+                }
+
+                // Rebuild navigation dots
+                if (dotsContainer) {
+                    dotsContainer.innerHTML = '';
+                    DISHES_DATA.forEach((dish, idx) => {
+                        const dot = document.createElement('button');
+                        dot.type = 'button';
+                        dot.style.cursor = 'pointer';
+                        dot.className = `w-2.5 h-2.5 rounded-full transition-all duration-300 ${idx === activeIdx ? 'bg-secondary w-6' : 'bg-secondary/30 hover:bg-secondary/60'}`;
+                        dot.setAttribute('aria-label', `Go to slide ${idx + 1}: ${dish.title}`);
+                        dot.addEventListener('click', (e) => {
+                            e.preventDefault();
+                            e.stopPropagation();
+                            goToSlide(idx);
+                        });
+                        dotsContainer.appendChild(dot);
+                    });
+                }
+
+                // Refresh active slide
+                updateSlideDOM(activeIdx, false);
+            } catch (err) {
+                console.warn('Nucleus CRM Kitchen Showcase fallback to static slides:', err);
+            }
         }
 
         // ==========================================
@@ -900,10 +1156,70 @@
             });
         }
 
+        // Live Melbourne Store & Kitchen Status Indicator
+        function updateLiveStoreStatus() {
+            const indicators = document.querySelectorAll('.store-state-indicator');
+            if (!indicators.length) return;
+            const now = new Date();
+            const formatter = new Intl.DateTimeFormat('en-AU', {
+                timeZone: 'Australia/Melbourne',
+                hour12: false,
+                weekday: 'short',
+                hour: 'numeric',
+                minute: 'numeric'
+            });
+            const parts = formatter.formatToParts(now);
+            let dayStr = '', hourStr = '', minuteStr = '';
+            for (const p of parts) {
+                if (p.type === 'weekday') dayStr = p.value;
+                if (p.type === 'hour') hourStr = p.value;
+                if (p.type === 'minute') minuteStr = p.value;
+            }
+            const days = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
+            const day = days.indexOf(dayStr);
+            const currentMins = parseInt(hourStr, 10) * 60 + parseInt(minuteStr, 10);
+            const schedule = {
+                0: { open: 8 * 60, close: 15 * 60 + 30 },
+                1: { open: 7 * 60, close: 15 * 60 },
+                2: { open: 7 * 60, close: 15 * 60 },
+                3: { open: 7 * 60, close: 15 * 60 },
+                4: { open: 7 * 60, close: 15 * 60 },
+                5: { open: 7 * 60, close: 15 * 60 + 30 },
+                6: { open: 7 * 60 + 30, close: 15 * 60 + 30 }
+            };
+            const today = schedule[day] || schedule[1];
+            const kitchenCloseMins = 14 * 60 + 30;
+            function formatTime(mins) {
+                let hr = Math.floor(mins / 60);
+                const mn = mins % 60;
+                const ampm = hr >= 12 ? 'pm' : 'am';
+                if (hr > 12) hr -= 12;
+                if (hr === 0) hr = 12;
+                return hr + (mn === 0 ? '' : ':' + mn.toString().padStart(2, '0')) + ampm;
+            }
+            let stateHtml = '';
+            if (currentMins < today.open) {
+                stateHtml = `We are currently <span style="color:#b38b45;font-weight:700;">CLOSED</span> — opening today at ${formatTime(today.open)}.`;
+            } else if (currentMins >= today.close) {
+                const nextDay = (day + 1) % 7;
+                stateHtml = `We are <span style="color:#b91c1c;font-weight:700;">CLOSED</span> for the day — see you tomorrow at ${formatTime(schedule[nextDay].open)}!`;
+            } else if (currentMins >= kitchenCloseMins) {
+                stateHtml = `We are <span style="color:#b38b45;font-weight:700;">OPEN</span> for drinks until ${formatTime(today.close)} (kitchen is closed for the day).`;
+            } else if (currentMins >= kitchenCloseMins - 30) {
+                stateHtml = `We are <span style="color:#b38b45;font-weight:700;">OPEN</span>! Kitchen closes soon at 2:30pm.`;
+            } else {
+                stateHtml = `We are <span style="color:#15803d;font-weight:700;">OPEN NOW</span>! Kitchen open until 2:30pm &amp; drinks until ${formatTime(today.close)}.`;
+            }
+            indicators.forEach(el => { el.innerHTML = stateHtml; });
+        }
+
         // Initialize on DOM load
         function init() {
             initSlideshow();
             initGiftCardSelector();
+            updateLiveStoreStatus();
+            setInterval(updateLiveStoreStatus, 60000);
+            syncKitchenShowcaseFromNucleusCrm();
         }
 
         if (document.readyState === 'complete' || document.readyState === 'interactive') {
@@ -912,3 +1228,4 @@
             document.addEventListener('DOMContentLoaded', init);
         }
     </script>
+</body>

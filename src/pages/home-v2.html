@@ -1,0 +1,1624 @@
+<!-- Compiled custom embed section for home-v2.html (Viral Chromatic & Presentation Edition) -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="../styles/home-v2.css">
+
+<style>
+        /* Global Typography overrides to force brand fonts inside sandboxes */
+        body, html, * {
+            font-family: 'Plus Jakarta Sans', ui-sans-serif, system-ui, -apple-system, sans-serif !important;
+        }
+        .material-symbols-outlined,
+        .material-symbols-outlined * {
+            font-family: 'Material Symbols Outlined' !important;
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .font-serif, h1, h2, h3, .font-headline-xl, .font-headline-md, .font-headline-lg, .font-headline-xl-mobile {
+            font-family: 'Playfair Display', ui-serif, Georgia, Cambria, serif !important;
+        }
+
+        /* Full-width iframe breakout utility */
+        .full-width-breakout {
+            width: 100vw !important;
+            position: relative !important;
+            left: 50% !important;
+            transform: translateX(-50%) !important;
+        }
+
+        /* Signature Gold Accents */
+        .gold-gradient-text {
+            background: linear-gradient(135deg, #9a7b1c 0%, #e9c349 28%, #b38b22 52%, #ffe088 76%, #9a7b1c 100%);
+            background-size: 200% auto;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        .gold-gradient-bg {
+            background: linear-gradient(135deg, #735c00 0%, #e9c349 45%, #ffe088 60%, #735c00 100%);
+        }
+
+        /* Chromatic Gradient Text for Viral Edition */
+        .chromatic-headline-accent {
+            background: linear-gradient(120deg, #fda4af 0%, #fde047 38%, #86efac 72%, #c4b5fd 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        /* Glassmorphism Surfaces */
+        .glass-dark {
+            background: rgba(7, 29, 22, 0.72);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.12);
+        }
+        .glass-light {
+            background: rgba(255, 255, 255, 0.86);
+            backdrop-filter: blur(18px);
+            -webkit-backdrop-filter: blur(18px);
+            border: 1px solid rgba(115, 92, 0, 0.14);
+        }
+
+        /* Smooth Marquee Ticker (Pure CSS, Zero JS Scroll Dependency) */
+        @keyframes pw-marquee {
+            0% { transform: translateX(0%); }
+            100% { transform: translateX(-50%); }
+        }
+        .pw-marquee-track {
+            display: flex;
+            width: max-content;
+            animation: pw-marquee 38s linear infinite;
+        }
+        .pw-marquee-track:hover {
+            animation-play-state: paused;
+        }
+
+        /* Floating Pill Pulse */
+        @keyframes float-gentle {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-6px); }
+        }
+        .float-pill {
+            animation: float-gentle 4.5s ease-in-out infinite;
+        }
+        .float-pill-delayed {
+            animation: float-gentle 5.2s ease-in-out 1.4s infinite;
+        }
+
+        /* Custom Scrollbar Hiding for Filmstrips */
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .no-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+
+        /* Gold Card Shimmer */
+        .gold-reflection {
+            background: linear-gradient(135deg, #B8860B 0%, #D4AF37 30%, #F1D38E 50%, #D4AF37 70%, #B8860B 100%);
+            position: relative;
+            overflow: hidden;
+        }
+        .gold-reflection::after {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(45deg, transparent 45%, rgba(255, 255, 255, 0.32) 50%, transparent 55%);
+            animation: shine 6s infinite linear;
+        }
+        @keyframes shine {
+            0% { transform: translateX(-100%) translateY(-100%); }
+            100% { transform: translateX(100%) translateY(100%); }
+        }
+</style>
+<body>
+
+<!-- =========================================================================
+     1. CHROMATIC VIRAL POUR HERO STAGE
+     Celebrates Pony White's viral layered matcha, torched pistachio & rose pours
+     ========================================================================= -->
+<section id="hero-chromatic-stage" class="relative overflow-hidden full-width-breakout bg-[#061c15] text-white py-14 md:py-24 transition-colors duration-700" style="background: radial-gradient(circle at 78% 35%, rgba(244, 114, 182, 0.28) 0%, rgba(16, 185, 129, 0.22) 32%, rgba(6, 28, 21, 0.98) 74%), #061c15;">
+    <!-- Dynamic Ambient Colour Orbs -->
+    <div id="hero-orb-primary" class="absolute -top-24 right-[10%] w-[420px] h-[420px] rounded-full blur-[110px] pointer-events-none opacity-50 transition-all duration-700" style="background: #f472b6;"></div>
+    <div id="hero-orb-secondary" class="absolute bottom-[-80px] left-[8%] w-[380px] h-[380px] rounded-full blur-[110px] pointer-events-none opacity-40 transition-all duration-700" style="background: #34d399;"></div>
+
+    <div class="relative z-10 max-w-container-max mx-auto px-gutter">
+        <!-- Top Fitzroy Live Status & Viral Badge Bar -->
+        <div class="flex flex-wrap items-center justify-between gap-4 mb-10 pb-5 border-b border-white/10">
+            <div class="flex items-center gap-3">
+                <div class="w-11 h-11 rounded-full bg-white/95 p-0.5 shadow-lg flex items-center justify-center">
+                    <img src="../../assets/logo.png" alt="Pony White Fitzroy" class="w-full h-full rounded-full object-cover"/>
+                </div>
+                <div>
+                    <span class="text-xs uppercase tracking-widest text-white/60 block font-bold">379–381 George St, Fitzroy</span>
+                    <span class="text-sm font-semibold text-white">Melbourne's Viral Brunch &amp; Liquid Craft Sanctuary</span>
+                </div>
+            </div>
+            <div class="store-state-indicator text-xs glass-dark px-4 py-2.5 rounded-full border border-white/15 text-white/90 shadow-md">
+                Checking Fitzroy cafe hours...
+            </div>
+        </div>
+
+        <!-- Main Hero Grid: Left Editorial Story & Right Interactive Live Video Pour Stage -->
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+            <!-- Left Column (7 cols): Editorial Headline, Viral Colour Switcher & CTAs -->
+            <div class="lg:col-span-7 text-left">
+                <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full glass-dark mb-6 border border-white/15">
+                    <span class="material-symbols-outlined text-sm text-[#fde047]" style="font-variation-settings: 'FILL' 1;">auto_awesome</span>
+                    <span class="text-xs uppercase tracking-widest font-bold text-white/90">As Seen Across Melbourne TikTok &amp; Reels</span>
+                </div>
+
+                <h1 class="font-serif text-4xl sm:text-5xl md:text-6xl font-bold leading-[1.08] tracking-tight text-white mb-6">
+                    Where Specialty Coffee Meets <span class="chromatic-headline-accent italic">Technicolour</span> Culinary Art.
+                </h1>
+
+                <p class="font-body-lg text-base md:text-lg text-white/80 leading-relaxed mb-8 max-w-2xl">
+                    From ceremonial <strong class="text-white">Uji Matcha crowned with strawberry velvet cream</strong> and hand-torched <strong class="text-white">Pistachio Crème Brûlée lattes</strong> to brunch plates adorned with pink Persian pashmak, lotus crisps, and edible rose petals—every pour and plate at Pony White is crafted to stop you in your tracks.
+                </p>
+
+                <!-- Interactive "Tap a Viral Pour" Selector -->
+                <div class="mb-8">
+                    <div class="flex items-center justify-between mb-3">
+                        <span class="text-xs uppercase tracking-widest font-bold text-[#ffe088]">Tap to Preview Our Viral Pours</span>
+                        <span id="hero-active-drink-price" class="text-xs font-bold px-3 py-1 rounded-full bg-white/10 text-white border border-white/15">$10.00</span>
+                    </div>
+                    <div id="hero-pour-pills" class="flex flex-wrap gap-2.5">
+                        <button type="button" onclick="window.selectHeroPour && window.selectHeroPour(0)" class="hero-pour-btn px-4 py-2.5 rounded-full text-xs font-bold transition-all duration-300 flex items-center gap-2 bg-white text-[#061c15] shadow-lg scale-[1.02]" style="cursor: pointer;">
+                            <span class="w-2.5 h-2.5 rounded-full" style="background: linear-gradient(135deg, #f43f5e, #22c55e);"></span>
+                            Strawberries &amp; Cream Matcha
+                        </button>
+                        <button type="button" onclick="window.selectHeroPour && window.selectHeroPour(1)" class="hero-pour-btn px-4 py-2.5 rounded-full text-xs font-bold transition-all duration-300 flex items-center gap-2 bg-white/10 text-white hover:bg-white/20 border border-white/15" style="cursor: pointer;">
+                            <span class="w-2.5 h-2.5 rounded-full" style="background: linear-gradient(135deg, #a3e635, #ca8a04);"></span>
+                            Pistachio Crème Brûlée
+                        </button>
+                        <button type="button" onclick="window.selectHeroPour && window.selectHeroPour(2)" class="hero-pour-btn px-4 py-2.5 rounded-full text-xs font-bold transition-all duration-300 flex items-center gap-2 bg-white/10 text-white hover:bg-white/20 border border-white/15" style="cursor: pointer;">
+                            <span class="w-2.5 h-2.5 rounded-full" style="background: linear-gradient(135deg, #fb7185, #881337);"></span>
+                            Iced Rose Turkish Delight
+                        </button>
+                        <button type="button" onclick="window.selectHeroPour && window.selectHeroPour(3)" class="hero-pour-btn px-4 py-2.5 rounded-full text-xs font-bold transition-all duration-300 flex items-center gap-2 bg-white/10 text-white hover:bg-white/20 border border-white/15" style="cursor: pointer;">
+                            <span class="w-2.5 h-2.5 rounded-full" style="background: linear-gradient(135deg, #38bdf8, #0284c7);"></span>
+                            Blue Spirulina Cloud
+                        </button>
+                        <button type="button" onclick="window.selectHeroPour && window.selectHeroPour(4)" class="hero-pour-btn px-4 py-2.5 rounded-full text-xs font-bold transition-all duration-300 flex items-center gap-2 bg-white/10 text-white hover:bg-white/20 border border-white/15" style="cursor: pointer;">
+                            <span class="w-2.5 h-2.5 rounded-full" style="background: linear-gradient(135deg, #c084fc, #6b21a8);"></span>
+                            Ube Taro Velvet
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Primary CTAs -->
+                <div class="flex flex-col sm:flex-row flex-wrap gap-4 items-stretch sm:items-center">
+                    <a href="https://pony-white-cafe.square.site/s/order" target="_blank" rel="noopener noreferrer" class="gold-gradient-bg text-[#001a12] px-8 py-4 rounded-full font-bold text-sm hover:brightness-110 transition-all duration-300 shadow-xl inline-flex items-center justify-center gap-2 no-underline">
+                        Order Online for Pickup
+                        <span class="material-symbols-outlined text-lg">local_cafe</span>
+                    </a>
+                    <a href="book-table.html" class="bg-white/10 hover:bg-white/20 text-white border border-white/25 px-8 py-4 rounded-full font-bold text-sm transition-all duration-300 inline-flex items-center justify-center gap-2 no-underline backdrop-blur-md">
+                        Reserve a Brunch Table
+                        <span class="material-symbols-outlined text-lg text-[#ffe088]">event_seat</span>
+                    </a>
+                    <a href="signature-drinks.html" class="text-[#ffe088] hover:text-white px-4 py-3 font-bold text-sm transition-colors inline-flex items-center justify-center gap-1.5 no-underline">
+                        Full Video Drink Menu
+                        <span class="material-symbols-outlined text-base">play_circle</span>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Right Column (5 cols): Live Video Pour Showcase Vessel -->
+            <div class="lg:col-span-5 relative flex justify-center">
+                <div class="relative w-full max-w-[440px]">
+                    <!-- Floating Layer Anatomy Badges -->
+                    <div id="hero-badge-top" class="float-pill absolute -left-4 sm:-left-6 top-8 z-30 glass-dark px-4 py-2.5 rounded-2xl shadow-2xl border border-white/20 flex items-center gap-2.5">
+                        <span id="hero-badge-top-dot" class="w-3 h-3 rounded-full flex-shrink-0" style="background: #f43f5e;"></span>
+                        <div>
+                            <span class="text-[10px] uppercase tracking-wider text-white/60 block font-bold">Crown Layer</span>
+                            <span id="hero-badge-top-text" class="text-xs font-bold text-white">Velvety Strawberry Cold Foam</span>
+                        </div>
+                    </div>
+
+                    <div id="hero-badge-bottom" class="float-pill-delayed absolute -right-3 sm:-right-5 bottom-28 z-30 glass-dark px-4 py-2.5 rounded-2xl shadow-2xl border border-white/20 flex items-center gap-2.5">
+                        <span id="hero-badge-bottom-dot" class="w-3 h-3 rounded-full flex-shrink-0" style="background: #22c55e;"></span>
+                        <div>
+                            <span class="text-[10px] uppercase tracking-wider text-white/60 block font-bold">Heart &amp; Base</span>
+                            <span id="hero-badge-bottom-text" class="text-xs font-bold text-white">Whisked Ceremonial Uji Matcha</span>
+                        </div>
+                    </div>
+
+                    <!-- Arch-Shaped Live Video Frame -->
+                    <div class="relative h-[480px] sm:h-[530px] w-full rounded-[3rem_3rem_2rem_2rem] overflow-hidden border-2 border-white/20 shadow-2xl bg-[#04120d] isolate">
+                        <img id="hero-pour-poster" src="../../assets/matcha-strawberry.jpg" alt="Strawberries & Cream Matcha" class="absolute inset-0 w-full h-full object-cover z-0"/>
+                        <video id="hero-pour-video" src="../../assets/Strawberries & Cream Matcha.mp4" poster="../../assets/matcha-strawberry.jpg" autoplay loop muted playsinline class="absolute inset-0 w-full h-full object-cover z-10 transition-opacity duration-500"></video>
+
+                        <!-- Bottom Gradient Info Overlay inside Video Card -->
+                        <div class="absolute inset-x-0 bottom-0 p-6 bg-gradient-to-t from-black/90 via-black/55 to-transparent z-20">
+                            <div class="flex items-center justify-between gap-2 mb-1.5">
+                                <span id="hero-pour-category" class="text-[11px] uppercase tracking-widest font-bold text-[#ffe088]">Viral Matcha Series</span>
+                                <span class="text-[11px] bg-white/15 backdrop-blur-md px-2.5 py-0.5 rounded-full text-white font-semibold">Live Pour</span>
+                            </div>
+                            <h3 id="hero-pour-title" class="font-serif text-2xl text-white font-bold mb-1">Strawberries &amp; Cream Matcha</h3>
+                            <p id="hero-pour-desc" class="text-xs text-white/80 leading-relaxed">
+                                Whisked Japanese matcha layered over house-made strawberry purée and crowned with thick strawberry cream.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- =========================================================================
+     2. CHROMATIC RIBBON & SENSORY MARQUEE
+     Highlights the vivid ingredients & viral textures Pony White is famous for
+     ========================================================================= -->
+<div class="full-width-breakout bg-[#0a291f] border-y border-white/10 py-4 overflow-hidden select-none">
+    <div class="pw-marquee-track items-center gap-8 text-xs uppercase tracking-widest font-bold text-white/90">
+        <span class="inline-flex items-center gap-2 px-4"><span class="w-2 h-2 rounded-full" style="background:#f43f5e;"></span>Strawberries &amp; Cream Uji Matcha</span>
+        <span class="inline-flex items-center gap-2 px-4"><span class="w-2 h-2 rounded-full" style="background:#a3e635;"></span>Torched Pistachio Crème Brûlée</span>
+        <span class="inline-flex items-center gap-2 px-4"><span class="w-2 h-2 rounded-full" style="background:#f472b6;"></span>Pink Persian Pashmak French Toast</span>
+        <span class="inline-flex items-center gap-2 px-4"><span class="w-2 h-2 rounded-full" style="background:#38bdf8;"></span>Organic Blue Spirulina Cloud</span>
+        <span class="inline-flex items-center gap-2 px-4"><span class="w-2 h-2 rounded-full" style="background:#c084fc;"></span>Velvet Purple Ube Taro Latte</span>
+        <span class="inline-flex items-center gap-2 px-4"><span class="w-2 h-2 rounded-full" style="background:#facc15;"></span>Okonomiyaki Benedict &amp; Lotus Chips</span>
+        <span class="inline-flex items-center gap-2 px-4"><span class="w-2 h-2 rounded-full" style="background:#fb7185;"></span>Edible Rose Petals &amp; Turkish Delight</span>
+        <span class="inline-flex items-center gap-2 px-4"><span class="w-2 h-2 rounded-full" style="background:#eab308;"></span>San Pedro Melbourne Specialty Roast</span>
+        <!-- Duplicate set for seamless loop -->
+        <span class="inline-flex items-center gap-2 px-4"><span class="w-2 h-2 rounded-full" style="background:#f43f5e;"></span>Strawberries &amp; Cream Uji Matcha</span>
+        <span class="inline-flex items-center gap-2 px-4"><span class="w-2 h-2 rounded-full" style="background:#a3e635;"></span>Torched Pistachio Crème Brûlée</span>
+        <span class="inline-flex items-center gap-2 px-4"><span class="w-2 h-2 rounded-full" style="background:#f472b6;"></span>Pink Persian Pashmak French Toast</span>
+        <span class="inline-flex items-center gap-2 px-4"><span class="w-2 h-2 rounded-full" style="background:#38bdf8;"></span>Organic Blue Spirulina Cloud</span>
+        <span class="inline-flex items-center gap-2 px-4"><span class="w-2 h-2 rounded-full" style="background:#c084fc;"></span>Velvet Purple Ube Taro Latte</span>
+        <span class="inline-flex items-center gap-2 px-4"><span class="w-2 h-2 rounded-full" style="background:#facc15;"></span>Okonomiyaki Benedict &amp; Lotus Chips</span>
+        <span class="inline-flex items-center gap-2 px-4"><span class="w-2 h-2 rounded-full" style="background:#fb7185;"></span>Edible Rose Petals &amp; Turkish Delight</span>
+        <span class="inline-flex items-center gap-2 px-4"><span class="w-2 h-2 rounded-full" style="background:#eab308;"></span>San Pedro Melbourne Specialty Roast</span>
+    </div>
+</div>
+
+<!-- =========================================================================
+     3. THE VIRAL DRINK LAB (CHROMATIC PALETTE FILTER & VIDEO PREVIEW DECK)
+     Lets guests explore Pony White's colourful signature drinks & smoothies by colour mood
+     ========================================================================= -->
+<section id="viral-drink-lab" class="py-20 md:py-24 bg-[#fbf8f3] relative overflow-hidden">
+    <div class="max-w-container-max mx-auto px-gutter relative z-10">
+        <!-- Section Header -->
+        <div class="flex flex-col lg:flex-row lg:items-end justify-between gap-6 mb-12">
+            <div>
+                <span class="font-label-sm uppercase tracking-widest block gold-gradient-text font-bold mb-2">Liquid Artistry &amp; Chromatic Craft</span>
+                <h2 class="font-serif text-3xl sm:text-4xl md:text-5xl text-primary font-bold">The Viral Signature Drink Bar</h2>
+                <p class="font-body-lg text-on-surface-variant max-w-2xl mt-3">
+                    Filter our famous layered creations by colour palette and flavour mood—or tap any glass to watch it poured fresh.
+                </p>
+            </div>
+
+            <!-- Colour Mood Filter Pills -->
+            <div id="drink-mood-filters" class="flex flex-wrap gap-2">
+                <button type="button" onclick="window.filterDrinkLab && window.filterDrinkLab('all')" data-mood="all" class="drink-mood-btn px-4 py-2.5 rounded-full text-xs font-bold transition-all bg-primary text-white shadow-md" style="cursor: pointer;">
+                    All Viral Pours
+                </button>
+                <button type="button" onclick="window.filterDrinkLab && window.filterDrinkLab('blush')" data-mood="blush" class="drink-mood-btn px-4 py-2.5 rounded-full text-xs font-bold transition-all bg-white text-primary border border-secondary/20 hover:border-secondary flex items-center gap-1.5" style="cursor: pointer;">
+                    <span class="w-2.5 h-2.5 rounded-full" style="background:#f43f5e;"></span>
+                    Blush, Rose &amp; Berry
+                </button>
+                <button type="button" onclick="window.filterDrinkLab && window.filterDrinkLab('emerald')" data-mood="emerald" class="drink-mood-btn px-4 py-2.5 rounded-full text-xs font-bold transition-all bg-white text-primary border border-secondary/20 hover:border-secondary flex items-center gap-1.5" style="cursor: pointer;">
+                    <span class="w-2.5 h-2.5 rounded-full" style="background:#22c55e;"></span>
+                    Emerald Matcha &amp; Pistachio
+                </button>
+                <button type="button" onclick="window.filterDrinkLab && window.filterDrinkLab('cosmic')" data-mood="cosmic" class="drink-mood-btn px-4 py-2.5 rounded-full text-xs font-bold transition-all bg-white text-primary border border-secondary/20 hover:border-secondary flex items-center gap-1.5" style="cursor: pointer;">
+                    <span class="w-2.5 h-2.5 rounded-full" style="background:#8b5cf6;"></span>
+                    Ube Violet &amp; Spirulina Blue
+                </button>
+                <button type="button" onclick="window.filterDrinkLab && window.filterDrinkLab('golden')" data-mood="golden" class="drink-mood-btn px-4 py-2.5 rounded-full text-xs font-bold transition-all bg-white text-primary border border-secondary/20 hover:border-secondary flex items-center gap-1.5" style="cursor: pointer;">
+                    <span class="w-2.5 h-2.5 rounded-full" style="background:#eab308;"></span>
+                    Golden Banoffee &amp; Espresso
+                </button>
+            </div>
+        </div>
+
+        <!-- Dynamic Drink Lab Grid (8 cards with live hover/tap video preview) -->
+        <div id="drink-lab-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+            <!-- Populated by JS with static fallback cards rendered immediately -->
+        </div>
+
+        <!-- Bottom Bar Links to Full Interactive Experiences -->
+        <div class="mt-12 p-6 md:p-8 rounded-2xl bg-primary text-white flex flex-col md:flex-row items-center justify-between gap-6 shadow-xl">
+            <div class="flex items-center gap-4">
+                <div class="w-12 h-12 rounded-full gold-gradient-bg flex items-center justify-center text-[#001a12] flex-shrink-0">
+                    <span class="material-symbols-outlined text-2xl">local_bar</span>
+                </div>
+                <div>
+                    <h3 class="font-serif text-xl md:text-2xl text-white font-bold">Want to explore all 17 Signature Elixirs &amp; 11 Superfood Smoothies?</h3>
+                    <p class="text-sm text-white/75 mt-1">Launch our full-screen video drink studio or spin the interactive smoothie wheel.</p>
+                </div>
+            </div>
+            <div class="flex flex-wrap gap-3 w-full md:w-auto justify-center">
+                <a href="signature-drinks.html" class="gold-gradient-bg text-[#001a12] px-6 py-3.5 rounded-full text-xs font-bold uppercase tracking-wider hover:brightness-110 transition-all no-underline inline-flex items-center gap-2 shadow-md">
+                    Open Signature Drinks Studio
+                    <span class="material-symbols-outlined text-base">play_arrow</span>
+                </a>
+                <a href="smoothies-juices.html" class="bg-white/10 hover:bg-white/20 text-white border border-white/20 px-6 py-3.5 rounded-full text-xs font-bold uppercase tracking-wider transition-all no-underline inline-flex items-center gap-2">
+                    Spin Smoothie Wheel
+                    <span class="material-symbols-outlined text-base">blender</span>
+                </a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- =========================================================================
+     4. "TOO PRETTY TO EAT" — KITCHEN SHOWCASE V2
+     Synced live with Square & Nucleus CRM (`public_data/homepage_kitchen`)
+     Includes direct visual thumbnail filmstrip + plating anatomy badges!
+     ========================================================================= -->
+<section id="kitchen-showcase" class="py-20 md:py-24 bg-[#071f17] text-white overflow-hidden relative full-width-breakout">
+    <div class="max-w-container-max mx-auto px-gutter relative z-10">
+        <!-- Header -->
+        <div class="flex flex-col md:flex-row md:items-end justify-between mb-10 gap-6">
+            <div>
+                <span id="kitchen-showcase-subtitle" class="font-label-sm uppercase tracking-widest mb-2 block text-[#ffe088] font-bold">Plated Like Fine Art • Synced Live with Square</span>
+                <h2 id="kitchen-showcase-title" class="font-serif text-3xl sm:text-4xl md:text-5xl text-white font-bold">The Fitzroy Kitchen Showcase</h2>
+                <p id="kitchen-showcase-desc" class="font-body-lg text-white/75 max-w-2xl mt-3">
+                    Famous across Melbourne for vibrant plating—from pink Persian pashmak and matcha mascarpone to squid-ink marinara and crispy lotus chips. Tap any dish below or use the arrows to explore.
+                </p>
+            </div>
+            <!-- Desktop Prev/Next Dish Buttons -->
+            <div class="flex items-center gap-3">
+                <button id="prev-slide" type="button" onclick="window.prevKitchenSlide && window.prevKitchenSlide(event)" aria-label="Previous dish" style="pointer-events: auto; cursor: pointer;" class="w-12 h-12 rounded-full bg-white/10 hover:bg-[#e9c349] text-white hover:text-[#001a12] border border-white/20 flex items-center justify-center transition-all active:scale-95">
+                    <span class="material-symbols-outlined text-2xl pointer-events-none">arrow_back</span>
+                </button>
+                <span id="slide-counter-badge" class="text-xs font-bold uppercase tracking-widest px-4 py-2 rounded-full bg-white/10 border border-white/15 text-[#ffe088]">
+                    01 / 10
+                </span>
+                <button id="next-slide" type="button" onclick="window.nextKitchenSlide && window.prevKitchenSlide && window.nextKitchenSlide(event)" aria-label="Next dish" style="pointer-events: auto; cursor: pointer;" class="w-12 h-12 rounded-full bg-white/10 hover:bg-[#e9c349] text-white hover:text-[#001a12] border border-white/20 flex items-center justify-center transition-all active:scale-95">
+                    <span class="material-symbols-outlined text-2xl pointer-events-none">arrow_forward</span>
+                </button>
+            </div>
+        </div>
+
+        <!-- Visual Dish Filmstrip (Tap any dish directly!) -->
+        <div id="kitchen-filmstrip" class="flex gap-3 overflow-x-auto no-scrollbar pb-6 mb-8">
+            <!-- Populated dynamically from DISHES_DATA -->
+        </div>
+
+        <!-- Main Showcase Stage: 6 Cols Dish Visual + 6 Cols Tasting & Plating Card -->
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 items-stretch">
+            <!-- Left: Dish Photo Container with Floating Plating Anatomy Badges -->
+            <div class="lg:col-span-6 relative rounded-3xl overflow-hidden shadow-2xl h-[360px] sm:h-[460px] lg:h-[540px] border border-white/15 bg-[#04120d] isolate">
+                <div id="slideshow-image-container" class="w-full h-full relative overflow-hidden isolate">
+                    <img src="../../assets/french-toast.jpg" decoding="async" class="absolute inset-0 w-full h-full object-cover transition-all duration-700 ease-in-out transform scale-105 opacity-100 z-10" id="slide-img-0" alt="French Toast Dé Matcha">
+                    <img src="../../assets/salmon-benedict.jpg" decoding="async" class="absolute inset-0 w-full h-full object-cover transition-all duration-700 ease-in-out transform scale-100 opacity-0 pointer-events-none z-0" id="slide-img-1" alt="Okonomiyaki Benedict">
+                    <img src="../../assets/avocado-toast.jpg" decoding="async" class="absolute inset-0 w-full h-full object-cover transition-all duration-700 ease-in-out transform scale-100 opacity-0 pointer-events-none z-0" id="slide-img-2" alt="Avocado Toast">
+                    <img src="../../assets/spaghetti-marinara.jpg" decoding="async" class="absolute inset-0 w-full h-full object-cover transition-all duration-700 ease-in-out transform scale-100 opacity-0 pointer-events-none z-0" id="slide-img-3" alt="Spaghetti Marinara">
+                    <img src="../../assets/zaalouk-prawns.jpg" decoding="async" class="absolute inset-0 w-full h-full object-cover transition-all duration-700 ease-in-out transform scale-100 opacity-0 pointer-events-none z-0" id="slide-img-4" alt="Zaalou'k Prawns">
+                    <img src="../../assets/wild-mushroom.jpg" decoding="async" class="absolute inset-0 w-full h-full object-cover transition-all duration-700 ease-in-out transform scale-100 opacity-0 pointer-events-none z-0" id="slide-img-5" alt="Wild Mushroom">
+                    <img src="../../assets/chilli-cheese-croissant.jpg" decoding="async" class="absolute inset-0 w-full h-full object-cover transition-all duration-700 ease-in-out transform scale-100 opacity-0 pointer-events-none z-0" id="slide-img-6" alt="Chilli Cheese Croissant">
+                    <img src="../../assets/acai-bowl.jpg" decoding="async" class="absolute inset-0 w-full h-full object-cover transition-all duration-700 ease-in-out transform scale-100 opacity-0 pointer-events-none z-0" id="slide-img-7" alt="Açaí Bowl">
+                    <img src="../../assets/gourmet-burger.jpg" decoding="async" class="absolute inset-0 w-full h-full object-cover transition-all duration-700 ease-in-out transform scale-100 opacity-0 pointer-events-none z-0" id="slide-img-8" alt="Pony's Classic Burger">
+                    <img src="../../assets/big-breakfast.jpg" decoding="async" class="absolute inset-0 w-full h-full object-cover transition-all duration-700 ease-in-out transform scale-100 opacity-0 pointer-events-none z-0" id="slide-img-9" alt="Big Breakfast">
+                </div>
+
+                <!-- Plating Highlights Overlay Chips on Image -->
+                <div class="absolute top-5 left-5 right-5 flex flex-wrap justify-between items-center gap-2 z-20 pointer-events-none">
+                    <span id="slide-visual-badge" class="glass-dark px-4 py-1.5 rounded-full text-xs font-bold text-[#ffe088] border border-white/20 shadow-lg">
+                        ✨ Viral Presentation Highlight
+                    </span>
+                    <span id="slide-price-floating" class="gold-gradient-bg text-[#001a12] px-4 py-1.5 rounded-full text-sm font-extrabold shadow-lg">
+                        $28.00
+                    </span>
+                </div>
+
+                <!-- Overlay Prev/Next Controls on Mobile/Image -->
+                <div class="absolute inset-x-4 top-1/2 -translate-y-1/2 flex justify-between items-center z-30 pointer-events-none">
+                    <button type="button" onclick="window.prevKitchenSlide && window.prevKitchenSlide(event)" aria-label="Previous dish" style="pointer-events: auto; cursor: pointer;" class="w-11 h-11 rounded-full bg-black/55 hover:bg-[#e9c349] text-white hover:text-[#001a12] backdrop-blur-md border border-white/25 flex items-center justify-center transition-all shadow-lg">
+                        <span class="material-symbols-outlined text-xl pointer-events-none">chevron_left</span>
+                    </button>
+                    <button type="button" onclick="window.nextKitchenSlide && window.nextKitchenSlide(event)" aria-label="Next dish" style="pointer-events: auto; cursor: pointer;" class="w-11 h-11 rounded-full bg-black/55 hover:bg-[#e9c349] text-white hover:text-[#001a12] backdrop-blur-md border border-white/25 flex items-center justify-center transition-all shadow-lg">
+                        <span class="material-symbols-outlined text-xl pointer-events-none">chevron_right</span>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Right: Dish Story, Visual Anatomy & Order Card -->
+            <div id="slideshow-card" class="lg:col-span-6 bg-[#0d2e23] p-8 md:p-10 rounded-3xl shadow-2xl relative overflow-hidden border border-white/15 flex flex-col justify-between min-h-[460px] lg:h-[540px]">
+                <div>
+                    <div class="flex flex-wrap justify-between items-center gap-2 mb-4">
+                        <span id="slide-category" class="text-xs uppercase tracking-widest text-[#ffe088] font-bold">All Day Breakfast</span>
+                        <span id="slide-price" class="font-serif text-3xl text-white font-bold">$28.00</span>
+                    </div>
+
+                    <h3 id="slide-title" class="font-serif text-3xl md:text-4xl text-white font-bold mb-4 transition-all duration-300">French Toast Dé Matcha</h3>
+
+                    <p id="slide-desc" class="text-white/80 text-base leading-relaxed mb-6 transition-all duration-300">
+                        Classic golden French toast crowned with velvety matcha mascarpone, vanilla bean ice-cream, strawberry bliss, fairy-floss pink Persian pashmak, seasonal fruits &amp; white chocolate strawberries. (V)
+                    </p>
+
+                    <div class="mb-6">
+                        <span class="text-[11px] uppercase tracking-widest text-white/50 font-bold block mb-3">What Makes This Plate Iconic</span>
+                        <ul id="slide-features" class="space-y-2.5 transition-all duration-300">
+                            <li class="flex items-center gap-3 text-white/90">
+                                <span class="material-symbols-outlined text-[#ffe088] text-lg flex-shrink-0" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+                                <span class="text-sm">Classic golden French toast with velvety ceremonial matcha mascarpone</span>
+                            </li>
+                            <li class="flex items-center gap-3 text-white/90">
+                                <span class="material-symbols-outlined text-[#ffe088] text-lg flex-shrink-0" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+                                <span class="text-sm">Vanilla ice-cream, strawberry bliss &amp; delicate pink Persian pashmak</span>
+                            </li>
+                            <li class="flex items-center gap-3 text-white/90">
+                                <span class="material-symbols-outlined text-[#ffe088] text-lg flex-shrink-0" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+                                <span class="text-sm">Topped with fresh seasonal fruits &amp; white chocolate strawberries (V)</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="pt-4 border-t border-white/10">
+                    <div class="flex flex-col sm:flex-row gap-3.5 items-stretch sm:items-center justify-between">
+                        <a id="order-btn" href="https://pony-white-cafe.square.site/s/order" target="_blank" rel="noopener noreferrer" class="gold-gradient-bg text-[#001a12] px-7 py-4 rounded-full font-bold text-sm hover:brightness-110 transition-all shadow-lg flex items-center justify-center gap-2 no-underline flex-1">
+                            Order Dish Online
+                            <span class="material-symbols-outlined text-lg">restaurant_menu</span>
+                        </a>
+                        <a id="book-table-btn" href="book-table.html" class="bg-white/10 hover:bg-white/20 text-white border border-white/25 px-7 py-4 rounded-full font-bold text-sm transition-all flex items-center justify-center gap-2 no-underline flex-1">
+                            Dine In at Fitzroy
+                            <span class="material-symbols-outlined text-lg text-[#ffe088]">table_restaurant</span>
+                        </a>
+                    </div>
+
+                    <!-- Dots & Progress Bar -->
+                    <div class="flex items-center justify-between mt-5 gap-4">
+                        <div id="slideshow-dots" class="flex gap-2 items-center flex-wrap" style="pointer-events: auto;"></div>
+                        <span class="text-[11px] text-white/50 font-medium">Kitchen open 7am – 2:30pm daily</span>
+                    </div>
+                </div>
+
+                <div class="absolute bottom-0 left-0 w-full h-[3px] bg-white/10">
+                    <div id="progress-bar" class="h-full gold-gradient-bg w-0 transition-all duration-[50ms] linear"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- =========================================================================
+     5. WHY MELBOURNE IS OBSESSED — SOCIAL PROOF & INSTAGRAM REELS MOSAIC
+     ========================================================================= -->
+<section class="py-20 md:py-24 bg-[#fcf6e8] relative overflow-hidden">
+    <div class="max-w-container-max mx-auto px-gutter">
+        <div class="text-center max-w-3xl mx-auto mb-14">
+            <a href="https://www.instagram.com/ponywhite.fitzroy" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-primary/5 border border-secondary/20 text-primary text-xs font-bold uppercase tracking-widest mb-4 no-underline hover:bg-primary/10 transition-colors">
+                <span>@ponywhite.fitzroy</span>
+                <span class="material-symbols-outlined text-sm text-secondary">open_in_new</span>
+            </a>
+            <h2 class="font-serif text-3xl sm:text-4xl md:text-5xl text-primary font-bold mb-4">Loved by Fitzroy Locals &amp; Creators</h2>
+            <p class="text-on-surface-variant text-base md:text-lg">
+                Whether you're stopping by for a silky morning flat white roasted by San Pedro or filming the first torched crack of a Pistachio Crème Brûlée latte, here's what Melbourne says.
+            </p>
+        </div>
+
+        <!-- 3 Editorial Review Cards -->
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-14">
+            <div class="bg-white p-7 rounded-2xl shadow-md border border-secondary/15 flex flex-col justify-between">
+                <div>
+                    <div class="flex items-center justify-between mb-4">
+                        <div class="flex text-[#d4af37]">
+                            <span class="material-symbols-outlined text-lg" style="font-variation-settings:'FILL' 1;">star</span>
+                            <span class="material-symbols-outlined text-lg" style="font-variation-settings:'FILL' 1;">star</span>
+                            <span class="material-symbols-outlined text-lg" style="font-variation-settings:'FILL' 1;">star</span>
+                            <span class="material-symbols-outlined text-lg" style="font-variation-settings:'FILL' 1;">star</span>
+                            <span class="material-symbols-outlined text-lg" style="font-variation-settings:'FILL' 1;">star</span>
+                        </div>
+                        <span class="text-[11px] font-bold uppercase tracking-wider px-2.5 py-1 rounded-full bg-rose-100 text-rose-800">Signature Drinks</span>
+                    </div>
+                    <p class="text-primary/85 text-sm leading-relaxed italic mb-6">
+                        "Such a gem in Fitzroy! Their specialty drinks are next level! We tried the Banoffee and the Tiramisu Affogato, both were absolutely delicious. The prawn marinara and Okonomiyaki Benedict were such a unique twist!"
+                    </p>
+                </div>
+                <div class="flex items-center justify-between pt-4 border-t border-secondary/10">
+                    <span class="font-bold text-xs uppercase tracking-wider text-primary">— Shanyan Hai</span>
+                    <span class="text-xs text-secondary font-semibold">Google Local Guide</span>
+                </div>
+            </div>
+
+            <div class="bg-white p-7 rounded-2xl shadow-md border border-secondary/15 flex flex-col justify-between">
+                <div>
+                    <div class="flex items-center justify-between mb-4">
+                        <div class="flex text-[#d4af37]">
+                            <span class="material-symbols-outlined text-lg" style="font-variation-settings:'FILL' 1;">star</span>
+                            <span class="material-symbols-outlined text-lg" style="font-variation-settings:'FILL' 1;">star</span>
+                            <span class="material-symbols-outlined text-lg" style="font-variation-settings:'FILL' 1;">star</span>
+                            <span class="material-symbols-outlined text-lg" style="font-variation-settings:'FILL' 1;">star</span>
+                            <span class="material-symbols-outlined text-lg" style="font-variation-settings:'FILL' 1;">star</span>
+                        </div>
+                        <span class="text-[11px] font-bold uppercase tracking-wider px-2.5 py-1 rounded-full bg-emerald-100 text-emerald-800">Matcha &amp; Plating</span>
+                    </div>
+                    <p class="text-primary/85 text-sm leading-relaxed italic mb-6">
+                        "The Strawberries &amp; Cream Matcha and Pistachio Crème Brûlée latte look straight out of a magazine and taste even better. Paired with the French Toast Dé Matcha topped with pink pashmak—easily the prettiest brunch in Melbourne."
+                    </p>
+                </div>
+                <div class="flex items-center justify-between pt-4 border-t border-secondary/10">
+                    <span class="font-bold text-xs uppercase tracking-wider text-primary">— Melbourne Brunch Edit</span>
+                    <span class="text-xs text-secondary font-semibold">Verified Diner</span>
+                </div>
+            </div>
+
+            <div class="bg-white p-7 rounded-2xl shadow-md border border-secondary/15 flex flex-col justify-between">
+                <div>
+                    <div class="flex items-center justify-between mb-4">
+                        <div class="flex text-[#d4af37]">
+                            <span class="material-symbols-outlined text-lg" style="font-variation-settings:'FILL' 1;">star</span>
+                            <span class="material-symbols-outlined text-lg" style="font-variation-settings:'FILL' 1;">star</span>
+                            <span class="material-symbols-outlined text-lg" style="font-variation-settings:'FILL' 1;">star</span>
+                            <span class="material-symbols-outlined text-lg" style="font-variation-settings:'FILL' 1;">star</span>
+                            <span class="material-symbols-outlined text-lg" style="font-variation-settings:'FILL' 1;">star</span>
+                        </div>
+                        <span class="text-[11px] font-bold uppercase tracking-wider px-2.5 py-1 rounded-full bg-amber-100 text-amber-900">San Pedro Coffee</span>
+                    </div>
+                    <p class="text-primary/85 text-sm leading-relaxed italic mb-6">
+                        "Holds its own in Melbourne's fiercely competitive coffee scene. The standard milk coffees have a clean, velvety chocolate-almond profile with zero bitterness, and the George St space is warm and welcoming every morning."
+                    </p>
+                </div>
+                <div class="flex items-center justify-between pt-4 border-t border-secondary/10">
+                    <span class="font-bold text-xs uppercase tracking-wider text-primary">— Fitzroy Coffee Daily</span>
+                    <span class="text-xs text-secondary font-semibold">Specialty Review</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- 6-Tile Chromatic Instagram Strip -->
+        <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-4">
+            <a href="https://www.instagram.com/ponywhite.fitzroy" target="_blank" rel="noopener noreferrer" class="group relative rounded-2xl overflow-hidden aspect-square shadow-md block">
+                <img src="../../assets/insta-1.jpg" alt="Pony White Fitzroy" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"/>
+                <div class="absolute inset-0 bg-primary/70 opacity-0 group-hover:opacity-100 transition-opacity flex flex-col items-center justify-center text-white p-2 text-center">
+                    <span class="material-symbols-outlined text-[#ffe088] text-2xl">favorite</span>
+                    <span class="text-[11px] font-bold mt-1">@ponywhite.fitzroy</span>
+                </div>
+            </a>
+            <a href="https://www.instagram.com/ponywhite.fitzroy" target="_blank" rel="noopener noreferrer" class="group relative rounded-2xl overflow-hidden aspect-square shadow-md block">
+                <img src="../../assets/insta-2.jpg" alt="Pony White Fitzroy" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"/>
+                <div class="absolute inset-0 bg-primary/70 opacity-0 group-hover:opacity-100 transition-opacity flex flex-col items-center justify-center text-white p-2 text-center">
+                    <span class="material-symbols-outlined text-[#ffe088] text-2xl">favorite</span>
+                    <span class="text-[11px] font-bold mt-1">@ponywhite.fitzroy</span>
+                </div>
+            </a>
+            <a href="https://www.instagram.com/ponywhite.fitzroy" target="_blank" rel="noopener noreferrer" class="group relative rounded-2xl overflow-hidden aspect-square shadow-md block">
+                <img src="../../assets/insta-3.jpg" alt="Pony White Fitzroy" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"/>
+                <div class="absolute inset-0 bg-primary/70 opacity-0 group-hover:opacity-100 transition-opacity flex flex-col items-center justify-center text-white p-2 text-center">
+                    <span class="material-symbols-outlined text-[#ffe088] text-2xl">favorite</span>
+                    <span class="text-[11px] font-bold mt-1">@ponywhite.fitzroy</span>
+                </div>
+            </a>
+            <a href="https://www.instagram.com/ponywhite.fitzroy" target="_blank" rel="noopener noreferrer" class="group relative rounded-2xl overflow-hidden aspect-square shadow-md block">
+                <img src="../../assets/insta-4.jpg" alt="Pony White Fitzroy" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"/>
+                <div class="absolute inset-0 bg-primary/70 opacity-0 group-hover:opacity-100 transition-opacity flex flex-col items-center justify-center text-white p-2 text-center">
+                    <span class="material-symbols-outlined text-[#ffe088] text-2xl">favorite</span>
+                    <span class="text-[11px] font-bold mt-1">@ponywhite.fitzroy</span>
+                </div>
+            </a>
+            <a href="https://www.instagram.com/ponywhite.fitzroy" target="_blank" rel="noopener noreferrer" class="group relative rounded-2xl overflow-hidden aspect-square shadow-md block">
+                <img src="../../assets/insta-5.jpg" alt="Pony White Fitzroy" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"/>
+                <div class="absolute inset-0 bg-primary/70 opacity-0 group-hover:opacity-100 transition-opacity flex flex-col items-center justify-center text-white p-2 text-center">
+                    <span class="material-symbols-outlined text-[#ffe088] text-2xl">favorite</span>
+                    <span class="text-[11px] font-bold mt-1">@ponywhite.fitzroy</span>
+                </div>
+            </a>
+            <a href="https://www.instagram.com/ponywhite.fitzroy" target="_blank" rel="noopener noreferrer" class="group relative rounded-2xl overflow-hidden aspect-square shadow-md block">
+                <img src="../../assets/insta-6.jpg" alt="Pony White Fitzroy" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"/>
+                <div class="absolute inset-0 bg-primary/70 opacity-0 group-hover:opacity-100 transition-opacity flex flex-col items-center justify-center text-white p-2 text-center">
+                    <span class="material-symbols-outlined text-[#ffe088] text-2xl">favorite</span>
+                    <span class="text-[11px] font-bold mt-1">@ponywhite.fitzroy</span>
+                </div>
+            </a>
+        </div>
+    </div>
+</section>
+
+<!-- =========================================================================
+     6. LOYALTY BEANS CLUB, SAN PEDRO ROASTERY & E-GIFT CARDS
+     ========================================================================= -->
+<section class="py-20 md:py-24 bg-white">
+    <div class="max-w-container-max mx-auto px-gutter space-y-12">
+        <!-- Dual Bento: Loyalty Beans Portal + Retail Take-Home Pantry -->
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-stretch">
+            <!-- Left 7 Cols: Pony White Beans Loyalty Club -->
+            <div class="lg:col-span-7 bg-primary text-white rounded-3xl p-8 md:p-12 relative overflow-hidden shadow-2xl flex flex-col justify-between">
+                <div>
+                    <div class="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-white/10 border border-white/15 text-[#ffe088] text-xs font-bold uppercase tracking-widest mb-5">
+                        <span class="material-symbols-outlined text-sm" style="font-variation-settings:'FILL' 1;">loyalty</span>
+                        Pony White Beans Loyalty
+                    </div>
+                    <h3 class="font-serif text-3xl md:text-4xl text-white font-bold mb-4">
+                        Earn 1 Bean Per $1. Redeem 50 Beans for Any Barista or Viral Pour.
+                    </h3>
+                    <p class="text-white/80 text-sm md:text-base leading-relaxed mb-6">
+                        Link your payment card once at the register and earn Beans automatically every time you tap—you only need to give us your phone number in-store if <strong class="text-[#ffe088]">using a new card</strong>, <strong class="text-[#ffe088]">paying cash</strong>, or <strong class="text-[#ffe088]">claiming a reward</strong>.
+                    </p>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-3.5 mb-8">
+                        <div class="bg-white/5 border border-white/10 rounded-2xl p-4 flex items-center gap-3">
+                            <span class="material-symbols-outlined text-[#ffe088] text-2xl">credit_card</span>
+                            <div>
+                                <span class="text-[11px] uppercase tracking-wider text-white/60 block font-bold">Automatic Card Tap</span>
+                                <span class="text-sm font-bold text-white">$1 Spent = 1 Bean Earned</span>
+                            </div>
+                        </div>
+                        <div class="bg-white/5 border border-white/10 rounded-2xl p-4 flex items-center gap-3">
+                            <span class="material-symbols-outlined text-[#ffe088] text-2xl">redeem</span>
+                            <div>
+                                <span class="text-[11px] uppercase tracking-wider text-white/60 block font-bold">50 Beans Unlocked</span>
+                                <span class="text-sm font-bold text-white">1 Free Coffee or Signature Drink</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="flex flex-wrap gap-3.5">
+                    <a href="loyalty.html" class="gold-gradient-bg text-[#001a12] px-7 py-3.5 rounded-full font-bold text-sm hover:brightness-110 transition-all no-underline inline-flex items-center gap-2 shadow-lg">
+                        Check Balance or Join Free
+                        <span class="material-symbols-outlined text-base">arrow_forward</span>
+                    </a>
+                    <a href="https://profile.squareup.com/merchantportal/MLT83NZBFDM85/loyalty" target="_blank" rel="noopener noreferrer" class="bg-white/10 hover:bg-white/20 text-white border border-white/20 px-6 py-3.5 rounded-full font-bold text-sm transition-all no-underline inline-flex items-center gap-2">
+                        Manage Linked Cards
+                    </a>
+                </div>
+            </div>
+
+            <!-- Right 5 Cols: San Pedro Retail Coffee & Boutique Pantry -->
+            <div class="lg:col-span-5 bg-[#f7f3eb] rounded-3xl p-8 md:p-10 border border-secondary/20 shadow-lg flex flex-col justify-between">
+                <div>
+                    <div class="flex items-center justify-between mb-6">
+                        <span class="text-xs uppercase tracking-widest gold-gradient-text font-bold">Pony White At Home</span>
+                        <img src="../../assets/san_pedro_logo_black.png" alt="San Pedro Coffee Roasters" class="h-8 w-auto object-contain"/>
+                    </div>
+                    <h3 class="font-serif text-2xl md:text-3xl text-primary font-bold mb-3">
+                        Take Our Signature San Pedro Roast &amp; Chais Home
+                    </h3>
+                    <p class="text-on-surface-variant text-sm leading-relaxed mb-6">
+                        Brew our rich dark-chocolate and toasted-almond house blend at home alongside sticky Prana Chai and Mörk specialty drinking chocolate.
+                    </p>
+                    <div class="grid grid-cols-3 gap-3 mb-6">
+                        <div class="bg-white rounded-2xl p-2 aspect-square overflow-hidden border border-secondary/15 shadow-sm">
+                            <img src="../../assets/coffee_bags_beans.png" alt="San Pedro Beans" class="w-full h-full object-cover rounded-xl"/>
+                        </div>
+                        <div class="bg-white rounded-2xl p-2 aspect-square overflow-hidden border border-secondary/15 shadow-sm">
+                            <img src="../../assets/specialty_chai_trio.png" alt="Specialty Chai" class="w-full h-full object-cover rounded-xl"/>
+                        </div>
+                        <div class="bg-white rounded-2xl p-2 aspect-square overflow-hidden border border-secondary/15 shadow-sm">
+                            <img src="../../assets/specialty_powders_tin.jpg" alt="Drinking Chocolate" class="w-full h-full object-cover rounded-xl"/>
+                        </div>
+                    </div>
+                </div>
+                <div class="flex flex-wrap gap-3">
+                    <a href="retail-top.html" class="bg-primary text-white px-6 py-3.5 rounded-full font-bold text-xs uppercase tracking-wider hover:bg-primary-container transition-all no-underline inline-flex items-center gap-2 flex-1 justify-center">
+                        Explore Retail Beans
+                        <span class="material-symbols-outlined text-sm text-[#ffe088]">shopping_bag</span>
+                    </a>
+                    <a href="gift-cards.html" class="bg-white text-primary border border-secondary/30 px-6 py-3.5 rounded-full font-bold text-xs uppercase tracking-wider hover:bg-secondary/10 transition-all no-underline inline-flex items-center gap-2 flex-1 justify-center">
+                        Send E-Gift Card
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- =========================================================================
+     7. VISIT OUR FITZROY SANCTUARY & MAP
+     ========================================================================= -->
+<section class="pt-16 pb-0 overflow-hidden bg-[#fbf8f3] border-t border-secondary/15">
+    <div class="max-w-container-max mx-auto px-gutter mb-14">
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8 items-start">
+            <!-- Address -->
+            <a href="https://www.google.com/maps/dir/?api=1&destination=379-381+George+St,+Fitzroy+VIC+3065+Australia" target="_blank" rel="noopener noreferrer" class="bg-white p-6 rounded-2xl border border-secondary/15 shadow-sm no-underline group hover:border-secondary transition-all block">
+                <div class="flex items-center gap-3 mb-3">
+                    <span class="material-symbols-outlined text-secondary text-2xl">location_on</span>
+                    <h4 class="font-serif text-xl text-primary font-bold">Our Fitzroy Corner</h4>
+                </div>
+                <p class="text-sm text-on-surface-variant leading-relaxed">
+                    379–381 George Street, Fitzroy<br/>VIC 3065, Australia
+                </p>
+                <p class="text-xs font-bold text-secondary mt-3">(03) 9314 7273 • info@ponywhite.com.au</p>
+            </a>
+
+            <!-- Hours -->
+            <div class="bg-white p-6 rounded-2xl border border-secondary/15 shadow-sm">
+                <div class="flex items-center gap-3 mb-3">
+                    <span class="material-symbols-outlined text-secondary text-2xl">schedule</span>
+                    <h4 class="font-serif text-xl text-primary font-bold">Opening Hours</h4>
+                </div>
+                <p class="text-sm text-on-surface-variant leading-relaxed">
+                    Mon – Thu: 7:00am — 3:00pm<br/>
+                    Friday: 7:00am — 3:30pm<br/>
+                    Saturday: 7:30am — 3:30pm<br/>
+                    Sunday: 8:00am — 3:30pm
+                </p>
+                <p class="text-xs font-bold gold-gradient-text mt-2">Kitchen closes at 2:30pm daily</p>
+            </div>
+
+            <!-- Concierge & Bookings -->
+            <div class="bg-white p-6 rounded-2xl border border-secondary/15 shadow-sm flex flex-col justify-between h-full">
+                <div>
+                    <div class="flex items-center gap-3 mb-3">
+                        <span class="material-symbols-outlined text-secondary text-2xl">concierge</span>
+                        <h4 class="font-serif text-xl text-primary font-bold">Tables &amp; Private Events</h4>
+                    </div>
+                    <p class="text-sm text-on-surface-variant leading-relaxed mb-4">
+                        Book a weekend brunch table online or message our team for group bookings and catering inquiries.
+                    </p>
+                </div>
+                <div class="flex gap-3">
+                    <a href="book-table.html" class="gold-gradient-bg text-[#001a12] px-5 py-2.5 rounded-full text-xs font-bold uppercase tracking-wider no-underline hover:brightness-110 transition-all">
+                        Book a Table
+                    </a>
+                    <a href="contact.html" class="bg-primary text-white px-5 py-2.5 rounded-full text-xs font-bold uppercase tracking-wider no-underline hover:bg-primary-container transition-all">
+                        Contact Us
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Full-Width Map Embed -->
+    <div class="w-full h-[360px] md:h-[440px] bg-surface-container relative full-width-breakout border-t border-secondary/15">
+        <iframe
+            class="w-full h-full border-0 absolute inset-0 z-10"
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3152.4795328224523!2d144.97825227702816!3d-37.8022879719782!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x6ad642df5a3c0383%3A0xe541c4deee7574ea!2sPony%20White%20Cafe!5e0!3m2!1sen!2sau!4v1716300000000!5m2!1sen!2sau"
+            allowfullscreen=""
+            loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade">
+        </iframe>
+    </div>
+</section>
+
+<script>
+        // =========================================================================
+        // 1. HERO CHROMATIC POUR SWITCHER (Single Video Element — Iframe Safe)
+        // =========================================================================
+        const HERO_POURS = [
+            {
+                title: "Strawberries & Cream Matcha",
+                category: "Viral Matcha Series",
+                price: "$10.00",
+                desc: "Whisked ceremonial Japanese matcha layered over house-made strawberry purée and crowned with thick strawberry cream.",
+                video: "../../assets/Strawberries & Cream Matcha.mp4",
+                poster: "../../assets/matcha-strawberry.jpg",
+                topLayer: "Velvety Strawberry Cold Foam",
+                topColor: "#f43f5e",
+                bottomLayer: "Whisked Ceremonial Uji Matcha",
+                bottomColor: "#22c55e",
+                bgGradient: "radial-gradient(circle at 78% 35%, rgba(244, 114, 182, 0.30) 0%, rgba(16, 185, 129, 0.24) 34%, rgba(6, 28, 21, 0.98) 74%), #061c15",
+                orbPrimary: "#f472b6",
+                orbSecondary: "#34d399"
+            },
+            {
+                title: "Pistachio Crème Brûlée Latte",
+                category: "Torched Signature Espresso",
+                price: "$10.50",
+                desc: "Chilled specialty latte topped with house-made pistachio cream, hand-torched to a crackly brûlée crust and finished with crushed pistachios.",
+                video: "../../assets/Pistachio Creme Brulee.mp4",
+                poster: "../../assets/coconut-iced-latte.jpg",
+                topLayer: "Hand-Torched Pistachio Brûlée",
+                topColor: "#a3e635",
+                bottomLayer: "San Pedro Double Espresso & Milk",
+                bottomColor: "#ca8a04",
+                bgGradient: "radial-gradient(circle at 78% 35%, rgba(163, 230, 53, 0.26) 0%, rgba(234, 179, 8, 0.22) 34%, rgba(6, 28, 21, 0.98) 74%), #061c15",
+                orbPrimary: "#a3e635",
+                orbSecondary: "#eab308"
+            },
+            {
+                title: "Iced Rose Turkish Delight",
+                category: "Botanical Elixir Series",
+                price: "$9.50",
+                desc: "Indulgent signature iced chocolate infused with fragrant rose water, poured over ice and crowned with authentic Turkish delight & rose petals.",
+                video: "../../assets/Iced Rose Turkish.mp4",
+                poster: "../../assets/sig-iced-rose.png",
+                topLayer: "Turkish Delight & Dried Rosebuds",
+                topColor: "#fb7185",
+                bottomLayer: "Fragrant Rose-Infused Cocoa",
+                bottomColor: "#9f1239",
+                bgGradient: "radial-gradient(circle at 78% 35%, rgba(251, 113, 133, 0.30) 0%, rgba(159, 18, 57, 0.24) 34%, rgba(6, 28, 21, 0.98) 74%), #061c15",
+                orbPrimary: "#fb7185",
+                orbSecondary: "#e11d48"
+            },
+            {
+                title: "Iced Blue Spirulina Cloud",
+                category: "Superfood Wellness Latte",
+                price: "$7.00",
+                desc: "Electric ocean-blue organic spirulina swirled with chilled silky milk and delicate vanilla over crystal-clear ice. 100% caffeine-free.",
+                video: "../../assets/Iced Blue Spirulina Latte (Iced).mp4",
+                poster: "../../assets/coconut-iced-latte.jpg",
+                topLayer: "Electric Blue Spirulina Swirl",
+                topColor: "#38bdf8",
+                bottomLayer: "Chilled Vanilla Botanical Milk",
+                bottomColor: "#0284c7",
+                bgGradient: "radial-gradient(circle at 78% 35%, rgba(56, 189, 248, 0.30) 0%, rgba(14, 165, 233, 0.22) 34%, rgba(6, 28, 21, 0.98) 74%), #061c15",
+                orbPrimary: "#38bdf8",
+                orbSecondary: "#0ea5e9"
+            },
+            {
+                title: "Iced Ube Taro Velvet Latte",
+                category: "Purple Root Elixir",
+                price: "$7.00",
+                desc: "Vibrant amethyst-purple ube taro root whisked into a creamy, sweet and nutty iced latte. A photogenic caffeine-free favourite.",
+                video: "../../assets/Iced Taro Latte (Iced).mp4",
+                poster: "../../assets/sig-ube-taro-latte.jpg",
+                topLayer: "Velvet Purple Ube Taro Foam",
+                topColor: "#c084fc",
+                bottomLayer: "Sweet Nutty Taro & Textured Milk",
+                bottomColor: "#7e22ce",
+                bgGradient: "radial-gradient(circle at 78% 35%, rgba(192, 132, 252, 0.30) 0%, rgba(126, 34, 206, 0.24) 34%, rgba(6, 28, 21, 0.98) 74%), #061c15",
+                orbPrimary: "#c084fc",
+                orbSecondary: "#9333ea"
+            }
+        ];
+
+        function selectHeroPour(index) {
+            const pour = HERO_POURS[index];
+            if (!pour) return;
+
+            const stage = document.getElementById('hero-chromatic-stage');
+            const orb1 = document.getElementById('hero-orb-primary');
+            const orb2 = document.getElementById('hero-orb-secondary');
+            const video = document.getElementById('hero-pour-video');
+            const poster = document.getElementById('hero-pour-poster');
+            const title = document.getElementById('hero-pour-title');
+            const cat = document.getElementById('hero-pour-category');
+            const desc = document.getElementById('hero-pour-desc');
+            const price = document.getElementById('hero-active-drink-price');
+            const topDot = document.getElementById('hero-badge-top-dot');
+            const topText = document.getElementById('hero-badge-top-text');
+            const botDot = document.getElementById('hero-badge-bottom-dot');
+            const botText = document.getElementById('hero-badge-bottom-text');
+
+            if (stage) stage.style.background = pour.bgGradient;
+            if (orb1) orb1.style.background = pour.orbPrimary;
+            if (orb2) orb2.style.background = pour.orbSecondary;
+            if (title) title.textContent = pour.title;
+            if (cat) cat.textContent = pour.category;
+            if (desc) desc.textContent = pour.desc;
+            if (price) price.textContent = pour.price;
+            if (topDot) topDot.style.background = pour.topColor;
+            if (topText) topText.textContent = pour.topLayer;
+            if (botDot) botDot.style.background = pour.bottomColor;
+            if (botText) botText.textContent = pour.bottomLayer;
+            if (poster) poster.src = pour.poster;
+
+            if (video) {
+                video.poster = pour.poster;
+                video.src = pour.video;
+                video.load();
+                const playPromise = video.play();
+                if (playPromise && playPromise.catch) playPromise.catch(() => {});
+            }
+
+            const buttons = document.querySelectorAll('.hero-pour-btn');
+            buttons.forEach((btn, idx) => {
+                if (idx === index) {
+                    btn.className = 'hero-pour-btn px-4 py-2.5 rounded-full text-xs font-bold transition-all duration-300 flex items-center gap-2 bg-white text-[#061c15] shadow-lg scale-[1.02]';
+                } else {
+                    btn.className = 'hero-pour-btn px-4 py-2.5 rounded-full text-xs font-bold transition-all duration-300 flex items-center gap-2 bg-white/10 text-white hover:bg-white/20 border border-white/15';
+                }
+            });
+        }
+        window.selectHeroPour = selectHeroPour;
+
+        // =========================================================================
+        // 2. VIRAL DRINK LAB (CHROMATIC FILTER & VIDEO HOVER/TAP PREVIEW)
+        // =========================================================================
+        const DRINK_LAB_ITEMS = [
+            {
+                id: 'strawberries-cream-matcha',
+                title: 'Strawberries & Cream Matcha',
+                mood: 'blush',
+                badge: 'Most Viral',
+                badgeBg: '#ffe4e6',
+                badgeText: '#9f1239',
+                paletteColors: ['#f43f5e', '#fda4af', '#22c55e'],
+                price: '$10.00',
+                desc: 'Ceremonial Uji matcha over house strawberry purée, crowned with velvety strawberry cream.',
+                img: '../../assets/matcha-strawberry.jpg',
+                video: '../../assets/Strawberries & Cream Matcha.mp4',
+                link: 'signature-drinks.html'
+            },
+            {
+                id: 'pistachio-creme-brulee',
+                title: 'Pistachio Crème Brûlée',
+                mood: 'emerald',
+                badge: 'Torched Live',
+                badgeBg: '#ecfccb',
+                badgeText: '#3f6212',
+                paletteColors: ['#a3e635', '#eab308', '#78350f'],
+                price: '$10.50',
+                desc: 'Iced espresso latte topped with pistachio cream, torched to order and finished with crushed pistachios.',
+                img: '../../assets/coconut-iced-latte.jpg',
+                video: '../../assets/Pistachio Creme Brulee.mp4',
+                link: 'signature-drinks.html'
+            },
+            {
+                id: 'iced-rose-matcha',
+                title: 'Iced Rose Matcha',
+                mood: 'blush',
+                badge: 'Botanical Craft',
+                badgeBg: '#fce7f3',
+                badgeText: '#9d174d',
+                paletteColors: ['#fb7185', '#f9a8d4', '#16a34a'],
+                price: '$10.00',
+                desc: 'Fragrant rose milk layered with whisked ceremonial matcha and topped with dried rose petals.',
+                img: '../../assets/sig-iced-rose.png',
+                video: '../../assets/Iced Rose Matcha.mp4',
+                link: 'signature-drinks.html'
+            },
+            {
+                id: 'banoffee-matcha',
+                title: 'Banoffee Matcha',
+                mood: 'emerald',
+                badge: 'House Specialty',
+                badgeBg: '#fef9c3',
+                badgeText: '#854d0e',
+                paletteColors: ['#facc15', '#22c55e', '#a16207'],
+                price: '$10.00',
+                desc: 'House caramel, banana syrup, banana cold foam, and a crisp banana chip over ceremonial matcha.',
+                img: '../../assets/sig-banoffee.jpg',
+                video: '../../assets/Banoffee Matcha.mp4',
+                link: 'signature-drinks.html'
+            },
+            {
+                id: 'taro-latte',
+                title: 'Iced Ube Taro Velvet',
+                mood: 'cosmic',
+                badge: 'Caffeine-Free',
+                badgeBg: '#f3e8ff',
+                badgeText: '#6b21a8',
+                paletteColors: ['#a855f7', '#d8b4fe', '#faf5ff'],
+                price: '$7.00',
+                desc: 'Creamy, sweet and nutty purple ube taro root poured over crystal-clear ice.',
+                img: '../../assets/sig-ube-taro-latte.jpg',
+                video: '../../assets/Iced Taro Latte (Iced).mp4',
+                link: 'signature-drinks.html'
+            },
+            {
+                id: 'blue-spirulina-latte',
+                title: 'Blue Spirulina Cloud',
+                mood: 'cosmic',
+                badge: 'Superfood',
+                badgeBg: '#e0f2fe',
+                badgeText: '#075985',
+                paletteColors: ['#0ea5e9', '#7dd3fc', '#f8fafc'],
+                price: '$7.00',
+                desc: 'Nutrient-dense organic blue spirulina and vanilla milk over ice for a striking ocean-blue pour.',
+                img: '../../assets/coconut-iced-latte.jpg',
+                video: '../../assets/Iced Blue Spirulina Latte (Iced).mp4',
+                link: 'signature-drinks.html'
+            },
+            {
+                id: 'tiramisu-affogato',
+                title: 'Tiramisu Affogato',
+                mood: 'golden',
+                badge: 'Dessert Pour',
+                badgeBg: '#ffedd5',
+                badgeText: '#9a3412',
+                paletteColors: ['#d97706', '#fef3c7', '#451a03'],
+                price: '$10.00',
+                desc: 'Sea-salt caramel ice cream, ladyfinger biscuits, salted caramel, cocoa dusting & double espresso.',
+                img: '../../assets/sig-tiramisu-affogato.jpg',
+                video: '../../assets/Tiramisu Affogato.mp4',
+                link: 'signature-drinks.html'
+            },
+            {
+                id: 'dragonberry-smoothie',
+                title: 'Dragonberry Glaze & Galaxy',
+                mood: 'blush',
+                badge: 'Raw Smoothie',
+                badgeBg: '#ffe4e6',
+                badgeText: '#be123c',
+                paletteColors: ['#ff3b7e', '#7c3aed', '#f472b6'],
+                price: '$14.00',
+                desc: 'Vibrant pitaya dragonfruit, strawberry purée, coyo & coconut water blended to a neon magenta glow.',
+                img: '../../assets/smoothie-dragonberry.jpg',
+                video: '',
+                link: 'smoothies-juices.html'
+            }
+        ];
+
+        function renderDrinkLab(mood = 'all') {
+            const grid = document.getElementById('drink-lab-grid');
+            if (!grid) return;
+
+            const filtered = mood === 'all'
+                ? DRINK_LAB_ITEMS
+                : DRINK_LAB_ITEMS.filter(item => item.mood === mood);
+
+            grid.innerHTML = '';
+            filtered.forEach((item) => {
+                const card = document.createElement('div');
+                card.className = 'group bg-white rounded-3xl overflow-hidden border border-secondary/15 shadow-md hover:shadow-2xl transition-all duration-500 flex flex-col justify-between';
+
+                const dotsHtml = item.paletteColors
+                    .map(c => `<span class="w-3 h-3 rounded-full border border-white shadow-sm" style="background:${c};"></span>`)
+                    .join('');
+
+                card.innerHTML = `
+                    <div>
+                        <div class="relative h-72 overflow-hidden bg-[#071f17]">
+                            <img src="${item.img}" alt="${item.title}" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"/>
+                            ${item.video ? `<video src="${item.video}" muted loop playsinline preload="none" class="drink-card-video absolute inset-0 w-full h-full object-cover opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"></video>` : ''}
+                            <div class="absolute top-3.5 left-3.5 right-3.5 flex justify-between items-center z-10">
+                                <span class="px-3 py-1 rounded-full text-[11px] font-bold shadow-sm" style="background:${item.badgeBg}; color:${item.badgeText};">${item.badge}</span>
+                                <div class="flex items-center gap-1 bg-black/45 backdrop-blur-md px-2.5 py-1 rounded-full">
+                                    ${dotsHtml}
+                                </div>
+                            </div>
+                            <div class="absolute bottom-3.5 right-3.5 z-10">
+                                <span class="bg-black/65 backdrop-blur-md text-[#ffe088] font-bold text-xs px-3 py-1 rounded-full border border-white/15">${item.price}</span>
+                            </div>
+                        </div>
+                        <div class="p-6">
+                            <h3 class="font-serif text-xl text-primary font-bold mb-2">${item.title}</h3>
+                            <p class="text-xs text-on-surface-variant leading-relaxed">${item.desc}</p>
+                        </div>
+                    </div>
+                    <div class="px-6 pb-6 pt-2 flex items-center justify-between gap-2">
+                        <a href="${item.link}" class="text-xs font-bold text-primary hover:text-secondary no-underline inline-flex items-center gap-1">
+                            View Full Pour
+                            <span class="material-symbols-outlined text-sm">arrow_forward</span>
+                        </a>
+                        <a href="https://pony-white-cafe.square.site/s/order" target="_blank" rel="noopener noreferrer" class="bg-primary text-white hover:bg-primary-container px-4 py-2 rounded-full text-xs font-bold no-underline transition-colors">
+                            Order
+                        </a>
+                    </div>
+                `;
+
+                // Play video on hover/touch for cards that have a pour video
+                const vid = card.querySelector('.drink-card-video');
+                if (vid) {
+                    card.addEventListener('mouseenter', () => {
+                        const p = vid.play();
+                        if (p && p.catch) p.catch(() => {});
+                    });
+                    card.addEventListener('mouseleave', () => {
+                        vid.pause();
+                    });
+                }
+
+                grid.appendChild(card);
+            });
+
+            // Update active button state
+            document.querySelectorAll('.drink-mood-btn').forEach(btn => {
+                if (btn.getAttribute('data-mood') === mood) {
+                    btn.className = 'drink-mood-btn px-4 py-2.5 rounded-full text-xs font-bold transition-all bg-primary text-white shadow-md flex items-center gap-1.5';
+                } else {
+                    btn.className = 'drink-mood-btn px-4 py-2.5 rounded-full text-xs font-bold transition-all bg-white text-primary border border-secondary/20 hover:border-secondary flex items-center gap-1.5';
+                }
+            });
+        }
+        window.filterDrinkLab = renderDrinkLab;
+
+        // =========================================================================
+        // 3. KITCHEN SHOWCASE V2 (WITH FILMSTRIP + NUCLEUS CRM LIVE SYNC)
+        // =========================================================================
+        const DISHES_DATA = [
+            {
+                title: "French Toast Dé Matcha",
+                category: "All Day Breakfast",
+                price: "$28.00",
+                visualBadge: "✨ Pink Pashmak & Matcha Mascarpone",
+                description: "Classic french toast with matcha mascarpone, vanilla ice-cream, strawberry bliss, pashmak, seasonal fruits & white chocolate strawberries. (V)",
+                features: [
+                    "Classic golden French toast with velvety matcha mascarpone",
+                    "Vanilla ice-cream, strawberry bliss & delicate pink pashmak",
+                    "Topped with seasonal fruits & white chocolate strawberries (V)"
+                ],
+                img: "../../assets/french-toast.jpg",
+                orderUrl: "https://pony-white-cafe.square.site/s/order"
+            },
+            {
+                title: "Okonomiyaki Benedict",
+                category: "All Day Meals",
+                price: "$28.00",
+                visualBadge: "✨ Lotus Chips, Pickled Ginger & Bonito",
+                description: "Crispy white cabbage & sweetcorn fritters with poached eggs, smoky hollandaise, crispy kale, special sauce, pickled ginger, lotus chips, sumac & bonito flakes. Add bacon +$6.0 | smoked salmon +$6.0. (VO, GF)",
+                features: [
+                    "Crispy white cabbage & sweetcorn fritters with poached eggs",
+                    "Smoky hollandaise, crispy kale, pickled ginger & lotus chips",
+                    "Finished with special sauce, sumac & bonito flakes (VO, GF)"
+                ],
+                img: "../../assets/salmon-benedict.jpg",
+                orderUrl: "https://pony-white-cafe.square.site/s/order"
+            },
+            {
+                title: "Avocado Toast",
+                category: "All Day Breakfast",
+                price: "$26.00",
+                visualBadge: "✨ Ruby Beetroot Hummus & Whipped Feta",
+                description: "Sliced avocado, cherry tomatoes, goats whipped feta, poached egg, mixed seeds, pickled beetroot & zaatar on multigrain bread with beetroot hummus & herb oil. (V, VGO, GFO)",
+                features: [
+                    "Sliced avocado, cherry tomatoes & goats whipped feta",
+                    "Poached egg, pickled beetroot & beetroot hummus on multigrain",
+                    "Toasted mixed seeds, zaatar & fragrant herb oil (V, VGO, GFO)"
+                ],
+                img: "../../assets/avocado-toast.jpg",
+                orderUrl: "https://pony-white-cafe.square.site/s/order"
+            },
+            {
+                title: "Spaghetti Marinara",
+                category: "All Day Lunch",
+                price: "$30.00",
+                visualBadge: "✨ Artisanal Jet-Black Squid Ink Pasta",
+                description: "Squid ink spaghetti, seafood mix, chilli blend, confit garlic, roquette, butter wine sauce, fresh parsley & parmesan.",
+                features: [
+                    "Artisanal squid ink spaghetti tossed in butter wine sauce",
+                    "Sautéed premium seafood mix with confit garlic & chilli blend",
+                    "Fresh roquette, parsley & shaved parmesan"
+                ],
+                img: "../../assets/spaghetti-marinara.jpg",
+                orderUrl: "https://pony-white-cafe.square.site/s/order"
+            },
+            {
+                title: "Zaalou'k Prawns",
+                category: "All Day Lunch",
+                price: "$32.00",
+                visualBadge: "✨ Emerald Coriander Zhoug & Chili Prawns",
+                description: "Sautéed chilli garlic prawns with sweet pepper eggplant zaalouk served with coriander zhoug & preserved lemon. (GF)",
+                features: [
+                    "Sautéed chilli garlic prawns over smoky sweet pepper eggplant zaalouk",
+                    "Vibrant house-made coriander zhoug",
+                    "Finished with aromatic preserved lemon (GF)"
+                ],
+                img: "../../assets/zaalouk-prawns.jpg",
+                orderUrl: "https://pony-white-cafe.square.site/s/order"
+            },
+            {
+                title: "Wild Mushroom",
+                category: "All Day Breakfast",
+                price: "$28.00",
+                visualBadge: "✨ Golden Crispy Enoki & Sweet Potato Crisps",
+                description: "Sautéed mushrooms with whipped ricotta, spinach, poached eggs, pesto, herb oil, crispy enoki & sweet potato crisps on multigrain. (V, VGO, GFO)",
+                features: [
+                    "Sautéed mushrooms, whipped ricotta & baby spinach on multigrain",
+                    "Poached eggs, house basil pesto & fragrant herb oil",
+                    "Crunchy crispy enoki & sweet potato crisps (V, VGO, GFO)"
+                ],
+                img: "../../assets/wild-mushroom.jpg",
+                orderUrl: "https://pony-white-cafe.square.site/s/order"
+            },
+            {
+                title: "Chilli Cheese Croissant",
+                category: "All Day Breakfast",
+                price: "$27.50",
+                visualBadge: "✨ Angel Chilli Hair & Corn Salsa",
+                description: "Scrambled eggs with chilli corn salsa & mozzarella, served on a croissant with spring onions, angel chilli hair, parmesan & shichimi togarashi. (V, GFO)",
+                features: [
+                    "Flaky butter croissant with folded mozzarella scrambled eggs",
+                    "House chilli corn salsa & shaved parmesan",
+                    "Finished with spring onions, angel chilli hair & shichimi togarashi (V, GFO)"
+                ],
+                img: "../../assets/chilli-cheese-croissant.jpg",
+                orderUrl: "https://pony-white-cafe.square.site/s/order"
+            },
+            {
+                title: "Açaí Bowl",
+                category: "All Day Meals",
+                price: "$22.00",
+                visualBadge: "✨ Jewel-Toned Seasonal Berries & Granola",
+                description: "Açaí berry smoothie, seasonal fruits, grains, and granola.",
+                features: [
+                    "Velvety organic Açaí berry smoothie base",
+                    "Hand-sliced fresh seasonal fruits & berries",
+                    "Wholesome toasted grains & crunchy granola"
+                ],
+                img: "../../assets/acai-bowl.jpg",
+                orderUrl: "https://pony-white-cafe.square.site/s/order"
+            },
+            {
+                title: "Pony's Classic Burger",
+                category: "Burgers & Sandwiches",
+                price: "$28.00",
+                visualBadge: "✨ Black Angus Beef & Golden Chips",
+                description: "Black angus beef, american cheese, fried egg, butter lettuce, pickles, tomato, onions, special burger sauce & chips with tomato sauce.",
+                features: [
+                    "Juicy Black Angus beef patty with melted American cheese",
+                    "Fried egg, butter lettuce, pickles, tomato & house burger sauce",
+                    "Served with golden crunchy chips & tomato sauce (GFO)"
+                ],
+                img: "../../assets/gourmet-burger.jpg",
+                orderUrl: "https://pony-white-cafe.square.site/s/order"
+            },
+            {
+                title: "Big Breakfast",
+                category: "All Day Breakfast",
+                price: "$30.00",
+                visualBadge: "✨ The Ultimate Fitzroy Feast",
+                description: "Eggs your way with sautéed spinach, bacon, chorizo, mushroom, roasted tomato & hashbrowns on your choice of toast. (VO, GFO)",
+                features: [
+                    "Free-range eggs your way on your choice of artisanal toast",
+                    "Smoky bacon, seared chorizo & golden crunchy hashbrowns",
+                    "Sautéed mushrooms, baby spinach & roasted vine tomato (VO, GFO)"
+                ],
+                img: "../../assets/big-breakfast.jpg",
+                orderUrl: "https://pony-white-cafe.square.site/s/order"
+            }
+        ];
+
+        const LOCAL_SLIDE_FALLBACKS = DISHES_DATA.map(d => d.img);
+        let currentSlide = 0;
+        let progress = 0;
+        let isPaused = false;
+        const SLIDE_DURATION = 10000;
+        const PROGRESS_INTERVAL = 50;
+        let slideshowInterval = null;
+        let slideTransitionTimeout = null;
+
+        const slideTitle = document.getElementById('slide-title');
+        const slideCategory = document.getElementById('slide-category');
+        const slidePrice = document.getElementById('slide-price');
+        const slidePriceFloating = document.getElementById('slide-price-floating');
+        const slideVisualBadge = document.getElementById('slide-visual-badge');
+        const slideCounterBadge = document.getElementById('slide-counter-badge');
+        const slideDesc = document.getElementById('slide-desc');
+        const slideFeaturesList = document.getElementById('slide-features');
+        const orderBtn = document.getElementById('order-btn');
+        const bookTableBtn = document.getElementById('book-table-btn');
+        const dotsContainer = document.getElementById('slideshow-dots');
+        const filmstripContainer = document.getElementById('kitchen-filmstrip');
+        const progressBar = document.getElementById('progress-bar');
+        const slideshowSection = document.getElementById('kitchen-showcase');
+
+        function renderKitchenFilmstrip() {
+            if (!filmstripContainer) return;
+            filmstripContainer.innerHTML = '';
+            DISHES_DATA.forEach((dish, idx) => {
+                const btn = document.createElement('button');
+                btn.type = 'button';
+                btn.style.cursor = 'pointer';
+                const isActive = idx === currentSlide;
+                btn.className = isActive
+                    ? 'kitchen-thumb-btn flex items-center gap-3 px-3.5 py-2 rounded-2xl bg-[#e9c349] text-[#001a12] font-bold text-xs flex-shrink-0 shadow-lg transition-all scale-[1.02]'
+                    : 'kitchen-thumb-btn flex items-center gap-3 px-3.5 py-2 rounded-2xl bg-white/5 hover:bg-white/15 text-white/80 font-semibold text-xs flex-shrink-0 border border-white/10 transition-all';
+                btn.innerHTML = `
+                    <img src="${dish.img}" alt="${dish.title}" class="w-9 h-9 rounded-xl object-cover flex-shrink-0 border border-black/10"/>
+                    <div class="text-left pr-1">
+                        <span class="block truncate max-w-[140px]">${dish.title}</span>
+                        <span class="text-[10px] opacity-75">${dish.price}</span>
+                    </div>
+                `;
+                btn.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    goToSlide(idx);
+                });
+                filmstripContainer.appendChild(btn);
+            });
+        }
+
+        function initSlideshow() {
+            renderKitchenFilmstrip();
+
+            if (dotsContainer) {
+                dotsContainer.innerHTML = '';
+                DISHES_DATA.forEach((dish, idx) => {
+                    const dot = document.createElement('button');
+                    dot.type = 'button';
+                    dot.style.cursor = 'pointer';
+                    dot.className = `h-2.5 rounded-full transition-all duration-300 ${idx === 0 ? 'bg-[#ffe088] w-7' : 'bg-white/25 hover:bg-white/50 w-2.5'}`;
+                    dot.setAttribute('aria-label', `Go to slide ${idx + 1}: ${dish.title}`);
+                    dot.addEventListener('click', (e) => {
+                        e.preventDefault();
+                        goToSlide(idx);
+                    });
+                    dotsContainer.appendChild(dot);
+                });
+            }
+
+            updateSlideDOM(0, false);
+            startTimer();
+
+            if (slideshowSection) {
+                slideshowSection.addEventListener('mouseenter', () => { isPaused = true; });
+                slideshowSection.addEventListener('mouseleave', () => { isPaused = false; });
+            }
+        }
+
+        function startTimer() {
+            if (slideshowInterval) clearInterval(slideshowInterval);
+            slideshowInterval = setInterval(() => {
+                if (!isPaused) {
+                    progress += (PROGRESS_INTERVAL / SLIDE_DURATION) * 100;
+                    if (progress >= 100) {
+                        progress = 0;
+                        nextSlide();
+                    } else if (progressBar) {
+                        progressBar.style.width = `${progress}%`;
+                    }
+                }
+            }, PROGRESS_INTERVAL);
+        }
+
+        function updateSlideDOM(index, animate = true) {
+            const data = DISHES_DATA[index];
+            if (!data) return;
+
+            DISHES_DATA.forEach((_, idx) => {
+                const img = document.getElementById(`slide-img-${idx}`);
+                if (img) {
+                    if (idx === index) {
+                        img.classList.remove('opacity-0', 'scale-100', 'pointer-events-none', 'z-0');
+                        img.classList.add('opacity-100', 'scale-105', 'z-10');
+                        img.style.opacity = '1';
+                        img.style.transform = 'scale(1.05)';
+                        img.style.zIndex = '10';
+                    } else {
+                        img.classList.remove('opacity-100', 'scale-105', 'z-10');
+                        img.classList.add('opacity-0', 'scale-100', 'pointer-events-none', 'z-0');
+                        img.style.opacity = '0';
+                        img.style.transform = 'scale(1)';
+                        img.style.zIndex = '0';
+                    }
+                }
+            });
+
+            if (slideCounterBadge) {
+                const num = String(index + 1).padStart(2, '0');
+                const tot = String(DISHES_DATA.length).padStart(2, '0');
+                slideCounterBadge.textContent = `${num} / ${tot}`;
+            }
+
+            const applyContent = () => {
+                if (slideTitle) slideTitle.textContent = data.title;
+                if (slideCategory) slideCategory.textContent = data.category;
+                if (slidePrice) slidePrice.textContent = data.price;
+                if (slidePriceFloating) slidePriceFloating.textContent = data.price;
+                if (slideVisualBadge) slideVisualBadge.textContent = data.visualBadge || '✨ Chef Signature Presentation';
+                if (slideDesc) slideDesc.textContent = data.description;
+                if (orderBtn && data.orderUrl) orderBtn.setAttribute('href', data.orderUrl);
+
+                if (slideFeaturesList) {
+                    slideFeaturesList.innerHTML = '';
+                    (data.features || []).forEach(feat => {
+                        const li = document.createElement('li');
+                        li.className = 'flex items-center gap-3 text-white/90';
+                        li.innerHTML = `
+                            <span class="material-symbols-outlined text-[#ffe088] text-lg flex-shrink-0" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+                            <span class="text-sm">${feat}</span>
+                        `;
+                        slideFeaturesList.appendChild(li);
+                    });
+                }
+            };
+
+            if (slideTransitionTimeout) {
+                clearTimeout(slideTransitionTimeout);
+                slideTransitionTimeout = null;
+            }
+
+            if (animate) {
+                [slideTitle, slideDesc, slideFeaturesList].forEach(el => {
+                    if (el) el.style.opacity = '0';
+                });
+                slideTransitionTimeout = setTimeout(() => {
+                    applyContent();
+                    [slideTitle, slideDesc, slideFeaturesList].forEach(el => {
+                        if (el) el.style.opacity = '1';
+                    });
+                }, 150);
+            } else {
+                applyContent();
+            }
+
+            if (dotsContainer) {
+                const dots = dotsContainer.querySelectorAll('button');
+                dots.forEach((dot, idx) => {
+                    dot.className = `h-2.5 rounded-full transition-all duration-300 ${idx === index ? 'bg-[#ffe088] w-7' : 'bg-white/25 hover:bg-white/50 w-2.5'}`;
+                });
+            }
+
+            currentSlide = index;
+            renderKitchenFilmstrip();
+        }
+
+        function goToSlide(index) {
+            progress = 0;
+            if (progressBar) progressBar.style.width = '0%';
+            updateSlideDOM(index, true);
+        }
+
+        function nextSlide(e) {
+            if (e && e.preventDefault) {
+                e.preventDefault();
+                e.stopPropagation();
+            }
+            if (!DISHES_DATA.length) return;
+            goToSlide((currentSlide + 1) % DISHES_DATA.length);
+        }
+
+        function prevSlide(e) {
+            if (e && e.preventDefault) {
+                e.preventDefault();
+                e.stopPropagation();
+            }
+            if (!DISHES_DATA.length) return;
+            goToSlide((currentSlide - 1 + DISHES_DATA.length) % DISHES_DATA.length);
+        }
+
+        window.nextKitchenSlide = nextSlide;
+        window.prevKitchenSlide = prevSlide;
+        window.goToKitchenSlide = goToSlide;
+
+        // =========================================================================
+        // 4. NUCLEUS CRM LIVE SYNC (`public_data/homepage_kitchen`)
+        // =========================================================================
+        const NUCLEUS_BUSINESS_ID = 'nYaZ4T5qRKS3Z9EG5mrl';
+        const NUCLEUS_KITCHEN_FIRESTORE_URL = `https://firestore.googleapis.com/v1/projects/bizboard-67b4c/databases/(default)/documents/businesses/${NUCLEUS_BUSINESS_ID}/public_data/homepage_kitchen`;
+
+        function parseFirestoreVal(val) {
+            if (!val || typeof val !== 'object') return val;
+            if ('stringValue' in val) return val.stringValue;
+            if ('booleanValue' in val) return val.booleanValue;
+            if ('integerValue' in val) return Number(val.integerValue);
+            if ('doubleValue' in val) return Number(val.doubleValue);
+            if ('nullValue' in val) return null;
+            if ('arrayValue' in val) return (val.arrayValue.values || []).map(parseFirestoreVal);
+            if ('mapValue' in val) {
+                const out = {};
+                const fields = val.mapValue.fields || {};
+                for (const k of Object.keys(fields)) out[k] = parseFirestoreVal(fields[k]);
+                return out;
+            }
+            return val;
+        }
+
+        async function syncKitchenShowcaseFromNucleusCrm() {
+            try {
+                const res = await fetch(NUCLEUS_KITCHEN_FIRESTORE_URL, { cache: 'no-store' });
+                if (!res.ok) return;
+                const rawDoc = await res.json();
+                if (!rawDoc || !rawDoc.fields) return;
+
+                const config = parseFirestoreVal({ mapValue: { fields: rawDoc.fields } });
+                if (!config || !Array.isArray(config.slides)) return;
+
+                const visibleSlides = config.slides
+                    .filter(s => s && s.visible !== false)
+                    .sort((a, b) => (a.order ?? 0) - (b.order ?? 0));
+
+                if (visibleSlides.length === 0) return;
+
+                DISHES_DATA.length = 0;
+                visibleSlides.forEach((slide, idx) => {
+                    const fallbackLocal = LOCAL_SLIDE_FALLBACKS[idx % LOCAL_SLIDE_FALLBACKS.length] || '../../assets/french-toast.jpg';
+                    const activeImg =
+                        slide.img ||
+                        (slide.imageSource === 'square'
+                            ? slide.squareImageUrl || slide.customImageUrl
+                            : slide.imageSource === 'studio'
+                            ? slide.studioImageUrl || slide.squareImageUrl || slide.customImageUrl
+                            : slide.customImageUrl || slide.squareImageUrl) ||
+                        fallbackLocal;
+
+                    DISHES_DATA.push({
+                        title: slide.title || 'Chef Special',
+                        category: slide.category || 'All Day Kitchen',
+                        price: slide.price || '',
+                        visualBadge: `✨ ${slide.category || 'Fitzroy Kitchen Signature'}`,
+                        description: slide.description || '',
+                        features: Array.isArray(slide.features) ? slide.features : [],
+                        orderUrl: slide.orderUrl || config.orderUrl || 'https://pony-white-cafe.square.site/s/order',
+                        img: activeImg,
+                        fallbackImg: fallbackLocal
+                    });
+                });
+
+                const activeIdx = currentSlide < DISHES_DATA.length ? currentSlide : 0;
+                const imgContainer = document.getElementById('slideshow-image-container');
+                if (imgContainer) {
+                    imgContainer.innerHTML = '';
+                    DISHES_DATA.forEach((dish, idx) => {
+                        const img = document.createElement('img');
+                        img.src = dish.img;
+                        img.id = `slide-img-${idx}`;
+                        img.alt = dish.title;
+                        img.decoding = 'async';
+                        img.onerror = function () {
+                            if (this.src !== dish.fallbackImg) this.src = dish.fallbackImg;
+                        };
+                        const isCurrent = idx === activeIdx;
+                        img.className = isCurrent
+                            ? 'absolute inset-0 w-full h-full object-cover transition-all duration-700 ease-in-out transform scale-105 opacity-100 z-10'
+                            : 'absolute inset-0 w-full h-full object-cover transition-all duration-700 ease-in-out transform scale-100 opacity-0 pointer-events-none z-0';
+                        img.style.opacity = isCurrent ? '1' : '0';
+                        img.style.zIndex = isCurrent ? '10' : '0';
+                        imgContainer.appendChild(img);
+                    });
+                }
+
+                if (dotsContainer) {
+                    dotsContainer.innerHTML = '';
+                    DISHES_DATA.forEach((dish, idx) => {
+                        const dot = document.createElement('button');
+                        dot.type = 'button';
+                        dot.style.cursor = 'pointer';
+                        dot.className = `h-2.5 rounded-full transition-all duration-300 ${idx === activeIdx ? 'bg-[#ffe088] w-7' : 'bg-white/25 hover:bg-white/50 w-2.5'}`;
+                        dot.addEventListener('click', (e) => {
+                            e.preventDefault();
+                            goToSlide(idx);
+                        });
+                        dotsContainer.appendChild(dot);
+                    });
+                }
+
+                updateSlideDOM(activeIdx, false);
+            } catch (err) {
+                console.warn('Nucleus CRM Kitchen Showcase fallback to static slides:', err);
+            }
+        }
+
+        // =========================================================================
+        // 5. LIVE MELBOURNE STORE & KITCHEN STATUS
+        // =========================================================================
+        function updateLiveStoreStatus() {
+            const indicators = document.querySelectorAll('.store-state-indicator');
+            if (!indicators.length) return;
+            const now = new Date();
+            const formatter = new Intl.DateTimeFormat('en-AU', {
+                timeZone: 'Australia/Melbourne',
+                hour12: false,
+                weekday: 'short',
+                hour: 'numeric',
+                minute: 'numeric'
+            });
+            const parts = formatter.formatToParts(now);
+            let dayStr = '', hourStr = '', minuteStr = '';
+            for (const p of parts) {
+                if (p.type === 'weekday') dayStr = p.value;
+                if (p.type === 'hour') hourStr = p.value;
+                if (p.type === 'minute') minuteStr = p.value;
+            }
+            const days = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
+            const day = days.indexOf(dayStr);
+            const currentMins = parseInt(hourStr, 10) * 60 + parseInt(minuteStr, 10);
+            const schedule = {
+                0: { open: 8 * 60, close: 15 * 60 + 30 },
+                1: { open: 7 * 60, close: 15 * 60 },
+                2: { open: 7 * 60, close: 15 * 60 },
+                3: { open: 7 * 60, close: 15 * 60 },
+                4: { open: 7 * 60, close: 15 * 60 },
+                5: { open: 7 * 60, close: 15 * 60 + 30 },
+                6: { open: 7 * 60 + 30, close: 15 * 60 + 30 }
+            };
+            const today = schedule[day] || schedule[1];
+            const kitchenCloseMins = 14 * 60 + 30;
+            function formatTime(mins) {
+                let hr = Math.floor(mins / 60);
+                const mn = mins % 60;
+                const ampm = hr >= 12 ? 'pm' : 'am';
+                if (hr > 12) hr -= 12;
+                if (hr === 0) hr = 12;
+                return hr + (mn === 0 ? '' : ':' + mn.toString().padStart(2, '0')) + ampm;
+            }
+            let stateHtml = '';
+            if (currentMins < today.open) {
+                stateHtml = `🟢 Fitzroy Cafe: <strong style="color:#ffe088;">CLOSED</strong> — Opens today at ${formatTime(today.open)}`;
+            } else if (currentMins >= today.close) {
+                const nextDay = (day + 1) % 7;
+                stateHtml = `🌙 Fitzroy Cafe: <strong style="color:#fca5a5;">CLOSED</strong> — Open tomorrow from ${formatTime(schedule[nextDay].open)}`;
+            } else if (currentMins >= kitchenCloseMins) {
+                stateHtml = `☕ <strong style="color:#86efac;">OPEN FOR DRINKS</strong> until ${formatTime(today.close)} (Kitchen closed at 2:30pm)`;
+            } else {
+                stateHtml = `✨ <strong style="color:#86efac;">OPEN NOW IN FITZROY</strong> — Kitchen until 2:30pm • Drinks until ${formatTime(today.close)}`;
+            }
+            indicators.forEach(el => { el.innerHTML = stateHtml; });
+        }
+
+        function init() {
+            renderDrinkLab('all');
+            initSlideshow();
+            updateLiveStoreStatus();
+            setInterval(updateLiveStoreStatus, 60000);
+            syncKitchenShowcaseFromNucleusCrm();
+        }
+
+        if (document.readyState === 'complete' || document.readyState === 'interactive') {
+            init();
+        } else {
+            document.addEventListener('DOMContentLoaded', init);
+        }
+</script>
+</body>

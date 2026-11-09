@@ -9,6 +9,10 @@ const PAGE_MAPPINGS = [
     fileName: 'home.html'
   },
   {
+    dirName: 'pony_white_homepage_circular_logo_integration',
+    fileName: 'home-v2.html'
+  },
+  {
     dirName: 'pony_white_beans_loyalty_program',
     fileName: 'loyalty.html'
   },
@@ -43,6 +47,11 @@ const PAGE_MAPPINGS = [
   {
     dirName: 'pony_white_smoothies_juices',
     fileName: 'smoothies-juices.html'
+  },
+  {
+    dirName: 'pony_white_homepage_circular_logo_integration',
+    fileName: 'under-construction.html',
+    configOnly: true
   }
 ];
 
@@ -175,12 +184,15 @@ function compileTailwindCss(pageName, configFilePath, htmlFilePath, outputCssPat
  * Process a single page
  */
 function processPage(mapping) {
-  const { dirName, fileName } = mapping;
+  const { dirName, fileName, configOnly } = mapping;
   const pageName = fileName.replace('.html', '');
   const pageStitchDir = path.join(STITCH_ROOT, dirName);
+  const targetHtmlPath = path.join(PAGES_DIR, fileName);
+  const pageCssName = `${pageName}.css`;
+  const shouldExtract = !configOnly && (process.argv.includes('--extract') || !fs.existsSync(targetHtmlPath));
   
   console.log(`\n=============================================`);
-  console.log(`Processing: ${dirName} -> ${fileName}`);
+  console.log(`Processing: ${fileName} (extract=${shouldExtract})`);
   console.log(`=============================================`);
   
   if (!fs.existsSync(pageStitchDir)) {
@@ -196,23 +208,25 @@ function processPage(mapping) {
   
   const rawHtml = fs.readFileSync(rawHtmlPath, 'utf8');
   
-  // 1. Extract body content (discard navbar/footer)
-  const bodyContent = extractBodyContent(rawHtml, fileName);
-  const styleContent = extractStyleContent(rawHtml);
-  
-  // 2. Pre-pend the stylesheet reference so compiler.js inlines it
-  const pageCssName = `${pageName}.css`;
-  const headerSection = `<!-- Compiled custom embed section for ${fileName} -->\n` +
-    `<link rel="preconnect" href="https://fonts.googleapis.com">\n` +
-    `<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>\n` +
-    `<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&display=swap" rel="stylesheet">\n` +
-    `<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>\n` +
-    `<link rel="stylesheet" href="../styles/${pageCssName}">\n\n`;
-  const finalSourceHtml = headerSection + styleContent + '\n\n' + bodyContent;
-  
-  const targetHtmlPath = path.join(PAGES_DIR, fileName);
-  fs.writeFileSync(targetHtmlPath, finalSourceHtml, 'utf8');
-  console.log(`  ✓ Saved extracted source markup to: src/pages/${fileName}`);
+  if (shouldExtract) {
+    // 1. Extract body content (discard navbar/footer)
+    const bodyContent = extractBodyContent(rawHtml, fileName);
+    const styleContent = extractStyleContent(rawHtml);
+    
+    // 2. Pre-pend the stylesheet reference so compiler.js inlines it
+    const headerSection = `<!-- Compiled custom embed section for ${fileName} -->\n` +
+      `<link rel="preconnect" href="https://fonts.googleapis.com">\n` +
+      `<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>\n` +
+      `<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&display=swap" rel="stylesheet">\n` +
+      `<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>\n` +
+      `<link rel="stylesheet" href="../styles/${pageCssName}">\n\n`;
+    const finalSourceHtml = headerSection + styleContent + '\n\n' + bodyContent;
+    
+    fs.writeFileSync(targetHtmlPath, finalSourceHtml, 'utf8');
+    console.log(`  ✓ Saved extracted source markup to: src/pages/${fileName}`);
+  } else {
+    console.log(`  ✓ Preserving existing source markup at: src/pages/${fileName}`);
+  }
   
   // 3. Extract Tailwind config
   const configJs = extractTailwindConfig(rawHtml, fileName);

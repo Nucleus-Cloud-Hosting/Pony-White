@@ -293,19 +293,79 @@
 </div>
 
 <!-- Form & Interactive Section -->
-<section class="lg:col-span-8 glass-panel rounded-xl p-stack-lg flex flex-col justify-center min-h-[420px]">
-    <!-- Default Unselected Panel -->
-    <div id="selection-default-view" class="text-center py-stack-lg">
-        <span class="material-symbols-outlined text-[64px] text-marble-white/20 mb-stack-sm">touch_app</span>
-        <h3 class="font-headline-md text-xl text-marble-white mb-2">Ready to assist</h3>
-        <p class="font-body-md text-sm text-marble-white/60 max-w-sm mx-auto">Please select one of the options above to proceed.</p>
+<section id="contact-inquiry-panel" class="lg:col-span-8 glass-panel rounded-xl p-stack-lg flex flex-col justify-between min-h-[420px]">
+    <!-- Interactive General Inquiry & Event Form -->
+    <div id="selection-inquiry-view" class="fade-in">
+        <div class="flex flex-wrap items-center justify-between gap-2 mb-6 border-b border-white/10 pb-4">
+            <div>
+                <span class="font-label-caps text-xs text-premium-gold tracking-[0.2em] block mb-1">DIRECT CONCIERGE</span>
+                <h3 class="font-headline-md text-2xl text-marble-white">Send Us a Message</h3>
+            </div>
+            <span class="text-xs text-marble-white/60">Replies within 24 hours • info@ponywhite.com.au</span>
+        </div>
+
+        <form id="pw-general-inquiry-form" class="space-y-4 text-left" onsubmit="handleGeneralInquirySubmit(event)">
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <div>
+                    <label class="block text-xs uppercase tracking-wider text-premium-gold font-bold mb-1.5" for="inq-name">Your Name *</label>
+                    <input id="inq-name" name="name" type="text" required placeholder="e.g. Alex Mercer" class="w-full rounded-lg bg-white/5 border border-white/15 px-4 py-3 text-sm text-marble-white placeholder:text-marble-white/40 focus:outline-none focus:border-premium-gold transition-colors" />
+                </div>
+                <div>
+                    <label class="block text-xs uppercase tracking-wider text-premium-gold font-bold mb-1.5" for="inq-email">Email Address *</label>
+                    <input id="inq-email" name="email" type="email" required placeholder="alex@example.com" class="w-full rounded-lg bg-white/5 border border-white/15 px-4 py-3 text-sm text-marble-white placeholder:text-marble-white/40 focus:outline-none focus:border-premium-gold transition-colors" />
+                </div>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <div>
+                    <label class="block text-xs uppercase tracking-wider text-premium-gold font-bold mb-1.5" for="inq-phone">Phone Number</label>
+                    <input id="inq-phone" name="phone" type="tel" placeholder="0400 000 000" class="w-full rounded-lg bg-white/5 border border-white/15 px-4 py-3 text-sm text-marble-white placeholder:text-marble-white/40 focus:outline-none focus:border-premium-gold transition-colors" />
+                </div>
+                <div>
+                    <label class="block text-xs uppercase tracking-wider text-premium-gold font-bold mb-1.5" for="inq-topic">Inquiry Topic</label>
+                    <select id="inq-topic" name="topic" class="w-full rounded-lg bg-[#0a1812] border border-white/15 px-4 py-3 text-sm text-marble-white focus:outline-none focus:border-premium-gold transition-colors">
+                        <option value="General Inquiry">General Question</option>
+                        <option value="Private Event & Group Booking">Private Event / Group Booking (10+ Guests)</option>
+                        <option value="Wholesale & Roastery">San Pedro Coffee & Retail Inquiry</option>
+                        <option value="Catering & Partnerships">Catering & Brand Partnerships</option>
+                        <option value="Customer Feedback">Customer Feedback</option>
+                    </select>
+                </div>
+            </div>
+
+            <div>
+                <label class="block text-xs uppercase tracking-wider text-premium-gold font-bold mb-1.5" for="inq-message">How can we help? *</label>
+                <textarea id="inq-message" name="message" rows="4" required placeholder="Tell us about your inquiry, event date, or question..." class="w-full rounded-lg bg-white/5 border border-white/15 px-4 py-3 text-sm text-marble-white placeholder:text-marble-white/40 focus:outline-none focus:border-premium-gold transition-colors"></textarea>
+            </div>
+
+            <div class="flex flex-col sm:flex-row items-center justify-between gap-4 pt-2">
+                <p class="text-xs text-marble-white/50">Prefer to call? Reach our Fitzroy bar directly at <a href="tel:+61393147273" class="text-premium-gold underline">(03) 9314 7273</a>.</p>
+                <button type="submit" id="inq-submit-btn" class="w-full sm:w-auto premium-gold-gradient text-[#0B3027] font-bold px-8 py-3.5 rounded-full text-xs uppercase tracking-widest hover:brightness-110 transition-all shadow-lg flex items-center justify-center gap-2 cursor-pointer">
+                    <span>Send Message</span>
+                    <span class="material-symbols-outlined text-sm">send</span>
+                </button>
+            </div>
+        </form>
     </div>
 
+    <!-- Confirmation State (Hidden by default) -->
+    <div id="selection-inquiry-success" class="hidden text-center py-12 fade-in">
+        <div class="w-16 h-16 rounded-full bg-premium-gold/20 border border-premium-gold flex items-center justify-center mx-auto mb-4 text-premium-gold">
+            <span class="material-symbols-outlined text-3xl">check_circle</span>
+        </div>
+        <h3 class="font-headline-md text-2xl text-marble-white mb-2">Message Received!</h3>
+        <p class="font-body-md text-sm text-marble-white/75 max-w-md mx-auto mb-6 leading-relaxed">
+            Thank you for reaching out to Pony White Fitzroy. Our team has received your inquiry and will reply to you shortly.
+        </p>
+        <button type="button" onclick="resetGeneralInquiryForm()" class="border border-premium-gold text-premium-gold px-6 py-2.5 rounded-full text-xs uppercase tracking-wider font-bold hover:bg-premium-gold hover:text-[#0B3027] transition-all">
+            Send Another Message
+        </button>
+    </div>
 </section>
 
 <!-- General Inquiries Sidebar -->
 <aside class="lg:col-span-4 space-y-gutter">
-<!-- Contact Details (Email address hidden/removed per user instruction) -->
+<!-- Contact Details -->
 <div class="glass-panel rounded-xl p-stack-lg shadow-lg">
 <h3 class="font-headline-md text-headline-md text-marble-white mb-stack-md">General Inquiries</h3>
 <div class="space-y-stack-lg">
@@ -314,6 +374,13 @@
 <div>
 <p class="font-label-caps text-label-caps text-premium-gold">Phone</p>
 <a class="font-body-md text-body-md text-marble-white/80 hover:text-premium-gold transition-colors" href="tel:+61393147273">(03) 9314 7273</a>
+</div>
+</div>
+<div class="flex items-start gap-4">
+<span class="material-symbols-outlined text-premium-gold">mail</span>
+<div>
+<p class="font-label-caps text-label-caps text-premium-gold">Email</p>
+<a class="font-body-md text-body-md text-marble-white/80 hover:text-premium-gold transition-colors" href="mailto:info@ponywhite.com.au">info@ponywhite.com.au</a>
 </div>
 </div>
 <div class="flex items-start gap-4">
@@ -332,7 +399,8 @@
 <li class="flex justify-between"><span>Saturday</span> <span>7:30am — 3:30pm</span></li>
 <li class="flex justify-between"><span>Sunday</span> <span>8am — 3:30pm</span></li>
 </ul>
-<p class="text-xs text-premium-gold font-bold">Kitchen closes at 2:30pm</p>
+<p class="text-xs text-premium-gold font-bold">Kitchen closes at 2:30pm daily</p>
+<div class="store-state-indicator mt-3 text-xs bg-white text-[#0B3027] px-3.5 py-2.5 rounded-xl border border-premium-gold/40 shadow-sm leading-relaxed"></div>
 </div>
 </div>
 <!-- Location Map Embedded Live -->
@@ -449,8 +517,8 @@
 
     // Links for the Branch Redirections (can be changed easily later)
     const GOOGLE_REVIEWS_URL = 'https://google.com/search?q=pony+white+cafe+fitzroy+reviews';
-    const EMAIL_US_PAGE_URL = 'mailto:hello@ponywhite.com.au'; // Or an email us page link
-    const GENERAL_INQUIRY_URL = 'mailto:hello@ponywhite.com.au'; // Or contact page link
+    const EMAIL_US_PAGE_URL = 'mailto:info@ponywhite.com.au';
+    const GENERAL_INQUIRY_URL = 'mailto:info@ponywhite.com.au';
 
     // State management for option cards
     function selectOption(category) {
@@ -469,7 +537,12 @@
             return;
         }
         if (category === 'general') {
-            window.location.href = GENERAL_INQUIRY_URL;
+            const clickedCard = document.getElementById('btn-general');
+            if (clickedCard) clickedCard.classList.add('active-card');
+            const panel = document.getElementById('contact-inquiry-panel');
+            if (panel) panel.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            const nameInput = document.getElementById('inq-name');
+            if (nameInput) setTimeout(() => nameInput.focus(), 350);
             return;
         }
 
@@ -482,6 +555,112 @@
         // Open feedback modal pop-up!
         openFeedbackModal();
     }
+
+    async function handleGeneralInquirySubmit(e) {
+        e.preventDefault();
+        const btn = document.getElementById('inq-submit-btn');
+        const name = document.getElementById('inq-name').value.trim();
+        const email = document.getElementById('inq-email').value.trim();
+        const phone = document.getElementById('inq-phone').value.trim();
+        const topic = document.getElementById('inq-topic').value;
+        const message = document.getElementById('inq-message').value.trim();
+
+        if (btn) {
+            btn.disabled = true;
+            btn.innerHTML = '<span>Sending...</span>';
+        }
+
+        try {
+            await fetch('https://osai-2025.uw.r.appspot.com/webhooks/applications/pony-white', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    type: 'contact_inquiry',
+                    name,
+                    email,
+                    phone,
+                    topic,
+                    message,
+                    submittedAt: new Date().toISOString()
+                })
+            });
+        } catch (err) {
+            console.warn('Webhook fallback:', err);
+        }
+
+        document.getElementById('selection-inquiry-view').classList.add('hidden');
+        document.getElementById('selection-inquiry-success').classList.remove('hidden');
+        if (btn) {
+            btn.disabled = false;
+            btn.innerHTML = '<span>Send Message</span><span class="material-symbols-outlined text-sm">send</span>';
+        }
+    }
+
+    function resetGeneralInquiryForm() {
+        const form = document.getElementById('pw-general-inquiry-form');
+        if (form) form.reset();
+        document.getElementById('selection-inquiry-success').classList.add('hidden');
+        document.getElementById('selection-inquiry-view').classList.remove('hidden');
+    }
+
+    // Live Melbourne Store & Kitchen Status Indicator
+    function updateContactStoreStatus() {
+        const indicators = document.querySelectorAll('.store-state-indicator');
+        if (!indicators.length) return;
+        const now = new Date();
+        const formatter = new Intl.DateTimeFormat('en-AU', {
+            timeZone: 'Australia/Melbourne',
+            hour12: false,
+            weekday: 'short',
+            hour: 'numeric',
+            minute: 'numeric'
+        });
+        const parts = formatter.formatToParts(now);
+        let dayStr = '', hourStr = '', minuteStr = '';
+        for (const p of parts) {
+            if (p.type === 'weekday') dayStr = p.value;
+            if (p.type === 'hour') hourStr = p.value;
+            if (p.type === 'minute') minuteStr = p.value;
+        }
+        const days = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
+        const day = days.indexOf(dayStr);
+        const currentMins = parseInt(hourStr, 10) * 60 + parseInt(minuteStr, 10);
+        const schedule = {
+            0: { open: 8 * 60, close: 15 * 60 + 30 },
+            1: { open: 7 * 60, close: 15 * 60 },
+            2: { open: 7 * 60, close: 15 * 60 },
+            3: { open: 7 * 60, close: 15 * 60 },
+            4: { open: 7 * 60, close: 15 * 60 },
+            5: { open: 7 * 60, close: 15 * 60 + 30 },
+            6: { open: 7 * 60 + 30, close: 15 * 60 + 30 }
+        };
+        const today = schedule[day] || schedule[1];
+        const kitchenCloseMins = 14 * 60 + 30;
+        function formatTime(mins) {
+            let hr = Math.floor(mins / 60);
+            const mn = mins % 60;
+            const ampm = hr >= 12 ? 'pm' : 'am';
+            if (hr > 12) hr -= 12;
+            if (hr === 0) hr = 12;
+            return hr + (mn === 0 ? '' : ':' + mn.toString().padStart(2, '0')) + ampm;
+        }
+        let stateHtml = '';
+        if (currentMins < today.open) {
+            stateHtml = `We are currently <span style="color:#b38b45;font-weight:700;">CLOSED</span> — opening today at ${formatTime(today.open)}.`;
+        } else if (currentMins >= today.close) {
+            const nextDay = (day + 1) % 7;
+            stateHtml = `We are <span style="color:#b91c1c;font-weight:700;">CLOSED</span> for the day — see you tomorrow at ${formatTime(schedule[nextDay].open)}!`;
+        } else if (currentMins >= kitchenCloseMins) {
+            stateHtml = `We are <span style="color:#b38b45;font-weight:700;">OPEN</span> for drinks until ${formatTime(today.close)} (kitchen is closed).`;
+        } else if (currentMins >= kitchenCloseMins - 30) {
+            stateHtml = `We are <span style="color:#b38b45;font-weight:700;">OPEN</span>! Kitchen closes soon at 2:30pm.`;
+        } else {
+            stateHtml = `We are <span style="color:#15803d;font-weight:700;">OPEN NOW</span>! Kitchen open until 2:30pm &amp; drinks until ${formatTime(today.close)}.`;
+        }
+        indicators.forEach(el => { el.innerHTML = stateHtml; });
+    }
+    updateContactStoreStatus();
+    setInterval(updateContactStoreStatus, 60000);
 
     // Modal Control Logic
     let activeRatingModal = 0;

@@ -45,112 +45,110 @@
 <!-- Filters Section -->
 <section class="px-margin-desktop max-w-screen-2xl mx-auto mb-stack-lg sticky top-24 z-40 bg-surface/80 backdrop-blur-md py-4">
 <div class="flex flex-wrap gap-stack-md items-center border-b border-vein-gray pb-6">
-<button class="px-6 py-2 bg-forest-velvet text-on-primary font-label-caps text-label-caps rounded-lg">All Products</button>
-<button class="px-6 py-2 bg-surface-container-low text-forest-velvet hover:bg-surface-container-high transition-colors font-label-caps text-label-caps rounded-lg">Beans</button>
-<button class="px-6 py-2 bg-surface-container-low text-forest-velvet hover:bg-surface-container-high transition-colors font-label-caps text-label-caps rounded-lg">Powder</button>
-<button class="px-6 py-2 bg-surface-container-low text-forest-velvet hover:bg-surface-container-high transition-colors font-label-caps text-label-caps rounded-lg">Apparel</button>
+<button type="button" data-filter="all" class="retail-filter-btn px-6 py-2 bg-forest-velvet text-on-primary font-label-caps text-label-caps rounded-lg transition-colors">All Products</button>
+<button type="button" data-filter="beans" class="retail-filter-btn px-6 py-2 bg-surface-container-low text-forest-velvet hover:bg-surface-container-high transition-colors font-label-caps text-label-caps rounded-lg">Coffee Beans</button>
+<button type="button" data-filter="powder" class="retail-filter-btn px-6 py-2 bg-surface-container-low text-forest-velvet hover:bg-surface-container-high transition-colors font-label-caps text-label-caps rounded-lg">Mörk Chocolate &amp; Prana Chai</button>
 <div class="ml-auto flex items-center gap-stack-sm text-on-surface-variant">
-<span class="font-label-caps text-label-caps">Sort by:</span>
-<select class="bg-transparent border-none font-label-caps text-label-caps focus:ring-0 cursor-pointer">
-<option>Newest</option>
-<option>Price: Low to High</option>
-<option>Price: High to Low</option>
-</select>
+<a href="https://pony-white-cafe.square.site/s/shop" target="_blank" class="font-label-caps text-label-caps text-forest-velvet hover:text-premium-gold no-underline flex items-center gap-1">
+  View Full Square Online Store
+  <span class="material-symbols-outlined text-sm">open_in_new</span>
+</a>
 </div>
 </div>
 </section>
 <!-- Product Grid -->
 <section class="px-margin-desktop max-w-screen-2xl mx-auto mb-section-padding">
-<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-gutter">
-<!-- Product Card 1: San Pedro 250g -->
-<div class="group bg-marble-white border border-vein-gray rounded-lg overflow-hidden marble-shadow transition-all duration-500 hover:-translate-y-2">
+<div id="retail-product-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-gutter">
+<!-- Product Card 1: San Pedro Cartwheel -->
+<div data-category="beans" class="retail-product-card group bg-marble-white border border-vein-gray rounded-lg overflow-hidden marble-shadow transition-all duration-500 hover:-translate-y-2">
 <div class="aspect-[4/5] bg-surface-container-low relative overflow-hidden flex items-center justify-center p-stack-lg">
-<img class="w-full h-full object-cover grayscale-[0.2] group-hover:scale-105 transition-transform duration-700" data-alt="A premium bag of coffee beans placed elegantly on a white marble plinth." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAy5CVYNvgrlF1SM5ViyIoDGGNhIKL3_C9Kkb2Lu8c-K0m-QhWQcZPt7BC_5h0dxAGhON9DVgWR2c3bDbaqBwmUqVVBqK6qwnd_dt01SXrrjL2ruD6XB6ghzo2xdMfHgCpJA7YJC9j3PR_hYepuzZ74rplEbD7fl4uyI1PlAzBqZJ7rN115VGtwpYJAGTaMlhLZ23NyoUdHP0_C_AFoO7lS94WaL_2QDO18fhI7BVwWENNd8IxOG48OA5oqe7vIGIu8T7sw0SOVhTs"/>
-<div class="absolute top-4 left-4 gold-reflection text-white font-label-caps text-[10px] px-2 py-1 rounded-sm shadow-sm">BESTSELLER</div>
+<img class="w-full h-full object-contain group-hover:scale-105 transition-transform duration-700" alt="San Pedro Coffee Beans - Cartwheel (House Blend)" src="../../assets/retail-san-pedro-cartwheel.png"/>
+<div class="absolute top-4 left-4 gold-reflection text-white font-label-caps text-[10px] px-2 py-1 rounded-sm shadow-sm">HOUSE BLEND</div>
 </div>
 <div class="p-6 flex flex-col gap-2">
-<span class="font-label-caps text-[10px] text-on-surface-variant">BEANS • Fitzroy Blend</span>
-<h3 class="font-headline-md text-headline-md text-forest-velvet">San Pedro Coffee Beans (250g)</h3>
-<p class="text-on-surface-variant text-sm line-clamp-2">Notes of dark chocolate, toasted almond, and a velvet caramel finish.</p>
+<span class="font-label-caps text-[10px] text-on-surface-variant">BEANS • 250g ($22) / 1kg ($55)</span>
+<h3 class="font-headline-md text-headline-md text-forest-velvet">San Pedro — Cartwheel</h3>
+<p class="text-on-surface-variant text-sm line-clamp-2">Take-home retail bag of San Pedro 'Cartwheel' signature house-blend specialty coffee beans.</p>
 <div class="mt-4 flex items-center justify-between">
 <span class="font-headline-md text-premium-gold">$22.00</span>
-<button class="gold-reflection text-white font-label-caps text-label-caps px-6 py-3 rounded-[4px] shadow-md active:scale-95 transition-all text-shadow-subtle">ADD TO CART</button>
+<a href="https://pony-white-cafe.square.site/s/shop" target="_blank" class="gold-reflection text-white font-label-caps text-label-caps px-6 py-3 rounded-[4px] shadow-md active:scale-95 transition-all text-shadow-subtle no-underline">SHOP NOW</a>
 </div>
 </div>
 </div>
-<!-- Product Card 2: San Pedro 1kg -->
-<div class="group bg-marble-white border border-vein-gray rounded-lg overflow-hidden marble-shadow transition-all duration-500 hover:-translate-y-2">
+<!-- Product Card 2: San Pedro Super X -->
+<div data-category="beans" class="retail-product-card group bg-marble-white border border-vein-gray rounded-lg overflow-hidden marble-shadow transition-all duration-500 hover:-translate-y-2">
 <div class="aspect-[4/5] bg-surface-container-low relative overflow-hidden flex items-center justify-center p-stack-lg">
-<img class="w-full h-full object-cover grayscale-[0.2] group-hover:scale-105 transition-transform duration-700" data-alt="A large 1kg bag of specialty coffee beans displayed on a minimal architectural stand." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAP6JGf2L40_-E3RpvGxlWwcLosuFDh6OftdDmyyp0FEm2GDEHLFA1vsgLmGRVdZHiAT3IF-xJ-vgStLQv_r3y_lGP9xSI7OZ8aCQQMXt0AAqvr641KNbfGBSCg0ljcl_bdbaP6236Rh6XiwPYfaSkDdkPeUk7Rsiyt5y4IdUfkzWR_TBOQkrdUdn27WuV2ofatkL2CdJYp2zZOF8FKlFUCdIoIvTaF9Q8ACPUb5Lv5kEoSu-iGSGU-p4qnwEcJUZvfcTu33kdy22k"/>
+<img class="w-full h-full object-contain group-hover:scale-105 transition-transform duration-700" alt="San Pedro Coffee Beans - Super X" src="../../assets/retail-san-pedro-super-x.png"/>
 </div>
 <div class="p-6 flex flex-col gap-2">
-<span class="font-label-caps text-[10px] text-on-surface-variant">BEANS • Wholesale Selection</span>
-<h3 class="font-headline-md text-headline-md text-forest-velvet">San Pedro Coffee Beans (1kg)</h3>
-<p class="text-on-surface-variant text-sm line-clamp-2">Our signature roast in a volume size. Perfect for daily home brewing.</p>
+<span class="font-label-caps text-[10px] text-on-surface-variant">BEANS • 250g ($22) / 1kg ($55)</span>
+<h3 class="font-headline-md text-headline-md text-forest-velvet">San Pedro — Super X</h3>
+<p class="text-on-surface-variant text-sm line-clamp-2">Take-home retail bag of San Pedro 'Super X' specialty roasted whole coffee beans.</p>
 <div class="mt-4 flex items-center justify-between">
-<span class="font-headline-md text-premium-gold">$68.00</span>
-<button class="gold-reflection text-white font-label-caps text-label-caps px-6 py-3 rounded-[4px] shadow-md active:scale-95 transition-all text-shadow-subtle">ADD TO CART</button>
+<span class="font-headline-md text-premium-gold">$22.00</span>
+<a href="https://pony-white-cafe.square.site/s/shop" target="_blank" class="gold-reflection text-white font-label-caps text-label-caps px-6 py-3 rounded-[4px] shadow-md active:scale-95 transition-all text-shadow-subtle no-underline">SHOP NOW</a>
 </div>
 </div>
 </div>
-<!-- Product Card 3: Specialty Chocolate -->
-<div class="group bg-marble-white border border-vein-gray rounded-lg overflow-hidden marble-shadow transition-all duration-500 hover:-translate-y-2">
+<!-- Product Card 3: San Pedro Night Bloom -->
+<div data-category="beans" class="retail-product-card group bg-marble-white border border-vein-gray rounded-lg overflow-hidden marble-shadow transition-all duration-500 hover:-translate-y-2">
 <div class="aspect-[4/5] bg-surface-container-low relative overflow-hidden flex items-center justify-center p-stack-lg">
-<img class="w-full h-full object-cover grayscale-[0.2] group-hover:scale-105 transition-transform duration-700" data-alt="An artisanal tin of chocolate powder placed on a polished marble surface." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCq5RDFznBOM4qGjUJGydZJYNB7jDHzGE8nQLseuaPRahg5HkXL3BYF5RH5BevWoSR3idgMJUXeEvAWQtRgviK5TFpaS9eAKGQH8irnlp59JpnQEJOdEvWD5Xh0SuLRIRxC8JzPdw3rjgUIJ_l9NggZc7TtjEK49Xjw_FeFQA1uTc4vn8xLdrw-VnoB7F8VCi_0FG5iHEA-ysn6Uili-E1YUS7yvYZQ7ypfdVw1sVraeJ5dkCe616Numg5QocXsVZjcYuED7F3S488"/>
-<div class="absolute top-4 left-4 bg-forest-velvet text-white font-label-caps text-[10px] px-2 py-1 rounded-sm shadow-sm">NEW ARRIVAL</div>
+<img class="w-full h-full object-contain group-hover:scale-105 transition-transform duration-700" alt="San Pedro Coffee Beans - Night Bloom" src="../../assets/retail-san-pedro-night-bloom.png"/>
 </div>
 <div class="p-6 flex flex-col gap-2">
-<span class="font-label-caps text-[10px] text-on-surface-variant">POWDER • Specialty Series</span>
-<h3 class="font-headline-md text-headline-md text-forest-velvet">Signature Chocolate Powder</h3>
-<p class="text-on-surface-variant text-sm line-clamp-2">70% Tanzanian single-origin cocoa. Rich, smooth, and naturally sweetened.</p>
+<span class="font-label-caps text-[10px] text-on-surface-variant">BEANS • 250g ($22) / 1kg ($55)</span>
+<h3 class="font-headline-md text-headline-md text-forest-velvet">San Pedro — Night Bloom</h3>
+<p class="text-on-surface-variant text-sm line-clamp-2">Take-home retail bag of San Pedro 'Night Bloom' specialty coffee beans. Decaf also available ($23 / $56).</p>
 <div class="mt-4 flex items-center justify-between">
-<span class="font-headline-md text-premium-gold">$28.00</span>
-<button class="gold-reflection text-white font-label-caps text-label-caps px-6 py-3 rounded-[4px] shadow-md active:scale-95 transition-all text-shadow-subtle">ADD TO CART</button>
+<span class="font-headline-md text-premium-gold">$22.00</span>
+<a href="https://pony-white-cafe.square.site/s/shop" target="_blank" class="gold-reflection text-white font-label-caps text-label-caps px-6 py-3 rounded-[4px] shadow-md active:scale-95 transition-all text-shadow-subtle no-underline">SHOP NOW</a>
 </div>
 </div>
 </div>
-<!-- Product Card 4: Filter Coffee -->
-<div class="group bg-marble-white border border-vein-gray rounded-lg overflow-hidden marble-shadow transition-all duration-500 hover:-translate-y-2">
+<!-- Product Card 4: San Pedro 1KG -->
+<div data-category="beans" class="retail-product-card group bg-marble-white border border-vein-gray rounded-lg overflow-hidden marble-shadow transition-all duration-500 hover:-translate-y-2">
 <div class="aspect-[4/5] bg-surface-container-low relative overflow-hidden flex items-center justify-center p-stack-lg">
-<img class="w-full h-full object-cover grayscale-[0.2] group-hover:scale-105 transition-transform duration-700" data-alt="A pack of specialty filter coffee beans displayed against a white marble background." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDv4cSkROT3O7BO7ZNnp6yScXa5JBCWJCOapWWQQNvr_0bT5f6S2w4kn1MLMKKNJK7YSftGz2PkRErHVYfSWCIQsl_mPfq_NnnrCRkKbT9diIHMZw9DaHLt1hpR5JdGFKYuJ5PVnn1_FVpiTXEMlQE6AjKmd0XiIVWPL10afweGLcTBLVYON5z7AmPhntIuD1L1zNvrs0Vog3Y78rP33sM7IrOO2VppAbrLxUtvy0F1ngMuOZvaWWfT04lKwM_KbZ87LydO7VsBHSs"/>
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" alt="1KG Coffee Beans - San Pedro" src="../../assets/retail-san-pedro-1kg.png"/>
+<div class="absolute top-4 left-4 bg-forest-velvet text-white font-label-caps text-[10px] px-2 py-1 rounded-sm shadow-sm">VALUE 1KG</div>
 </div>
 <div class="p-6 flex flex-col gap-2">
-<span class="font-label-caps text-[10px] text-on-surface-variant">FILTER • Single Origin</span>
-<h3 class="font-headline-md text-headline-md text-forest-velvet">Ethiopian Filter Roast</h3>
-<p class="text-on-surface-variant text-sm line-clamp-2">Light and floral with bright notes of bergamot and jasmine.</p>
+<span class="font-label-caps text-[10px] text-on-surface-variant">BEANS • 1kg Bulk Bag</span>
+<h3 class="font-headline-md text-headline-md text-forest-velvet">1KG Coffee Beans — San Pedro</h3>
+<p class="text-on-surface-variant text-sm line-clamp-2">1kg retail bag of San Pedro specialty roasted whole coffee beans for your home espresso ritual.</p>
 <div class="mt-4 flex items-center justify-between">
-<span class="font-headline-md text-premium-gold">$26.00</span>
-<button class="gold-reflection text-white font-label-caps text-label-caps px-6 py-3 rounded-[4px] shadow-md active:scale-95 transition-all text-shadow-subtle">ADD TO CART</button>
+<span class="font-headline-md text-premium-gold">$50.00</span>
+<a href="https://pony-white-cafe.square.site/s/shop" target="_blank" class="gold-reflection text-white font-label-caps text-label-caps px-6 py-3 rounded-[4px] shadow-md active:scale-95 transition-all text-shadow-subtle no-underline">SHOP NOW</a>
 </div>
 </div>
 </div>
-<!-- Product Card 5: Decaf -->
-<div class="group bg-marble-white border border-vein-gray rounded-lg overflow-hidden marble-shadow transition-all duration-500 hover:-translate-y-2">
+<!-- Product Card 5: Mörk Specialty Hot Chocolate Powder -->
+<div data-category="powder" class="retail-product-card group bg-marble-white border border-vein-gray rounded-lg overflow-hidden marble-shadow transition-all duration-500 hover:-translate-y-2">
 <div class="aspect-[4/5] bg-surface-container-low relative overflow-hidden flex items-center justify-center p-stack-lg">
-<img class="w-full h-full object-cover grayscale-[0.2] group-hover:scale-105 transition-transform duration-700" data-alt="A premium bag of Swiss Water Process decaf coffee beans." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAKXVDBZFy5sTywkHZMhwjewqb_u0iAxPoN0g18xhgdSiAdtphrCT4GiPJplDGLK9oetWArw_aFdZAafK8xAN5AiVTVLwvROdYBg3-5_1LB_5OplVgsgt3ljg9lf1VCYvsLa3xSivWwAzpY61TN1BzUB9amTuLETaVz4oKFgBAxTGAHmKSa2w6FqxfbIuUPOSDT8o6LkGFQ5dBmBDIQbpDcqwVeZ2bHMmv4dMz8z8P6RVpVbLj9j7nyEP8Ug07sO9C-p5nV6wpLfK8"/>
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" alt="Mörk Specialty Hot Chocolate Powder" src="../../assets/retail-mork-chocolate.png"/>
+<div class="absolute top-4 left-4 gold-reflection text-white font-label-caps text-[10px] px-2 py-1 rounded-sm shadow-sm">MELBOURNE CRAFT</div>
 </div>
 <div class="p-6 flex flex-col gap-2">
-<span class="font-label-caps text-[10px] text-on-surface-variant">BEANS • Caffeine Free</span>
-<h3 class="font-headline-md text-headline-md text-forest-velvet">Swiss Water Decaf</h3>
-<p class="text-on-surface-variant text-sm line-clamp-2">Chemical-free processing with a surprisingly deep, nutty profile.</p>
+<span class="font-label-caps text-[10px] text-on-surface-variant">CHOCOLATE • 50% / 65% / 70% / 85%</span>
+<h3 class="font-headline-md text-headline-md text-forest-velvet">Mörk Specialty Hot Chocolate (250g)</h3>
+<p class="text-on-surface-variant text-sm line-clamp-2">Take-home 250g tin of Mörk specialty hot chocolate powder: 50% Junior Dark, 65% Dark Milk &amp; River Salt, 70% Original Dark, or 85% Even Darker.</p>
 <div class="mt-4 flex items-center justify-between">
-<span class="font-headline-md text-premium-gold">$24.00</span>
-<button class="gold-reflection text-white font-label-caps text-label-caps px-6 py-3 rounded-[4px] shadow-md active:scale-95 transition-all text-shadow-subtle">ADD TO CART</button>
+<span class="font-headline-md text-premium-gold">$32.00</span>
+<a href="https://pony-white-cafe.square.site/s/shop" target="_blank" class="gold-reflection text-white font-label-caps text-label-caps px-6 py-3 rounded-[4px] shadow-md active:scale-95 transition-all text-shadow-subtle no-underline">SHOP NOW</a>
 </div>
 </div>
 </div>
-<!-- Product Card 6: Apparel/Tote -->
-<div class="group bg-marble-white border border-vein-gray rounded-lg overflow-hidden marble-shadow transition-all duration-500 hover:-translate-y-2">
+<!-- Product Card 6: Prana Chai -->
+<div data-category="powder" class="retail-product-card group bg-marble-white border border-vein-gray rounded-lg overflow-hidden marble-shadow transition-all duration-500 hover:-translate-y-2">
 <div class="aspect-[4/5] bg-surface-container-low relative overflow-hidden flex items-center justify-center p-stack-lg">
-<img class="w-full h-full object-cover grayscale-[0.2] group-hover:scale-105 transition-transform duration-700" data-alt="A heavy-duty canvas tote bag with a minimalist Pony White logo." src="https://lh3.googleusercontent.com/aida-public/AB6AXuD-luR5Y7zAvEPbwqOUOU4ltIjQ9NyGYdkGGTqNC4pxsFF4t_ee2XPudW3279KyrKg1WWzsG2FPFVINQfRh7wn0QgJuDshr7XC5qnyS4-TLHPGzlqwY8YWhsDaCpRGGaitiEaZmZzU1w3CfJk08PvCl3JOfbMK7zYuv0xF9ZGSxmf0ddiwWRcS2p8TCLWWT_dp_UBX73fpamL2GMiOHsnuY6Gtyvh5_4tIRgXP-JSg17sRkP_NU3ffNVnqNo5FjiaDJKYWux2rhFWE"/>
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" alt="Prana Chai Sticky Blend" src="../../assets/retail-prana-chai.png"/>
 </div>
 <div class="p-6 flex flex-col gap-2">
-<span class="font-label-caps text-[10px] text-on-surface-variant">APPAREL • Everyday Carry</span>
-<h3 class="font-headline-md text-headline-md text-forest-velvet">Pony White Canvas Tote</h3>
-<p class="text-on-surface-variant text-sm line-clamp-2">Durable 12oz organic cotton with reinforced gold-stitch detailing.</p>
+<span class="font-label-caps text-[10px] text-on-surface-variant">CHAI • 250g ($22) / 1kg ($70)</span>
+<h3 class="font-headline-md text-headline-md text-forest-velvet">Prana Chai Sticky Blend</h3>
+<p class="text-on-surface-variant text-sm line-clamp-2">Take-home bag of authentic Prana Chai artisanal wet sticky chai blend, hand-crafted with whole spices and honey.</p>
 <div class="mt-4 flex items-center justify-between">
-<span class="font-headline-md text-premium-gold">$35.00</span>
-<button class="gold-reflection text-white font-label-caps text-label-caps px-6 py-3 rounded-[4px] shadow-md active:scale-95 transition-all text-shadow-subtle">ADD TO CART</button>
+<span class="font-headline-md text-premium-gold">$22.00</span>
+<a href="https://pony-white-cafe.square.site/s/shop" target="_blank" class="gold-reflection text-white font-label-caps text-label-caps px-6 py-3 rounded-[4px] shadow-md active:scale-95 transition-all text-shadow-subtle no-underline">SHOP NOW</a>
 </div>
 </div>
 </div>
@@ -189,21 +187,24 @@
         }
     });
 
-    // Simulating "Add to Cart" interaction
-    document.querySelectorAll('.gold-reflection').forEach(button => {
-        button.addEventListener('click', function() {
-            if (this.dataset.loading === "true") return;
-            
-            const originalText = this.innerText;
-            this.innerText = 'ADDED ✓';
-            this.classList.replace('text-white', 'text-forest-velvet');
-            this.dataset.loading = "true";
-            
-            setTimeout(() => {
-                this.innerText = originalText;
-                this.classList.replace('text-forest-velvet', 'text-white');
-                delete this.dataset.loading;
-            }, 2000);
+    // Interactive category filter for retail products
+    document.querySelectorAll('.retail-filter-btn').forEach(btn => {
+        btn.addEventListener('click', function() {
+            const filter = this.dataset.filter;
+            document.querySelectorAll('.retail-filter-btn').forEach(b => {
+                b.classList.remove('bg-forest-velvet', 'text-on-primary');
+                b.classList.add('bg-surface-container-low', 'text-forest-velvet');
+            });
+            this.classList.remove('bg-surface-container-low', 'text-forest-velvet');
+            this.classList.add('bg-forest-velvet', 'text-on-primary');
+
+            document.querySelectorAll('.retail-product-card').forEach(card => {
+                if (filter === 'all' || card.dataset.category === filter) {
+                    card.style.display = '';
+                } else {
+                    card.style.display = 'none';
+                }
+            });
         });
     });
 

@@ -5,7 +5,8 @@
 <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
 <link rel="stylesheet" href="../styles/loyalty.css">
 
-<style>        .material-symbols-outlined {
+<style>
+        .material-symbols-outlined {
             font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 24;
         }
         .gold-shimmer {
@@ -38,62 +39,33 @@
             background: #0B3027;
             color: #C5A059 !important;
         }
-        body, html {
-            background-color: #0B3027 !important;
-            margin: 0 !important;
-            padding: 0 !important;
-            overflow-x: hidden !important;
-        }
-        main {
-            width: 100vw !important;
-            max-width: 100vw !important;
-            position: relative !important;
-            left: 50% !important;
-            transform: translateX(-50%) !important;
-            margin: 0 !important;
-            box-sizing: border-box !important;
-        }
-</style>
-
-<!-- Compiled custom embed section for loyalty.html -->
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&display=swap" rel="stylesheet">
-<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
-<link rel="stylesheet" href="../styles/loyalty.css">
-
-<style>        .material-symbols-outlined {
-            font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 24;
-        }
-        .gold-shimmer {
-            background: linear-gradient(135deg, #A6803F 0%, #D4B475 25%, #C5A059 50%, #D4B475 75%, #A6803F 100%);
+        .gold-gradient-text {
+            background: linear-gradient(135deg, #b8860b 0%, #e9c349 25%, #d4af37 50%, #ffe088 75%, #b8860b 100%);
             background-size: 200% auto;
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
-            animation: shimmer 5s linear infinite;
+            background-clip: text;
         }
-        @keyframes shimmer {
-          to {
-            background-position: 200% center;
-          }
-        }
-        .glass-card {
-            background: rgba(255, 255, 255, 0.7);
-            backdrop-filter: blur(10px);
-        }
-        .marble-bg {
-            background-color: #faf9f7;
-            background-image: radial-gradient(circle at 2px 2px, rgba(224, 224, 224, 0.5) 1px, transparent 0);
-            background-size: 40px 40px;
-        }
-        .gold-btn {
-            background: linear-gradient(135deg, #C5A059 0%, #D4B475 50%, #C5A059 100%);
+        .gold-gradient-bg {
+            background: linear-gradient(135deg, #a67c37 0%, #e9c349 45%, #ffe088 55%, #a67c37 100%);
             color: #0B3027 !important;
-            transition: all 0.3s ease;
         }
-        .gold-btn:hover {
-            background: #0B3027;
-            color: #C5A059 !important;
+        .gold-border {
+            border-color: #d4af37 !important;
+        }
+        .loyalty-input {
+            background: rgba(0, 0, 0, 0.35);
+            border: 1px solid rgba(212, 175, 55, 0.28);
+            color: #F9F9F9;
+            transition: all 0.25s ease;
+        }
+        .loyalty-input:focus {
+            outline: none;
+            border-color: #e9c349;
+            box-shadow: 0 0 0 3px rgba(233, 195, 73, 0.15);
+        }
+        .loyalty-input::placeholder {
+            color: rgba(249, 249, 249, 0.4);
         }
         body, html {
             background-color: #0B3027 !important;
@@ -111,11 +83,12 @@
             box-sizing: border-box !important;
         }
 </style>
+<body>
 
 <!-- TopNavBar -->
 
 <!-- Main Content -->
-<main class="min-h-[85vh] bg-forest-velvet text-marble-white py-36 px-margin-desktop flex items-center justify-center">
+<main class="min-h-[85vh] bg-forest-velvet text-marble-white py-28 md:py-36 px-6 md:px-margin-desktop flex items-center justify-center">
     <div class="max-w-5xl w-full mx-auto text-center space-y-12">
         <!-- Golden Coffee Bean Icon -->
         <div class="relative inline-block transition-transform duration-700 hover:scale-110">
@@ -138,55 +111,283 @@
 
         <!-- Header -->
         <div class="space-y-4">
-            <span class="font-label-caps text-label-caps gold-gradient-text tracking-[0.2em] block uppercase text-xs font-semibold">Pony White Loyalty</span>
-            <h1 class="font-display-lg text-display-lg md:text-6xl text-marble-white font-bold leading-tight">Pony White Loyalty</h1>
-            <p class="font-body-lg text-body-lg text-marble-white/80 max-w-2xl mx-auto">
+            <span id="loyalty-badge-text" class="font-label-caps text-label-caps gold-gradient-text tracking-[0.2em] block uppercase text-xs font-semibold">Pony White Loyalty</span>
+            <h1 id="loyalty-hero-title" class="font-display-lg text-display-lg md:text-6xl text-marble-white font-bold leading-tight">Pony White Loyalty</h1>
+            <p id="loyalty-hero-subtitle" class="font-body-lg text-body-lg text-marble-white/80 max-w-2xl mx-auto">
                 Every cup is a step closer to your next free coffee. Earn 1 Bean for every $1 spent in a single transaction, and redeem 50 Beans for a free coffee.
             </p>
         </div>
 
-        <!-- Quick Links (Join / Balance) -->
-        <div class="flex flex-col sm:flex-row items-center gap-6 justify-center pt-4">
-            <a href="https://profile.squareup.com/merchantportal/MLT83NZBFDM85/loyalty" class="inline-flex items-center justify-center font-label-caps text-label-caps px-8 py-4 rounded transition-all hover:scale-105 shadow-lg shadow-black/25 gold-gradient-bg text-[#0B3027] font-bold w-full sm:w-auto text-center tracking-wider">
-                Join the Program
-            </a>
-            <a href="https://profile.squareup.com/merchantportal/MLT83NZBFDM85/loyalty" class="inline-flex items-center justify-center font-label-caps text-label-caps px-8 py-4 rounded border-2 gold-border gold-gradient-text transition-all hover:scale-105 w-full sm:w-auto text-center tracking-wider">
-                Check Your Balance
-            </a>
+        <!-- Quick Action Triggers (Join / Check Balance Inline Switchers) -->
+        <div class="flex flex-col sm:flex-row items-center gap-5 justify-center pt-2">
+            <button type="button" onclick="switchLoyaltyTab('join', true)" class="inline-flex items-center justify-center gap-2 font-label-caps text-label-caps px-8 py-4 rounded transition-all hover:scale-105 shadow-lg shadow-black/25 gold-gradient-bg text-[#0B3027] font-bold w-full sm:w-auto text-center tracking-wider cursor-pointer border-0">
+                <span class="material-symbols-outlined text-lg">person_add</span>
+                <span>Join the Program</span>
+            </button>
+            <button type="button" onclick="switchLoyaltyTab('balance', true)" class="inline-flex items-center justify-center gap-2 font-label-caps text-label-caps px-8 py-4 rounded border-2 gold-border gold-gradient-text transition-all hover:scale-105 w-full sm:w-auto text-center tracking-wider bg-transparent cursor-pointer">
+                <span class="material-symbols-outlined text-lg" style="-webkit-text-fill-color: #e9c349;">toll</span>
+                <span>Check Your Balance</span>
+            </button>
         </div>
 
+        <!-- INTERACTIVE ON-SITE LOYALTY PORTAL (Powered by Nucleus Control Module) -->
+        <section id="loyalty-portal-card" class="max-w-3xl mx-auto text-left bg-black/30 border border-[#D4AF37]/30 rounded-2xl p-6 sm:p-10 shadow-2xl backdrop-blur-md">
+            <!-- Portal Mode Tabs -->
+            <div class="flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-3 pb-6 mb-6 border-b border-[#D4AF37]/20">
+                <div class="inline-flex rounded-xl bg-black/40 p-1.5 border border-[#D4AF37]/20">
+                    <button type="button" id="tab-btn-balance" onclick="switchLoyaltyTab('balance', false)" class="px-5 py-2.5 rounded-lg text-xs font-bold uppercase tracking-widest transition-all gold-gradient-bg text-[#0B3027]">
+                        Check Bean Balance
+                    </button>
+                    <button type="button" id="tab-btn-join" onclick="switchLoyaltyTab('join', false)" class="px-5 py-2.5 rounded-lg text-xs font-bold uppercase tracking-widest transition-all text-marble-white/75 hover:text-marble-white">
+                        Join the Program
+                    </button>
+                </div>
+                <div class="flex items-center gap-2 text-xs text-marble-white/60">
+                    <span class="w-2 h-2 rounded-full bg-emerald-400"></span>
+                    <span>Synced Live with Pony White Square POS</span>
+                </div>
+            </div>
+
+            <!-- Alert / Error Banner -->
+            <div id="loyalty-feedback-banner" class="hidden mb-6 p-4 rounded-xl border border-red-400/40 bg-red-950/40 text-red-200 text-sm flex items-start gap-3">
+                <span class="material-symbols-outlined text-red-300 shrink-0">info</span>
+                <span id="loyalty-feedback-text"></span>
+            </div>
+
+            <!-- TAB 1: CHECK YOUR BALANCE FORM -->
+            <form id="loyalty-form-balance" onsubmit="handleLoyaltyLookup(event)" class="space-y-5">
+                <div class="space-y-1">
+                    <h2 class="font-serif text-2xl text-marble-white font-semibold">Check Your Live Bean Balance</h2>
+                    <p class="text-sm text-marble-white/70">
+                        Enter your mobile number and first name (or email) to view your current Pony White Beans and available Free Coffee rewards.
+                    </p>
+                </div>
+
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    <div>
+                        <label for="lookup-phone" class="block text-xs uppercase tracking-widest text-[#e9c349] font-semibold mb-2">Mobile Number *</label>
+                        <input id="lookup-phone" type="tel" required placeholder="0412 345 678" class="loyalty-input w-full px-4 py-3.5 rounded-xl text-sm" />
+                    </div>
+                    <div>
+                        <label for="lookup-verify" class="block text-xs uppercase tracking-widest text-[#e9c349] font-semibold mb-2">First Name or Email *</label>
+                        <input id="lookup-verify" type="text" required placeholder="e.g. Sarah" class="loyalty-input w-full px-4 py-3.5 rounded-xl text-sm" />
+                    </div>
+                </div>
+
+                <div class="pt-2 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+                    <p class="text-xs text-marble-white/55">
+                        Not a member yet? <button type="button" onclick="switchLoyaltyTab('join', false)" class="text-[#e9c349] underline font-semibold bg-transparent border-0 cursor-pointer p-0">Enroll for free in 10 seconds</button>.
+                    </p>
+                    <button type="submit" id="lookup-submit-btn" class="gold-gradient-bg text-[#0B3027] font-bold uppercase tracking-widest text-xs px-8 py-4 rounded-xl shadow-lg hover:scale-[1.02] transition-all cursor-pointer border-0">
+                        View My Beans
+                    </button>
+                </div>
+            </form>
+
+            <!-- TAB 2: JOIN THE PROGRAM FORM -->
+            <form id="loyalty-form-join" onsubmit="handleLoyaltyEnroll(event)" class="hidden space-y-5">
+                <div class="space-y-1">
+                    <h2 class="font-serif text-2xl text-marble-white font-semibold">Join Pony White Loyalty — Free</h2>
+                    <p class="text-sm text-marble-white/70">
+                        Register your mobile number once. Earn 1 Bean for every $1 spent in-store or online and unlock a Free Specialty Coffee every 50 Beans.
+                    </p>
+                </div>
+
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    <div>
+                        <label for="enroll-first-name" class="block text-xs uppercase tracking-widest text-[#e9c349] font-semibold mb-2">First Name *</label>
+                        <input id="enroll-first-name" type="text" required placeholder="e.g. Sarah" class="loyalty-input w-full px-4 py-3.5 rounded-xl text-sm" />
+                    </div>
+                    <div>
+                        <label for="enroll-last-name" class="block text-xs uppercase tracking-widest text-[#e9c349] font-semibold mb-2">Last Name</label>
+                        <input id="enroll-last-name" type="text" placeholder="e.g. Jenkins" class="loyalty-input w-full px-4 py-3.5 rounded-xl text-sm" />
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    <div>
+                        <label for="enroll-phone" class="block text-xs uppercase tracking-widest text-[#e9c349] font-semibold mb-2">Australian Mobile Number *</label>
+                        <input id="enroll-phone" type="tel" required placeholder="0412 345 678" class="loyalty-input w-full px-4 py-3.5 rounded-xl text-sm" />
+                    </div>
+                    <div>
+                        <label for="enroll-email" class="block text-xs uppercase tracking-widest text-[#e9c349] font-semibold mb-2">Email Address</label>
+                        <input id="enroll-email" type="email" placeholder="sarah@example.com" class="loyalty-input w-full px-4 py-3.5 rounded-xl text-sm" />
+                    </div>
+                </div>
+
+                <div class="p-4 rounded-xl bg-[#D4AF37]/10 border border-[#D4AF37]/25 text-xs text-marble-white/85 leading-relaxed">
+                    <strong class="text-[#e9c349]">How Card Linking Works In-Store:</strong> On your first visit after joining, give our barista your mobile number when you tap your card or Apple Pay. Square will automatically link your card for future taps—after that, <strong>you only need to give us your phone number in-store if you are using a new card, paying cash, or claiming a reward.</strong>
+                </div>
+
+                <div class="pt-2 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+                    <p class="text-xs text-marble-white/55">
+                        Already enrolled? <button type="button" onclick="switchLoyaltyTab('balance', false)" class="text-[#e9c349] underline font-semibold bg-transparent border-0 cursor-pointer p-0">Check your Bean balance</button>.
+                    </p>
+                    <button type="submit" id="enroll-submit-btn" class="gold-gradient-bg text-[#0B3027] font-bold uppercase tracking-widest text-xs px-8 py-4 rounded-xl shadow-lg hover:scale-[1.02] transition-all cursor-pointer border-0">
+                        Activate My Beans Pass
+                    </button>
+                </div>
+            </form>
+
+            <!-- UNLOCKED MEMBER DASHBOARD VIEW (Shown after Balance Lookup or Enrollment) -->
+            <div id="loyalty-member-dashboard" class="hidden space-y-6">
+                <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-5 border-b border-[#D4AF37]/20">
+                    <div>
+                        <span id="member-status-pill" class="inline-block px-3 py-1 rounded-full bg-emerald-500/20 border border-emerald-400/30 text-emerald-300 text-[11px] font-bold uppercase tracking-widest mb-2">
+                            Active Member
+                        </span>
+                        <h3 class="font-serif text-2xl sm:text-3xl text-marble-white font-bold">
+                            Welcome, <span id="member-first-name" class="gold-gradient-text">Guest</span>
+                        </h3>
+                        <p class="text-xs text-marble-white/60 mt-1">
+                            Linked Mobile: <span id="member-masked-phone" class="font-mono text-marble-white/85">04•• ••• •••</span> • Member Since <span id="member-since-year">2026</span>
+                        </p>
+                    </div>
+                    <div class="bg-black/45 border border-[#D4AF37]/40 rounded-2xl px-6 py-4 text-center">
+                        <span class="block text-[10px] uppercase tracking-widest text-[#e9c349] font-semibold">Current Balance</span>
+                        <div class="flex items-baseline justify-center gap-1.5 mt-1">
+                            <span id="member-balance-count" class="font-serif text-4xl font-bold gold-gradient-text">0</span>
+                            <span class="text-xs uppercase tracking-widest text-marble-white/80 font-semibold">Beans</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Progress Bar toward 50 Beans -->
+                <div class="space-y-2.5 bg-black/25 p-5 rounded-xl border border-white/10">
+                    <div class="flex items-center justify-between text-xs">
+                        <span id="member-progress-label" class="font-semibold text-marble-white">Progress to Next Free Specialty Coffee</span>
+                        <span id="member-progress-fraction" class="font-mono text-[#e9c349] font-bold">0 / 50 Beans</span>
+                    </div>
+                    <div class="w-full h-3 bg-black/50 rounded-full overflow-hidden border border-[#D4AF37]/30">
+                        <div id="member-progress-bar" class="h-full gold-gradient-bg transition-all duration-700" style="width: 6%;"></div>
+                    </div>
+                    <div class="flex flex-wrap items-center justify-between gap-2 pt-1 text-xs text-marble-white/75">
+                        <span id="member-next-reward-hint">Earn 50 Beans to unlock your next Free Coffee reward.</span>
+                        <span id="member-rewards-ready-badge" class="px-3 py-1 rounded-full bg-[#D4AF37]/20 text-[#ffe088] font-bold">
+                            0 Free Coffee Rewards Available
+                        </span>
+                    </div>
+                </div>
+
+                <!-- Clear In-Store Phone Rule + Linked Card Manager -->
+                <div class="p-5 rounded-xl bg-[#0B3027]/80 border border-[#D4AF37]/30 space-y-4">
+                    <div class="flex items-start gap-3">
+                        <span class="material-symbols-outlined text-[#e9c349] shrink-0 mt-0.5">contactless</span>
+                        <div class="space-y-1.5 text-xs text-marble-white/85 leading-relaxed">
+                            <p class="font-bold text-sm text-marble-white">
+                                In-Store Automatic Card Linking &amp; When to Give Your Phone Number
+                            </p>
+                            <p>
+                                Once you tap your card or Apple Pay / Google Pay with your phone number once at our Fitzroy counter, Square automatically links that card to your Beans account so future taps earn Beans automatically.
+                            </p>
+                            <p class="text-[#ffe088] font-semibold pt-1">
+                                You only need to give our staff your phone number in-store if:
+                            </p>
+                            <ul class="list-disc pl-5 space-y-1 text-marble-white/90">
+                                <li><strong>Using a new card</strong> (or a digital wallet not yet tapped with your phone number)</li>
+                                <li><strong>Paying with cash</strong> at the register</li>
+                                <li><strong>Claiming a Free Coffee reward</strong> so our barista can apply it to your order</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="pt-2 border-t border-[#D4AF37]/20 flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-3">
+                        <button type="button" onclick="resetLoyaltyPortalView()" class="text-xs text-marble-white/70 hover:text-marble-white underline bg-transparent border-0 cursor-pointer text-left">
+                            ← Check another number
+                        </button>
+                        <a id="member-manage-cards-link" href="https://profile.squareup.com/merchantportal/MLT83NZBFDM85/loyalty" target="_blank" rel="noopener noreferrer" class="inline-flex items-center justify-center gap-2 px-5 py-2.5 rounded-xl border border-[#D4AF37]/50 text-xs font-bold uppercase tracking-wider text-[#ffe088] hover:bg-[#D4AF37]/15 transition-all no-underline">
+                            <span class="material-symbols-outlined text-base">credit_card</span>
+                            <span>Manage Linked Cards (Square SMS)</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
         <!-- How It Works Cards -->
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-8 pt-12 max-w-4xl mx-auto">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8 pt-6 max-w-4xl mx-auto">
             <!-- Card 1 -->
-            <div class="bg-black/25 border border-[#D4AF37]/20 p-8 rounded-xl flex flex-col justify-between hover:border-[#D4AF37]/50 transition-all duration-500 cursor-pointer group hover:-translate-y-1 shadow-md text-left">
+            <div class="bg-black/25 border border-[#D4AF37]/20 p-8 rounded-xl flex flex-col justify-between hover:border-[#D4AF37]/50 transition-all duration-500 group hover:-translate-y-1 shadow-md text-left">
                 <div class="space-y-4">
                     <svg class="w-8 h-8 opacity-90 transition-transform duration-500 group-hover:rotate-12" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
                       <path d="M46.5 12.5C38.5 4.5 24.5 7.5 16.5 15.5C11.5 20.5 9.5 27.5 10.5 34.5C12.5 44.5 20.5 52.5 30.5 54.5C37.5 55.5 44.5 53.5 49.5 48.5C57.5 40.5 54.5 20.5 46.5 12.5Z" fill="url(#gold-grad)" />
                       <path d="M17.5 16.5C21.5 22.5 31.5 22.5 33.5 31.5C35.5 40.5 43.5 41.5 47.5 47.5C44.5 43.5 38.5 42.5 36.5 33.5C34.5 24.5 24.5 23.5 17.5 16.5Z" fill="#0B3027" />
                     </svg>
                     <h3 class="font-headline-md text-headline-md text-marble-white">Earn Beans</h3>
-                    <div class="py-2 inline-block px-4 bg-[#D4AF37]/10 rounded font-label-caps text-label-caps gold-gradient-text font-bold">
+                    <div id="loyalty-earn-badge" class="py-2 inline-block px-4 bg-[#D4AF37]/10 rounded font-label-caps text-label-caps gold-gradient-text font-bold">
                         $1 Spent = 1 Bean
                     </div>
-                    <p class="font-body-md text-body-md text-marble-white/75 leading-relaxed">
+                    <p id="loyalty-earn-desc" class="font-body-md text-body-md text-marble-white/75 leading-relaxed">
                         Earn 1 Bean for every $1 spent in a single transaction across our entire menu, roasted retail coffee beans, and premium home-brew chais.
                     </p>
                 </div>
             </div>
 
             <!-- Card 2 -->
-            <div class="bg-black/25 border border-[#D4AF37]/20 p-8 rounded-xl flex flex-col justify-between hover:border-[#D4AF37]/50 transition-all duration-500 cursor-pointer group hover:-translate-y-1 shadow-md text-left">
+            <div class="bg-black/25 border border-[#D4AF37]/20 p-8 rounded-xl flex flex-col justify-between hover:border-[#D4AF37]/50 transition-all duration-500 group hover:-translate-y-1 shadow-md text-left">
                 <div class="space-y-4">
                     <svg class="w-8 h-8 opacity-90 transition-transform duration-500 group-hover:rotate-12" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
                       <path d="M46.5 12.5C38.5 4.5 24.5 7.5 16.5 15.5C11.5 20.5 9.5 27.5 10.5 34.5C12.5 44.5 20.5 52.5 30.5 54.5C37.5 55.5 44.5 53.5 49.5 48.5C57.5 40.5 54.5 20.5 46.5 12.5Z" fill="url(#gold-grad)" />
                       <path d="M17.5 16.5C21.5 22.5 31.5 22.5 33.5 31.5C35.5 40.5 43.5 41.5 47.5 47.5C44.5 43.5 38.5 42.5 36.5 33.5C34.5 24.5 24.5 23.5 17.5 16.5Z" fill="#0B3027" />
                     </svg>
                     <h3 class="font-headline-md text-headline-md text-marble-white">Free Coffee Reward</h3>
-                    <div class="py-2 inline-block px-4 bg-[#D4AF37]/10 rounded font-label-caps text-label-caps gold-gradient-text font-bold">
+                    <div id="loyalty-reward-badge" class="py-2 inline-block px-4 bg-[#D4AF37]/10 rounded font-label-caps text-label-caps gold-gradient-text font-bold">
                         50 Beans = Free Coffee
                     </div>
-                    <p class="font-body-md text-body-md text-marble-white/75 leading-relaxed">
+                    <p id="loyalty-reward-desc" class="font-body-md text-body-md text-marble-white/75 leading-relaxed">
                         Redeem 50 Beans for any barista-made specialty drink of your choice, including our signature pours, organic matchas, and seasonal signature elixirs.
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Dedicated In-Store Linked Card & Phone Number Guide -->
+        <div class="max-w-4xl mx-auto bg-black/25 border border-[#D4AF37]/25 rounded-2xl p-8 text-left space-y-6">
+            <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 border-b border-[#D4AF37]/15 pb-5">
+                <div class="space-y-1">
+                    <span class="text-xs uppercase tracking-[0.2em] gold-gradient-text font-bold">Seamless Tap &amp; Earn</span>
+                    <h3 id="loyalty-instore-title" class="font-serif text-2xl text-marble-white font-bold">
+                        When Do You Need to Give Your Phone Number In-Store?
+                    </h3>
+                </div>
+                <a id="loyalty-card-portal-btn" href="https://profile.squareup.com/merchantportal/MLT83NZBFDM85/loyalty" target="_blank" rel="noopener noreferrer" class="inline-flex items-center justify-center gap-2 px-5 py-3 rounded-xl border border-[#D4AF37]/40 text-xs font-bold uppercase tracking-wider text-[#ffe088] hover:bg-[#D4AF37]/15 transition-all no-underline shrink-0">
+                    <span class="material-symbols-outlined text-base">credit_card</span>
+                    <span>Manage Linked Cards</span>
+                </a>
+            </div>
+
+            <p id="loyalty-instore-intro" class="text-sm text-marble-white/80 leading-relaxed">
+                Once you tap your physical debit/credit card or Apple Pay / Google Pay with your phone number once at our Fitzroy counter, Square automatically links that card to your Loyalty profile so every future tap earns Beans automatically. <strong class="text-[#ffe088]">You only need to give us your phone number in-store in three situations:</strong>
+            </p>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                <div class="p-4 rounded-xl bg-black/30 border border-white/10 space-y-2">
+                    <div class="flex items-center gap-2 text-[#e9c349] font-bold text-xs uppercase tracking-wider">
+                        <span class="material-symbols-outlined text-lg">add_card</span>
+                        <span>1. Using a New Card</span>
+                    </div>
+                    <p class="text-xs text-marble-white/75 leading-relaxed">
+                        If you are paying with a new physical card, a replacement card, or a different Apple Pay / Google Pay device for the first time.
+                    </p>
+                </div>
+
+                <div class="p-4 rounded-xl bg-black/30 border border-white/10 space-y-2">
+                    <div class="flex items-center gap-2 text-[#e9c349] font-bold text-xs uppercase tracking-wider">
+                        <span class="material-symbols-outlined text-lg">payments</span>
+                        <span>2. Paying with Cash</span>
+                    </div>
+                    <p class="text-xs text-marble-white/75 leading-relaxed">
+                        When paying with cash at the counter, let our barista know your mobile number so your Beans are credited to your account.
+                    </p>
+                </div>
+
+                <div class="p-4 rounded-xl bg-black/30 border border-white/10 space-y-2">
+                    <div class="flex items-center gap-2 text-[#e9c349] font-bold text-xs uppercase tracking-wider">
+                        <span class="material-symbols-outlined text-lg">redeem</span>
+                        <span>3. Claiming a Reward</span>
+                    </div>
+                    <p class="text-xs text-marble-white/75 leading-relaxed">
+                        When you have 50+ Beans and want to redeem your Free Specialty Coffee, give your mobile number at the register before paying.
                     </p>
                 </div>
             </div>
@@ -196,13 +397,286 @@
 <!-- Footer -->
 
 <script>
-    // Smooth scroll for anchors
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-        anchor.addEventListener('click', function (e) {
-            e.preventDefault();
-            document.querySelector(this.getAttribute('href')).scrollIntoView({
-                behavior: 'smooth'
+    const PONY_WHITE_BUSINESS_ID = 'nYaZ4T5qRKS3Z9EG5mrl';
+
+    function getLoyaltyApiCandidates() {
+        const candidates = [];
+        try {
+            const host = window.location.hostname || '';
+            if (host === 'localhost' || host === '127.0.0.1') {
+                candidates.push(`http://localhost:3000/api/widget/loyalty/${PONY_WHITE_BUSINESS_ID}`);
+                candidates.push(`http://127.0.0.1:3000/api/widget/loyalty/${PONY_WHITE_BUSINESS_ID}`);
+            }
+        } catch (e) {}
+        candidates.push(`https://nucleus-revamp.web.app/api/widget/loyalty/${PONY_WHITE_BUSINESS_ID}`);
+        candidates.push(`https://bizboard-67b4c.web.app/api/widget/loyalty/${PONY_WHITE_BUSINESS_ID}`);
+        return candidates;
+    }
+
+    function showLoyaltyFeedback(message) {
+        const banner = document.getElementById('loyalty-feedback-banner');
+        const text = document.getElementById('loyalty-feedback-text');
+        if (!banner || !text) return;
+        if (!message) {
+            banner.classList.add('hidden');
+            text.textContent = '';
+            return;
+        }
+        text.textContent = message;
+        banner.classList.remove('hidden');
+    }
+
+    function switchLoyaltyTab(mode, shouldScroll) {
+        showLoyaltyFeedback('');
+        const balanceBtn = document.getElementById('tab-btn-balance');
+        const joinBtn = document.getElementById('tab-btn-join');
+        const balanceForm = document.getElementById('loyalty-form-balance');
+        const joinForm = document.getElementById('loyalty-form-join');
+        const memberDash = document.getElementById('loyalty-member-dashboard');
+
+        if (memberDash) memberDash.classList.add('hidden');
+
+        if (mode === 'join') {
+            if (joinForm) joinForm.classList.remove('hidden');
+            if (balanceForm) balanceForm.classList.add('hidden');
+            if (joinBtn) {
+                joinBtn.className = 'px-5 py-2.5 rounded-lg text-xs font-bold uppercase tracking-widest transition-all gold-gradient-bg text-[#0B3027]';
+            }
+            if (balanceBtn) {
+                balanceBtn.className = 'px-5 py-2.5 rounded-lg text-xs font-bold uppercase tracking-widest transition-all text-marble-white/75 hover:text-marble-white';
+            }
+        } else {
+            if (balanceForm) balanceForm.classList.remove('hidden');
+            if (joinForm) joinForm.classList.add('hidden');
+            if (balanceBtn) {
+                balanceBtn.className = 'px-5 py-2.5 rounded-lg text-xs font-bold uppercase tracking-widest transition-all gold-gradient-bg text-[#0B3027]';
+            }
+            if (joinBtn) {
+                joinBtn.className = 'px-5 py-2.5 rounded-lg text-xs font-bold uppercase tracking-widest transition-all text-marble-white/75 hover:text-marble-white';
+            }
+        }
+
+        if (shouldScroll) {
+            const card = document.getElementById('loyalty-portal-card');
+            if (card) card.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        }
+    }
+
+    function resetLoyaltyPortalView() {
+        switchLoyaltyTab('balance', false);
+    }
+
+    function renderMemberDashboard(member, isNewEnrollment) {
+        const balanceForm = document.getElementById('loyalty-form-balance');
+        const joinForm = document.getElementById('loyalty-form-join');
+        const memberDash = document.getElementById('loyalty-member-dashboard');
+
+        if (balanceForm) balanceForm.classList.add('hidden');
+        if (joinForm) joinForm.classList.add('hidden');
+        if (!memberDash) return;
+
+        const statusPill = document.getElementById('member-status-pill');
+        if (statusPill) {
+            statusPill.textContent = isNewEnrollment ? 'Enrolled & Active' : 'Verified Member';
+        }
+
+        const firstNameEl = document.getElementById('member-first-name');
+        if (firstNameEl) firstNameEl.textContent = member.firstName || 'Guest';
+
+        const phoneEl = document.getElementById('member-masked-phone');
+        if (phoneEl) phoneEl.textContent = member.maskedPhone || '•••• •••';
+
+        const sinceEl = document.getElementById('member-since-year');
+        if (sinceEl) sinceEl.textContent = member.memberSince || new Date().getFullYear();
+
+        const balEl = document.getElementById('member-balance-count');
+        if (balEl) balEl.textContent = String(member.balance ?? 0);
+
+        const threshold = member.rewardThreshold || 50;
+        const balance = Number(member.balance || 0);
+        const remainder = balance % threshold;
+        const rewardsAvailable = Math.floor(balance / threshold);
+        const pct = Math.max(6, Math.min(100, Number(member.progressPercent || Math.round((remainder / threshold) * 100))));
+
+        const fracEl = document.getElementById('member-progress-fraction');
+        if (fracEl) fracEl.textContent = `${remainder} / ${threshold} Beans`;
+
+        const barEl = document.getElementById('member-progress-bar');
+        if (barEl) barEl.style.width = `${pct}%`;
+
+        const hintEl = document.getElementById('member-next-reward-hint');
+        if (hintEl) {
+            const toGo = threshold - remainder;
+            hintEl.textContent = rewardsAvailable > 0
+                ? `You have ${rewardsAvailable} Free Coffee reward${rewardsAvailable > 1 ? 's' : ''} ready to claim in-store, plus ${toGo} Beans until your next reward!`
+                : `Just ${toGo} more Bean${toGo === 1 ? '' : 's'} until your next Free Specialty Coffee!`;
+        }
+
+        const badgeEl = document.getElementById('member-rewards-ready-badge');
+        if (badgeEl) {
+            badgeEl.textContent = `${rewardsAvailable} Free Coffee Reward${rewardsAvailable === 1 ? '' : 's'} Available`;
+        }
+
+        if (member.squareMerchantPortalUrl) {
+            const manageLink = document.getElementById('member-manage-cards-link');
+            if (manageLink) manageLink.href = member.squareMerchantPortalUrl;
+        }
+
+        memberDash.classList.remove('hidden');
+    }
+
+    async function postToLoyaltyControlModule(payload) {
+        const urls = getLoyaltyApiCandidates();
+        let lastError = 'Could not connect to the Pony White Loyalty service.';
+        for (const url of urls) {
+            try {
+                const res = await fetch(url, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(payload)
+                });
+                const data = await res.json();
+                if (res.ok && data.success) {
+                    return data;
+                }
+                if (data && data.error) {
+                    lastError = data.error;
+                    // If validation or business rule error (400), stop trying fallback URLs
+                    if (res.status === 400 || res.status === 429) {
+                        throw new Error(data.error);
+                    }
+                }
+            } catch (err) {
+                if (err && err.message && !err.message.includes('Failed to fetch') && !err.message.includes('NetworkError')) {
+                    throw err;
+                }
+            }
+        }
+        throw new Error(lastError);
+    }
+
+    async function handleLoyaltyLookup(e) {
+        e.preventDefault();
+        showLoyaltyFeedback('');
+        const phoneInput = document.getElementById('lookup-phone');
+        const verifyInput = document.getElementById('lookup-verify');
+        const submitBtn = document.getElementById('lookup-submit-btn');
+
+        const phone = phoneInput ? phoneInput.value.trim() : '';
+        const verificationNameOrEmail = verifyInput ? verifyInput.value.trim() : '';
+        if (!phone || !verificationNameOrEmail) return;
+
+        const originalText = submitBtn ? submitBtn.textContent : 'View My Beans';
+        if (submitBtn) {
+            submitBtn.disabled = true;
+            submitBtn.textContent = 'Checking Square...';
+        }
+
+        try {
+            const res = await postToLoyaltyControlModule({
+                action: 'lookup',
+                phone,
+                verificationNameOrEmail
             });
-        });
-    });
+            if (res.member) {
+                renderMemberDashboard(res.member, false);
+            }
+        } catch (err) {
+            showLoyaltyFeedback(err.message || 'Unable to verify balance. Please check your mobile number and first name.');
+        } finally {
+            if (submitBtn) {
+                submitBtn.disabled = false;
+                submitBtn.textContent = originalText;
+            }
+        }
+    }
+
+    async function handleLoyaltyEnroll(e) {
+        e.preventDefault();
+        showLoyaltyFeedback('');
+        const firstInput = document.getElementById('enroll-first-name');
+        const lastInput = document.getElementById('enroll-last-name');
+        const phoneInput = document.getElementById('enroll-phone');
+        const emailInput = document.getElementById('enroll-email');
+        const submitBtn = document.getElementById('enroll-submit-btn');
+
+        const firstName = firstInput ? firstInput.value.trim() : '';
+        const lastName = lastInput ? lastInput.value.trim() : '';
+        const phone = phoneInput ? phoneInput.value.trim() : '';
+        const email = emailInput ? emailInput.value.trim() : '';
+
+        if (!firstName || !phone) return;
+
+        const originalText = submitBtn ? submitBtn.textContent : 'Activate My Beans Pass';
+        if (submitBtn) {
+            submitBtn.disabled = true;
+            submitBtn.textContent = 'Activating Pass...';
+        }
+
+        try {
+            const res = await postToLoyaltyControlModule({
+                action: 'enroll',
+                firstName,
+                lastName,
+                phone,
+                email
+            });
+            if (res.member) {
+                renderMemberDashboard(res.member, true);
+            }
+        } catch (err) {
+            showLoyaltyFeedback(err.message || 'Unable to complete enrollment right now.');
+        } finally {
+            if (submitBtn) {
+                submitBtn.disabled = false;
+                submitBtn.textContent = originalText;
+            }
+        }
+    }
+
+    // Hydrate configurable Loyalty rules from Nucleus CRM if updated
+    (async function syncLoyaltyConfigFromNucleus() {
+        const urls = getLoyaltyApiCandidates();
+        for (const url of urls) {
+            try {
+                const res = await fetch(url, { method: 'GET' });
+                if (!res.ok) continue;
+                const data = await res.json();
+                if (!data || !data.config) continue;
+                const cfg = data.config;
+                if (cfg.title) {
+                    const el = document.getElementById('loyalty-hero-title');
+                    if (el) el.textContent = cfg.title;
+                }
+                if (cfg.subtitle) {
+                    const el = document.getElementById('loyalty-hero-subtitle');
+                    if (el) el.textContent = cfg.subtitle;
+                }
+                if (cfg.earnRatioText) {
+                    const el = document.getElementById('loyalty-earn-badge');
+                    if (el) el.textContent = cfg.earnRatioText;
+                }
+                if (cfg.earnDescription) {
+                    const el = document.getElementById('loyalty-earn-desc');
+                    if (el) el.textContent = cfg.earnDescription;
+                }
+                if (cfg.rewardRatioText) {
+                    const el = document.getElementById('loyalty-reward-badge');
+                    if (el) el.textContent = cfg.rewardRatioText;
+                }
+                if (cfg.rewardDescription) {
+                    const el = document.getElementById('loyalty-reward-desc');
+                    if (el) el.textContent = cfg.rewardDescription;
+                }
+                if (cfg.squareMerchantPortalUrl) {
+                    const p1 = document.getElementById('loyalty-card-portal-btn');
+                    const p2 = document.getElementById('member-manage-cards-link');
+                    if (p1) p1.href = cfg.squareMerchantPortalUrl;
+                    if (p2) p2.href = cfg.squareMerchantPortalUrl;
+                }
+                break;
+            } catch (e) {}
+        }
+    })();
 </script>
+</body>
