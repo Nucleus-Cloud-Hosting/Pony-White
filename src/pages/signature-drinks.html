@@ -120,9 +120,34 @@
       scrollbar-color: rgba(255, 255, 255, 0.15) transparent;
     }
 
-    #drink-image, #drink-video {
+    #drink-image, #drink-video, #drink-video-loop {
       transition: transform 1.2s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.8s ease;
       object-position: center;
+    }
+
+    /* 2-part drink video sequence (build clip -> seamless loop clip) */
+    .signature-drinks-showcase.sd-seq-mode #drink-video,
+    .signature-drinks-showcase.sd-seq-mode #drink-video-loop,
+    .signature-drinks-showcase.sd-seq-mode #drink-image {
+      transform: none !important; /* no zoom in sequence mode: it would crop the drink */
+    }
+    #drink-video.sd-framed,
+    #drink-video-loop.sd-framed {
+      right: auto;
+      bottom: auto;
+      max-width: none;
+      max-height: none;
+      object-fit: contain;
+      transition: opacity 0.8s ease, left 0.6s cubic-bezier(0.25, 1, 0.5, 1), top 0.6s cubic-bezier(0.25, 1, 0.5, 1), width 0.6s cubic-bezier(0.25, 1, 0.5, 1), height 0.6s cubic-bezier(0.25, 1, 0.5, 1);
+    }
+    #drink-video.sd-feather,
+    #drink-video-loop.sd-feather {
+      -webkit-mask-image: radial-gradient(ellipse var(--sd-mrx, 50%) var(--sd-mry, 50%) at var(--sd-mcx, 50%) var(--sd-mcy, 50%), #000 var(--sd-msolid, 70%), transparent 100%);
+      mask-image: radial-gradient(ellipse var(--sd-mrx, 50%) var(--sd-mry, 50%) at var(--sd-mcx, 50%) var(--sd-mcy, 50%), #000 var(--sd-msolid, 70%), transparent 100%);
+    }
+    #drink-video.sd-instant,
+    #drink-video-loop.sd-instant {
+      transition: none !important;
     }
     
     .drink-reveal-trigger {
@@ -373,6 +398,8 @@
 <!-- Full Screen Drink Background -->
 <div class="absolute inset-0 overflow-hidden flex justify-center items-center z-0">
 <img alt="Signature Drink" class="hidden w-full h-full object-cover scale-105" id="drink-image" src="../../assets/matcha-strawberry.jpg"/>
+<!-- Loop layer for 2-part sequences (sits underneath #drink-video, which plays the one-shot build clip) -->
+<video id="drink-video-loop" class="absolute inset-0 w-full h-full object-cover z-0" style="display: none; opacity: 0;" preload="none" loop muted playsinline aria-hidden="true"></video>
 <video id="drink-video" class="absolute inset-0 w-full h-full object-cover scale-105 z-0" src="../../assets/Strawberries & Cream Matcha.mp4" autoplay loop muted playsinline></video>
 <!-- Ambient Overlays -->
 <div class="absolute inset-0 ambient-overlay bg-gradient-to-r from-forest-velvet via-transparent to-transparent opacity-90 z-10" id="ambient-grad" style="background: linear-gradient(to right, #2D1B22 0%, transparent 100%);"></div>
@@ -794,7 +821,478 @@
       }
     }
 
+    // =====================================================================
+    // 2-PART DRINK VIDEO SEQUENCE ENGINE
+    // buildVideo plays once (ingredients drop into the spinning glass), then
+    // loopVideo (the finished drink spinning) takes over seamlessly and
+    // repeats forever. Loop frame 0 continues build's last frame.
+    // =====================================================================
+    let sdSeqGen = 0;            // generation token: bumps on every media change
+    let sdSeqCleanup = null;     // tears down listeners/timers of the previous generation
+    const sdSeqState = { active: false, framing: null };
+    let sdOverrideDefaultKey = null;
+
+    function sdIsSequenceConfig(cfg) {
+      return Boolean(cfg && typeof cfg.buildVideo === 'string' && cfg.buildVideo.trim() &&
+        typeof cfg.loopVideo === 'string' && cfg.loopVideo.trim());
+    }
+
+    function sdNormalizeFraming(fr) {
+      if (!fr || typeof fr !== 'object') return null;
+      const n = (v) => (typeof v === 'number' && isFinite(v)) ? v : parseFloat(v);
+      const safeW = n(fr.safeW), safeH = n(fr.safeH), cx = n(fr.cx), cy = n(fr.cy);
+      if (![safeW, safeH, cx, cy].every(v => isFinite(v) && v >= 0 && v <= 1)) return null;
+      if (safeW <= 0 || safeH <= 0) return null;
+      return { safeW, safeH, cx, cy };
+    }
+
+    function sdNormalizeVariant(v) {
+      if (!v || typeof v !== 'object') return null;
+      return Object.assign({}, v, {
+        buildVideo: typeof v.buildVideo === 'string' ? v.buildVideo : '',
+        loopVideo: typeof v.loopVideo === 'string' ? v.loopVideo : '',
+        framing: sdNormalizeFraming(v.framing)
+      });
+    }
+
+    // Debug-only QA override (inert unless explicitly requested):
+    //   ?sdSeqTest=<buildUrl>|<loopUrl>[&sdSeqFraming=safeW,safeH,cx,cy][&sdSeqDrink=<drinkKey>]
+    //   or window.PW_SEQUENCE_OVERRIDE = { buildVideo, loopVideo, framing?, drinkKey? }
+    // Applies to a single drink only (sdSeqDrink / drinkKey, else the first drink shown).
+    function sdGetSequenceOverride() {
+      try {
+        let o = null;
+        if (window.PW_SEQUENCE_OVERRIDE && typeof window.PW_SEQUENCE_OVERRIDE === 'object') {
+          o = Object.assign({}, window.PW_SEQUENCE_OVERRIDE);
+        }
+        const qs = new URLSearchParams(window.location.search || '');
+        const raw = qs.get('sdSeqTest');
+        if (raw && raw.indexOf('|') > 0) {
+          const parts = raw.split('|');
+          o = { buildVideo: parts[0], loopVideo: parts[1] };
+          const fr = qs.get('sdSeqFraming');
+          if (fr) {
+            const f = fr.split(',').map(parseFloat);
+            o.framing = { safeW: f[0], safeH: f[1], cx: f[2], cy: f[3] };
+          }
+          if (qs.get('sdSeqDrink')) o.drinkKey = qs.get('sdSeqDrink');
+        }
+        if (!o || !sdIsSequenceConfig(o)) return null;
+        return o;
+      } catch (e) {
+        return null;
+      }
+    }
+
+    function sdApplyOverride(config) {
+      const o = sdGetSequenceOverride();
+      if (!o) return config;
+      if (!sdOverrideDefaultKey) sdOverrideDefaultKey = o.drinkKey || currentDrinkKey;
+      if (currentDrinkKey !== (o.drinkKey || sdOverrideDefaultKey)) return config;
+      return Object.assign({}, config, {
+        buildVideo: o.buildVideo,
+        loopVideo: o.loopVideo,
+        video: o.loopVideo,
+        framing: o.framing !== undefined ? sdNormalizeFraming(o.framing) : config.framing
+      });
+    }
+
+    function sdResolveConfig(config) {
+      return config ? sdApplyOverride(config) : config;
+    }
+
+    function sdAbsUrl(u) {
+      try { return new URL(u, window.location.href).href; } catch (e) { return u; }
+    }
+
+    // ---------- Smart framing: keep the whole drink visible ----------
+    function sdClearFraming(v) {
+      if (!v) return;
+      v.classList.remove('sd-framed', 'sd-feather');
+      ['left', 'top', 'width', 'height', 'right', 'bottom'].forEach(p => { v.style[p] = ''; });
+    }
+
+    function sdIsDescriptionVisible(desc) {
+      if (!desc) return false;
+      if (desc.style.display === 'none' || desc.classList.contains('panel-hidden')) return false;
+      return desc.offsetWidth > 0 && desc.offsetHeight > 0;
+    }
+
+    function sdLayoutVideos() {
+      const build = document.getElementById('drink-video');
+      const loop = document.getElementById('drink-video-loop');
+      const showcase = document.querySelector('.signature-drinks-showcase');
+      if (!build || !loop || !showcase) return;
+      const fr = sdSeqState.framing;
+      if (!sdSeqState.active || !fr) {
+        sdClearFraming(build);
+        sdClearFraming(loop);
+        return;
+      }
+
+      const cr = showcase.getBoundingClientRect();
+      const W = cr.width, H = cr.height;
+      if (W < 2 || H < 2) return;
+      const vw = loop.videoWidth || build.videoWidth || 1920;
+      const vh = loop.videoWidth ? loop.videoHeight : (build.videoHeight || 1080);
+
+      // Available rect (container coordinates) = container minus occluders.
+      // Layout positions (offsetLeft/offsetTop) are used so in-flight transforms don't skew the result.
+      let ax0 = 0, ax1 = W, ay0 = 0, ay1 = H;
+      const desc = document.getElementById('drink-description');
+      const mainEl = desc ? desc.offsetParent : null;
+      const descVisible = sdIsDescriptionVisible(desc);
+      let descLeft = null, descTop = null;
+      if (descVisible && mainEl) {
+        const mr = mainEl.getBoundingClientRect();
+        descLeft = mr.left - cr.left + desc.offsetLeft;
+        descTop = mr.top - cr.top + desc.offsetTop;
+      }
+
+      if (window.innerWidth >= 768) {
+        const aside = document.querySelector('aside.sidebar-slide');
+        const asideRight = aside ? (aside.getBoundingClientRect().right - cr.left) : null;
+        const minW = 0.35 * W;
+        // Prefer honouring both occluders; when they overlap (narrow tablets) honour the
+        // frosted description card first (the sidebar is transparent text on >=768px).
+        if (asideRight !== null && descLeft !== null && (descLeft - asideRight) >= minW) {
+          ax0 = asideRight; ax1 = descLeft;
+        } else if (descLeft !== null && descLeft >= minW) {
+          ax1 = descLeft;
+        } else if (asideRight !== null && (W - asideRight) >= minW) {
+          ax0 = asideRight;
+        }
+      } else if (descTop !== null && descTop >= 0.35 * H) {
+        ay1 = Math.min(H, descTop);
+      }
+
+      const availW = Math.max(1, ax1 - ax0), availH = Math.max(1, ay1 - ay0);
+      const acx = (ax0 + ax1) / 2, acy = (ay0 + ay1) / 2;
+      const sCover = Math.max(W / vw, H / vh);
+      const sFit = Math.min(availW / (fr.safeW * vw), availH / (fr.safeH * vh)) * 0.94;
+
+      // Attempt 1: cover the container, safe box centred in the available rect, clamped to keep full coverage.
+      let dw = vw * sCover, dh = vh * sCover;
+      let left = Math.min(0, Math.max(W - dw, acx - fr.cx * dw));
+      let top = Math.min(0, Math.max(H - dh, acy - fr.cy * dh));
+      const eps = 0.5;
+      const sx0 = left + (fr.cx - fr.safeW / 2) * dw, sx1 = left + (fr.cx + fr.safeW / 2) * dw;
+      const sy0 = top + (fr.cy - fr.safeH / 2) * dh, sy1 = top + (fr.cy + fr.safeH / 2) * dh;
+      const coverOk = sx0 >= ax0 - eps && sx1 <= ax1 + eps && sy0 >= ay0 - eps && sy1 <= ay1 + eps;
+
+      let feather = false;
+      if (!coverOk) {
+        // Attempt 2: shrink until the safe box fits, centred on the available rect (no clamping).
+        const s = Math.min(sCover, sFit);
+        dw = vw * s; dh = vh * s;
+        left = acx - fr.cx * dw;
+        top = acy - fr.cy * dh;
+        feather = left > eps || top > eps || (left + dw) < W - eps || (top + dh) < H - eps;
+      }
+
+      // Radial feather centred on the safe box; solid core always contains the safe box.
+      const rx = Math.max(0.05, Math.min(fr.cx, 1 - fr.cx));
+      const ry = Math.max(0.05, Math.min(fr.cy, 1 - fr.cy));
+      const need = Math.sqrt(Math.pow((fr.safeW / 2) / rx, 2) + Math.pow((fr.safeH / 2) / ry, 2));
+      const solid = Math.max(0.55, Math.min(0.92, need * 1.04));
+
+      [build, loop].forEach(v => {
+        v.classList.add('sd-framed');
+        v.classList.toggle('sd-feather', feather);
+        v.style.left = left.toFixed(2) + 'px';
+        v.style.top = top.toFixed(2) + 'px';
+        v.style.width = dw.toFixed(2) + 'px';
+        v.style.height = dh.toFixed(2) + 'px';
+        v.style.right = 'auto';
+        v.style.bottom = 'auto';
+        v.style.setProperty('--sd-mrx', (rx * 100).toFixed(2) + '%');
+        v.style.setProperty('--sd-mry', (ry * 100).toFixed(2) + '%');
+        v.style.setProperty('--sd-mcx', (fr.cx * 100).toFixed(2) + '%');
+        v.style.setProperty('--sd-mcy', (fr.cy * 100).toFixed(2) + '%');
+        v.style.setProperty('--sd-msolid', (solid * 100).toFixed(1) + '%');
+      });
+      showcase.setAttribute('data-sd-framing', coverOk ? 'cover' : (feather ? 'fit-feather' : 'fit'));
+    }
+
+    let sdLayoutRaf = 0;
+    function sdScheduleLayout() {
+      if (sdLayoutRaf) cancelAnimationFrame(sdLayoutRaf);
+      sdLayoutRaf = requestAnimationFrame(() => {
+        sdLayoutRaf = 0;
+        sdLayoutVideos();
+      });
+    }
+
+    // ---------- Legacy <-> sequence mode switching ----------
+    function sdExitSequenceMode(video, loopEl) {
+      const showcase = document.querySelector('.signature-drinks-showcase');
+      const wasActive = sdSeqState.active;
+      sdSeqState.active = false;
+      sdSeqState.framing = null;
+      if (showcase) {
+        showcase.classList.remove('sd-seq-mode');
+        showcase.removeAttribute('data-sd-framing');
+      }
+      sdClearFraming(video);
+      if (video) {
+        video.style.visibility = '';
+        video.loop = true;
+        video.setAttribute('loop', '');
+      }
+      if (loopEl && (wasActive || loopEl.getAttribute('src'))) {
+        loopEl.pause();
+        loopEl.removeAttribute('src');
+        try { loopEl.load(); } catch (e) {}
+      }
+      if (loopEl) {
+        sdClearFraming(loopEl);
+        loopEl.style.display = 'none';
+        loopEl.style.opacity = '0';
+      }
+    }
+
+    function sdPlaySequence(config, img, build, loop, gen) {
+      const logo = document.getElementById('brand-logo-container');
+      const showcase = document.querySelector('.signature-drinks-showcase');
+      const stale = () => gen !== sdSeqGen;
+      const cleanups = [];
+      const on = (el, ev, fn) => { el.addEventListener(ev, fn); cleanups.push(() => el.removeEventListener(ev, fn)); };
+      const later = (fn, ms) => { const id = setTimeout(fn, ms); cleanups.push(() => clearTimeout(id)); return id; };
+      let rvfcHandle = 0;
+      sdSeqCleanup = () => {
+        cleanups.forEach(f => { try { f(); } catch (e) {} });
+        if (rvfcHandle && build.cancelVideoFrameCallback) {
+          try { build.cancelVideoFrameCallback(rvfcHandle); } catch (e) {}
+        }
+      };
+
+      sdSeqState.active = true;
+      sdSeqState.framing = sdNormalizeFraming(config.framing);
+      if (showcase) showcase.classList.add('sd-seq-mode');
+      if (logo) logo.classList.add('logo-loading');
+
+      // Hide the still image (only used for the autoplay-blocked fallback)
+      img.style.display = 'none';
+      img.classList.add('hidden');
+      img.style.opacity = '0';
+      img.src = '';
+
+      [build, loop].forEach(v => {
+        if (v.style.visibility === 'hidden') {
+          // Layer was hidden (e.g. build after a swap): reset opacity instantly so it never re-appears mid-fade
+          v.classList.add('sd-instant');
+          v.style.opacity = '0';
+          void v.offsetWidth;
+          v.classList.remove('sd-instant');
+        }
+        v.muted = true;
+        v.playsInline = true;
+        v.removeAttribute('crossorigin');
+        v.crossOrigin = null;
+        v.setAttribute('muted', '');
+        v.setAttribute('playsinline', '');
+        v.style.display = 'block';
+        v.classList.remove('hidden');
+        v.style.transform = 'none';
+        v.style.visibility = 'visible';
+        v.style.opacity = '0';
+      });
+
+      // Loop layer: preloaded, paused on frame 0, sitting underneath the build layer
+      loop.loop = true;
+      loop.setAttribute('loop', '');
+      loop.preload = 'auto';
+      const loopUrl = sdAbsUrl(config.loopVideo);
+      if (loop.src !== loopUrl) {
+        loop.src = config.loopVideo;
+        loop.load();
+      } else {
+        loop.pause();
+        try { loop.currentTime = 0; } catch (e) {}
+      }
+      loop.pause();
+
+      // Build layer: plays once
+      build.loop = false;
+      build.removeAttribute('loop');
+      build.preload = 'auto';
+      const buildUrl = sdAbsUrl(config.buildVideo);
+      if (build.src !== buildUrl) {
+        build.src = config.buildVideo;
+        build.load();
+      } else {
+        build.pause();
+        try { build.currentTime = 0; } catch (e) {}
+      }
+
+      sdLayoutVideos();
+
+      let swapped = false;
+      let pendingSwap = false;
+      let buildStarted = false;
+      let stallTimer = 0;
+      const clearStall = () => { if (stallTimer) { clearTimeout(stallTimer); stallTimer = 0; } };
+      cleanups.push(clearStall);
+
+      const setLoopOpaqueInstant = () => {
+        loop.classList.add('sd-instant');
+        loop.style.opacity = '1';
+        void loop.offsetWidth; // commit the instant change before restoring transitions
+        requestAnimationFrame(() => requestAnimationFrame(() => loop.classList.remove('sd-instant')));
+      };
+
+      const finishLoading = () => { if (logo) logo.classList.remove('logo-loading'); };
+
+      // Seamless hand-off: loop is paused on frame 0 (== continuation of build's last frame).
+      // Hide the build layer in the same task as loop.play() so the next composited frame is loop frame 0.
+      const swap = () => {
+        if (stale() || swapped) return;
+        if (loop.readyState < 2 || loop.seeking) { pendingSwap = true; return; } // build keeps holding its last frame
+        swapped = true;
+        pendingSwap = false;
+        clearStall();
+        setLoopOpaqueInstant();
+        const p = loop.play();
+        build.style.visibility = 'hidden';
+        build.pause();
+        finishLoading();
+        if (p && p.catch) p.catch(err => console.log('Loop playback blocked:', err));
+      };
+
+      // Build failed / stalled: go straight to the loop.
+      const goLoopDirect = (reason) => {
+        if (stale() || swapped) return;
+        swapped = true;
+        clearStall();
+        console.log('Drink build clip skipped (' + reason + '), starting loop.');
+        build.pause();
+        build.style.visibility = 'hidden';
+        loop.style.opacity = '1';
+        const p = loop.play();
+        if (p && p.then) {
+          p.then(finishLoading).catch(err => {
+            console.log('Loop autoplay blocked:', err);
+            finishLoading();
+            showImageFallback(() => loop.play());
+          });
+        }
+      };
+
+      const showImageFallback = (playFn) => {
+        if (config.img) {
+          img.src = config.img;
+          img.style.display = 'block';
+          img.classList.remove('hidden');
+          img.style.opacity = '1';
+          img.style.transform = 'none';
+        } else {
+          build.style.opacity = '0.2';
+        }
+        const forcePlay = () => {
+          document.removeEventListener('click', forcePlay);
+          document.removeEventListener('touchend', forcePlay);
+          if (stale()) return;
+          playFn().then(() => {
+            if (stale()) return;
+            build.style.opacity = '1';
+            img.style.opacity = '0';
+            setTimeout(() => {
+              img.style.display = 'none';
+              img.classList.add('hidden');
+            }, 500);
+          }).catch(err => console.log('Gesture play failed:', err));
+        };
+        document.addEventListener('click', forcePlay);
+        document.addEventListener('touchend', forcePlay);
+        cleanups.push(() => {
+          document.removeEventListener('click', forcePlay);
+          document.removeEventListener('touchend', forcePlay);
+        });
+      };
+
+      // Retry a deferred swap once the loop's frame 0 is decoded
+      ['loadeddata', 'canplay', 'seeked'].forEach(ev => on(loop, ev, () => { if (pendingSwap) swap(); }));
+      on(loop, 'loadedmetadata', sdScheduleLayout);
+      on(build, 'loadedmetadata', sdScheduleLayout);
+
+      on(build, 'ended', swap); // fallback when requestVideoFrameCallback is unavailable / overshoots
+      on(build, 'error', () => goLoopDirect('error'));
+      on(build, 'playing', () => {
+        buildStarted = true;
+        clearStall();
+      });
+      on(build, 'waiting', () => {
+        if (!buildStarted || swapped) return;
+        clearStall();
+        stallTimer = setTimeout(() => goLoopDirect('stalled'), 4000);
+      });
+
+      // Preferred: detect the build's last presented frame via requestVideoFrameCallback,
+      // then swap exactly one frame-duration later (the last frame gets its full screen time).
+      if (typeof build.requestVideoFrameCallback === 'function') {
+        let lastT = -1;
+        let frameDur = 0;
+        const onFrame = (now, md) => {
+          rvfcHandle = 0;
+          if (stale() || swapped) return;
+          const t = md && typeof md.mediaTime === 'number' ? md.mediaTime : build.currentTime;
+          if (lastT >= 0 && t > lastT) {
+            const d = t - lastT;
+            if (d > 0.004 && d < 0.2) frameDur = frameDur ? Math.min(frameDur, d) : d;
+          }
+          lastT = t;
+          const fd = frameDur || (1 / 30);
+          const dur = build.duration;
+          if (isFinite(dur) && dur > 0 && t >= dur - fd * 1.5) {
+            const shownAt = (md && md.expectedDisplayTime) || now;
+            const wait = Math.max(0, shownAt + fd * 1000 - performance.now() - 2);
+            later(swap, wait);
+            return;
+          }
+          rvfcHandle = build.requestVideoFrameCallback(onFrame);
+        };
+        rvfcHandle = build.requestVideoFrameCallback(onFrame);
+      }
+
+      // Never-started watchdog (network stall before the first frame)
+      stallTimer = setTimeout(() => { if (!buildStarted) goLoopDirect('timeout'); }, 8000);
+
+      const playPromise = build.play();
+      if (playPromise !== undefined && playPromise.then) {
+        playPromise.then(() => {
+          if (stale()) return;
+          build.style.opacity = '1';
+          finishLoading();
+          // Once the build layer is fully opaque, make the loop layer opaque underneath it (invisible change),
+          // so the swap is a pure visibility flip with no fade/ghosting.
+          later(() => { if (!stale() && !swapped) setLoopOpaqueInstant(); }, 850);
+        }).catch(error => {
+          if (stale()) return;
+          console.log('Autoplay blocked by Chrome/sandboxing:', error);
+          clearStall();
+          finishLoading();
+          showImageFallback(() => build.play());
+        });
+      }
+    }
+
     function updateMedia(config, img, video) {
+      // Cancel every pending listener/timer of the previously selected drink
+      sdSeqGen++;
+      const gen = sdSeqGen;
+      if (sdSeqCleanup) {
+        try { sdSeqCleanup(); } catch (e) {}
+        sdSeqCleanup = null;
+      }
+      video.classList.remove('sd-instant');
+      config = sdResolveConfig(config);
+      const loopEl = document.getElementById('drink-video-loop');
+      if (loopEl && sdIsSequenceConfig(config)) {
+        sdPlaySequence(config, img, video, loopEl, gen);
+        return;
+      }
+      sdExitSequenceMode(video, loopEl);
+
       const logo = document.getElementById('brand-logo-container');
       if (config.video) {
         if (logo) logo.classList.add('logo-loading');
@@ -903,7 +1401,13 @@
       // Coordinated slide/fade transitions for details
       desc.style.opacity = '0';
       desc.style.transform = 'translateY(15px)'; // smaller slide offset for quick transition
-      if (config.video) {
+      const loopLayer = document.getElementById('drink-video-loop');
+      if (sdSeqState.active || sdIsSequenceConfig(sdResolveConfig(config))) {
+        // Sequence mode: opacity-only cross-fade of both layers
+        img.style.opacity = '0';
+        video.style.opacity = '0';
+        if (loopLayer) loopLayer.style.opacity = '0';
+      } else if (config.video) {
         img.style.opacity = '0';
         video.style.opacity = '0.5';
       } else {
@@ -930,6 +1434,7 @@
         // Fade in details
         desc.style.opacity = '1';
         desc.style.transform = 'translateY(0)';
+        sdScheduleLayout();
       }, 250);
     }
 
@@ -959,10 +1464,19 @@
       // Animate Transition Out
       desc.style.opacity = '0';
       desc.style.transform = 'translateY(30px)';
-      img.style.opacity = '0';
-      img.style.transform = 'scale(1.1)';
-      video.style.opacity = '0';
-      video.style.transform = 'scale(1.1)';
+      const loopLayer = document.getElementById('drink-video-loop');
+      const targetCfg = drink && drink.hasTempToggle ? drink.hot : drink;
+      if (sdSeqState.active || sdIsSequenceConfig(sdResolveConfig(targetCfg))) {
+        // Sequence mode: opacity-only transition (no zoom, it would crop the drink)
+        img.style.opacity = '0';
+        video.style.opacity = '0';
+        if (loopLayer) loopLayer.style.opacity = '0';
+      } else {
+        img.style.opacity = '0';
+        img.style.transform = 'scale(1.1)';
+        video.style.opacity = '0';
+        video.style.transform = 'scale(1.1)';
+      }
       
       setTimeout(() => {
         // Resolve target drink config based on temp toggle
@@ -1001,6 +1515,7 @@
         desc.classList.remove('panel-hidden');
         desc.style.opacity = '1';
         desc.style.transform = 'translateY(0)';
+        sdScheduleLayout();
       }, 400);
       
       // Close sidebar drawer automatically on mobile when a drink is selected
@@ -1016,6 +1531,7 @@
       panel.style.opacity = '';
       panel.style.transform = '';
       panelManuallyClosed = true; // Lock in the closed state until selection changes
+      sdScheduleLayout();
     }
 
     function revealPanel() {
@@ -1026,6 +1542,7 @@
         panel.classList.remove('panel-hidden');
         panel.style.opacity = '1';
         panel.style.transform = 'translateY(0)';
+        sdScheduleLayout();
       }
     }
 
@@ -1036,6 +1553,7 @@
       if (isOpen && window.innerWidth < 768) {
         hidePanel();
       }
+      sdScheduleLayout();
     }
 
     // Handles clicks on the immersive background
@@ -1214,6 +1732,16 @@
 
       // Open default category on load
       toggleCategory('cat-matcha');
+
+      // 8b. Smart framing recompute for 2-part sequences (guarded: width changes > 2px only,
+      // so Square's height poller / mobile URL-bar resizes never cause feedback loops)
+      let sdLastWidth = window.innerWidth;
+      window.addEventListener('resize', () => {
+        if (Math.abs(window.innerWidth - sdLastWidth) > 2) {
+          sdLastWidth = window.innerWidth;
+          sdScheduleLayout();
+        }
+      });
       
       // Initialize the default drink show state and play video smoothly on load
       const firstItem = document.querySelector('.drink-nav-item');
@@ -1268,6 +1796,10 @@
         if (!visibleCategories.length || !visibleDrinks.length) return;
 
         // Rebuild live drinks lookup dictionary in exact submenu + item order
+        const prevDrink = drinks[currentDrinkKey];
+        const prevCfg = prevDrink ? (prevDrink.hasTempToggle ? (prevDrink[currentDrinkTemp] || prevDrink) : prevDrink) : null;
+        const mediaSig = (c) => c ? [c.video || '', c.buildVideo || '', c.loopVideo || '', JSON.stringify(c.framing || null)].join('|') : '';
+        const prevMediaSig = mediaSig(prevCfg);
         Object.keys(drinks).forEach(k => delete drinks[k]);
 
         const navEl = document.querySelector('aside.sidebar-slide nav');
@@ -1307,11 +1839,14 @@
               text: d.text,
               img: d.img,
               video: d.video,
+              buildVideo: typeof d.buildVideo === 'string' ? d.buildVideo : '',
+              loopVideo: typeof d.loopVideo === 'string' ? d.loopVideo : '',
+              framing: sdNormalizeFraming(d.framing),
               price: d.price,
               ambient: d.ambient || '#1C2E1F',
               hasTempToggle: Boolean(d.hasTempToggle),
-              hot: d.hot || null,
-              iced: d.iced || null
+              hot: sdNormalizeVariant(d.hot),
+              iced: sdNormalizeVariant(d.iced)
             };
 
             const itemBtn = document.createElement('button');
@@ -1363,6 +1898,10 @@
             if (titleEl) titleEl.innerText = activeCfg.title;
             if (textEl) textEl.innerText = activeCfg.text;
             if (priceEl) priceEl.innerText = activeCfg.price;
+            // Live CRM media changed for the drink on screen (e.g. a new build/loop sequence): restart its media
+            if (mediaSig(activeCfg) !== prevMediaSig && (activeCfg.video || activeCfg.img || sdIsSequenceConfig(activeCfg))) {
+              updateMedia(activeCfg, document.getElementById('drink-image'), document.getElementById('drink-video'));
+            }
           }
         }
       } catch (err) {
