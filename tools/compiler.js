@@ -75,10 +75,13 @@ function processAssetPaths(html, useCDN) {
 
     const targetBase = useCDN ? CDN_BASE_URL : `/${LOCAL_ASSETS_PATH}`;
     
-    // Safely URL-encode the filename to handle spaces, ampersands, parentheses, etc.
-    const encodedFilename = encodeURIComponent(filename)
-      .replace(/%2F/g, '/')
-      .replace(/%3A/g, ':');
+    // Safely URL-encode static filename segments while preserving JS ${...} template expressions
+    const encodedFilename = filename.replace(/(\$\{[^}]+\})|([^$]+|\$(?!\{))/g, (seg, expr) => {
+      if (expr) return expr;
+      return encodeURIComponent(seg)
+        .replace(/%2F/g, '/')
+        .replace(/%3A/g, ':');
+    });
     
     return `${prefix}${targetBase}${encodedFilename}${suffix}`;
   });

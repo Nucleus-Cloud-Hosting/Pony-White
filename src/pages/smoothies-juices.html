@@ -150,7 +150,7 @@
     
     <!-- Breathtaking Full-Screen Active Smoothie Background Image (Almost Full Screen, Atmospheric and Immersive) -->
     <div class="absolute inset-0 z-0 overflow-hidden pointer-events-none transition-all duration-1000">
-        <img id="smoothie-bg-image" decoding="async" src="../../assets/layered-smoothie.jpg" class="w-full h-full object-cover opacity-35 filter blur-[3px] scale-105 transition-all duration-[1000ms] ease-out" alt="Smoothie Background">
+        <img id="smoothie-bg-image" fetchpriority="high" decoding="async" src="../../assets/layered-smoothie.jpg" class="w-full h-full object-cover opacity-35 filter blur-[3px] scale-105 transition-all duration-[1000ms] ease-out" alt="Smoothie Background">
         <div class="absolute inset-0 bg-gradient-to-b from-[#001710]/60 via-transparent to-[#001710] z-10"></div>
     </div>
     
@@ -243,7 +243,7 @@
             price: "$14.00",
             description: "Dragonfruit, strawberry, banana, coyo, strawberry purée, coconut milk & water.",
             color: "#ff3b7e",
-            imgSrc: "smoothie-dragonberry.jpg",
+            imgSrc: "../../assets/smoothie-dragonberry.jpg",
             tags: ["Dragonfruit", "Coyo", "Fresh"],
             orderUrl: "https://pony-white-cafe.square.site/s/order"
         },
@@ -255,7 +255,7 @@
             price: "$14.00",
             description: "Mango, pineapple, blue spirulina, coyo, coconut milk & water.",
             color: "#00a8e8",
-            imgSrc: "smoothie-cocobliss.png",
+            imgSrc: "../../assets/smoothie-cocobliss.png",
             tags: ["Blue Spirulina", "Tropical", "Coyo"],
             orderUrl: "https://pony-white-cafe.square.site/s/order"
         },
@@ -267,7 +267,7 @@
             price: "$14.00",
             description: "Kale, spinach, mango, banana, coconut milk & water.",
             color: "#4caf50",
-            imgSrc: "smoothie-green-but-not.png",
+            imgSrc: "../../assets/smoothie-green-but-not.png",
             tags: ["Super Greens", "Mango", "Dairy-Free"],
             orderUrl: "https://pony-white-cafe.square.site/s/order"
         },
@@ -279,7 +279,7 @@
             price: "$14.00",
             description: "Blueberry, pineapple, coyo, banana, goji berry, coconut milk & water.",
             color: "#9c27b0",
-            imgSrc: "smoothie-galaxy.png",
+            imgSrc: "../../assets/smoothie-galaxy.png",
             tags: ["Antioxidant", "Goji Berry", "Coyo"],
             orderUrl: "https://pony-white-cafe.square.site/s/order"
         },
@@ -291,7 +291,7 @@
             price: "$14.00",
             description: "Mango, raspberry, coconut milk & water.",
             color: "#ffc107",
-            imgSrc: "smoothie-mango-tango.png",
+            imgSrc: "../../assets/smoothie-mango-tango.png",
             tags: ["Mango", "Raspberry", "Refreshing"],
             orderUrl: "https://pony-white-cafe.square.site/s/order"
         },
@@ -303,7 +303,7 @@
             price: "$14.00",
             description: "Banana, peanut butter, chia seeds, cinnamon, honey & milk.",
             color: "#a07855",
-            imgSrc: "smoothie-bananarific.png",
+            imgSrc: "../../assets/smoothie-bananarific.png",
             tags: ["Peanut Butter", "Chia Seeds", "Energy"],
             orderUrl: "https://pony-white-cafe.square.site/s/order"
         },
@@ -315,7 +315,7 @@
             price: "$14.00",
             description: "Nutella, fresh berries, coconut milk, and cacao nibs.",
             color: "#880e4f",
-            imgSrc: "smoothie-cherry-ripe.png",
+            imgSrc: "../../assets/smoothie-cherry-ripe.png",
             tags: ["Nutella", "Fresh Berries", "Cacao Nibs"],
             orderUrl: "https://pony-white-cafe.square.site/s/order"
         }
@@ -367,7 +367,7 @@
                 <div class="w-full flex flex-col items-center">
                     <!-- Uncropped Direct Image with Drop Shadow -->
                     <div class="relative w-[190px] h-[250px] mb-4 flex items-center justify-center rounded-2xl overflow-hidden border border-white/15 shadow-2xl">
-                        <img src="../../assets/${drink.imgSrc}" ${idx > 1 ? 'loading="lazy"' : ''} decoding="async" class="w-full h-full object-cover" alt="${drink.title}">
+                        <img src="${drink.imgSrc}" ${idx > 1 ? 'loading="lazy"' : ''} decoding="async" class="w-full h-full object-cover" alt="${drink.title}">
                     </div>
                     <span class="font-label-sm uppercase tracking-widest text-secondary-fixed-dim font-bold text-[10px] block mb-1">Smoothie</span>
                     <h4 class="font-serif text-2xl text-white font-bold tracking-tight mb-1">${drink.title}</h4>
@@ -412,7 +412,7 @@
             // Framed studio card on the wheel
             item.innerHTML = `
                 <div class="relative w-full h-full flex items-center justify-center transition-all duration-500 group p-2">
-                    <img src="../../assets/${drink.imgSrc}" ${idx > 2 ? 'loading="lazy"' : ''} decoding="async" class="w-full h-full object-cover rounded-2xl border border-white/20 filter drop-shadow-[0_12px_24px_rgba(0,0,0,0.55)] transition-all duration-500" alt="${drink.title}">
+                    <img src="${drink.imgSrc}" ${idx > 2 ? 'loading="lazy"' : ''} decoding="async" class="w-full h-full object-cover rounded-2xl border border-white/20 filter drop-shadow-[0_12px_24px_rgba(0,0,0,0.55)] transition-all duration-500" alt="${drink.title}">
                 </div>
             `;
 
@@ -528,7 +528,7 @@
             if (drinkOrderBtn) drinkOrderBtn.setAttribute("href", data.orderUrl);
 
             if (bgImage) {
-                bgImage.src = `../../assets/${data.imgSrc}`;
+                bgImage.src = data.imgSrc;
                 bgImage.style.opacity = '0.35';
                 bgImage.style.transform = 'scale(1.05)';
             }
