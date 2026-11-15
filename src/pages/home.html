@@ -84,6 +84,26 @@
             left: 50% !important;
             transform: translateX(-50%) !important;
         }
+        @keyframes kitchenSlideProgress {
+            0% { transform: scaleX(0); }
+            100% { transform: scaleX(1); }
+        }
+        .kitchen-progress-bar {
+            width: 100% !important;
+            transform-origin: left center;
+            transform: scaleX(0);
+            animation: kitchenSlideProgress 10s linear infinite;
+            will-change: transform;
+        }
+        #kitchen-showcase:hover .kitchen-progress-bar {
+            animation-play-state: paused;
+        }
+        @media (prefers-reduced-motion: reduce) {
+            .kitchen-progress-bar {
+                animation: none !important;
+                transform: scaleX(0) !important;
+            }
+        }
     </style>
 <body>
 
@@ -187,7 +207,7 @@
 <!-- Dynamically populated dots -->
 </div>
 <div class="absolute bottom-0 left-0 w-full h-[3px] bg-surface-container">
-<div id="progress-bar" class="h-full gold-gradient-bg w-0 transition-all duration-[50ms] linear"></div>
+<div id="progress-bar" class="h-full gold-gradient-bg kitchen-progress-bar"></div>
 </div>
 </div>
 </div>
@@ -760,11 +780,8 @@
         ];
 
         let currentSlide = 0;
-        let progress = 0;
         let isPaused = false;
-        const SLIDE_DURATION = 10000; // 10 seconds
-        const PROGRESS_INTERVAL = 50; // Update progress bar every 50ms
-        let slideshowInterval = null;
+        let timerBound = false;
         let slideTransitionTimeout = null;
 
         // DOM elements
@@ -831,20 +848,24 @@
             }
         }
 
-        function startTimer() {
-            if (slideshowInterval) clearInterval(slideshowInterval);
-            
-            slideshowInterval = setInterval(() => {
-                if (!isPaused) {
-                    progress += (PROGRESS_INTERVAL / SLIDE_DURATION) * 100;
-                    if (progress >= 100) {
-                        progress = 0;
-                        nextSlide();
-                    } else {
-                        if (progressBar) progressBar.style.width = `${progress}%`;
-                    }
+        function resetProgressBarAnimation() {
+            if (!progressBar) return;
+            if (typeof progressBar.getAnimations === 'function') {
+                const anims = progressBar.getAnimations();
+                if (anims.length > 0) {
+                    anims.forEach(a => { a.currentTime = 0; });
                 }
-            }, PROGRESS_INTERVAL);
+            }
+        }
+
+        function startTimer() {
+            if (!progressBar || timerBound) return;
+            timerBound = true;
+            progressBar.addEventListener('animationiteration', () => {
+                if (!isPaused && DISHES_DATA.length > 0) {
+                    updateSlideDOM((currentSlide + 1) % DISHES_DATA.length, true);
+                }
+            });
         }
 
         function hydrateSlideImg(i) {
@@ -964,8 +985,7 @@
         }
 
         function goToSlide(index) {
-            progress = 0;
-            if (progressBar) progressBar.style.width = '0%';
+            resetProgressBarAnimation();
             updateSlideDOM(index, true);
         }
 
@@ -1225,7 +1245,7 @@
             } else {
                 stateHtml = `We are <span style="color:#15803d;font-weight:700;">OPEN NOW</span>! Kitchen open until 2:30pm &amp; drinks until ${formatTime(today.close)}.`;
             }
-            indicators.forEach(el => { el.innerHTML = stateHtml; });
+            indicators.forEach(el => { if (el.innerHTML !== stateHtml) el.innerHTML = stateHtml; });
         }
 
         // Initialize on DOM load

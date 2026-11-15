@@ -112,6 +112,26 @@
             0% { transform: translateX(-100%) translateY(-100%); }
             100% { transform: translateX(100%) translateY(100%); }
         }
+        @keyframes kitchenSlideProgress {
+            0% { transform: scaleX(0); }
+            100% { transform: scaleX(1); }
+        }
+        .kitchen-progress-bar {
+            width: 100% !important;
+            transform-origin: left center;
+            transform: scaleX(0);
+            animation: kitchenSlideProgress 10s linear infinite;
+            will-change: transform;
+        }
+        #kitchen-showcase:hover .kitchen-progress-bar {
+            animation-play-state: paused;
+        }
+        @media (prefers-reduced-motion: reduce) {
+            .kitchen-progress-bar {
+                animation: none !important;
+                transform: scaleX(0) !important;
+            }
+        }
 </style>
 <body>
 
@@ -470,7 +490,7 @@
                 </div>
 
                 <div class="absolute bottom-0 left-0 w-full h-[3px] bg-white/10">
-                    <div id="progress-bar" class="h-full gold-gradient-bg w-0 transition-all duration-[50ms] linear"></div>
+                    <div id="progress-bar" class="h-full gold-gradient-bg kitchen-progress-bar"></div>
                 </div>
             </div>
         </div>
@@ -1236,11 +1256,8 @@
 
         const LOCAL_SLIDE_FALLBACKS = DISHES_DATA.map(d => d.img);
         let currentSlide = 0;
-        let progress = 0;
         let isPaused = false;
-        const SLIDE_DURATION = 10000;
-        const PROGRESS_INTERVAL = 50;
-        let slideshowInterval = null;
+        let timerBound = false;
         let slideTransitionTimeout = null;
 
         const slideTitle = document.getElementById('slide-title');
@@ -1312,19 +1329,24 @@
             }
         }
 
-        function startTimer() {
-            if (slideshowInterval) clearInterval(slideshowInterval);
-            slideshowInterval = setInterval(() => {
-                if (!isPaused) {
-                    progress += (PROGRESS_INTERVAL / SLIDE_DURATION) * 100;
-                    if (progress >= 100) {
-                        progress = 0;
-                        nextSlide();
-                    } else if (progressBar) {
-                        progressBar.style.width = `${progress}%`;
-                    }
+        function resetProgressBarAnimation() {
+            if (!progressBar) return;
+            if (typeof progressBar.getAnimations === 'function') {
+                const anims = progressBar.getAnimations();
+                if (anims.length > 0) {
+                    anims.forEach(a => { a.currentTime = 0; });
                 }
-            }, PROGRESS_INTERVAL);
+            }
+        }
+
+        function startTimer() {
+            if (!progressBar || timerBound) return;
+            timerBound = true;
+            progressBar.addEventListener('animationiteration', () => {
+                if (!isPaused && DISHES_DATA.length > 0) {
+                    updateSlideDOM((currentSlide + 1) % DISHES_DATA.length, true);
+                }
+            });
         }
 
         function hydrateSlideImg(i) {
@@ -1422,8 +1444,7 @@
         }
 
         function goToSlide(index) {
-            progress = 0;
-            if (progressBar) progressBar.style.width = '0%';
+            resetProgressBarAnimation();
             updateSlideDOM(index, true);
         }
 
@@ -1617,7 +1638,7 @@
             } else {
                 stateHtml = `✨ <strong style="color:#86efac;">OPEN NOW IN FITZROY</strong> — Kitchen until 2:30pm • Drinks until ${formatTime(today.close)}`;
             }
-            indicators.forEach(el => { el.innerHTML = stateHtml; });
+            indicators.forEach(el => { if (el.innerHTML !== stateHtml) el.innerHTML = stateHtml; });
         }
 
         function init() {
