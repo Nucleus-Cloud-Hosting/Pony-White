@@ -1034,7 +1034,25 @@
             }
         ];
 
+        let currentDrinkLabMood = 'all';
+
+        function pickFirstStr(...vals) {
+            for (let i = 0; i < vals.length; i++) {
+                if (typeof vals[i] === 'string' && vals[i].trim()) return vals[i].trim();
+            }
+            return '';
+        }
+
+        function inferDrinkMood(d) {
+            const haystack = `${d.key || ''} ${d.id || ''} ${d.title || ''} ${d.categoryId || ''}`.toLowerCase();
+            if (haystack.includes('matcha') || haystack.includes('pistachio') || haystack.includes('emerald')) return 'emerald';
+            if (haystack.includes('spirulina') || haystack.includes('taro') || haystack.includes('ube') || haystack.includes('cosmic')) return 'cosmic';
+            if (haystack.includes('cherry') || haystack.includes('rose') || haystack.includes('strawberr') || haystack.includes('dragon')) return 'blush';
+            return 'golden';
+        }
+
         function renderDrinkLab(mood = 'all') {
+            currentDrinkLabMood = mood;
             const grid = document.getElementById('drink-lab-grid');
             if (!grid) return;
 
@@ -1047,15 +1065,29 @@
                 const card = document.createElement('div');
                 card.className = 'group bg-white rounded-3xl overflow-hidden border border-secondary/15 shadow-md hover:shadow-2xl transition-all duration-500 flex flex-col justify-between';
 
-                const dotsHtml = item.paletteColors
+                const dotsHtml = (item.paletteColors || ['#0b2e21', '#ffe088', '#c6f6d5'])
                     .map(c => `<span class="w-3 h-3 rounded-full border border-white shadow-sm" style="background:${c};"></span>`)
                     .join('');
+
+                const hasSeq = Boolean(item.buildVideo && item.loopVideo && item.buildVideo !== item.loopVideo);
+                const videoMarkup = hasSeq
+                    ? `<video data-src="${item.loopVideo}" muted loop playsinline preload="none" class="drink-card-video-loop absolute inset-0 w-full h-full object-cover opacity-0 transition-opacity duration-300 pointer-events-none"></video>
+                       <video data-src="${item.buildVideo}" muted playsinline preload="none" class="drink-card-video-build absolute inset-0 w-full h-full object-cover opacity-0 transition-opacity duration-300 pointer-events-none"></video>`
+                    : (item.video
+                        ? `<video data-src="${item.video}" muted loop playsinline preload="none" class="drink-card-video absolute inset-0 w-full h-full object-cover opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"></video>`
+                        : '');
+
+                const imgHtml = item.img
+                    ? `<img src="${item.img}" loading="lazy" decoding="async" alt="${item.title}" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"/>`
+                    : `<div class="w-full h-full bg-gradient-to-br from-[#0d1712] to-[#1C2E1F]"></div>`;
+
+                const orderHref = item.orderUrl || 'https://pony-white-cafe.square.site/s/order';
 
                 card.innerHTML = `
                     <div>
                         <div class="relative h-72 overflow-hidden bg-[#071f17]">
-                            <img src="${item.img}" loading="lazy" decoding="async" alt="${item.title}" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"/>
-                            ${item.video ? `<video src="${item.video}" muted loop playsinline preload="none" class="drink-card-video absolute inset-0 w-full h-full object-cover opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"></video>` : ''}
+                            ${imgHtml}
+                            ${videoMarkup}
                             <div class="absolute top-3.5 left-3.5 right-3.5 flex justify-between items-center z-10">
                                 <span class="px-3 py-1 rounded-full text-[11px] font-bold shadow-sm" style="background:${item.badgeBg}; color:${item.badgeText};">${item.badge}</span>
                                 <div class="flex items-center gap-1 bg-black/75 px-2.5 py-1 rounded-full">
@@ -1076,22 +1108,85 @@
                             View Full Pour
                             <span class="material-symbols-outlined text-sm">arrow_forward</span>
                         </a>
-                        <a href="https://pony-white-cafe.square.site/s/order" target="_blank" rel="noopener noreferrer" class="bg-primary text-white hover:bg-primary-container px-4 py-2 rounded-full text-xs font-bold no-underline transition-colors">
+                        <a href="${orderHref}" target="_blank" rel="noopener noreferrer" class="bg-primary text-white hover:bg-primary-container px-4 py-2 rounded-full text-xs font-bold no-underline transition-colors">
                             Order
                         </a>
                     </div>
                 `;
 
-                // Play video on hover/touch for cards that have a pour video
-                const vid = card.querySelector('.drink-card-video');
-                if (vid) {
-                    card.addEventListener('mouseenter', () => {
-                        const p = vid.play();
-                        if (p && p.catch) p.catch(() => {});
+                if (hasSeq) {
+                    const buildVid = card.querySelector('.drink-card-video-build');
+                    const loopVid = card.querySelector('.drink-card-video-loop');
+                    let seqActive = false;
+                    let swappedCard = false;
+
+                    const ensureLoaded = (v) => {
+                        const ds = v && v.getAttribute('data-src');
+                        if (v && ds && v.getAttribute('src') !== ds) {
+                            v.preload = 'auto';
+                            v.src = ds;
+                            v.load();
+                        }
+                    };
+
+                    const swapCard = () => {
+                        if (!seqActive || swappedCard) return;
+                        swappedCard = true;
+                        loopVid.style.opacity = '1';
+                        buildVid.style.opacity = '0';
+                        buildVid.pause();
+                        const lp = loopVid.play();
+                        if (lp && lp.catch) lp.catch(() => {});
+                    };
+
+                    buildVid.addEventListener('ended', swapCard);
+                    buildVid.addEventListener('timeupdate', () => {
+                        const dur = buildVid.duration;
+                        if (seqActive && !swappedCard && isFinite(dur) && dur > 0 && buildVid.currentTime >= dur - 0.04) {
+                            swapCard();
+                        }
                     });
-                    card.addEventListener('mouseleave', () => {
-                        vid.pause();
-                    });
+
+                    const startPreview = () => {
+                        seqActive = true;
+                        swappedCard = false;
+                        ensureLoaded(buildVid);
+                        ensureLoaded(loopVid);
+                        loopVid.style.opacity = '0.001';
+                        buildVid.style.opacity = '1';
+                        try { buildVid.currentTime = 0; } catch (e) {}
+                        const bp = buildVid.play();
+                        if (bp && bp.catch) bp.catch(() => swapCard());
+                    };
+
+                    const stopPreview = () => {
+                        seqActive = false;
+                        swappedCard = false;
+                        buildVid.pause();
+                        loopVid.pause();
+                        buildVid.style.opacity = '0';
+                        loopVid.style.opacity = '0';
+                    };
+
+                    card.addEventListener('mouseenter', startPreview);
+                    card.addEventListener('mouseleave', stopPreview);
+                } else {
+                    const vid = card.querySelector('.drink-card-video');
+                    if (vid) {
+                        card.addEventListener('mouseenter', () => {
+                            const ds = vid.getAttribute('data-src');
+                            if (ds && vid.getAttribute('src') !== ds) {
+                                vid.preload = 'auto';
+                                vid.src = ds;
+                                vid.load();
+                            }
+                            const p = vid.play();
+                            if (p && p.catch) p.catch(() => {});
+                        });
+                        card.addEventListener('mouseleave', () => {
+                            vid.pause();
+                        });
+                    }
                 }
 
                 grid.appendChild(card);
@@ -1474,7 +1569,10 @@
         // 4. NUCLEUS CRM LIVE SYNC (`public_data/homepage_kitchen`)
         // =========================================================================
         const NUCLEUS_BUSINESS_ID = 'nYaZ4T5qRKS3Z9EG5mrl';
+        const NUCLEUS_KITCHEN_API_URL = `https://nucleuscloud.net/api/widget/crm/${NUCLEUS_BUSINESS_ID}/homepage-kitchen`;
+        const NUCLEUS_DRINKS_API_URL = `https://nucleuscloud.net/api/widget/crm/${NUCLEUS_BUSINESS_ID}/signature-drinks`;
         const NUCLEUS_KITCHEN_FIRESTORE_URL = `https://firestore.googleapis.com/v1/projects/bizboard-67b4c/databases/(default)/documents/businesses/${NUCLEUS_BUSINESS_ID}/public_data/homepage_kitchen`;
+        const NUCLEUS_DRINKS_FIRESTORE_URL = `https://firestore.googleapis.com/v1/projects/bizboard-67b4c/databases/(default)/documents/businesses/${NUCLEUS_BUSINESS_ID}/public_data/signature_drinks`;
 
         function parseFirestoreVal(val) {
             if (!val || typeof val !== 'object') return val;
@@ -1493,14 +1591,107 @@
             return val;
         }
 
+        async function fetchCrmPublicDoc(apiUrl, firestoreUrl, validate) {
+            try {
+                const res = await fetch(apiUrl, { cache: 'no-store' });
+                if (res.ok) {
+                    const data = await res.json();
+                    if (validate(data)) return data;
+                }
+            } catch (e) {}
+            try {
+                const res = await fetch(firestoreUrl, { cache: 'no-store' });
+                if (!res.ok) return null;
+                const rawDoc = await res.json();
+                if (!rawDoc || !rawDoc.fields) return null;
+                const parsed = parseFirestoreVal({ mapValue: { fields: rawDoc.fields } });
+                return validate(parsed) ? parsed : null;
+            } catch (e) {
+                return null;
+            }
+        }
+
+        async function syncDrinkLabFromNucleusCrm() {
+            try {
+                const data = await fetchCrmPublicDoc(
+                    NUCLEUS_DRINKS_API_URL,
+                    NUCLEUS_DRINKS_FIRESTORE_URL,
+                    (d) => Boolean(d && Array.isArray(d.drinks))
+                );
+                if (!data) return;
+                const visibleDrinks = data.drinks
+                    .filter(d => d && d.visible !== false)
+                    .sort((a, b) => (a.order ?? 0) - (b.order ?? 0));
+                if (!visibleDrinks.length) return;
+
+                const byKey = {};
+                visibleDrinks.forEach(d => {
+                    const k = d.key || d.id;
+                    if (k) byKey[k] = d;
+                });
+
+                const globalOrderUrl = pickFirstStr(data.orderNowUrl, 'https://pony-white-cafe.square.site/s/order');
+                DRINK_LAB_ITEMS.forEach(item => {
+                    const d = byKey[item.id];
+                    if (!d) return;
+                    const primary = d.hasTempToggle ? (d.iced || d.hot || d) : d;
+                    const buildVideo = pickFirstStr(primary.buildVideo, primary.buildVideoUrl, d.buildVideo, d.buildVideoUrl);
+                    const loopVideo = pickFirstStr(primary.loopVideo, primary.loopVideoUrl, d.loopVideo, d.loopVideoUrl);
+                    const video = pickFirstStr(primary.video, primary.videoUrl, loopVideo, d.video, d.videoUrl);
+                    const img = pickFirstStr(primary.img, primary.imageUrl, d.img, d.imageUrl);
+                    if (d.title) item.title = d.title;
+                    if (d.price || primary.price) item.price = pickFirstStr(d.price, primary.price);
+                    if (d.text || primary.text) item.desc = pickFirstStr(d.text, primary.text);
+                    if (img) item.img = img;
+                    if (video) item.video = video;
+                    if (buildVideo && loopVideo) {
+                        item.buildVideo = buildVideo;
+                        item.loopVideo = loopVideo;
+                    }
+                    item.orderUrl = pickFirstStr(d.orderUrl, globalOrderUrl);
+                    item.link = `signature-drinks.html?drink=${encodeURIComponent(item.id)}`;
+                });
+
+                // Promote any live CRM 2-part sequence drinks (e.g. Cherry Cherry Lady) into the Viral Drink Lab
+                visibleDrinks.forEach(d => {
+                    const k = d.key || d.id;
+                    if (!k || DRINK_LAB_ITEMS.some(item => item.id === k)) return;
+                    const primary = d.hasTempToggle ? (d.iced || d.hot || d) : d;
+                    const buildVideo = pickFirstStr(primary.buildVideo, primary.buildVideoUrl, d.buildVideo, d.buildVideoUrl);
+                    const loopVideo = pickFirstStr(primary.loopVideo, primary.loopVideoUrl, d.loopVideo, d.loopVideoUrl);
+                    if (!buildVideo || !loopVideo) return;
+                    DRINK_LAB_ITEMS.unshift({
+                        id: k,
+                        title: d.title || 'Signature Creation',
+                        mood: inferDrinkMood(d),
+                        badge: 'Live Sequence Pour',
+                        badgeBg: '#ffe4e6',
+                        badgeText: '#9f1239',
+                        paletteColors: ['#f43f5e', d.ambient || '#1C2E1F', '#ffe088'],
+                        price: pickFirstStr(d.price, primary.price),
+                        desc: pickFirstStr(d.text, primary.text),
+                        img: pickFirstStr(primary.img, primary.imageUrl, d.img, d.imageUrl),
+                        video: pickFirstStr(primary.video, loopVideo, d.video),
+                        buildVideo,
+                        loopVideo,
+                        orderUrl: pickFirstStr(d.orderUrl, globalOrderUrl),
+                        link: `signature-drinks.html?drink=${encodeURIComponent(k)}`
+                    });
+                });
+
+                renderDrinkLab(currentDrinkLabMood);
+            } catch (err) {
+                console.warn('Nucleus CRM Drink Lab sync skipped:', err);
+            }
+        }
+
         async function syncKitchenShowcaseFromNucleusCrm() {
             try {
-                const res = await fetch(NUCLEUS_KITCHEN_FIRESTORE_URL);
-                if (!res.ok) return;
-                const rawDoc = await res.json();
-                if (!rawDoc || !rawDoc.fields) return;
-
-                const config = parseFirestoreVal({ mapValue: { fields: rawDoc.fields } });
+                const config = await fetchCrmPublicDoc(
+                    NUCLEUS_KITCHEN_API_URL,
+                    NUCLEUS_KITCHEN_FIRESTORE_URL,
+                    (c) => Boolean(c && Array.isArray(c.slides))
+                );
                 if (!config || !Array.isArray(config.slides)) return;
 
                 const visibleSlides = config.slides
@@ -1652,6 +1843,7 @@
             updateLiveStoreStatus();
             setInterval(updateLiveStoreStatus, 60000);
             syncKitchenShowcaseFromNucleusCrm();
+            syncDrinkLabFromNucleusCrm();
         }
 
         if (document.readyState === 'complete' || document.readyState === 'interactive') {

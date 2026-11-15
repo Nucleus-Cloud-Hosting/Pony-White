@@ -506,6 +506,7 @@
         // Reads from public_data/homepage_kitchen with zero Vault access needed
         // ==========================================
         const NUCLEUS_BUSINESS_ID = 'nYaZ4T5qRKS3Z9EG5mrl';
+        const NUCLEUS_KITCHEN_API_URL = `https://nucleuscloud.net/api/widget/crm/${NUCLEUS_BUSINESS_ID}/homepage-kitchen`;
         const NUCLEUS_KITCHEN_FIRESTORE_URL = `https://firestore.googleapis.com/v1/projects/bizboard-67b4c/databases/(default)/documents/businesses/${NUCLEUS_BUSINESS_ID}/public_data/homepage_kitchen`;
 
         function parseFirestoreVal(val) {
@@ -529,14 +530,28 @@
             return val;
         }
 
+        async function fetchKitchenShowcaseConfig() {
+            try {
+                const res = await fetch(NUCLEUS_KITCHEN_API_URL, { cache: 'no-store' });
+                if (res.ok) {
+                    const data = await res.json();
+                    if (data && Array.isArray(data.slides)) return data;
+                }
+            } catch (e) {}
+            try {
+                const res = await fetch(NUCLEUS_KITCHEN_FIRESTORE_URL, { cache: 'no-store' });
+                if (!res.ok) return null;
+                const rawDoc = await res.json();
+                if (!rawDoc || !rawDoc.fields) return null;
+                return parseFirestoreVal({ mapValue: { fields: rawDoc.fields } });
+            } catch (e) {
+                return null;
+            }
+        }
+
         async function syncKitchenShowcaseFromNucleusCrm() {
             try {
-                const res = await fetch(NUCLEUS_KITCHEN_FIRESTORE_URL);
-                if (!res.ok) return;
-                const rawDoc = await res.json();
-                if (!rawDoc || !rawDoc.fields) return;
-
-                const config = parseFirestoreVal({ mapValue: { fields: rawDoc.fields } });
+                const config = await fetchKitchenShowcaseConfig();
                 if (!config || !Array.isArray(config.slides)) return;
 
                 const visibleSlides = config.slides
