@@ -50,8 +50,7 @@ const PAGE_MAPPINGS = [
   },
   {
     dirName: 'pony_white_homepage_circular_logo_integration',
-    fileName: 'under-construction.html',
-    configOnly: true
+    fileName: 'qr.html'
   }
 ];
 
@@ -218,7 +217,7 @@ function processPage(mapping) {
       `<link rel="preconnect" href="https://fonts.googleapis.com">\n` +
       `<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>\n` +
       `<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&display=swap" rel="stylesheet">\n` +
-      `<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>\n` +
+      `<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@300..700,0..1&display=swap" rel="stylesheet"/>\n` +
       `<link rel="stylesheet" href="../styles/${pageCssName}">\n\n`;
     const finalSourceHtml = headerSection + styleContent + '\n\n' + bodyContent;
     

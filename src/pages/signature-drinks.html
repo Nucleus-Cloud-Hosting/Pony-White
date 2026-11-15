@@ -2,7 +2,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&display=swap" rel="stylesheet">
-<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@300..700,0..1&display=swap" rel="stylesheet"/>
 <link rel="stylesheet" href="../styles/signature-drinks.css">
 
 <style>
@@ -55,9 +55,7 @@
       transition: all 0.4s cubic-bezier(0.25, 1, 0.5, 1);
     }
     .glass-panel {
-      background: rgba(10, 15, 12, 0.6); /* Premium dark obsidian forest tint */
-      backdrop-filter: blur(32px);
-      -webkit-backdrop-filter: blur(32px);
+      background: rgba(10, 15, 12, 0.90); /* Premium dark obsidian forest tint */
       border: 1px solid rgba(255, 255, 255, 0.08);
       box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
       transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
@@ -186,9 +184,7 @@
       #mobile-menu-toggle {
         display: flex !important;
         position: absolute !important;
-        background: rgba(10, 15, 12, 0.3) !important;
-        backdrop-filter: blur(32px) !important;
-        -webkit-backdrop-filter: blur(32px) !important;
+        background: rgba(10, 15, 12, 0.90) !important;
         border: 1px solid rgba(255, 255, 255, 0.12) !important;
         box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2) !important;
       }
@@ -219,9 +215,7 @@
       
       /* Solid dark glass backdrop for maximum sidebar legibility on small screens */
       aside.sidebar-slide > div.pointer-events-none {
-        background: rgba(10, 15, 12, 0.3) !important;
-        backdrop-filter: blur(32px) !important;
-        -webkit-backdrop-filter: blur(32px) !important;
+        background: rgba(10, 15, 12, 0.92) !important;
         border-right: 1px solid rgba(255, 255, 255, 0.12) !important;
         mask-image: none !important;
         -webkit-mask-image: none !important;
@@ -271,9 +265,7 @@
         border-radius: 1.5rem !important;
         transform: translateX(-50%) translateY(0) scale(1) !important;
         z-index: 30 !important;
-        background: rgba(10, 15, 12, 0.3) !important;
-        backdrop-filter: blur(32px) !important;
-        -webkit-backdrop-filter: blur(32px) !important;
+        background: rgba(10, 15, 12, 0.92) !important;
         border: 1px solid rgba(255, 255, 255, 0.12) !important;
         box-shadow: 0 20px 50px rgba(0, 0, 0, 0.4) !important;
         transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.5s ease !important;
@@ -391,16 +383,16 @@
 
 <div class="signature-drinks-showcase relative w-full h-[580px] sm:h-[650px] md:h-[700px] lg:h-[750px] xl:h-[820px] flex overflow-hidden">
 <!-- Mobile Collections Drawer Toggle Button -->
-<button id="mobile-menu-toggle" onclick="toggleMobileMenu(event)" class="hidden fixed top-6 left-6 z-40 items-center gap-2 px-4 py-2.5 rounded-full bg-black/40 backdrop-blur-md border border-white/10 hover:bg-black/60 active:scale-95 transition-all duration-300">
+<button id="mobile-menu-toggle" onclick="toggleMobileMenu(event)" class="hidden fixed top-6 left-6 z-40 items-center gap-2 px-4 py-2.5 rounded-full bg-black/80 border border-white/10 hover:bg-black/90 active:scale-95 transition-all duration-300">
   <span class="material-symbols-outlined text-white text-lg">menu</span>
   <span class="text-white text-xs uppercase tracking-widest font-bold">Signature Drinks</span>
 </button>
 <!-- Full Screen Drink Background -->
 <div class="absolute inset-0 overflow-hidden flex justify-center items-center z-0">
-<img alt="Signature Drink" class="hidden w-full h-full object-cover scale-105" id="drink-image" src="../../assets/matcha-strawberry.jpg"/>
+<img alt="Signature Drink" class="w-full h-full object-cover scale-105" fetchpriority="high" decoding="async" id="drink-image" src="../../assets/matcha-strawberry.jpg"/>
 <!-- Loop layer for 2-part sequences (sits underneath #drink-video, which plays the one-shot build clip) -->
 <video id="drink-video-loop" class="absolute inset-0 w-full h-full object-cover z-0" style="display: none; opacity: 0;" preload="none" loop muted playsinline aria-hidden="true"></video>
-<video id="drink-video" class="absolute inset-0 w-full h-full object-cover scale-105 z-0" src="../../assets/Strawberries & Cream Matcha.mp4" autoplay loop muted playsinline></video>
+<video id="drink-video" class="absolute inset-0 w-full h-full object-cover scale-105 z-0" src="../../assets/Strawberries & Cream Matcha.mp4" poster="../../assets/matcha-strawberry.jpg" preload="metadata" autoplay loop muted playsinline></video>
 <!-- Ambient Overlays -->
 <div class="absolute inset-0 ambient-overlay bg-gradient-to-r from-forest-velvet via-transparent to-transparent opacity-90 z-10" id="ambient-grad" style="background: linear-gradient(to right, #2D1B22 0%, transparent 100%);"></div>
 <div class="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent z-10"></div>
@@ -585,7 +577,7 @@
 
 <!-- Brand Mark (No shape container) -->
 <div id="brand-logo-container" class="absolute bottom-8 right-8 z-50 pointer-events-none opacity-85 transition-all duration-300">
-  <img alt="Pony White Cafe Brand Mark" class="w-20 h-20 rounded-full object-cover" src="../../assets/White Color Overlay Design.png"/>
+  <img alt="Pony White Cafe Brand Mark" class="w-20 h-20 rounded-full object-cover" decoding="async" src="../../assets/White Color Overlay Design.png"/>
 </div>
 </main>
 </div>
@@ -1071,11 +1063,19 @@
       if (showcase) showcase.classList.add('sd-seq-mode');
       if (logo) logo.classList.add('logo-loading');
 
-      // Hide the still image (only used for the autoplay-blocked fallback)
-      img.style.display = 'none';
-      img.classList.add('hidden');
-      img.style.opacity = '0';
-      img.src = '';
+      // Keep high-res fallback poster visible beneath the build video until playback begins
+      if (config.img) {
+        img.src = config.img;
+        img.style.display = 'block';
+        img.classList.remove('hidden');
+        img.style.opacity = '1';
+        img.style.transform = 'none';
+      } else {
+        img.style.display = 'none';
+        img.classList.add('hidden');
+        img.style.opacity = '0';
+        img.src = '';
+      }
 
       [build, loop].forEach(v => {
         if (v.style.visibility === 'hidden') {
@@ -1098,19 +1098,34 @@
         v.style.opacity = '0';
       });
 
-      // Loop layer: preloaded, paused on frame 0, sitting underneath the build layer
+      // Staggered loading: prioritize the build clip first, then load the loop layer once build begins playing
+      const loopUrl = sdAbsUrl(config.loopVideo);
+      let loopLoaded = false;
       loop.loop = true;
       loop.setAttribute('loop', '');
-      loop.preload = 'auto';
-      const loopUrl = sdAbsUrl(config.loopVideo);
+      loop.pause();
       if (loop.src !== loopUrl) {
-        loop.src = config.loopVideo;
+        loop.preload = 'none';
+        loop.removeAttribute('src');
         loop.load();
       } else {
-        loop.pause();
+        loopLoaded = true;
         try { loop.currentTime = 0; } catch (e) {}
       }
-      loop.pause();
+
+      const ensureLoopLoaded = () => {
+        if (loopLoaded || stale()) return;
+        loopLoaded = true;
+        loop.preload = 'auto';
+        if (loop.src !== loopUrl) {
+          loop.src = config.loopVideo;
+          loop.load();
+        } else {
+          loop.pause();
+          try { loop.currentTime = 0; } catch (e) {}
+        }
+        loop.pause();
+      };
 
       // Build layer: plays once
       build.loop = false;
@@ -1164,13 +1179,25 @@
         if (stale() || swapped) return;
         swapped = true;
         clearStall();
+        ensureLoopLoaded();
         console.log('Drink build clip skipped (' + reason + '), starting loop.');
         build.pause();
         build.style.visibility = 'hidden';
         loop.style.opacity = '1';
         const p = loop.play();
         if (p && p.then) {
-          p.then(finishLoading).catch(err => {
+          p.then(() => {
+            finishLoading();
+            if (!stale() && config.img) {
+              img.style.opacity = '0';
+              later(() => {
+                if (!stale()) {
+                  img.style.display = 'none';
+                  img.classList.add('hidden');
+                }
+              }, 500);
+            }
+          }).catch(err => {
             console.log('Loop autoplay blocked:', err);
             finishLoading();
             showImageFallback(() => loop.play());
@@ -1220,6 +1247,16 @@
       on(build, 'playing', () => {
         buildStarted = true;
         clearStall();
+        ensureLoopLoaded();
+        if (config.img) {
+          img.style.opacity = '0';
+          later(() => {
+            if (!stale()) {
+              img.style.display = 'none';
+              img.classList.add('hidden');
+            }
+          }, 500);
+        }
       });
       on(build, 'waiting', () => {
         if (!buildStarted || swapped) return;
@@ -1296,11 +1333,19 @@
       const logo = document.getElementById('brand-logo-container');
       if (config.video) {
         if (logo) logo.classList.add('logo-loading');
-        // Hide image by default when a video is present to avoid flashing underlay
-        img.style.display = 'none';
-        img.classList.add('hidden');
-        img.style.opacity = '0';
-        img.src = '';
+        // Keep high-res image visible as poster backdrop while the video buffers
+        if (config.img) {
+          img.src = config.img;
+          img.style.display = 'block';
+          img.classList.remove('hidden');
+          img.style.opacity = '1';
+          img.style.transform = 'scale(1.05)';
+        } else {
+          img.style.display = 'none';
+          img.classList.add('hidden');
+          img.style.opacity = '0';
+          img.src = '';
+        }
         
         video.style.display = 'block';
         video.classList.remove('hidden');
@@ -1328,10 +1373,21 @@
         const playPromise = video.play();
         if (playPromise !== undefined) {
           playPromise.then(() => {
-            // Success! Fade in the video beautifully
+            if (sdSeqGen !== gen) return;
+            // Success! Fade in the video beautifully and hide poster image
             video.style.opacity = '1';
             if (logo) logo.classList.remove('logo-loading');
+            if (config.img) {
+              img.style.opacity = '0';
+              setTimeout(() => {
+                if (sdSeqGen === gen) {
+                  img.style.display = 'none';
+                  img.classList.add('hidden');
+                }
+              }, 500);
+            }
           }).catch(error => {
+            if (sdSeqGen !== gen) return;
             console.log('Autoplay blocked by Chrome/sandboxing:', error);
             // Autoplay is blocked. Reveal the high-res image fallback if available.
             if (config.img) {
@@ -1777,7 +1833,7 @@
     async function syncDrinksFromNucleusCrm() {
       const CRM_FIRESTORE_URL = 'https://firestore.googleapis.com/v1/projects/bizboard-67b4c/databases/(default)/documents/businesses/nYaZ4T5qRKS3Z9EG5mrl/public_data/signature_drinks';
       try {
-        const res = await fetch(CRM_FIRESTORE_URL, { cache: 'no-store' });
+        const res = await fetch(CRM_FIRESTORE_URL);
         if (!res.ok) return;
         const rawDoc = await res.json();
         if (!rawDoc || !rawDoc.fields) return;

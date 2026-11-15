@@ -1,44 +1,21 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pony White Cafe - Welcome</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    fontFamily: {
-                        serif: ['Playfair Display', 'serif'],
-                        sans: ['Plus Jakarta Sans', 'sans-serif'],
-                    },
-                    colors: {
-                        primary: '#00261b',
-                        secondary: '#735c00',
-                    }
-                }
-            }
-        }
-    </script>
+<!-- Compiled custom embed section for qr.html -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@300..700,0..1&display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="../styles/qr.css">
+
     <style>
-        body, html {
+        .qr-wrapper {
             font-family: 'Plus Jakarta Sans', sans-serif;
             background-color: #00261b;
             color: #fbf9f8;
-            height: 100%;
-            margin: 0;
-            padding: 0;
         }
         .font-serif {
             font-family: 'Playfair Display', serif;
         }
         .glass-panel {
-            background: rgba(10, 22, 17, 0.7);
-            backdrop-filter: blur(24px);
-            -webkit-backdrop-filter: blur(24px);
+            background: rgba(10, 22, 17, 0.92);
             border: 1px solid rgba(255, 255, 255, 0.08);
             box-shadow: 0 30px 60px -15px rgba(0, 0, 0, 0.6);
         }
@@ -51,15 +28,16 @@
             box-shadow: 0 10px 25px -5px rgba(0,0,0,0.5);
         }
     </style>
-</head>
-<body class="flex items-center justify-center min-h-screen p-4 bg-cover bg-center bg-no-repeat relative" style="background-image: url('../../assets/hero-table.jpg');">
+
+<div class="qr-wrapper flex items-center justify-center py-16 px-4 min-h-[680px] relative overflow-hidden">
+    <img src="../../assets/hero-table.jpg" fetchpriority="high" decoding="async" alt="" class="absolute inset-0 w-full h-full object-cover z-0"/>
     <!-- Overlay -->
-    <div class="absolute inset-0 bg-[#00261b]/80 backdrop-blur-sm z-0"></div>
+    <div class="absolute inset-0 bg-[#00261b]/85 z-0"></div>
 
     <div class="glass-panel w-full max-w-md mx-auto p-8 rounded-3xl relative z-10 text-center">
         <!-- Logo -->
         <div class="w-20 h-20 bg-white/90 rounded-full flex items-center justify-center mx-auto mb-6 shadow-lg border border-white/40 overflow-hidden">
-            <img src="../../assets/logo.png" alt="Pony White Logo" class="w-full h-full object-cover">
+            <img src="../../assets/logo.png" decoding="async" alt="Pony White Logo" class="w-full h-full object-cover">
         </div>
         
         <h1 class="font-serif text-3xl font-bold mb-2">G'day!</h1>
@@ -139,5 +117,4 @@
             </a>
         </div>
     </div>
-</body>
-</html>
+</div>

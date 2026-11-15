@@ -2,7 +2,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&display=swap" rel="stylesheet">
-<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@300..700,0..1&display=swap" rel="stylesheet"/>
 <link rel="stylesheet" href="../styles/gift-cards.css">
 
 <style>
@@ -86,7 +86,7 @@
             <div class="font-label-caps text-[10px] text-forest-velvet opacity-70 tracking-widest uppercase">Artisanal Coffee & Kitchen</div>
           </div>
           <div class="absolute bottom-6 right-6">
-            <img src="../../assets/White Color Overlay Design.png" alt="Pony White Icon" class="w-10 h-10 object-contain opacity-90 drop-shadow-sm" />
+            <img src="../../assets/White Color Overlay Design.png" decoding="async" alt="Pony White Icon" class="w-10 h-10 object-contain opacity-90 drop-shadow-sm" />
           </div>
         </div>
 
@@ -157,7 +157,7 @@
   <!-- Additional Editorial Section -->
   <section class="mt-section-padding grid grid-cols-1 md:grid-cols-2 gap-section-padding items-center max-w-6xl mx-auto">
     <div class="rounded-xl overflow-hidden shadow-sm aspect-square md:aspect-video relative group">
-      <img alt="Pony White Brunch Spread" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" src="../../assets/hero-table.jpg"/>
+      <img alt="Pony White Brunch Spread" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" loading="lazy" decoding="async" src="../../assets/hero-table.jpg"/>
       <div class="absolute inset-0 bg-forest-velvet/10 group-hover:bg-transparent transition-all duration-500"></div>
     </div>
     <div class="space-y-stack-md">
@@ -190,10 +190,10 @@
             const nav = document.getElementById('top-nav');
             if (nav) {
                 if (window.scrollY > 50) {
-                    nav.classList.add('bg-white/90', 'backdrop-blur-md', 'shadow-sm');
+                    nav.classList.add('bg-white/90', 'shadow-sm');
                     nav.classList.remove('bg-transparent');
                 } else {
-                    nav.classList.remove('bg-white/90', 'backdrop-blur-md', 'shadow-sm');
+                    nav.classList.remove('bg-white/90', 'shadow-sm');
                     nav.classList.add('bg-transparent');
                 }
             }

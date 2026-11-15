@@ -2,7 +2,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&display=swap" rel="stylesheet">
-<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@300..700,0..1&display=swap" rel="stylesheet"/>
 <link rel="stylesheet" href="../styles/home-v2.css">
 
 <style>
@@ -49,15 +49,11 @@
 
         /* Glassmorphism Surfaces */
         .glass-dark {
-            background: rgba(7, 29, 22, 0.72);
-            backdrop-filter: blur(20px);
-            -webkit-backdrop-filter: blur(20px);
+            background: rgba(7, 29, 22, 0.92);
             border: 1px solid rgba(255, 255, 255, 0.12);
         }
         .glass-light {
-            background: rgba(255, 255, 255, 0.86);
-            backdrop-filter: blur(18px);
-            -webkit-backdrop-filter: blur(18px);
+            background: rgba(255, 255, 255, 0.96);
             border: 1px solid rgba(115, 92, 0, 0.14);
         }
 
@@ -198,7 +194,7 @@
                         Order Online for Pickup
                         <span class="material-symbols-outlined text-lg">local_cafe</span>
                     </a>
-                    <a href="book-table.html" class="bg-white/10 hover:bg-white/20 text-white border border-white/25 px-8 py-4 rounded-full font-bold text-sm transition-all duration-300 inline-flex items-center justify-center gap-2 no-underline backdrop-blur-md">
+                    <a href="book-table.html" class="bg-white/15 hover:bg-white/25 text-white border border-white/25 px-8 py-4 rounded-full font-bold text-sm transition-all duration-300 inline-flex items-center justify-center gap-2 no-underline">
                         Reserve a Brunch Table
                         <span class="material-symbols-outlined text-lg text-[#ffe088]">event_seat</span>
                     </a>
@@ -230,15 +226,15 @@
                     </div>
 
                     <!-- Arch-Shaped Live Video Frame -->
-                    <div class="relative h-[480px] sm:h-[530px] w-full rounded-[3rem_3rem_2rem_2rem] overflow-hidden border-2 border-white/20 shadow-2xl bg-[#04120d] isolate">
-                        <img id="hero-pour-poster" src="../../assets/matcha-strawberry.jpg" alt="Strawberries & Cream Matcha" class="absolute inset-0 w-full h-full object-cover z-0"/>
-                        <video id="hero-pour-video" src="../../assets/Strawberries & Cream Matcha.mp4" poster="../../assets/matcha-strawberry.jpg" autoplay loop muted playsinline class="absolute inset-0 w-full h-full object-cover z-10 transition-opacity duration-500"></video>
+                    <div class="relative h-[480px] sm:h-[530px] w-full rounded-[3rem_3rem_2rem_2rem] overflow-hidden border-2 border-white/20 shadow-2xl bg-[#04120d]">
+                        <img id="hero-pour-poster" fetchpriority="high" decoding="async" src="../../assets/matcha-strawberry.jpg" alt="Strawberries & Cream Matcha" class="absolute inset-0 w-full h-full object-cover z-0"/>
+                        <video id="hero-pour-video" preload="metadata" src="../../assets/Strawberries & Cream Matcha.mp4" poster="../../assets/matcha-strawberry.jpg" autoplay loop muted playsinline class="absolute inset-0 w-full h-full object-cover z-10 transition-opacity duration-500"></video>
 
                         <!-- Bottom Gradient Info Overlay inside Video Card -->
                         <div class="absolute inset-x-0 bottom-0 p-6 bg-gradient-to-t from-black/90 via-black/55 to-transparent z-20">
                             <div class="flex items-center justify-between gap-2 mb-1.5">
                                 <span id="hero-pour-category" class="text-[11px] uppercase tracking-widest font-bold text-[#ffe088]">Viral Matcha Series</span>
-                                <span class="text-[11px] bg-white/15 backdrop-blur-md px-2.5 py-0.5 rounded-full text-white font-semibold">Live Pour</span>
+                                <span class="text-[11px] bg-black/55 px-2.5 py-0.5 rounded-full text-white font-semibold">Live Pour</span>
                             </div>
                             <h3 id="hero-pour-title" class="font-serif text-2xl text-white font-bold mb-1">Strawberries &amp; Cream Matcha</h3>
                             <p id="hero-pour-desc" class="text-xs text-white/80 leading-relaxed">
@@ -386,18 +382,18 @@
         <!-- Main Showcase Stage: 6 Cols Dish Visual + 6 Cols Tasting & Plating Card -->
         <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 items-stretch">
             <!-- Left: Dish Photo Container with Floating Plating Anatomy Badges -->
-            <div class="lg:col-span-6 relative rounded-3xl overflow-hidden shadow-2xl h-[360px] sm:h-[460px] lg:h-[540px] border border-white/15 bg-[#04120d] isolate">
-                <div id="slideshow-image-container" class="w-full h-full relative overflow-hidden isolate">
-                    <img src="../../assets/french-toast.jpg" decoding="async" class="absolute inset-0 w-full h-full object-cover transition-all duration-700 ease-in-out transform scale-105 opacity-100 z-10" id="slide-img-0" alt="French Toast Dé Matcha">
-                    <img src="../../assets/salmon-benedict.jpg" decoding="async" class="absolute inset-0 w-full h-full object-cover transition-all duration-700 ease-in-out transform scale-100 opacity-0 pointer-events-none z-0" id="slide-img-1" alt="Okonomiyaki Benedict">
-                    <img src="../../assets/avocado-toast.jpg" decoding="async" class="absolute inset-0 w-full h-full object-cover transition-all duration-700 ease-in-out transform scale-100 opacity-0 pointer-events-none z-0" id="slide-img-2" alt="Avocado Toast">
-                    <img src="../../assets/spaghetti-marinara.jpg" decoding="async" class="absolute inset-0 w-full h-full object-cover transition-all duration-700 ease-in-out transform scale-100 opacity-0 pointer-events-none z-0" id="slide-img-3" alt="Spaghetti Marinara">
-                    <img src="../../assets/zaalouk-prawns.jpg" decoding="async" class="absolute inset-0 w-full h-full object-cover transition-all duration-700 ease-in-out transform scale-100 opacity-0 pointer-events-none z-0" id="slide-img-4" alt="Zaalou'k Prawns">
-                    <img src="../../assets/wild-mushroom.jpg" decoding="async" class="absolute inset-0 w-full h-full object-cover transition-all duration-700 ease-in-out transform scale-100 opacity-0 pointer-events-none z-0" id="slide-img-5" alt="Wild Mushroom">
-                    <img src="../../assets/chilli-cheese-croissant.jpg" decoding="async" class="absolute inset-0 w-full h-full object-cover transition-all duration-700 ease-in-out transform scale-100 opacity-0 pointer-events-none z-0" id="slide-img-6" alt="Chilli Cheese Croissant">
-                    <img src="../../assets/acai-bowl.jpg" decoding="async" class="absolute inset-0 w-full h-full object-cover transition-all duration-700 ease-in-out transform scale-100 opacity-0 pointer-events-none z-0" id="slide-img-7" alt="Açaí Bowl">
-                    <img src="../../assets/gourmet-burger.jpg" decoding="async" class="absolute inset-0 w-full h-full object-cover transition-all duration-700 ease-in-out transform scale-100 opacity-0 pointer-events-none z-0" id="slide-img-8" alt="Pony's Classic Burger">
-                    <img src="../../assets/big-breakfast.jpg" decoding="async" class="absolute inset-0 w-full h-full object-cover transition-all duration-700 ease-in-out transform scale-100 opacity-0 pointer-events-none z-0" id="slide-img-9" alt="Big Breakfast">
+            <div class="lg:col-span-6 relative rounded-3xl overflow-hidden shadow-2xl h-[360px] sm:h-[460px] lg:h-[540px] border border-white/15 bg-[#04120d]">
+                <div id="slideshow-image-container" class="w-full h-full relative overflow-hidden">
+                    <img src="../../assets/french-toast.jpg" loading="lazy" decoding="async" class="absolute inset-0 w-full h-full object-cover transition-all duration-700 ease-in-out transform scale-105 opacity-100 z-10" id="slide-img-0" alt="French Toast Dé Matcha">
+                    <img data-src="../../assets/salmon-benedict.jpg" loading="lazy" decoding="async" class="absolute inset-0 w-full h-full object-cover transition-all duration-700 ease-in-out transform scale-100 opacity-0 pointer-events-none z-0" id="slide-img-1" alt="Okonomiyaki Benedict">
+                    <img data-src="../../assets/avocado-toast.jpg" loading="lazy" decoding="async" class="absolute inset-0 w-full h-full object-cover transition-all duration-700 ease-in-out transform scale-100 opacity-0 pointer-events-none z-0" id="slide-img-2" alt="Avocado Toast">
+                    <img data-src="../../assets/spaghetti-marinara.jpg" loading="lazy" decoding="async" class="absolute inset-0 w-full h-full object-cover transition-all duration-700 ease-in-out transform scale-100 opacity-0 pointer-events-none z-0" id="slide-img-3" alt="Spaghetti Marinara">
+                    <img data-src="../../assets/zaalouk-prawns.jpg" loading="lazy" decoding="async" class="absolute inset-0 w-full h-full object-cover transition-all duration-700 ease-in-out transform scale-100 opacity-0 pointer-events-none z-0" id="slide-img-4" alt="Zaalou'k Prawns">
+                    <img data-src="../../assets/wild-mushroom.jpg" loading="lazy" decoding="async" class="absolute inset-0 w-full h-full object-cover transition-all duration-700 ease-in-out transform scale-100 opacity-0 pointer-events-none z-0" id="slide-img-5" alt="Wild Mushroom">
+                    <img data-src="../../assets/chilli-cheese-croissant.jpg" loading="lazy" decoding="async" class="absolute inset-0 w-full h-full object-cover transition-all duration-700 ease-in-out transform scale-100 opacity-0 pointer-events-none z-0" id="slide-img-6" alt="Chilli Cheese Croissant">
+                    <img data-src="../../assets/acai-bowl.jpg" loading="lazy" decoding="async" class="absolute inset-0 w-full h-full object-cover transition-all duration-700 ease-in-out transform scale-100 opacity-0 pointer-events-none z-0" id="slide-img-7" alt="Açaí Bowl">
+                    <img data-src="../../assets/gourmet-burger.jpg" loading="lazy" decoding="async" class="absolute inset-0 w-full h-full object-cover transition-all duration-700 ease-in-out transform scale-100 opacity-0 pointer-events-none z-0" id="slide-img-8" alt="Pony's Classic Burger">
+                    <img data-src="../../assets/big-breakfast.jpg" loading="lazy" decoding="async" class="absolute inset-0 w-full h-full object-cover transition-all duration-700 ease-in-out transform scale-100 opacity-0 pointer-events-none z-0" id="slide-img-9" alt="Big Breakfast">
                 </div>
 
                 <!-- Plating Highlights Overlay Chips on Image -->
@@ -412,10 +408,10 @@
 
                 <!-- Overlay Prev/Next Controls on Mobile/Image -->
                 <div class="absolute inset-x-4 top-1/2 -translate-y-1/2 flex justify-between items-center z-30 pointer-events-none">
-                    <button type="button" onclick="window.prevKitchenSlide && window.prevKitchenSlide(event)" aria-label="Previous dish" style="pointer-events: auto; cursor: pointer;" class="w-11 h-11 rounded-full bg-black/55 hover:bg-[#e9c349] text-white hover:text-[#001a12] backdrop-blur-md border border-white/25 flex items-center justify-center transition-all shadow-lg">
+                    <button type="button" onclick="window.prevKitchenSlide && window.prevKitchenSlide(event)" aria-label="Previous dish" style="pointer-events: auto; cursor: pointer;" class="w-11 h-11 rounded-full bg-black/75 hover:bg-[#e9c349] text-white hover:text-[#001a12] border border-white/25 flex items-center justify-center transition-all shadow-lg">
                         <span class="material-symbols-outlined text-xl pointer-events-none">chevron_left</span>
                     </button>
-                    <button type="button" onclick="window.nextKitchenSlide && window.nextKitchenSlide(event)" aria-label="Next dish" style="pointer-events: auto; cursor: pointer;" class="w-11 h-11 rounded-full bg-black/55 hover:bg-[#e9c349] text-white hover:text-[#001a12] backdrop-blur-md border border-white/25 flex items-center justify-center transition-all shadow-lg">
+                    <button type="button" onclick="window.nextKitchenSlide && window.nextKitchenSlide(event)" aria-label="Next dish" style="pointer-events: auto; cursor: pointer;" class="w-11 h-11 rounded-full bg-black/75 hover:bg-[#e9c349] text-white hover:text-[#001a12] border border-white/25 flex items-center justify-center transition-all shadow-lg">
                         <span class="material-symbols-outlined text-xl pointer-events-none">chevron_right</span>
                     </button>
                 </div>
@@ -569,42 +565,42 @@
         <!-- 6-Tile Chromatic Instagram Strip -->
         <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-4">
             <a href="https://www.instagram.com/ponywhite.fitzroy" target="_blank" rel="noopener noreferrer" class="group relative rounded-2xl overflow-hidden aspect-square shadow-md block">
-                <img src="../../assets/insta-1.jpg" alt="Pony White Fitzroy" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"/>
+                <img src="../../assets/insta-1.jpg" loading="lazy" decoding="async" alt="Pony White Fitzroy" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"/>
                 <div class="absolute inset-0 bg-primary/70 opacity-0 group-hover:opacity-100 transition-opacity flex flex-col items-center justify-center text-white p-2 text-center">
                     <span class="material-symbols-outlined text-[#ffe088] text-2xl">favorite</span>
                     <span class="text-[11px] font-bold mt-1">@ponywhite.fitzroy</span>
                 </div>
             </a>
             <a href="https://www.instagram.com/ponywhite.fitzroy" target="_blank" rel="noopener noreferrer" class="group relative rounded-2xl overflow-hidden aspect-square shadow-md block">
-                <img src="../../assets/insta-2.jpg" alt="Pony White Fitzroy" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"/>
+                <img src="../../assets/insta-2.jpg" loading="lazy" decoding="async" alt="Pony White Fitzroy" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"/>
                 <div class="absolute inset-0 bg-primary/70 opacity-0 group-hover:opacity-100 transition-opacity flex flex-col items-center justify-center text-white p-2 text-center">
                     <span class="material-symbols-outlined text-[#ffe088] text-2xl">favorite</span>
                     <span class="text-[11px] font-bold mt-1">@ponywhite.fitzroy</span>
                 </div>
             </a>
             <a href="https://www.instagram.com/ponywhite.fitzroy" target="_blank" rel="noopener noreferrer" class="group relative rounded-2xl overflow-hidden aspect-square shadow-md block">
-                <img src="../../assets/insta-3.jpg" alt="Pony White Fitzroy" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"/>
+                <img src="../../assets/insta-3.jpg" loading="lazy" decoding="async" alt="Pony White Fitzroy" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"/>
                 <div class="absolute inset-0 bg-primary/70 opacity-0 group-hover:opacity-100 transition-opacity flex flex-col items-center justify-center text-white p-2 text-center">
                     <span class="material-symbols-outlined text-[#ffe088] text-2xl">favorite</span>
                     <span class="text-[11px] font-bold mt-1">@ponywhite.fitzroy</span>
                 </div>
             </a>
             <a href="https://www.instagram.com/ponywhite.fitzroy" target="_blank" rel="noopener noreferrer" class="group relative rounded-2xl overflow-hidden aspect-square shadow-md block">
-                <img src="../../assets/insta-4.jpg" alt="Pony White Fitzroy" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"/>
+                <img src="../../assets/insta-4.jpg" loading="lazy" decoding="async" alt="Pony White Fitzroy" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"/>
                 <div class="absolute inset-0 bg-primary/70 opacity-0 group-hover:opacity-100 transition-opacity flex flex-col items-center justify-center text-white p-2 text-center">
                     <span class="material-symbols-outlined text-[#ffe088] text-2xl">favorite</span>
                     <span class="text-[11px] font-bold mt-1">@ponywhite.fitzroy</span>
                 </div>
             </a>
             <a href="https://www.instagram.com/ponywhite.fitzroy" target="_blank" rel="noopener noreferrer" class="group relative rounded-2xl overflow-hidden aspect-square shadow-md block">
-                <img src="../../assets/insta-5.jpg" alt="Pony White Fitzroy" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"/>
+                <img src="../../assets/insta-5.jpg" loading="lazy" decoding="async" alt="Pony White Fitzroy" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"/>
                 <div class="absolute inset-0 bg-primary/70 opacity-0 group-hover:opacity-100 transition-opacity flex flex-col items-center justify-center text-white p-2 text-center">
                     <span class="material-symbols-outlined text-[#ffe088] text-2xl">favorite</span>
                     <span class="text-[11px] font-bold mt-1">@ponywhite.fitzroy</span>
                 </div>
             </a>
             <a href="https://www.instagram.com/ponywhite.fitzroy" target="_blank" rel="noopener noreferrer" class="group relative rounded-2xl overflow-hidden aspect-square shadow-md block">
-                <img src="../../assets/insta-6.jpg" alt="Pony White Fitzroy" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"/>
+                <img src="../../assets/insta-6.jpg" loading="lazy" decoding="async" alt="Pony White Fitzroy" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"/>
                 <div class="absolute inset-0 bg-primary/70 opacity-0 group-hover:opacity-100 transition-opacity flex flex-col items-center justify-center text-white p-2 text-center">
                     <span class="material-symbols-outlined text-[#ffe088] text-2xl">favorite</span>
                     <span class="text-[11px] font-bold mt-1">@ponywhite.fitzroy</span>
@@ -667,7 +663,7 @@
                 <div>
                     <div class="flex items-center justify-between mb-6">
                         <span class="text-xs uppercase tracking-widest gold-gradient-text font-bold">Pony White At Home</span>
-                        <img src="../../assets/san_pedro_logo_black.png" alt="San Pedro Coffee Roasters" class="h-8 w-auto object-contain"/>
+                        <img src="../../assets/san_pedro_logo_black.png" loading="lazy" decoding="async" alt="San Pedro Coffee Roasters" class="h-8 w-auto object-contain"/>
                     </div>
                     <h3 class="font-serif text-2xl md:text-3xl text-primary font-bold mb-3">
                         Take Our Signature San Pedro Roast &amp; Chais Home
@@ -677,13 +673,13 @@
                     </p>
                     <div class="grid grid-cols-3 gap-3 mb-6">
                         <div class="bg-white rounded-2xl p-2 aspect-square overflow-hidden border border-secondary/15 shadow-sm">
-                            <img src="../../assets/coffee_bags_beans.png" alt="San Pedro Beans" class="w-full h-full object-cover rounded-xl"/>
+                            <img src="../../assets/coffee_bags_beans.png" loading="lazy" decoding="async" alt="San Pedro Beans" class="w-full h-full object-cover rounded-xl"/>
                         </div>
                         <div class="bg-white rounded-2xl p-2 aspect-square overflow-hidden border border-secondary/15 shadow-sm">
-                            <img src="../../assets/specialty_chai_trio.png" alt="Specialty Chai" class="w-full h-full object-cover rounded-xl"/>
+                            <img src="../../assets/specialty_chai_trio.png" loading="lazy" decoding="async" alt="Specialty Chai" class="w-full h-full object-cover rounded-xl"/>
                         </div>
                         <div class="bg-white rounded-2xl p-2 aspect-square overflow-hidden border border-secondary/15 shadow-sm">
-                            <img src="../../assets/specialty_powders_tin.jpg" alt="Drinking Chocolate" class="w-full h-full object-cover rounded-xl"/>
+                            <img src="../../assets/specialty_powders_tin.jpg" loading="lazy" decoding="async" alt="Drinking Chocolate" class="w-full h-full object-cover rounded-xl"/>
                         </div>
                     </div>
                 </div>
@@ -763,7 +759,6 @@
             class="w-full h-full border-0 absolute inset-0 z-10"
             src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3152.4795328224523!2d144.97825227702816!3d-37.8022879719782!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x6ad642df5a3c0383%3A0xe541c4deee7574ea!2sPony%20White%20Cafe!5e0!3m2!1sen!2sau!4v1716300000000!5m2!1sen!2sau"
             allowfullscreen=""
-            loading="lazy"
             referrerpolicy="no-referrer-when-downgrade">
         </iframe>
     </div>
@@ -1039,16 +1034,16 @@
                 card.innerHTML = `
                     <div>
                         <div class="relative h-72 overflow-hidden bg-[#071f17]">
-                            <img src="${item.img}" alt="${item.title}" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"/>
+                            <img src="${item.img}" loading="lazy" decoding="async" alt="${item.title}" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"/>
                             ${item.video ? `<video src="${item.video}" muted loop playsinline preload="none" class="drink-card-video absolute inset-0 w-full h-full object-cover opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"></video>` : ''}
                             <div class="absolute top-3.5 left-3.5 right-3.5 flex justify-between items-center z-10">
                                 <span class="px-3 py-1 rounded-full text-[11px] font-bold shadow-sm" style="background:${item.badgeBg}; color:${item.badgeText};">${item.badge}</span>
-                                <div class="flex items-center gap-1 bg-black/45 backdrop-blur-md px-2.5 py-1 rounded-full">
+                                <div class="flex items-center gap-1 bg-black/75 px-2.5 py-1 rounded-full">
                                     ${dotsHtml}
                                 </div>
                             </div>
                             <div class="absolute bottom-3.5 right-3.5 z-10">
-                                <span class="bg-black/65 backdrop-blur-md text-[#ffe088] font-bold text-xs px-3 py-1 rounded-full border border-white/15">${item.price}</span>
+                                <span class="bg-black/80 text-[#ffe088] font-bold text-xs px-3 py-1 rounded-full border border-white/15">${item.price}</span>
                             </div>
                         </div>
                         <div class="p-6">
@@ -1275,7 +1270,7 @@
                     ? 'kitchen-thumb-btn flex items-center gap-3 px-3.5 py-2 rounded-2xl bg-[#e9c349] text-[#001a12] font-bold text-xs flex-shrink-0 shadow-lg transition-all scale-[1.02]'
                     : 'kitchen-thumb-btn flex items-center gap-3 px-3.5 py-2 rounded-2xl bg-white/5 hover:bg-white/15 text-white/80 font-semibold text-xs flex-shrink-0 border border-white/10 transition-all';
                 btn.innerHTML = `
-                    <img src="${dish.img}" alt="${dish.title}" class="w-9 h-9 rounded-xl object-cover flex-shrink-0 border border-black/10"/>
+                    <img src="${dish.img}" loading="lazy" decoding="async" alt="${dish.title}" class="w-9 h-9 rounded-xl object-cover flex-shrink-0 border border-black/10"/>
                     <div class="text-left pr-1">
                         <span class="block truncate max-w-[140px]">${dish.title}</span>
                         <span class="text-[10px] opacity-75">${dish.price}</span>
@@ -1332,9 +1327,21 @@
             }, PROGRESS_INTERVAL);
         }
 
+        function hydrateSlideImg(i) {
+            const el = document.getElementById(`slide-img-${i}`);
+            if (el && el.dataset && el.dataset.src && !el.getAttribute('src')) {
+                el.setAttribute('src', el.dataset.src);
+            }
+        }
+
         function updateSlideDOM(index, animate = true) {
             const data = DISHES_DATA[index];
             if (!data) return;
+
+            hydrateSlideImg(index);
+            if (DISHES_DATA.length > 1) {
+                hydrateSlideImg((index + 1) % DISHES_DATA.length);
+            }
 
             DISHES_DATA.forEach((_, idx) => {
                 const img = document.getElementById(`slide-img-${idx}`);
@@ -1467,7 +1474,7 @@
 
         async function syncKitchenShowcaseFromNucleusCrm() {
             try {
-                const res = await fetch(NUCLEUS_KITCHEN_FIRESTORE_URL, { cache: 'no-store' });
+                const res = await fetch(NUCLEUS_KITCHEN_FIRESTORE_URL);
                 if (!res.ok) return;
                 const rawDoc = await res.json();
                 if (!rawDoc || !rawDoc.fields) return;
@@ -1512,14 +1519,20 @@
                     imgContainer.innerHTML = '';
                     DISHES_DATA.forEach((dish, idx) => {
                         const img = document.createElement('img');
-                        img.src = dish.img;
+                        const isCurrent = idx === activeIdx;
+                        const isNext = DISHES_DATA.length > 1 && idx === ((activeIdx + 1) % DISHES_DATA.length);
+                        if (isCurrent || isNext) {
+                            img.src = dish.img;
+                        } else {
+                            img.dataset.src = dish.img;
+                        }
                         img.id = `slide-img-${idx}`;
                         img.alt = dish.title;
+                        img.loading = 'lazy';
                         img.decoding = 'async';
                         img.onerror = function () {
                             if (this.src !== dish.fallbackImg) this.src = dish.fallbackImg;
                         };
-                        const isCurrent = idx === activeIdx;
                         img.className = isCurrent
                             ? 'absolute inset-0 w-full h-full object-cover transition-all duration-700 ease-in-out transform scale-105 opacity-100 z-10'
                             : 'absolute inset-0 w-full h-full object-cover transition-all duration-700 ease-in-out transform scale-100 opacity-0 pointer-events-none z-0';
@@ -1608,6 +1621,11 @@
         }
 
         function init() {
+            const heroPourVideo = document.getElementById('hero-pour-video');
+            if (heroPourVideo && window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                heroPourVideo.removeAttribute('autoplay');
+                heroPourVideo.pause();
+            }
             renderDrinkLab('all');
             initSlideshow();
             updateLiveStoreStatus();

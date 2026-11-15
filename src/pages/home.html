@@ -2,7 +2,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&display=swap" rel="stylesheet">
-<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@300..700,0..1&display=swap" rel="stylesheet"/>
 <link rel="stylesheet" href="../styles/home.css">
 
 <style>
@@ -22,9 +22,7 @@
             font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
         }
         .glass-effect {
-            background: rgba(251, 249, 248, 0.7);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
+            background: rgba(251, 249, 248, 0.94);
         }
         .soft-well {
             box-shadow: inset 0 2px 4px 0 rgba(0, 0, 0, 0.05);
@@ -94,13 +92,13 @@
 <!-- Hero Section -->
 <section class="relative flex items-center justify-center py-24 md:py-36 overflow-hidden full-width-breakout bg-primary">
 <div class="absolute inset-0 z-0">
-<img alt="Pony White Hero" class="w-full h-full object-cover" src="../../assets/hero-table.jpg"/>
+<img alt="Pony White Hero" class="w-full h-full object-cover" fetchpriority="high" decoding="async" src="../../assets/hero-table.jpg"/>
 <div class="absolute inset-0 bg-gradient-to-b from-primary/20 via-transparent to-background"></div>
 </div>
 <div class="relative z-10 max-w-container-max mx-auto px-gutter text-center">
 <div class="glass-effect p-8 md:p-12 rounded-xl ambient-float max-w-6xl mx-auto border border-white/20">
-<div class="w-24 h-24 bg-white/90 backdrop-blur-sm rounded-full flex items-center justify-center mx-auto mb-8 shadow-lg border border-white/40">
-<img alt="Pony White Logo" class="w-full h-full object-cover rounded-full" src="../../assets/logo.png"/>
+<div class="w-24 h-24 bg-white/95 rounded-full flex items-center justify-center mx-auto mb-8 shadow-lg border border-white/40">
+<img alt="Pony White Logo" class="w-full h-full object-cover rounded-full" decoding="async" src="../../assets/logo.png"/>
 </div>
 <h1 class="font-headline-xl text-headline-xl mb-6 text-primary">Artisanal Flavours, Warmly Served</h1>
 <p class="font-body-lg text-body-lg text-on-surface-variant mb-10">A neighborhood sanctuary where gourmet breakfast meets meticulous roasting. Join us at the heart of Fitzroy.</p>
@@ -126,25 +124,25 @@
       </p>
 </div>
 <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
-<div class="lg:col-span-6 relative group overflow-hidden rounded-[2.5rem_6rem_2.5rem_6rem] shadow-2xl h-[350px] md:h-[500px] lg:h-[600px] border border-secondary/15 bg-primary-container/10 isolate">
-<div id="slideshow-image-container" class="w-full h-full relative overflow-hidden rounded-[2.5rem_6rem_2.5rem_6rem] isolate">
-<!-- Images are loaded statically for native preloading and smooth crossfade transitions -->
-<img src="../../assets/salmon-benedict.jpg" decoding="async" class="absolute inset-0 w-full h-full object-cover transition-all duration-[800ms] ease-in-out transform scale-105 opacity-100 pointer-events-auto z-10 rounded-[2.5rem_6rem_2.5rem_6rem]" id="slide-img-0" alt="Okonomiyaki Benedict">
-<img src="../../assets/avocado-toast.jpg" decoding="async" class="absolute inset-0 w-full h-full object-cover transition-all duration-[800ms] ease-in-out transform scale-100 opacity-0 pointer-events-none z-0 rounded-[2.5rem_6rem_2.5rem_6rem]" id="slide-img-1" alt="Avocado Toast">
-<img src="../../assets/gourmet-burger.jpg" decoding="async" class="absolute inset-0 w-full h-full object-cover transition-all duration-[800ms] ease-in-out transform scale-100 opacity-0 pointer-events-none z-0 rounded-[2.5rem_6rem_2.5rem_6rem]" id="slide-img-2" alt="Pony's Classic Burger">
-<img src="../../assets/french-toast.jpg" decoding="async" class="absolute inset-0 w-full h-full object-cover transition-all duration-[800ms] ease-in-out transform scale-100 opacity-0 pointer-events-none z-0 rounded-[2.5rem_6rem_2.5rem_6rem]" id="slide-img-3" alt="French Toast Dé Matcha">
-<img src="../../assets/wild-mushroom.jpg" decoding="async" class="absolute inset-0 w-full h-full object-cover transition-all duration-[800ms] ease-in-out transform scale-100 opacity-0 pointer-events-none z-0 rounded-[2.5rem_6rem_2.5rem_6rem]" id="slide-img-4" alt="Wild Mushroom">
-<img src="../../assets/acai-bowl.jpg" decoding="async" class="absolute inset-0 w-full h-full object-cover transition-all duration-[800ms] ease-in-out transform scale-100 opacity-0 pointer-events-none z-0 rounded-[2.5rem_6rem_2.5rem_6rem]" id="slide-img-5" alt="Açaí Bowl">
-<img src="../../assets/chilli-cheese-croissant.jpg" decoding="async" class="absolute inset-0 w-full h-full object-cover transition-all duration-[800ms] ease-in-out transform scale-100 opacity-0 pointer-events-none z-0 rounded-[2.5rem_6rem_2.5rem_6rem]" id="slide-img-6" alt="Chilli Cheese Croissant">
-<img src="../../assets/spaghetti-marinara.jpg" decoding="async" class="absolute inset-0 w-full h-full object-cover transition-all duration-[800ms] ease-in-out transform scale-100 opacity-0 pointer-events-none z-0 rounded-[2.5rem_6rem_2.5rem_6rem]" id="slide-img-7" alt="Spaghetti Marinara">
-<img src="../../assets/zaalouk-prawns.jpg" decoding="async" class="absolute inset-0 w-full h-full object-cover transition-all duration-[800ms] ease-in-out transform scale-100 opacity-0 pointer-events-none z-0 rounded-[2.5rem_6rem_2.5rem_6rem]" id="slide-img-8" alt="Zaalou'k Prawns">
-<img src="../../assets/big-breakfast.jpg" decoding="async" class="absolute inset-0 w-full h-full object-cover transition-all duration-[800ms] ease-in-out transform scale-100 opacity-0 pointer-events-none z-0 rounded-[2.5rem_6rem_2.5rem_6rem]" id="slide-img-9" alt="Big Breakfast">
+<div class="lg:col-span-6 relative group overflow-hidden rounded-[2.5rem_6rem_2.5rem_6rem] shadow-2xl h-[350px] md:h-[500px] lg:h-[600px] border border-secondary/15 bg-primary-container/10">
+<div id="slideshow-image-container" class="w-full h-full relative overflow-hidden rounded-[2.5rem_6rem_2.5rem_6rem]">
+<!-- Active slide loads lazily below fold; remaining slides hydrate on demand -->
+<img src="../../assets/salmon-benedict.jpg" loading="lazy" decoding="async" class="absolute inset-0 w-full h-full object-cover transition-all duration-[800ms] ease-in-out transform scale-105 opacity-100 pointer-events-auto z-10 rounded-[2.5rem_6rem_2.5rem_6rem]" id="slide-img-0" alt="Okonomiyaki Benedict">
+<img data-src="../../assets/avocado-toast.jpg" loading="lazy" decoding="async" class="absolute inset-0 w-full h-full object-cover transition-all duration-[800ms] ease-in-out transform scale-100 opacity-0 pointer-events-none z-0 rounded-[2.5rem_6rem_2.5rem_6rem]" id="slide-img-1" alt="Avocado Toast">
+<img data-src="../../assets/gourmet-burger.jpg" loading="lazy" decoding="async" class="absolute inset-0 w-full h-full object-cover transition-all duration-[800ms] ease-in-out transform scale-100 opacity-0 pointer-events-none z-0 rounded-[2.5rem_6rem_2.5rem_6rem]" id="slide-img-2" alt="Pony's Classic Burger">
+<img data-src="../../assets/french-toast.jpg" loading="lazy" decoding="async" class="absolute inset-0 w-full h-full object-cover transition-all duration-[800ms] ease-in-out transform scale-100 opacity-0 pointer-events-none z-0 rounded-[2.5rem_6rem_2.5rem_6rem]" id="slide-img-3" alt="French Toast Dé Matcha">
+<img data-src="../../assets/wild-mushroom.jpg" loading="lazy" decoding="async" class="absolute inset-0 w-full h-full object-cover transition-all duration-[800ms] ease-in-out transform scale-100 opacity-0 pointer-events-none z-0 rounded-[2.5rem_6rem_2.5rem_6rem]" id="slide-img-4" alt="Wild Mushroom">
+<img data-src="../../assets/acai-bowl.jpg" loading="lazy" decoding="async" class="absolute inset-0 w-full h-full object-cover transition-all duration-[800ms] ease-in-out transform scale-100 opacity-0 pointer-events-none z-0 rounded-[2.5rem_6rem_2.5rem_6rem]" id="slide-img-5" alt="Açaí Bowl">
+<img data-src="../../assets/chilli-cheese-croissant.jpg" loading="lazy" decoding="async" class="absolute inset-0 w-full h-full object-cover transition-all duration-[800ms] ease-in-out transform scale-100 opacity-0 pointer-events-none z-0 rounded-[2.5rem_6rem_2.5rem_6rem]" id="slide-img-6" alt="Chilli Cheese Croissant">
+<img data-src="../../assets/spaghetti-marinara.jpg" loading="lazy" decoding="async" class="absolute inset-0 w-full h-full object-cover transition-all duration-[800ms] ease-in-out transform scale-100 opacity-0 pointer-events-none z-0 rounded-[2.5rem_6rem_2.5rem_6rem]" id="slide-img-7" alt="Spaghetti Marinara">
+<img data-src="../../assets/zaalouk-prawns.jpg" loading="lazy" decoding="async" class="absolute inset-0 w-full h-full object-cover transition-all duration-[800ms] ease-in-out transform scale-100 opacity-0 pointer-events-none z-0 rounded-[2.5rem_6rem_2.5rem_6rem]" id="slide-img-8" alt="Zaalou'k Prawns">
+<img data-src="../../assets/big-breakfast.jpg" loading="lazy" decoding="async" class="absolute inset-0 w-full h-full object-cover transition-all duration-[800ms] ease-in-out transform scale-100 opacity-0 pointer-events-none z-0 rounded-[2.5rem_6rem_2.5rem_6rem]" id="slide-img-9" alt="Big Breakfast">
 </div>
 <div class="absolute inset-x-6 top-1/2 -translate-y-1/2 flex justify-between items-center pointer-events-none z-20" style="z-index: 30; pointer-events: none;">
-<button id="prev-slide" type="button" onclick="window.prevKitchenSlide && window.prevKitchenSlide(event)" aria-label="Previous dish" style="pointer-events: auto; z-index: 30; cursor: pointer;" class="w-12 h-12 rounded-full bg-white/90 backdrop-blur-md text-primary flex items-center justify-center border border-secondary/20 shadow-md pointer-events-auto hover:bg-primary hover:text-white transition-all active:scale-95 duration-300">
+<button id="prev-slide" type="button" onclick="window.prevKitchenSlide && window.prevKitchenSlide(event)" aria-label="Previous dish" style="pointer-events: auto; z-index: 30; cursor: pointer;" class="w-12 h-12 rounded-full bg-white/95 text-primary flex items-center justify-center border border-secondary/20 shadow-md pointer-events-auto hover:bg-primary hover:text-white transition-all active:scale-95 duration-300">
 <span class="material-symbols-outlined text-2xl pointer-events-none">arrow_back</span>
 </button>
-<button id="next-slide" type="button" onclick="window.nextKitchenSlide && window.nextKitchenSlide(event)" aria-label="Next dish" style="pointer-events: auto; z-index: 30; cursor: pointer;" class="w-12 h-12 rounded-full bg-white/90 backdrop-blur-md text-primary flex items-center justify-center border border-secondary/20 shadow-md pointer-events-auto hover:bg-primary hover:text-white transition-all active:scale-95 duration-300">
+<button id="next-slide" type="button" onclick="window.nextKitchenSlide && window.nextKitchenSlide(event)" aria-label="Next dish" style="pointer-events: auto; z-index: 30; cursor: pointer;" class="w-12 h-12 rounded-full bg-white/95 text-primary flex items-center justify-center border border-secondary/20 shadow-md pointer-events-auto hover:bg-primary hover:text-white transition-all active:scale-95 duration-300">
 <span class="material-symbols-outlined text-2xl pointer-events-none">arrow_forward</span>
 </button>
 </div>
@@ -207,7 +205,7 @@
 <div class="group flex flex-col justify-between bg-[#001f16] p-6 rounded-2xl border border-white/5 hover:border-secondary/30 transition-all duration-500 shadow-xl">
 <div>
 <div class="relative overflow-hidden rounded-xl mb-6 h-80">
-<img class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" data-alt="A layered strawberries and cream matcha." src="../../assets/matcha-strawberry.jpg"/>
+<img class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" data-alt="A layered strawberries and cream matcha." loading="lazy" decoding="async" src="../../assets/matcha-strawberry.jpg"/>
 <div class="absolute bottom-4 left-4 z-20">
 <span class="gold-gradient-bg text-on-secondary-fixed px-3 py-1 rounded-full text-label-sm font-bold shadow-lg">House Specialty</span>
 </div>
@@ -225,7 +223,7 @@
 <div class="group flex flex-col justify-between bg-[#001f16] p-6 rounded-2xl border border-white/5 hover:border-secondary/30 transition-all duration-500 shadow-xl">
 <div>
 <div class="relative overflow-hidden rounded-xl mb-6 h-80">
-<img class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" data-alt="A vibrant layered superfood smoothie." src="../../assets/layered-smoothie.jpg"/>
+<img class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" data-alt="A vibrant layered superfood smoothie." loading="lazy" decoding="async" src="../../assets/layered-smoothie.jpg"/>
 </div>
 <span class="font-label-sm uppercase tracking-widest block gold-gradient-text font-bold mb-2">Pure &amp; Fresh</span>
 <h3 class="font-headline-md text-2xl text-white mb-3">Smoothies &amp; Juices</h3>
@@ -240,7 +238,7 @@
 <div class="group flex flex-col justify-between bg-[#001f16] p-6 rounded-2xl border border-white/5 hover:border-secondary/30 transition-all duration-500 shadow-xl">
 <div>
 <div class="relative overflow-hidden rounded-xl mb-6 h-80">
-<img class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" data-alt="An iced specialty coconut latte." src="../../assets/coconut-iced-latte.jpg"/>
+<img class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" data-alt="An iced specialty coconut latte." loading="lazy" decoding="async" src="../../assets/coconut-iced-latte.jpg"/>
 </div>
 <span class="font-label-sm uppercase tracking-widest block gold-gradient-text font-bold mb-2">Meticulously Roasted</span>
 <h3 class="font-headline-md text-2xl text-white mb-3">Specialty Coffee</h3>
@@ -332,21 +330,21 @@
 <div class="space-y-4">
 <!-- San Pedro Logo / Branding Card -->
 <div class="aspect-square bg-white rounded-full flex items-center justify-center p-6 border-2 border-secondary/20 hover:border-secondary group relative overflow-hidden transition-all duration-500 shadow-md">
-<img class="w-4/5 h-auto object-contain group-hover:scale-105 transition-transform duration-700" src="../../assets/san_pedro_logo_black.png" alt="San Pedro Coffee Roasters Logo">
+<img class="w-4/5 h-auto object-contain group-hover:scale-105 transition-transform duration-700" loading="lazy" decoding="async" src="../../assets/san_pedro_logo_black.png" alt="San Pedro Coffee Roasters Logo">
 </div>
 <!-- San Pedro Coffee bag image -->
 <div class="aspect-square bg-surface-container-high rounded-full overflow-hidden relative border-2 border-transparent hover:border-secondary transition-all duration-500 shadow-md">
-<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" src="../../assets/coffee_bags_beans.png" alt="San Pedro Coffee Beans bag">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" loading="lazy" decoding="async" src="../../assets/coffee_bags_beans.png" alt="San Pedro Coffee Beans bag">
 </div>
 </div>
 <div class="space-y-4 pt-8">
 <!-- Specialty Powders Tin image -->
 <div class="aspect-square bg-surface-container-high rounded-full overflow-hidden relative border-2 border-transparent hover:border-secondary transition-all duration-500 shadow-md">
-<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" src="../../assets/specialty_powders_tin.jpg" alt="Specialty Chocolate Powders">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" loading="lazy" decoding="async" src="../../assets/specialty_powders_tin.jpg" alt="Specialty Chocolate Powders">
 </div>
 <!-- Specialty Chai Trio image -->
 <div class="aspect-square bg-surface-container-high rounded-full overflow-hidden relative border-2 border-transparent hover:border-secondary transition-all duration-500 shadow-md">
-<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" src="../../assets/specialty_chai_trio.png" alt="Specialty Chai Trio">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" loading="lazy" decoding="async" src="../../assets/specialty_chai_trio.png" alt="Specialty Chai Trio">
 </div>
 </div>
 </div>
@@ -409,7 +407,7 @@
   <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-4 px-4 max-w-container-max mx-auto">
     <!-- Post 1 -->
     <a href="https://www.instagram.com/ponywhite.fitzroy" target="_blank" class="relative group overflow-hidden rounded-xl aspect-square shadow-sm block">
-      <img src="../../assets/insta-1.jpg" alt="Pony White Instagram Post" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" />
+      <img src="../../assets/insta-1.jpg" loading="lazy" decoding="async" alt="Pony White Instagram Post" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" />
       <div class="absolute inset-0 bg-[#0B3027]/70 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center flex-col gap-1 text-white">
         <span class="material-symbols-outlined text-2xl text-[#ffe088]">favorite</span>
         <span class="text-xs font-semibold tracking-wider font-label-sm">View Post</span>
@@ -417,7 +415,7 @@
     </a>
     <!-- Post 2 -->
     <a href="https://www.instagram.com/ponywhite.fitzroy" target="_blank" class="relative group overflow-hidden rounded-xl aspect-square shadow-sm block">
-      <img src="../../assets/insta-2.jpg" alt="Pony White Instagram Post" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" />
+      <img src="../../assets/insta-2.jpg" loading="lazy" decoding="async" alt="Pony White Instagram Post" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" />
       <div class="absolute inset-0 bg-[#0B3027]/70 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center flex-col gap-1 text-white">
         <span class="material-symbols-outlined text-2xl text-[#ffe088]">favorite</span>
         <span class="text-xs font-semibold tracking-wider font-label-sm">View Post</span>
@@ -425,7 +423,7 @@
     </a>
     <!-- Post 3 -->
     <a href="https://www.instagram.com/ponywhite.fitzroy" target="_blank" class="relative group overflow-hidden rounded-xl aspect-square shadow-sm block">
-      <img src="../../assets/insta-3.jpg" alt="Pony White Instagram Post" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" />
+      <img src="../../assets/insta-3.jpg" loading="lazy" decoding="async" alt="Pony White Instagram Post" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" />
       <div class="absolute inset-0 bg-[#0B3027]/70 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center flex-col gap-1 text-white">
         <span class="material-symbols-outlined text-2xl text-[#ffe088]">favorite</span>
         <span class="text-xs font-semibold tracking-wider font-label-sm">View Post</span>
@@ -433,7 +431,7 @@
     </a>
     <!-- Post 4 -->
     <a href="https://www.instagram.com/ponywhite.fitzroy" target="_blank" class="relative group overflow-hidden rounded-xl aspect-square shadow-sm block">
-      <img src="../../assets/insta-4.jpg" alt="Pony White Instagram Post" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" />
+      <img src="../../assets/insta-4.jpg" loading="lazy" decoding="async" alt="Pony White Instagram Post" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" />
       <div class="absolute inset-0 bg-[#0B3027]/70 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center flex-col gap-1 text-white">
         <span class="material-symbols-outlined text-2xl text-[#ffe088]">favorite</span>
         <span class="text-xs font-semibold tracking-wider font-label-sm">View Post</span>
@@ -441,7 +439,7 @@
     </a>
     <!-- Post 5 -->
     <a href="https://www.instagram.com/ponywhite.fitzroy" target="_blank" class="relative group overflow-hidden rounded-xl aspect-square shadow-sm block">
-      <img src="../../assets/insta-5.jpg" alt="Pony White Instagram Post" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" />
+      <img src="../../assets/insta-5.jpg" loading="lazy" decoding="async" alt="Pony White Instagram Post" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" />
       <div class="absolute inset-0 bg-[#0B3027]/70 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center flex-col gap-1 text-white">
         <span class="material-symbols-outlined text-2xl text-[#ffe088]">favorite</span>
         <span class="text-xs font-semibold tracking-wider font-label-sm">View Post</span>
@@ -449,7 +447,7 @@
     </a>
     <!-- Post 6 -->
     <a href="https://www.instagram.com/ponywhite.fitzroy" target="_blank" class="relative group overflow-hidden rounded-xl aspect-square shadow-sm block">
-      <img src="../../assets/insta-6.jpg" alt="Pony White Instagram Post" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" />
+      <img src="../../assets/insta-6.jpg" loading="lazy" decoding="async" alt="Pony White Instagram Post" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" />
       <div class="absolute inset-0 bg-[#0B3027]/70 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center flex-col gap-1 text-white">
         <span class="material-symbols-outlined text-2xl text-[#ffe088]">favorite</span>
         <span class="text-xs font-semibold tracking-wider font-label-sm">View Post</span>
@@ -511,8 +509,8 @@
               <span class="text-xs font-bold font-body-md text-[#00261b]/40">E-GIFT CARD</span>
             </div>
             <!-- Small brand mark -->
-            <div class="w-8 h-8 rounded-full bg-[#00261b]/90 backdrop-blur-sm border border-[#00261b]/20 flex items-center justify-center p-1.5 shadow-sm">
-              <img src="../../assets/White Color Overlay Design.png" alt="Pony White Logo" class="w-full h-full object-contain" />
+            <div class="w-8 h-8 rounded-full bg-[#00261b]/95 border border-[#00261b]/20 flex items-center justify-center p-1.5 shadow-sm">
+              <img src="../../assets/White Color Overlay Design.png" loading="lazy" decoding="async" alt="Pony White Logo" class="w-full h-full object-contain" />
             </div>
           </div>
           
@@ -589,7 +587,6 @@
       class="w-full h-full border-0 absolute inset-0 z-10" 
       src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3152.4795328224523!2d144.97825227702816!3d-37.8022879719782!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x6ad642df5a3c0383%3A0xe541c4deee7574ea!2sPony%20White%20Cafe!5e0!3m2!1sen!2sau!4v1716300000000!5m2!1sen!2sau" 
       allowfullscreen="" 
-      loading="lazy" 
       referrerpolicy="no-referrer-when-downgrade">
     </iframe>
   </div>
@@ -850,9 +847,21 @@
             }, PROGRESS_INTERVAL);
         }
 
+        function hydrateSlideImg(i) {
+            const el = document.getElementById(`slide-img-${i}`);
+            if (el && el.dataset && el.dataset.src && !el.getAttribute('src')) {
+                el.setAttribute('src', el.dataset.src);
+            }
+        }
+
         function updateSlideDOM(index, animate = true) {
             const data = DISHES_DATA[index];
             if (!data) return;
+
+            hydrateSlideImg(index);
+            if (DISHES_DATA.length > 1) {
+                hydrateSlideImg((index + 1) % DISHES_DATA.length);
+            }
 
             // 1. Crossfade Images
             DISHES_DATA.forEach((_, idx) => {
@@ -1015,7 +1024,7 @@
 
         async function syncKitchenShowcaseFromNucleusCrm() {
             try {
-                const res = await fetch(NUCLEUS_KITCHEN_FIRESTORE_URL, { cache: 'no-store' });
+                const res = await fetch(NUCLEUS_KITCHEN_FIRESTORE_URL);
                 if (!res.ok) return;
                 const rawDoc = await res.json();
                 if (!rawDoc || !rawDoc.fields) return;
@@ -1066,22 +1075,28 @@
                 // Preserve whichever slide index the user may have already navigated to
                 const activeIdx = currentSlide < DISHES_DATA.length ? currentSlide : 0;
 
-                // Rebuild slide images inside #slideshow-image-container (eagerly loaded for instant crossfade)
+                // Rebuild slide images inside #slideshow-image-container (lazy-hydrated on demand)
                 const imgContainer = document.getElementById('slideshow-image-container');
                 if (imgContainer) {
                     imgContainer.innerHTML = '';
                     DISHES_DATA.forEach((dish, idx) => {
                         const img = document.createElement('img');
-                        img.src = dish.img;
+                        const isCurrent = idx === activeIdx;
+                        const isNext = DISHES_DATA.length > 1 && idx === ((activeIdx + 1) % DISHES_DATA.length);
+                        if (isCurrent || isNext) {
+                            img.src = dish.img;
+                        } else {
+                            img.dataset.src = dish.img;
+                        }
                         img.id = `slide-img-${idx}`;
                         img.alt = dish.title;
+                        img.loading = 'lazy';
                         img.decoding = 'async';
                         img.onerror = function () {
                             if (this.src !== dish.fallbackImg) {
                                 this.src = dish.fallbackImg;
                             }
                         };
-                        const isCurrent = idx === activeIdx;
                         img.className = isCurrent
                             ? 'absolute inset-0 w-full h-full object-cover transition-all duration-[800ms] ease-in-out transform scale-105 opacity-100 pointer-events-auto z-10 rounded-[2.5rem_6rem_2.5rem_6rem]'
                             : 'absolute inset-0 w-full h-full object-cover transition-all duration-[800ms] ease-in-out transform scale-100 opacity-0 pointer-events-none z-0 rounded-[2.5rem_6rem_2.5rem_6rem]';
