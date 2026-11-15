@@ -119,8 +119,9 @@
     }
 
     #drink-image, #drink-video, #drink-video-loop {
-      transition: transform 1.2s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.8s ease;
+      transition: opacity 0.45s ease;
       object-position: center;
+      transform: none;
     }
     .signature-drinks-showcase #drink-image { z-index: 0; }
     .signature-drinks-showcase #drink-video-loop { z-index: 1; }
@@ -141,7 +142,12 @@
       max-width: none;
       max-height: none;
       object-fit: contain;
-      transition: opacity 0.8s ease, left 0.6s cubic-bezier(0.25, 1, 0.5, 1), top 0.6s cubic-bezier(0.25, 1, 0.5, 1), width 0.6s cubic-bezier(0.25, 1, 0.5, 1), height 0.6s cubic-bezier(0.25, 1, 0.5, 1);
+      transition: opacity 0.45s ease;
+    }
+    #drink-video.sd-framed.sd-reframe-anim,
+    #drink-video-loop.sd-framed.sd-reframe-anim,
+    #drink-image.sd-framed.sd-reframe-anim {
+      transition: opacity 0.45s ease, left 0.5s cubic-bezier(0.25, 1, 0.5, 1), top 0.5s cubic-bezier(0.25, 1, 0.5, 1), width 0.5s cubic-bezier(0.25, 1, 0.5, 1), height 0.5s cubic-bezier(0.25, 1, 0.5, 1);
     }
     #drink-video.sd-feather,
     #drink-video-loop.sd-feather,
@@ -481,7 +487,7 @@
 </button>
 <!-- Full Screen Drink Background -->
 <div id="drink-media-stage" class="absolute inset-0 overflow-hidden flex justify-center items-center z-0">
-<img alt="Signature Drink" class="absolute inset-0 w-full h-full object-cover z-0" style="opacity: 0;" fetchpriority="high" decoding="async" id="drink-image" src="../../assets/coconut-iced-latte.jpg"/>
+<img alt="Signature Drink" class="absolute inset-0 w-full h-full object-cover z-0 hidden" style="display: none; opacity: 0;" decoding="async" id="drink-image"/>
 <!-- Loop layer (bb) for 2-part sequences (sits directly behind #drink-video, which plays the one-shot (ab) pouring/build clip) -->
 <video id="drink-video-loop" class="absolute inset-0 w-full h-full object-cover z-[1]" style="display: none; opacity: 0;" preload="none" loop muted playsinline aria-hidden="true"></video>
 <video id="drink-video" class="absolute inset-0 w-full h-full object-cover z-[2]" style="opacity: 0;" preload="none" muted playsinline></video>
@@ -679,7 +685,7 @@
       'pistachio-creme-brulee': {
         title: 'Pistachio Crème Brûlée',
         text: 'Iced latte topped with house-made pistachio cream, brûléed with crushed pistachios.',
-        img: '../../assets/coconut-iced-latte.jpg',
+        img: '',
         video: '../../assets/Pistachio Creme Brulee.mp4',
         price: '$10.50',
         ambient: '#242D1C'
@@ -938,7 +944,8 @@
       const safeW = n(fr.safeW), safeH = n(fr.safeH), cx = n(fr.cx), cy = n(fr.cy);
       if (![safeW, safeH, cx, cy].every(v => isFinite(v) && v >= 0 && v <= 1)) return null;
       if (safeW <= 0 || safeH <= 0) return null;
-      return { safeW, safeH, cx, cy };
+      const aspect = typeof fr.aspect === 'string' ? fr.aspect.trim() : '';
+      return aspect ? { safeW, safeH, cx, cy, aspect } : { safeW, safeH, cx, cy };
     }
 
     function sdExtractMedia(obj, fallbackObj) {
@@ -1174,9 +1181,29 @@
     // ---------- Smart framing: keep the whole drink visible ----------
     function sdClearFraming(v) {
       if (!v) return;
-      v.classList.remove('sd-framed', 'sd-feather');
+      v.classList.remove('sd-framed', 'sd-feather', 'sd-reframe-anim');
       ['left', 'top', 'width', 'height', 'right', 'bottom'].forEach(p => { v.style[p] = ''; });
       ['--sd-fx0', '--sd-fx1', '--sd-fy0', '--sd-fy1'].forEach(p => { v.style.removeProperty(p); });
+    }
+
+    function sdFallbackDimsFromAspect(fr) {
+      const aspect = fr && typeof fr.aspect === 'string' ? fr.aspect.trim() : '';
+      if (aspect === '9:16') return { vw: 1080, vh: 1920 };
+      if (aspect === '1:1') return { vw: 1080, vh: 1080 };
+      if (aspect === '4:5') return { vw: 1080, vh: 1350 };
+      if (aspect === '4:3') return { vw: 1440, vh: 1080 };
+      return { vw: 1280, vh: 720 };
+    }
+
+    function sdHideFallbackImg(img) {
+      if (!img) return;
+      img.classList.add('sd-instant');
+      img.style.opacity = '0';
+      img.style.display = 'none';
+      img.classList.add('hidden');
+      img.removeAttribute('src');
+      void img.offsetWidth;
+      img.classList.remove('sd-instant');
     }
 
     function sdIsDescriptionVisible(desc) {
@@ -1204,8 +1231,11 @@
       const cr = stage.getBoundingClientRect();
       const W = cr.width, H = cr.height;
       if (W < 2 || H < 2) return;
-      const vw = loop.videoWidth || build.videoWidth || 1920;
-      const vh = loop.videoWidth ? loop.videoHeight : (build.videoHeight || 1080);
+      const fallbackDims = sdFallbackDimsFromAspect(fr);
+      const hasLoopDims = loop.readyState >= 1 && loop.videoWidth > 0 && loop.videoHeight > 0;
+      const hasBuildDims = build.readyState >= 1 && build.videoWidth > 0 && build.videoHeight > 0;
+      const vw = hasLoopDims ? loop.videoWidth : (hasBuildDims ? build.videoWidth : fallbackDims.vw);
+      const vh = hasLoopDims ? loop.videoHeight : (hasBuildDims ? build.videoHeight : fallbackDims.vh);
 
       // Available rect (stage coordinates) = container minus occluders.
       let ax0 = 0, ax1 = W, ay0 = 0, ay1 = H;
@@ -1308,6 +1338,29 @@
       });
     }
 
+    let sdReframeAnimTimer = 0;
+    function sdTriggerPanelReframeAnim() {
+      const targets = [
+        document.getElementById('drink-video'),
+        document.getElementById('drink-video-loop'),
+        document.getElementById('drink-image')
+      ];
+      targets.forEach(el => {
+        if (el) el.classList.add('sd-reframe-anim');
+      });
+      if (sdReframeAnimTimer) {
+        clearTimeout(sdReframeAnimTimer);
+        sdReframeAnimTimer = 0;
+      }
+      sdScheduleLayout();
+      sdReframeAnimTimer = setTimeout(() => {
+        sdReframeAnimTimer = 0;
+        targets.forEach(el => {
+          if (el) el.classList.remove('sd-reframe-anim');
+        });
+      }, 550);
+    }
+
     // ---------- Legacy <-> sequence mode switching ----------
     function sdExitSequenceMode(video, loopEl) {
       const showcase = document.querySelector('.signature-drinks-showcase');
@@ -1361,34 +1414,24 @@
         config.partBVideo, config.spinVideo, config.loop_video
       );
       const loopSrc = explicitLoop || sdFirstStr(config.video, config.videoUrl);
+      const buildUrl = sdAbsUrl(buildSrc);
+      const loopUrl = sdAbsUrl(loopSrc);
 
-      sdSeqState.active = true;
-      sdSeqState.framing = sdNormalizeFraming(config.framing);
-      if (showcase) showcase.classList.add('sd-seq-mode');
       if (logo) logo.classList.add('logo-loading');
 
-      // Keep high-res fallback poster visible beneath the build video until playback begins
-      if (config.img) {
-        img.src = config.img;
-        img.style.display = 'block';
-        img.classList.remove('hidden');
-        img.style.opacity = '1';
-        img.style.transform = 'none';
-      } else {
-        img.style.display = 'none';
-        img.classList.add('hidden');
-        img.style.opacity = '0';
-        img.src = '';
+      // Never show the static fallback poster while the video buffers; keep it hidden unless playback fails
+      sdHideFallbackImg(img);
+
+      // Clear any stale loop source from a prior drink so previous metadata cannot shift initial framing
+      // and so (ab) gets 100% of initial download bandwidth first.
+      if (loop.src !== loopUrl) {
+        loop.pause();
+        loop.removeAttribute('src');
+        try { loop.load(); } catch (e) {}
       }
 
       [build, loop].forEach(v => {
-        if (v.style.visibility === 'hidden') {
-          // Layer was hidden (e.g. build after a swap): reset opacity instantly so it never re-appears mid-fade
-          v.classList.add('sd-instant');
-          v.style.opacity = '0';
-          void v.offsetWidth;
-          v.classList.remove('sd-instant');
-        }
+        v.classList.add('sd-instant');
         v.muted = true;
         v.playsInline = true;
         v.removeAttribute('poster');
@@ -1401,31 +1444,26 @@
         v.style.transform = 'none';
         v.style.visibility = 'visible';
       });
-
-      // Parallel preload: warm the looping (bb) layer immediately behind (ab) so handover has zero gap
-      const loopUrl = sdAbsUrl(loopSrc);
+      build.style.opacity = '0';
+      loop.style.opacity = '0.001';
       loop.loop = true;
       loop.setAttribute('loop', '');
-      loop.preload = 'auto';
-      loop.pause();
-      if (loop.src !== loopUrl) {
-        loop.src = loopSrc;
-        loop.load();
-      } else {
-        try { loop.currentTime = 0; } catch (e) {}
-      }
-      // Keep loop compositor-resident at minimal alpha behind build while build loads
-      loop.classList.add('sd-instant');
-      loop.style.opacity = '0.001';
+
+      sdSeqState.active = true;
+      sdSeqState.framing = sdNormalizeFraming(config.framing);
+      if (showcase) showcase.classList.add('sd-seq-mode');
+
+      // Snap framing coordinates instantaneously while completely invisible (zero position shift)
+      sdLayoutVideos();
+      void build.offsetWidth;
       void loop.offsetWidth;
+      build.classList.remove('sd-instant');
       loop.classList.remove('sd-instant');
 
-      // Build layer (ab): plays once on initial load / selection
-      build.style.opacity = '0';
+      // Prioritize (ab) build layer first so first frame decodes as fast as possible
       build.loop = false;
       build.removeAttribute('loop');
       build.preload = 'auto';
-      const buildUrl = sdAbsUrl(buildSrc);
       if (build.src !== buildUrl) {
         build.src = buildSrc;
         build.load();
@@ -1434,7 +1472,21 @@
         try { build.currentTime = 0; } catch (e) {}
       }
 
-      sdLayoutVideos();
+      let loopPreloadStarted = (loop.src === loopUrl && loop.readyState >= 1);
+      const startLoopPreload = () => {
+        if (stale() || loopPreloadStarted) return;
+        loopPreloadStarted = true;
+        loop.loop = true;
+        loop.setAttribute('loop', '');
+        loop.preload = 'auto';
+        loop.pause();
+        if (loop.src !== loopUrl) {
+          loop.src = loopSrc;
+          loop.load();
+        } else {
+          try { loop.currentTime = 0; } catch (e) {}
+        }
+      };
 
       let swapped = false;
       let pendingSwap = false;
@@ -1469,9 +1521,45 @@
         }
       };
 
+      const showImageFallback = (playFn) => {
+        if (config.img) {
+          img.classList.add('sd-instant');
+          img.src = config.img;
+          img.style.display = 'block';
+          img.classList.remove('hidden');
+          img.style.transform = 'none';
+          sdLayoutVideos();
+          void img.offsetWidth;
+          img.classList.remove('sd-instant');
+          img.style.opacity = '1';
+        } else {
+          build.style.opacity = '0.2';
+        }
+        const forcePlay = () => {
+          document.removeEventListener('click', forcePlay);
+          document.removeEventListener('touchend', forcePlay);
+          if (stale()) return;
+          playFn().then(() => {
+            if (stale()) return;
+            if (!swapped) {
+              buildStarted = true;
+              build.style.opacity = '1';
+            }
+            sdHideFallbackImg(img);
+          }).catch(err => console.log('Gesture play failed:', err));
+        };
+        document.addEventListener('click', forcePlay);
+        document.addEventListener('touchend', forcePlay);
+        cleanups.push(() => {
+          document.removeEventListener('click', forcePlay);
+          document.removeEventListener('touchend', forcePlay);
+        });
+      };
+
       // Atomic handover: loop (bb) sits preloaded behind build (ab); flip instantly on final frame
       const swap = () => {
         if (stale() || swapped) return;
+        startLoopPreload();
         if (loop.readyState < 2 || loop.seeking) { pendingSwap = true; return; }
         swapped = true;
         pendingSwap = false;
@@ -1503,6 +1591,7 @@
         swapped = true;
         clearStall();
         console.log('Drink build clip skipped (' + reason + '), starting loop.');
+        startLoopPreload();
         build.pause();
         build.style.visibility = 'hidden';
         build.style.opacity = '0';
@@ -1514,54 +1603,13 @@
         if (p && p.then) {
           p.then(() => {
             finishLoading();
-            if (!stale() && config.img) {
-              img.style.opacity = '0';
-              later(() => {
-                if (!stale()) {
-                  img.style.display = 'none';
-                  img.classList.add('hidden');
-                }
-              }, 500);
-            }
+            if (!stale()) sdHideFallbackImg(img);
           }).catch(err => {
             console.log('Loop autoplay blocked:', err);
             finishLoading();
             showImageFallback(() => loop.play());
           });
         }
-      };
-
-      const showImageFallback = (playFn) => {
-        if (config.img) {
-          img.src = config.img;
-          img.style.display = 'block';
-          img.classList.remove('hidden');
-          img.style.opacity = '1';
-          img.style.transform = 'none';
-        } else {
-          build.style.opacity = '0.2';
-        }
-        const forcePlay = () => {
-          document.removeEventListener('click', forcePlay);
-          document.removeEventListener('touchend', forcePlay);
-          if (stale()) return;
-          playFn().then(() => {
-            if (stale()) return;
-            if (!swapped) build.style.opacity = '1';
-            img.style.opacity = '0';
-            setTimeout(() => {
-              if (stale()) return;
-              img.style.display = 'none';
-              img.classList.add('hidden');
-            }, 500);
-          }).catch(err => console.log('Gesture play failed:', err));
-        };
-        document.addEventListener('click', forcePlay);
-        document.addEventListener('touchend', forcePlay);
-        cleanups.push(() => {
-          document.removeEventListener('click', forcePlay);
-          document.removeEventListener('touchend', forcePlay);
-        });
       };
 
       // Retry deferred swap & warm decoder once loop frames become available
@@ -1577,8 +1625,18 @@
         const pr = loop.play();
         if (pr && pr.catch) pr.catch(() => {});
       });
+      on(loop, 'error', () => {
+        if (stale()) return;
+        if (swapped) {
+          finishLoading();
+          showImageFallback(() => loop.play());
+        }
+      });
       on(loop, 'loadedmetadata', sdScheduleLayout);
       on(build, 'loadedmetadata', sdScheduleLayout);
+      on(build, 'loadeddata', () => {
+        if (!stale() && !swapped) startLoopPreload();
+      });
 
       on(build, 'timeupdate', () => {
         if (stale() || swapped) return;
@@ -1591,18 +1649,12 @@
       on(build, 'ended', swap); // fallback when requestVideoFrameCallback is unavailable / overshoots
       on(build, 'error', () => goLoopDirect('error'));
       on(build, 'playing', () => {
+        if (stale() || swapped) return;
         buildStarted = true;
+        startLoopPreload();
         build.style.opacity = '1';
         clearStall();
-        if (config.img) {
-          img.style.opacity = '0';
-          later(() => {
-            if (!stale()) {
-              img.style.display = 'none';
-              img.classList.add('hidden');
-            }
-          }, 500);
-        }
+        sdHideFallbackImg(img);
       });
       on(build, 'waiting', () => {
         if (!buildStarted || swapped) return;
@@ -1618,6 +1670,13 @@
         const onFrame = (now, md) => {
           rvfcHandle = 0;
           if (stale() || swapped) return;
+          if (!buildStarted && build.readyState >= 2) {
+            buildStarted = true;
+            startLoopPreload();
+            build.style.opacity = '1';
+            clearStall();
+            sdHideFallbackImg(img);
+          }
           const t = md && typeof md.mediaTime === 'number' ? md.mediaTime : build.currentTime;
           if (lastT >= 0 && t > lastT) {
             const d = t - lastT;
@@ -1643,8 +1702,12 @@
       const playPromise = build.play();
       if (playPromise !== undefined && playPromise.then) {
         playPromise.then(() => {
-          if (stale()) return;
-          build.style.opacity = '1';
+          if (stale() || swapped) return;
+          if (build.readyState >= 2) {
+            buildStarted = true;
+            startLoopPreload();
+            build.style.opacity = '1';
+          }
           finishLoading();
           // Make loop opaque invisibly beneath opaque build so swap is a pure instant visibility flip
           later(() => {
@@ -1675,98 +1738,105 @@
         sdPlaySequence(config, img, video, loopEl, gen);
         return;
       }
+      video.classList.add('sd-instant');
       sdExitSequenceMode(video, loopEl);
+      void video.offsetWidth;
+      video.classList.remove('sd-instant');
+
+      const cleanups = [];
+      const on = (el, ev, fn) => { el.addEventListener(ev, fn); cleanups.push(() => el.removeEventListener(ev, fn)); };
+      sdSeqCleanup = () => {
+        cleanups.forEach(f => { try { f(); } catch (e) {} });
+      };
 
       const logo = document.getElementById('brand-logo-container');
       if (config.video) {
         if (logo) logo.classList.add('logo-loading');
-        // Keep high-res image visible as poster backdrop while the video buffers
-        if (config.img) {
-          img.src = config.img;
-          img.style.display = 'block';
-          img.classList.remove('hidden');
-          img.style.opacity = '1';
-          img.style.transform = 'scale(1)';
-        } else {
-          img.style.display = 'none';
-          img.classList.add('hidden');
-          img.style.opacity = '0';
-          img.src = '';
-        }
-        
+        // Never show the static fallback image while buffering; only surface it if playback fails or is blocked
+        sdHideFallbackImg(img);
+
+        video.classList.add('sd-instant');
         video.style.display = 'block';
         video.classList.remove('hidden');
-        
+        video.style.opacity = '0';
+        video.style.transform = 'none';
+        void video.offsetWidth;
+        video.classList.remove('sd-instant');
+
         // Mute and playsinline to comply with autoplay rules
         video.muted = true;
         video.playsInline = true;
+        video.preload = 'auto';
         video.removeAttribute('poster');
         video.removeAttribute('crossorigin');
         video.crossOrigin = null;
         video.setAttribute('muted', '');
         video.setAttribute('playsinline', '');
-        
+
         // Force load the new video source
         const newSrc = new URL(config.video, window.location.href).href;
         if (video.src !== newSrc) {
           video.src = config.video;
           video.load();
+        } else {
+          try { video.currentTime = 0; } catch (e) {}
         }
-        
-        // Keep video opacity 0 until it actually starts playing
-        video.style.opacity = '0';
-        video.style.transform = 'scale(1)';
-        
-        // Attempt immediate playback to trigger active streaming and detect blocks
+
+        const revealSingleVideo = () => {
+          if (sdSeqGen !== gen) return;
+          video.style.opacity = '1';
+          if (logo) logo.classList.remove('logo-loading');
+          sdHideFallbackImg(img);
+        };
+
+        const showSingleImageFallback = () => {
+          if (sdSeqGen !== gen) return;
+          if (config.img) {
+            img.classList.add('sd-instant');
+            img.src = config.img;
+            img.style.display = 'block';
+            img.classList.remove('hidden');
+            img.style.transform = 'none';
+            void img.offsetWidth;
+            img.classList.remove('sd-instant');
+            img.style.opacity = '1';
+          } else {
+            video.style.opacity = '0.2';
+          }
+          if (logo) logo.classList.remove('logo-loading');
+          const forcePlay = () => {
+            document.removeEventListener('click', forcePlay);
+            document.removeEventListener('touchend', forcePlay);
+            if (sdSeqGen !== gen) return;
+            video.play().then(() => {
+              revealSingleVideo();
+            }).catch(err => console.log('Gesture play failed:', err));
+          };
+          document.addEventListener('click', forcePlay);
+          document.addEventListener('touchend', forcePlay);
+          cleanups.push(() => {
+            document.removeEventListener('click', forcePlay);
+            document.removeEventListener('touchend', forcePlay);
+          });
+        };
+
+        on(video, 'playing', revealSingleVideo);
+        on(video, 'error', () => {
+          console.log('Video playback error, using fallback:', config.video);
+          showSingleImageFallback();
+        });
+
         const playPromise = video.play();
         if (playPromise !== undefined) {
           playPromise.then(() => {
             if (sdSeqGen !== gen) return;
-            // Success! Fade in the video beautifully and hide poster image
-            video.style.opacity = '1';
-            if (logo) logo.classList.remove('logo-loading');
-            if (config.img) {
-              img.style.opacity = '0';
-              setTimeout(() => {
-                if (sdSeqGen === gen) {
-                  img.style.display = 'none';
-                  img.classList.add('hidden');
-                }
-              }, 500);
+            if (video.readyState >= 2) {
+              revealSingleVideo();
             }
           }).catch(error => {
             if (sdSeqGen !== gen) return;
             console.log('Autoplay blocked by Chrome/sandboxing:', error);
-            // Autoplay is blocked. Reveal the high-res image fallback if available.
-            if (config.img) {
-              img.src = config.img;
-              img.style.display = 'block';
-              img.classList.remove('hidden');
-              img.style.opacity = '1';
-              img.style.transform = 'scale(1)';
-            } else {
-              // No image fallback. Set video to a subtle backdrop opacity.
-              video.style.opacity = '0.2';
-            }
-            
-            if (logo) logo.classList.remove('logo-loading');
-            
-            // Register a click gesture fallback on the entire document to play the video.
-            const forcePlay = () => {
-              video.play().then(() => {
-                video.style.opacity = '1';
-                // Hide image fallback once video starts playing
-                img.style.opacity = '0';
-                setTimeout(() => {
-                  img.style.display = 'none';
-                  img.classList.add('hidden');
-                }, 500);
-              }).catch(err => console.log('Gesture play failed:', err));
-              document.removeEventListener('click', forcePlay);
-              document.removeEventListener('touchend', forcePlay);
-            };
-            document.addEventListener('click', forcePlay);
-            document.addEventListener('touchend', forcePlay);
+            showSingleImageFallback();
           });
         }
       } else {
@@ -1775,13 +1845,21 @@
         video.classList.add('hidden');
         video.style.opacity = '0';
         video.pause();
-        
-        img.style.display = 'block';
-        img.classList.remove('hidden');
-        img.src = config.img;
-        img.style.opacity = '1';
-        img.style.transform = 'scale(1)';
-        
+        video.removeAttribute('src');
+
+        if (config.img) {
+          img.classList.add('sd-instant');
+          img.style.display = 'block';
+          img.classList.remove('hidden');
+          img.style.transform = 'none';
+          img.src = config.img;
+          void img.offsetWidth;
+          img.classList.remove('sd-instant');
+          img.style.opacity = '1';
+        } else {
+          sdHideFallbackImg(img);
+        }
+
         if (logo) logo.classList.remove('logo-loading');
       }
     }
@@ -1815,12 +1893,10 @@
         img.style.opacity = '0';
         video.style.opacity = '0';
         if (loopLayer) loopLayer.style.opacity = '0';
-      } else if (previewCfg.video) {
-        img.style.opacity = '0';
-        video.style.opacity = '0.5';
       } else {
-        img.style.opacity = '0.5';
+        img.style.opacity = '0';
         video.style.opacity = '0';
+        if (loopLayer) loopLayer.style.opacity = '0';
       }
 
       const activeKey = currentDrinkKey;
@@ -1840,12 +1916,14 @@
         applyAmbientColor(config.ambient, config);
         applyOrderLink(config.orderUrl ? config : liveDrink);
 
-        // Update media background
-        updateMedia(config, img, video);
-
-        // Fade in details
+        // Reveal panel box BEFORE media layout so sdLayoutVideos computes final position synchronously
+        desc.style.display = 'flex';
+        desc.classList.remove('panel-hidden');
         desc.style.opacity = '1';
         desc.style.transform = 'translateY(0)';
+
+        // Update media background
+        updateMedia(config, img, video);
         sdScheduleLayout();
       }, 250);
     }
@@ -1914,14 +1992,14 @@
         applyAmbientColor(config.ambient, config);
         applyOrderLink(config.orderUrl ? config : liveDrink);
 
-        // Update media background
-        updateMedia(config, img, video);
-
-        // Reveal panel when selecting new drink
+        // Reveal panel box BEFORE media layout so sdLayoutVideos computes final position synchronously
         desc.style.display = 'flex';
         desc.classList.remove('panel-hidden');
         desc.style.opacity = '1';
         desc.style.transform = 'translateY(0)';
+
+        // Update media background
+        updateMedia(config, img, video);
         sdScheduleLayout();
       };
 
@@ -1932,18 +2010,9 @@
         desc.style.opacity = '0';
         desc.style.transform = 'translateY(30px)';
         const loopLayer = document.getElementById('drink-video-loop');
-        const targetCfg = drink && drink.hasTempToggle ? (drink.hot || drink) : drink;
-        if (sdSeqState.active || sdIsSequenceConfig(sdResolveConfig(targetCfg))) {
-          // Sequence mode: opacity-only transition (no zoom, it would crop the drink)
-          img.style.opacity = '0';
-          video.style.opacity = '0';
-          if (loopLayer) loopLayer.style.opacity = '0';
-        } else {
-          img.style.opacity = '0';
-          img.style.transform = 'scale(1.02)';
-          video.style.opacity = '0';
-          video.style.transform = 'scale(1.02)';
-        }
+        img.style.opacity = '0';
+        video.style.opacity = '0';
+        if (loopLayer) loopLayer.style.opacity = '0';
 
         uiTransitionTimer = setTimeout(() => {
           uiTransitionTimer = 0;
@@ -1965,7 +2034,7 @@
       panel.style.opacity = '';
       panel.style.transform = '';
       panelManuallyClosed = true; // Lock in the closed state until selection changes
-      sdScheduleLayout();
+      sdTriggerPanelReframeAnim();
     }
 
     function revealPanel() {
@@ -1976,7 +2045,7 @@
         panel.classList.remove('panel-hidden');
         panel.style.opacity = '1';
         panel.style.transform = 'translateY(0)';
-        sdScheduleLayout();
+        sdTriggerPanelReframeAnim();
       }
     }
 
