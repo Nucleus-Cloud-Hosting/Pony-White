@@ -43,19 +43,20 @@
     })();
     // Square Online Iframe Navigation & Link Breakout Guard
     (function() {
+      const LIVE_SITE_ORIGIN = 'https://www.ponywhite.com.au';
       const SLUG_MAP = {
-        'home.html': '/',
-        'book-table.html': '/book-table',
+        'home.html': '/home',
+        'book-table.html': '/reservations',
         'signature-drinks.html': '/signature-drinks',
         'smoothies-juices.html': '/smoothies-juices',
-        'gift-cards.html': '/gift-cards',
+        'gift-cards.html': '/gift-card',
         'loyalty.html': '/loyalty',
-        'contact.html': '/contact',
-        'careers.html': '/careers',
+        'contact.html': '/contact-us',
+        'careers.html': '/hiring',
         'retail-top.html': '/retail',
         'retail-bottom.html': '/retail',
         'qr.html': '/qr',
-        'under-construction.html': '/'
+        'under-construction.html': '/under-construction'
       };
       function isLocalPreview() {
         try {
@@ -66,39 +67,107 @@
       function isEmbeddedInIframe() {
         try { return window.self !== window.top; } catch (e) { return true; }
       }
-      function upgradeLinks() {
+      function isSameOriginUrl(candidateStr, trustedUrlStr) {
+        if (!candidateStr) return false;
+        try {
+          if ('Origin' in globalThis) {
+            return Origin.from(candidateStr).isSameOrigin(Origin.from(trustedUrlStr));
+          }
+          const cUrl = new URL(candidateStr);
+          const tUrl = new URL(trustedUrlStr);
+          return cUrl.origin !== 'null' && cUrl.origin === tUrl.origin;
+        } catch (e) { return false; }
+      }
+      function isSameSiteDomain(candidateStr, trustedUrlStr, registrableDomain) {
+        if (!candidateStr) return false;
+        try {
+          if ('Origin' in globalThis) {
+            return Origin.from(candidateStr).isSameSite(Origin.from(trustedUrlStr));
+          }
+          const cUrl = new URL(candidateStr);
+          const tUrl = new URL(trustedUrlStr);
+          return cUrl.origin !== 'null' && cUrl.protocol === tUrl.protocol && (cUrl.hostname === registrableDomain || cUrl.hostname.endsWith('.' + registrableDomain));
+        } catch (e) { return false; }
+      }
+      function resolvePageLink(rawHref) {
+        const trimmed = (rawHref || '').trim();
+        if (!trimmed || trimmed.startsWith('#') || trimmed.startsWith('javascript:') || trimmed.startsWith('mailto:') || trimmed.startsWith('tel:')) return null;
+        const hashIdx = trimmed.indexOf('#');
+        const hashPart = hashIdx >= 0 ? trimmed.slice(hashIdx) : '';
+        const withoutHash = hashIdx >= 0 ? trimmed.slice(0, hashIdx) : trimmed;
+        const qIdx = withoutHash.indexOf('?');
+        const searchPart = qIdx >= 0 ? withoutHash.slice(qIdx) : '';
+        const pathPart = qIdx >= 0 ? withoutHash.slice(0, qIdx) : withoutHash;
+        const suffix = searchPart + hashPart;
+        const cleanFile = pathPart.replace(/^(\.\/|\/)+/, '');
         const inIframe = isEmbeddedInIframe();
         const local = isLocalPreview();
-        document.querySelectorAll('a[href]').forEach(function(a) {
-          const rawHref = (a.getAttribute('href') || '').trim();
-          if (!rawHref || rawHref.startsWith('#') || rawHref.startsWith('javascript:') || rawHref.startsWith('mailto:') || rawHref.startsWith('tel:')) return;
-          const cleanFile = rawHref.split('?')[0].split('#')[0].replace(/^(\.\/|\/)+/, '');
-          if (SLUG_MAP[cleanFile] && inIframe && !local) {
-            const hashPart = rawHref.includes('#') ? '#' + rawHref.split('#')[1] : '';
-            a.setAttribute('href', SLUG_MAP[cleanFile] + hashPart);
-            a.setAttribute('target', '_top');
-          } else if (/^https?:\/\//i.test(rawHref) && !a.getAttribute('target')) {
-            a.setAttribute('target', '_top');
+        if (SLUG_MAP[cleanFile]) {
+          if (local) return null;
+          const embedMatch = (window.location.pathname || '').match(/^\/(embed|preview)\/([^\/]+)\//);
+          if (!inIframe) {
+            if (embedMatch) {
+              return { href: '/' + embedMatch[1] + '/' + embedMatch[2] + '/' + cleanFile + suffix, target: '_self' };
+            }
+            return null;
           }
-        });
+          const ref = document.referrer || '';
+          if (embedMatch && (isSameSiteDomain(ref, 'https://nucleuscloud.net', 'nucleuscloud.net') || isSameOriginUrl(ref, 'https://nucleus-revamp.web.app') || isSameOriginUrl(ref, 'https://bizboard-67b4c.web.app'))) {
+            return { href: '/' + embedMatch[1] + '/' + embedMatch[2] + '/' + cleanFile + suffix, target: '_self' };
+          }
+          if (isSameSiteDomain(ref, 'https://square.online', 'square.online') || isSameSiteDomain(ref, 'https://editmysite.com', 'editmysite.com') || isSameSiteDomain(ref, 'https://weebly.com', 'weebly.com')) {
+            return { href: LIVE_SITE_ORIGIN + SLUG_MAP[cleanFile] + suffix, target: '_blank', rel: 'noopener noreferrer' };
+          }
+          let siteOrigin = LIVE_SITE_ORIGIN;
+          if (isSameSiteDomain(ref, LIVE_SITE_ORIGIN, 'ponywhite.com.au') || isSameOriginUrl(ref, 'https://pony-white-cafe.square.site')) {
+            try { siteOrigin = new URL(ref).origin; } catch (e) {}
+          }
+          return { href: siteOrigin + SLUG_MAP[cleanFile] + suffix, target: '_top' };
+        }
+        if (/^https?:\/\//i.test(trimmed) && inIframe && !local) {
+          return { href: trimmed, target: '_top', onlyIfNoTarget: true };
+        }
+        return null;
+      }
+      function upgradeAnchor(a) {
+        if (!a || !a.getAttribute) return;
+        const origHref = a.hasAttribute('data-pw-orig-href') ? a.getAttribute('data-pw-orig-href') : (a.getAttribute('href') || '');
+        const res = resolvePageLink(origHref);
+        if (!res) return;
+        if (res.onlyIfNoTarget) {
+          if (!a.getAttribute('target')) a.setAttribute('target', res.target);
+          return;
+        }
+        if (!a.hasAttribute('data-pw-orig-href')) a.setAttribute('data-pw-orig-href', origHref);
+        a.setAttribute('href', res.href);
+        a.setAttribute('target', res.target);
+        if (res.rel) a.setAttribute('rel', res.rel);
+      }
+      function upgradeLinks() {
+        document.querySelectorAll('a[href]').forEach(upgradeAnchor);
       }
       if (document.readyState === 'loading') {
         document.addEventListener('DOMContentLoaded', upgradeLinks);
       } else {
         upgradeLinks();
       }
-      document.addEventListener('click', function(e) {
-        const anchor = e.target && e.target.closest ? e.target.closest('a[href]') : null;
-        if (!anchor) return;
-        const rawHref = (anchor.getAttribute('href') || '').trim();
-        const cleanFile = rawHref.split('?')[0].split('#')[0].replace(/^(\.\/|\/)+/, '');
-        if (SLUG_MAP[cleanFile] && isEmbeddedInIframe() && !isLocalPreview()) {
-          e.preventDefault();
-          const hashPart = rawHref.includes('#') ? '#' + rawHref.split('#')[1] : '';
-          const targetUrl = SLUG_MAP[cleanFile] + hashPart;
-          try { window.top.location.href = targetUrl; } catch (err) { window.open(targetUrl, '_top'); }
-        }
+      ['pointerdown', 'focusin', 'click'].forEach(function(evtName) {
+        document.addEventListener(evtName, function(e) {
+          const anchor = e.target && e.target.closest ? e.target.closest('a[href]') : null;
+          if (anchor) upgradeAnchor(anchor);
+        }, true);
       });
+      window.__pwUpgradeLinks = upgradeLinks;
+      window.__pwNavigate = function(rawHref) {
+        const res = resolvePageLink(rawHref);
+        if (!res) { window.location.href = rawHref; return; }
+        if (res.target === '_blank') { window.open(res.href, '_blank', 'noopener,noreferrer'); return; }
+        if (res.target === '_top') {
+          try { window.top.location.href = res.href; } catch (err) { window.open(res.href, '_top'); }
+          return;
+        }
+        window.location.href = res.href;
+      };
     })();
 
     // State Management for Questionnaire

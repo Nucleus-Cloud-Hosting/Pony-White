@@ -510,11 +510,13 @@
 
         // Dynamic immediate redirects per user requirements
         if (category === 'bookings') {
-            window.location.href = 'book-table.html';
+            if (window.__pwNavigate) window.__pwNavigate('book-table.html');
+            else window.location.href = 'book-table.html';
             return;
         }
         if (category === 'hiring') {
-            window.location.href = 'careers.html';
+            if (window.__pwNavigate) window.__pwNavigate('careers.html');
+            else window.location.href = 'careers.html';
             return;
         }
         if (category === 'general') {

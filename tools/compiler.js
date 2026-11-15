@@ -243,19 +243,20 @@ function compilePage(filePath) {
                             `    })();\n` +
                             `    // Square Online Iframe Navigation & Link Breakout Guard\n` +
                             `    (function() {\n` +
+                            `      const LIVE_SITE_ORIGIN = 'https://www.ponywhite.com.au';\n` +
                             `      const SLUG_MAP = {\n` +
-                            `        'home.html': '/',\n` +
-                            `        'book-table.html': '/book-table',\n` +
+                            `        'home.html': '/home',\n` +
+                            `        'book-table.html': '/reservations',\n` +
                             `        'signature-drinks.html': '/signature-drinks',\n` +
                             `        'smoothies-juices.html': '/smoothies-juices',\n` +
-                            `        'gift-cards.html': '/gift-cards',\n` +
+                            `        'gift-cards.html': '/gift-card',\n` +
                             `        'loyalty.html': '/loyalty',\n` +
-                            `        'contact.html': '/contact',\n` +
-                            `        'careers.html': '/careers',\n` +
+                            `        'contact.html': '/contact-us',\n` +
+                            `        'careers.html': '/hiring',\n` +
                             `        'retail-top.html': '/retail',\n` +
                             `        'retail-bottom.html': '/retail',\n` +
                             `        'qr.html': '/qr',\n` +
-                            `        'under-construction.html': '/'\n` +
+                            `        'under-construction.html': '/under-construction'\n` +
                             `      };\n` +
                             `      function isLocalPreview() {\n` +
                             `        try {\n` +
@@ -266,39 +267,107 @@ function compilePage(filePath) {
                             `      function isEmbeddedInIframe() {\n` +
                             `        try { return window.self !== window.top; } catch (e) { return true; }\n` +
                             `      }\n` +
-                            `      function upgradeLinks() {\n` +
+                            `      function isSameOriginUrl(candidateStr, trustedUrlStr) {\n` +
+                            `        if (!candidateStr) return false;\n` +
+                            `        try {\n` +
+                            `          if ('Origin' in globalThis) {\n` +
+                            `            return Origin.from(candidateStr).isSameOrigin(Origin.from(trustedUrlStr));\n` +
+                            `          }\n` +
+                            `          const cUrl = new URL(candidateStr);\n` +
+                            `          const tUrl = new URL(trustedUrlStr);\n` +
+                            `          return cUrl.origin !== 'null' && cUrl.origin === tUrl.origin;\n` +
+                            `        } catch (e) { return false; }\n` +
+                            `      }\n` +
+                            `      function isSameSiteDomain(candidateStr, trustedUrlStr, registrableDomain) {\n` +
+                            `        if (!candidateStr) return false;\n` +
+                            `        try {\n` +
+                            `          if ('Origin' in globalThis) {\n` +
+                            `            return Origin.from(candidateStr).isSameSite(Origin.from(trustedUrlStr));\n` +
+                            `          }\n` +
+                            `          const cUrl = new URL(candidateStr);\n` +
+                            `          const tUrl = new URL(trustedUrlStr);\n` +
+                            `          return cUrl.origin !== 'null' && cUrl.protocol === tUrl.protocol && (cUrl.hostname === registrableDomain || cUrl.hostname.endsWith('.' + registrableDomain));\n` +
+                            `        } catch (e) { return false; }\n` +
+                            `      }\n` +
+                            `      function resolvePageLink(rawHref) {\n` +
+                            `        const trimmed = (rawHref || '').trim();\n` +
+                            `        if (!trimmed || trimmed.startsWith('#') || trimmed.startsWith('javascript:') || trimmed.startsWith('mailto:') || trimmed.startsWith('tel:')) return null;\n` +
+                            `        const hashIdx = trimmed.indexOf('#');\n` +
+                            `        const hashPart = hashIdx >= 0 ? trimmed.slice(hashIdx) : '';\n` +
+                            `        const withoutHash = hashIdx >= 0 ? trimmed.slice(0, hashIdx) : trimmed;\n` +
+                            `        const qIdx = withoutHash.indexOf('?');\n` +
+                            `        const searchPart = qIdx >= 0 ? withoutHash.slice(qIdx) : '';\n` +
+                            `        const pathPart = qIdx >= 0 ? withoutHash.slice(0, qIdx) : withoutHash;\n` +
+                            `        const suffix = searchPart + hashPart;\n` +
+                            `        const cleanFile = pathPart.replace(/^(\\.\\/|\\/)+/, '');\n` +
                             `        const inIframe = isEmbeddedInIframe();\n` +
                             `        const local = isLocalPreview();\n` +
-                            `        document.querySelectorAll('a[href]').forEach(function(a) {\n` +
-                            `          const rawHref = (a.getAttribute('href') || '').trim();\n` +
-                            `          if (!rawHref || rawHref.startsWith('#') || rawHref.startsWith('javascript:') || rawHref.startsWith('mailto:') || rawHref.startsWith('tel:')) return;\n` +
-                            `          const cleanFile = rawHref.split('?')[0].split('#')[0].replace(/^(\\.\\/|\\/)+/, '');\n` +
-                            `          if (SLUG_MAP[cleanFile] && inIframe && !local) {\n` +
-                            `            const hashPart = rawHref.includes('#') ? '#' + rawHref.split('#')[1] : '';\n` +
-                            `            a.setAttribute('href', SLUG_MAP[cleanFile] + hashPart);\n` +
-                            `            a.setAttribute('target', '_top');\n` +
-                            `          } else if (/^https?:\\/\\//i.test(rawHref) && !a.getAttribute('target')) {\n` +
-                            `            a.setAttribute('target', '_top');\n` +
+                            `        if (SLUG_MAP[cleanFile]) {\n` +
+                            `          if (local) return null;\n` +
+                            `          const embedMatch = (window.location.pathname || '').match(/^\\/(embed|preview)\\/([^\\/]+)\\//);\n` +
+                            `          if (!inIframe) {\n` +
+                            `            if (embedMatch) {\n` +
+                            `              return { href: '/' + embedMatch[1] + '/' + embedMatch[2] + '/' + cleanFile + suffix, target: '_self' };\n` +
+                            `            }\n` +
+                            `            return null;\n` +
                             `          }\n` +
-                            `        });\n` +
+                            `          const ref = document.referrer || '';\n` +
+                            `          if (embedMatch && (isSameSiteDomain(ref, 'https://nucleuscloud.net', 'nucleuscloud.net') || isSameOriginUrl(ref, 'https://nucleus-revamp.web.app') || isSameOriginUrl(ref, 'https://bizboard-67b4c.web.app'))) {\n` +
+                            `            return { href: '/' + embedMatch[1] + '/' + embedMatch[2] + '/' + cleanFile + suffix, target: '_self' };\n` +
+                            `          }\n` +
+                            `          if (isSameSiteDomain(ref, 'https://square.online', 'square.online') || isSameSiteDomain(ref, 'https://editmysite.com', 'editmysite.com') || isSameSiteDomain(ref, 'https://weebly.com', 'weebly.com')) {\n` +
+                            `            return { href: LIVE_SITE_ORIGIN + SLUG_MAP[cleanFile] + suffix, target: '_blank', rel: 'noopener noreferrer' };\n` +
+                            `          }\n` +
+                            `          let siteOrigin = LIVE_SITE_ORIGIN;\n` +
+                            `          if (isSameSiteDomain(ref, LIVE_SITE_ORIGIN, 'ponywhite.com.au') || isSameOriginUrl(ref, 'https://pony-white-cafe.square.site')) {\n` +
+                            `            try { siteOrigin = new URL(ref).origin; } catch (e) {}\n` +
+                            `          }\n` +
+                            `          return { href: siteOrigin + SLUG_MAP[cleanFile] + suffix, target: '_top' };\n` +
+                            `        }\n` +
+                            `        if (/^https?:\\/\\//i.test(trimmed) && inIframe && !local) {\n` +
+                            `          return { href: trimmed, target: '_top', onlyIfNoTarget: true };\n` +
+                            `        }\n` +
+                            `        return null;\n` +
+                            `      }\n` +
+                            `      function upgradeAnchor(a) {\n` +
+                            `        if (!a || !a.getAttribute) return;\n` +
+                            `        const origHref = a.hasAttribute('data-pw-orig-href') ? a.getAttribute('data-pw-orig-href') : (a.getAttribute('href') || '');\n` +
+                            `        const res = resolvePageLink(origHref);\n` +
+                            `        if (!res) return;\n` +
+                            `        if (res.onlyIfNoTarget) {\n` +
+                            `          if (!a.getAttribute('target')) a.setAttribute('target', res.target);\n` +
+                            `          return;\n` +
+                            `        }\n` +
+                            `        if (!a.hasAttribute('data-pw-orig-href')) a.setAttribute('data-pw-orig-href', origHref);\n` +
+                            `        a.setAttribute('href', res.href);\n` +
+                            `        a.setAttribute('target', res.target);\n` +
+                            `        if (res.rel) a.setAttribute('rel', res.rel);\n` +
+                            `      }\n` +
+                            `      function upgradeLinks() {\n` +
+                            `        document.querySelectorAll('a[href]').forEach(upgradeAnchor);\n` +
                             `      }\n` +
                             `      if (document.readyState === 'loading') {\n` +
                             `        document.addEventListener('DOMContentLoaded', upgradeLinks);\n` +
                             `      } else {\n` +
                             `        upgradeLinks();\n` +
                             `      }\n` +
-                            `      document.addEventListener('click', function(e) {\n` +
-                            `        const anchor = e.target && e.target.closest ? e.target.closest('a[href]') : null;\n` +
-                            `        if (!anchor) return;\n` +
-                            `        const rawHref = (anchor.getAttribute('href') || '').trim();\n` +
-                            `        const cleanFile = rawHref.split('?')[0].split('#')[0].replace(/^(\\.\\/|\\/)+/, '');\n` +
-                            `        if (SLUG_MAP[cleanFile] && isEmbeddedInIframe() && !isLocalPreview()) {\n` +
-                            `          e.preventDefault();\n` +
-                            `          const hashPart = rawHref.includes('#') ? '#' + rawHref.split('#')[1] : '';\n` +
-                            `          const targetUrl = SLUG_MAP[cleanFile] + hashPart;\n` +
-                            `          try { window.top.location.href = targetUrl; } catch (err) { window.open(targetUrl, '_top'); }\n` +
-                            `        }\n` +
+                            `      ['pointerdown', 'focusin', 'click'].forEach(function(evtName) {\n` +
+                            `        document.addEventListener(evtName, function(e) {\n` +
+                            `          const anchor = e.target && e.target.closest ? e.target.closest('a[href]') : null;\n` +
+                            `          if (anchor) upgradeAnchor(anchor);\n` +
+                            `        }, true);\n` +
                             `      });\n` +
+                            `      window.__pwUpgradeLinks = upgradeLinks;\n` +
+                            `      window.__pwNavigate = function(rawHref) {\n` +
+                            `        const res = resolvePageLink(rawHref);\n` +
+                            `        if (!res) { window.location.href = rawHref; return; }\n` +
+                            `        if (res.target === '_blank') { window.open(res.href, '_blank', 'noopener,noreferrer'); return; }\n` +
+                            `        if (res.target === '_top') {\n` +
+                            `          try { window.top.location.href = res.href; } catch (err) { window.open(res.href, '_top'); }\n` +
+                            `          return;\n` +
+                            `        }\n` +
+                            `        window.location.href = res.href;\n` +
+                            `      };\n` +
                             `    })();\n`;
                             
   if (/<script[^>]*>/i.test(processedHtml)) {
