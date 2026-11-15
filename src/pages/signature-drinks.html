@@ -146,13 +146,29 @@
     #drink-video.sd-feather,
     #drink-video-loop.sd-feather,
     #drink-image.sd-feather {
-      -webkit-mask-image: radial-gradient(ellipse var(--sd-mrx, 50%) var(--sd-mry, 50%) at var(--sd-mcx, 50%) var(--sd-mcy, 50%), #000 var(--sd-msolid, 70%), transparent 100%);
-      mask-image: radial-gradient(ellipse var(--sd-mrx, 50%) var(--sd-mry, 50%) at var(--sd-mcx, 50%) var(--sd-mcy, 50%), #000 var(--sd-msolid, 70%), transparent 100%);
+      -webkit-mask-image:
+        linear-gradient(to right, transparent 0%, #000 var(--sd-fx0, 8%), #000 var(--sd-fx1, 92%), transparent 100%),
+        linear-gradient(to bottom, transparent 0%, #000 var(--sd-fy0, 8%), #000 var(--sd-fy1, 94%), transparent 100%);
+      -webkit-mask-composite: source-in;
+      mask-image:
+        linear-gradient(to right, transparent 0%, #000 var(--sd-fx0, 8%), #000 var(--sd-fx1, 92%), transparent 100%),
+        linear-gradient(to bottom, transparent 0%, #000 var(--sd-fy0, 8%), #000 var(--sd-fy1, 94%), transparent 100%);
+      mask-composite: intersect;
     }
     #drink-video.sd-instant,
     #drink-video-loop.sd-instant,
     #drink-image.sd-instant {
       transition: none !important;
+    }
+
+    #drink-title {
+      text-wrap: balance;
+    }
+    #drink-text {
+      text-wrap: pretty;
+    }
+    aside.sidebar-slide nav {
+      overscroll-behavior: contain;
     }
     
     .drink-reveal-trigger {
@@ -161,23 +177,15 @@
 
     /* Lock the showcase height rigidly across all viewport sizes to prevent iframe-resizer feedback loops */
     .signature-drinks-showcase {
-      height: 580px !important;
+      --sd-stage-bg: #0d1712;
+      --sd-in-oklab: ;
+      height: 800px !important;
       overflow: hidden !important;
-      background-color: #0d1712;
+      background-color: var(--sd-stage-bg, #0d1712);
     }
-    @media (min-width: 640px) {
+    @supports (background: linear-gradient(in oklab, #000, transparent)) {
       .signature-drinks-showcase {
-        height: 650px !important;
-      }
-    }
-    @media (min-width: 768px) {
-      .signature-drinks-showcase {
-        height: 700px !important;
-      }
-    }
-    @media (min-width: 1024px) {
-      .signature-drinks-showcase {
-        height: 750px !important;
+        --sd-in-oklab: in oklab;
       }
     }
     @media (min-width: 1280px) {
@@ -185,16 +193,49 @@
         height: 820px !important;
       }
     }
+    @media (min-width: 1024px) {
+      #ambient-grad {
+        background: linear-gradient(to right, rgba(0, 0, 0, 0.40) 0%, rgba(0, 0, 0, 0.14) 14%, transparent 24%) !important;
+        opacity: 1 !important;
+      }
+      #mobile-stage-fade {
+        display: none !important;
+      }
+    }
+    @media (min-width: 1024px) {
+      #drink-title,
+      #drink-text,
+      #drink-subtitle,
+      #drink-price {
+        text-shadow: 0 2px 18px rgba(0, 0, 0, 0.45);
+      }
+    }
+    @media (pointer: coarse), (max-width: 1023px) {
+      #btn-prev-drink,
+      #btn-next-drink {
+        width: 2.5rem !important;
+        height: 2.5rem !important;
+        position: relative;
+      }
+      #btn-prev-drink::after,
+      #btn-next-drink::after {
+        content: "";
+        position: absolute;
+        inset: -4px;
+      }
+    }
 
-    /* Premium Cinematic Mobile View overrides */
-    @media (max-width: 767px) {
+    /* Mobile & Tablet Portrait 2-Zone Split Layout (< 1024px): unobstructed upper stage + dedicated lower card */
+    @media (max-width: 1023px) {
       /* Mobile Menu Drawer Toggle Button */
       #mobile-menu-toggle {
         display: flex !important;
         position: absolute !important;
+        top: 1rem !important;
+        left: 1rem !important;
         background: rgba(10, 15, 12, 0.90) !important;
         border: 1px solid rgba(255, 255, 255, 0.12) !important;
-        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2) !important;
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.25) !important;
       }
       
       /* Mobile Sidebar Drawer Close Button */
@@ -248,71 +289,93 @@
       aside.sidebar-slide .drink-nav-item {
         gap: 0.5rem !important;
       }
-      
-      /* Darker bottom gradient overlay for pristine mobile readability of background media */
-      .signature-drinks-showcase .absolute.inset-0.bg-gradient-to-t {
-        background-image: linear-gradient(to top, rgba(0, 0, 0, 0.75) 0%, rgba(0, 0, 0, 0.3) 50%, transparent 100%) !important;
+
+      /* Constrain drink video to dedicated upper 470px visual stage with zero center haze */
+      #drink-media-stage {
+        position: absolute !important;
+        top: 0 !important;
+        left: 0 !important;
+        right: 0 !important;
+        bottom: auto !important;
+        height: 470px !important;
+      }
+      #ambient-grad {
+        display: none !important;
+      }
+      #mobile-stage-fade {
+        display: block;
+        position: absolute;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        height: 88px;
+        z-index: 5;
+        pointer-events: none;
+        background: linear-gradient(to bottom var(--sd-in-oklab, ), transparent 0%, var(--sd-stage-bg, #0d1712) 100%);
       }
       
-      /* Reposition Main area elements on mobile */
+      /* Anchor Main area bottom padding so #drink-description fills dedicated lower 330px slot */
       main {
         align-items: flex-end !important;
         justify-content: center !important;
+        padding: 0 1rem 1rem 1rem !important;
       }
       
-      /* Floating Mobile Description Card centered as a bottom sheet, perfectly proportioned to avoid squishing */
+      /* Dedicated Mobile Description Card anchored below the visual stage with zero overlap */
       #drink-description {
-        position: absolute !important;
-        bottom: 1.5rem !important;
-        left: 50% !important;
+        position: relative !important;
+        bottom: auto !important;
+        left: auto !important;
         right: auto !important;
-        margin-right: 0 !important;
-        width: calc(100% - 2rem) !important;
+        margin: 0 auto !important;
+        width: 100% !important;
         max-width: 440px !important;
-        padding: 1.25rem 1.25rem !important;
+        padding: 1.05rem 1.2rem !important;
         border-radius: 1.5rem !important;
-        transform: translateX(-50%) translateY(0) scale(1) !important;
         z-index: 30 !important;
-        background: rgba(10, 15, 12, 0.92) !important;
-        border: 1px solid rgba(255, 255, 255, 0.12) !important;
-        box-shadow: 0 20px 50px rgba(0, 0, 0, 0.4) !important;
-        transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.5s ease !important;
+        background: rgba(10, 15, 12, 0.90) !important;
+        border: 1px solid rgba(255, 255, 255, 0.10) !important;
+        box-shadow: 0 18px 40px rgba(0, 0, 0, 0.45) !important;
+        transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.4s ease !important;
       }
       
-      /* Slide-out bottom animation when hidden */
+      #drink-description #panel-close-btn {
+        display: none !important;
+      }
+      
+      /* Slide-out bottom animation if toggled during transitions */
       #drink-description.panel-hidden {
         opacity: 0 !important;
-        transform: translateX(-50%) translateY(50px) scale(0.95) !important;
+        transform: translateY(20px) scale(0.98) !important;
         pointer-events: none !important;
       }
       
-      /* Perfectly proportioned mobile typography sizes */
+      /* Perfectly proportioned mobile typography & compact card vertical rhythm */
+      #drink-description .mb-4 {
+        margin-bottom: 0.35rem !important;
+      }
       #drink-title {
         font-size: 1.35rem !important;
-        line-height: 1.75rem !important;
+        line-height: 1.65rem !important;
         margin-bottom: 0.35rem !important;
       }
       
       #drink-text {
         font-size: 0.85rem !important;
         line-height: 1.3rem !important;
-        margin-bottom: 0.75rem !important;
+        margin-bottom: 0.65rem !important;
       }
       
       #drink-temp-switch {
-        margin-bottom: 0.5rem !important;
+        margin-bottom: 0.4rem !important;
       }
 
       #drink-description .w-12 {
-        margin-bottom: 0.5rem !important;
-      }
-      
-      #drink-description #panel-close-btn {
-        padding: 0.25rem !important;
+        margin-bottom: 0.45rem !important;
       }
 
-      #drink-description #panel-close-btn span {
-        font-size: 1.25rem !important;
+      #drink-description .pt-6 {
+        padding-top: 0.75rem !important;
       }
 
       #drink-description button.bg-marble-white,
@@ -329,51 +392,64 @@
         gap: 1rem !important;
       }
       
-      /* Reposition the Logo mark to top-right to avoid overlap with description sheet */
+      /* Reposition the Logo mark to top-right inside upper visual stage */
+      #brand-logo-container,
       .absolute.bottom-8.right-8 {
-        top: 1.5rem !important;
-        right: 1.5rem !important;
+        top: 1rem !important;
+        right: 1rem !important;
         bottom: auto !important;
         left: auto !important;
         position: absolute !important;
       }
       
+      #brand-logo-container img,
       .absolute.bottom-8.right-8 img {
         width: 2.5rem !important;
         height: 2.5rem !important;
       }
     }
 
-    /* Tablet / Medium View adjustments (768px to 1023px) to prevent sidebar and card collisions */
+    /* Tablet Portrait 2-Zone refinements (768px to 1023px) */
     @media (min-width: 768px) and (max-width: 1023px) {
-      aside.sidebar-slide {
-        width: 236px !important;
-      }
-      aside.sidebar-slide .relative.z-10 {
-        padding: 2.5rem 1.25rem 2rem !important;
+      #drink-media-stage {
+        height: 480px !important;
       }
       #drink-description {
-        width: 360px !important;
-        margin-right: 1.5rem !important;
-        padding: 1.75rem !important;
-        border-radius: 1.75rem !important;
-        background: rgba(10, 15, 12, 0.72) !important;
-        border: 1px solid rgba(255, 255, 255, 0.10) !important;
+        max-width: 520px !important;
+        padding: 1.15rem 1.5rem !important;
       }
       #drink-title {
-        font-size: 2rem !important;
-        line-height: 2.35rem !important;
-        margin-bottom: 1rem !important;
+        font-size: 1.6rem !important;
+        line-height: 1.95rem !important;
       }
       #drink-text {
-        font-size: 0.95rem !important;
-        line-height: 1.45rem !important;
-        margin-bottom: 1.25rem !important;
+        font-size: 0.92rem !important;
+        line-height: 1.4rem !important;
       }
     }
 
-    /* Desktop & Tablet Sidebar Layout: Strictly position and lock translation, disabling any hover translations */
-    @media (min-width: 768px) {
+    /* Compact Laptop 3-Column fit (1024px to 1279px) */
+    @media (min-width: 1024px) and (max-width: 1279px) {
+      aside.sidebar-slide {
+        width: 256px !important;
+      }
+      aside.sidebar-slide .relative.z-10 {
+        padding: 2.5rem 1.5rem 0 !important;
+      }
+      #drink-description {
+        width: 380px !important;
+        margin-right: 2rem !important;
+        padding: 2.25rem !important;
+        border-radius: 2rem !important;
+      }
+      #drink-title {
+        font-size: 2.25rem !important;
+        line-height: 2.6rem !important;
+      }
+    }
+
+    /* Desktop Sidebar Layout: Strictly position and lock translation, disabling any hover translations */
+    @media (min-width: 1024px) {
       aside.sidebar-slide {
         transform: none !important;
         transition: none !important;
@@ -397,21 +473,21 @@
     }
   </style>
 
-<div class="signature-drinks-showcase relative w-full h-[580px] sm:h-[650px] md:h-[700px] lg:h-[750px] xl:h-[820px] flex overflow-hidden">
+<div class="signature-drinks-showcase relative w-full h-[800px] xl:h-[820px] flex overflow-hidden">
 <!-- Mobile Collections Drawer Toggle Button -->
-<button id="mobile-menu-toggle" onclick="toggleMobileMenu(event)" class="hidden fixed top-6 left-6 z-40 items-center gap-2 px-4 py-2.5 rounded-full bg-black/80 border border-white/10 hover:bg-black/90 active:scale-95 transition-all duration-300">
-  <span class="material-symbols-outlined text-white text-lg">menu</span>
+<button id="mobile-menu-toggle" onclick="toggleMobileMenu(event)" aria-label="Open signature collections menu" class="hidden fixed top-6 left-6 z-40 items-center gap-2 px-4 py-2.5 rounded-full bg-black/80 border border-white/10 hover:bg-black/90 active:scale-95 transition-all duration-300">
+  <span class="material-symbols-outlined text-white text-lg" aria-hidden="true">menu</span>
   <span id="mobile-collections-title" class="text-white text-xs uppercase tracking-widest font-bold">Signature Drinks</span>
 </button>
 <!-- Full Screen Drink Background -->
-<div class="absolute inset-0 overflow-hidden flex justify-center items-center z-0">
-<img alt="Signature Drink" class="absolute inset-0 w-full h-full object-cover scale-105 z-0" style="opacity: 0;" fetchpriority="high" decoding="async" id="drink-image" src="../../assets/coconut-iced-latte.jpg"/>
+<div id="drink-media-stage" class="absolute inset-0 overflow-hidden flex justify-center items-center z-0">
+<img alt="Signature Drink" class="absolute inset-0 w-full h-full object-cover z-0" style="opacity: 0;" fetchpriority="high" decoding="async" id="drink-image" src="../../assets/coconut-iced-latte.jpg"/>
 <!-- Loop layer (bb) for 2-part sequences (sits directly behind #drink-video, which plays the one-shot (ab) pouring/build clip) -->
 <video id="drink-video-loop" class="absolute inset-0 w-full h-full object-cover z-[1]" style="display: none; opacity: 0;" preload="none" loop muted playsinline aria-hidden="true"></video>
-<video id="drink-video" class="absolute inset-0 w-full h-full object-cover scale-105 z-[2]" style="opacity: 0;" preload="none" muted playsinline></video>
-<!-- Ambient Overlays -->
-<div class="absolute inset-0 ambient-overlay bg-gradient-to-r from-forest-velvet via-transparent to-transparent opacity-90 z-10" id="ambient-grad" style="background: linear-gradient(to right, #242D1C 0%, transparent 100%);"></div>
-<div class="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent z-10"></div>
+<video id="drink-video" class="absolute inset-0 w-full h-full object-cover z-[2]" style="opacity: 0;" preload="none" muted playsinline></video>
+<!-- Edge Scrim (Desktop left sidebar only; hidden on mobile so center video renders crystal-clear) -->
+<div class="absolute inset-0 ambient-overlay pointer-events-none z-10" id="ambient-grad" aria-hidden="true"></div>
+<div id="mobile-stage-fade" class="pointer-events-none" aria-hidden="true"></div>
 </div>
 <!-- Side Panel Menu -->
 <aside class="sidebar-slide absolute left-6 top-6 bottom-6 w-80 z-30 flex flex-col shrink-0">
@@ -424,8 +500,8 @@
       <h2 id="crm-collections-title" class="text-marble-white/40 uppercase tracking-[0.3em] text-[10px] font-bold mb-2">Signature Collections</h2>
       <div class="h-px w-12 bg-white/10"></div>
       <!-- Mobile Sidebar Close Button -->
-      <button onclick="toggleMobileMenu(event)" class="hidden absolute top-0 right-0 text-marble-white/60 hover:text-marble-white transition-colors p-1" id="mobile-menu-close">
-        <span class="material-symbols-outlined text-xl">close</span>
+      <button onclick="toggleMobileMenu(event)" aria-label="Close menu" class="hidden absolute top-0 right-0 text-marble-white/60 hover:text-marble-white transition-colors p-1" id="mobile-menu-close">
+        <span class="material-symbols-outlined text-xl" aria-hidden="true">close</span>
       </button>
     </div>
     <nav class="flex-1 flex flex-col gap-6 overflow-y-auto pr-4 custom-scrollbar pb-12" style="max-height: calc(100% - 6rem); min-height: 0; pointer-events: auto;">
@@ -558,8 +634,8 @@
   <div class="relative z-10 flex flex-col h-full w-full">
     <div class="flex items-center justify-between mb-4 w-full">
       <span id="drink-subtitle" class="text-marble-white/65 text-[10px] uppercase tracking-[0.3em] font-semibold block">Signature Selection</span>
-      <button class="text-marble-white/60 hover:text-marble-white transition-colors p-2 -mr-2 -mt-2 flex items-center justify-center" id="panel-close-btn" onclick="hidePanel()">
-        <span class="material-symbols-outlined text-2xl">close</span>
+      <button aria-label="Hide drink details" class="text-marble-white/60 hover:text-marble-white transition-colors p-2 -mr-2 -mt-2 flex items-center justify-center" id="panel-close-btn" onclick="hidePanel()">
+        <span class="material-symbols-outlined text-2xl" aria-hidden="true">close</span>
       </button>
     </div>
     <h1 class="font-serif text-4xl md:text-5xl font-semibold mb-6 text-marble-white tracking-tight leading-tight" id="drink-title">Pistachio Crème Brûlée</h1>
@@ -575,12 +651,12 @@
         <span class="text-marble-white/90 text-lg md:text-xl font-semibold" id="drink-price">$10.50</span>
       </div>
       <!-- Tiny Frosted Nav Arrows -->
-      <div class="flex items-center gap-2">
-        <button id="btn-prev-drink" onclick="navigateDrink(-1)" class="w-8 h-8 rounded-full flex items-center justify-center border border-white/10 bg-white/[0.05] hover:bg-white/[0.12] hover:border-white/30 active:scale-95 transition-all text-marble-white/70 hover:text-marble-white" title="Previous Drink" style="cursor: pointer;">
-          <span class="material-symbols-outlined text-sm pointer-events-none" style="font-size: 14px !important;">arrow_back_ios_new</span>
+      <div class="flex items-center gap-3 lg:gap-2">
+        <button id="btn-prev-drink" aria-label="Previous drink" onclick="navigateDrink(-1)" class="w-8 h-8 rounded-full flex items-center justify-center border border-white/10 bg-white/[0.05] hover:bg-white/[0.12] hover:border-white/30 active:scale-95 transition-all text-marble-white/70 hover:text-marble-white" title="Previous Drink" style="cursor: pointer;">
+          <span class="material-symbols-outlined text-sm pointer-events-none" style="font-size: 14px !important;" aria-hidden="true">arrow_back_ios_new</span>
         </button>
-        <button id="btn-next-drink" onclick="navigateDrink(1)" class="w-8 h-8 rounded-full flex items-center justify-center border border-white/10 bg-white/[0.05] hover:bg-white/[0.12] hover:border-white/30 active:scale-95 transition-all text-marble-white/70 hover:text-marble-white" title="Next Drink" style="cursor: pointer;">
-          <span class="material-symbols-outlined text-sm pointer-events-none" style="font-size: 14px !important;">arrow_forward_ios</span>
+        <button id="btn-next-drink" aria-label="Next drink" onclick="navigateDrink(1)" class="w-8 h-8 rounded-full flex items-center justify-center border border-white/10 bg-white/[0.05] hover:bg-white/[0.12] hover:border-white/30 active:scale-95 transition-all text-marble-white/70 hover:text-marble-white" title="Next Drink" style="cursor: pointer;">
+          <span class="material-symbols-outlined text-sm pointer-events-none" style="font-size: 14px !important;" aria-hidden="true">arrow_forward_ios</span>
         </button>
       </div>
     </div>
@@ -920,14 +996,103 @@
       }
     }
 
-    function applyAmbientColor(color) {
-      const c = sdFirstStr(color) || '#0d1712';
+    const sdBackdropCache = Object.create(null);
+
+    function sdParseHex(hex) {
+      if (typeof hex !== 'string') return null;
+      const m = hex.trim().match(/^#([0-9a-f]{3}|[0-9a-f]{6})$/i);
+      if (!m) return null;
+      let h = m[1];
+      if (h.length === 3) h = h[0] + h[0] + h[1] + h[1] + h[2] + h[2];
+      return {
+        r: parseInt(h.slice(0, 2), 16),
+        g: parseInt(h.slice(2, 4), 16),
+        b: parseInt(h.slice(4, 6), 16)
+      };
+    }
+
+    function sdMixDark(hex, keepRatio) {
+      const rgb = sdParseHex(hex);
+      if (!rgb) return '#0d1712';
+      const w = Math.max(0, Math.min(1, typeof keepRatio === 'number' ? keepRatio : 0.5));
+      const base = { r: 11, g: 13, b: 12 };
+      const ch = (a, b) => Math.max(0, Math.min(255, Math.round(a * w + b * (1 - w)))).toString(16).padStart(2, '0');
+      return '#' + ch(rgb.r, base.r) + ch(rgb.g, base.g) + ch(rgb.b, base.b);
+    }
+
+    async function sdSamplePosterBackdrop(imgUrl) {
+      if (!imgUrl) return null;
+      const abs = sdAbsUrl(imgUrl);
+      if (sdBackdropCache[abs]) return sdBackdropCache[abs];
+      try {
+        const res = await fetch(abs, { mode: 'cors' });
+        if (!res.ok) return null;
+        const blob = await res.blob();
+        let bmp = null;
+        try {
+          bmp = await createImageBitmap(blob, { resizeWidth: 16, resizeHeight: 16 });
+        } catch (e) {
+          bmp = await createImageBitmap(blob);
+        }
+        const c = document.createElement('canvas');
+        c.width = 16;
+        c.height = 16;
+        const ctx = c.getContext('2d', { willReadFrequently: true });
+        if (!ctx) {
+          if (bmp && bmp.close) bmp.close();
+          return null;
+        }
+        ctx.drawImage(bmp, 0, 0, 16, 16);
+        if (bmp && bmp.close) bmp.close();
+        const pts = [[1, 1], [14, 1], [1, 14], [14, 14]];
+        let r = 0, g = 0, b = 0;
+        pts.forEach(([x, y]) => {
+          const px = ctx.getImageData(x, y, 1, 1).data;
+          r += px[0];
+          g += px[1];
+          b += px[2];
+        });
+        const ch = (v) => Math.max(0, Math.min(255, Math.round(v / pts.length))).toString(16).padStart(2, '0');
+        const sampledHex = '#' + ch(r) + ch(g) + ch(b);
+        sdBackdropCache[abs] = sampledHex;
+        return sampledHex;
+      } catch (e) {
+        return null;
+      }
+    }
+
+    function setStageBg(bgHex) {
+      const hex = sdFirstStr(bgHex) || '#0d1712';
       const showcase = document.querySelector('.signature-drinks-showcase');
-      if (showcase) showcase.style.backgroundColor = c;
+      if (showcase) {
+        showcase.style.setProperty('--sd-stage-bg', hex);
+        showcase.style.backgroundColor = hex;
+      }
       const body = document.getElementById('body-bg') || document.body || document.documentElement;
-      if (body) body.style.backgroundColor = c;
-      const ambient = document.getElementById('ambient-grad');
-      if (ambient) ambient.style.background = `linear-gradient(to right, ${c} 0%, transparent 100%)`;
+      if (body) body.style.backgroundColor = hex;
+    }
+
+    function applyAmbientColor(color, config) {
+      const c = sdFirstStr(color) || '#0d1712';
+      const resolved = config ? sdResolveConfig(config) : null;
+      if (resolved && sdIsSequenceConfig(resolved)) {
+        const posterAbs = resolved.img ? sdAbsUrl(resolved.img) : '';
+        if (posterAbs && sdBackdropCache[posterAbs]) {
+          setStageBg(sdBackdropCache[posterAbs]);
+          return;
+        }
+        setStageBg(sdMixDark(c, 0.45));
+        if (resolved.img) {
+          const targetKey = currentDrinkKey;
+          sdSamplePosterBackdrop(resolved.img).then((sampledHex) => {
+            if (sampledHex && currentDrinkKey === targetKey) {
+              setStageBg(sampledHex);
+            }
+          });
+        }
+        return;
+      }
+      setStageBg(sdMixDark(c, 0.65));
     }
 
     function applyOrderLink(drink) {
@@ -1011,6 +1176,7 @@
       if (!v) return;
       v.classList.remove('sd-framed', 'sd-feather');
       ['left', 'top', 'width', 'height', 'right', 'bottom'].forEach(p => { v.style[p] = ''; });
+      ['--sd-fx0', '--sd-fx1', '--sd-fy0', '--sd-fy1'].forEach(p => { v.style.removeProperty(p); });
     }
 
     function sdIsDescriptionVisible(desc) {
@@ -1033,31 +1199,28 @@
         return;
       }
 
-      const cr = showcase.getBoundingClientRect();
+      const isDesktop = window.innerWidth >= 1024;
+      const stage = !isDesktop ? (document.getElementById('drink-media-stage') || showcase) : showcase;
+      const cr = stage.getBoundingClientRect();
       const W = cr.width, H = cr.height;
       if (W < 2 || H < 2) return;
       const vw = loop.videoWidth || build.videoWidth || 1920;
       const vh = loop.videoWidth ? loop.videoHeight : (build.videoHeight || 1080);
 
-      // Available rect (container coordinates) = container minus occluders.
-      // Layout positions (offsetLeft/offsetTop) are used so in-flight transforms don't skew the result.
+      // Available rect (stage coordinates) = container minus occluders.
       let ax0 = 0, ax1 = W, ay0 = 0, ay1 = H;
-      const desc = document.getElementById('drink-description');
-      const mainEl = desc ? desc.offsetParent : null;
-      const descVisible = sdIsDescriptionVisible(desc);
-      let descLeft = null, descTop = null;
-      if (descVisible && mainEl) {
-        const mr = mainEl.getBoundingClientRect();
-        descLeft = mr.left - cr.left + desc.offsetLeft;
-        descTop = mr.top - cr.top + desc.offsetTop;
-      }
-
-      if (window.innerWidth >= 768) {
+      if (isDesktop) {
+        const desc = document.getElementById('drink-description');
+        const mainEl = desc ? desc.offsetParent : null;
+        const descVisible = sdIsDescriptionVisible(desc);
+        let descLeft = null;
+        if (descVisible && mainEl) {
+          const mr = mainEl.getBoundingClientRect();
+          descLeft = mr.left - cr.left + desc.offsetLeft;
+        }
         const aside = document.querySelector('aside.sidebar-slide');
         const asideRight = aside ? (aside.getBoundingClientRect().right - cr.left) : null;
         const minW = 0.35 * W;
-        // Prefer honouring both occluders; when they overlap (narrow tablets) honour the
-        // frosted description card first (the sidebar is transparent text on >=768px).
         if (asideRight !== null && descLeft !== null && (descLeft - asideRight) >= minW) {
           ax0 = asideRight; ax1 = descLeft;
         } else if (descLeft !== null && descLeft >= minW) {
@@ -1065,39 +1228,57 @@
         } else if (asideRight !== null && (W - asideRight) >= minW) {
           ax0 = asideRight;
         }
-      } else if (descTop !== null && descTop >= 0.35 * H) {
-        ay1 = Math.min(H, descTop);
+      } else {
+        // Mobile 2-zone top visual stage: keep drink below top menu pill & above bottom floor seam
+        ay0 = 60;
+        ay1 = Math.max(200, H - 12);
       }
 
       const availW = Math.max(1, ax1 - ax0), availH = Math.max(1, ay1 - ay0);
       const acx = (ax0 + ax1) / 2, acy = (ay0 + ay1) / 2;
       const sCover = Math.max(W / vw, H / vh);
       const sFit = Math.min(availW / (fr.safeW * vw), availH / (fr.safeH * vh)) * 0.94;
-
-      // Attempt 1: cover the container, safe box centred in the available rect, clamped to keep full coverage.
-      let dw = vw * sCover, dh = vh * sCover;
-      let left = Math.min(0, Math.max(W - dw, acx - fr.cx * dw));
-      let top = Math.min(0, Math.max(H - dh, acy - fr.cy * dh));
       const eps = 0.5;
-      const sx0 = left + (fr.cx - fr.safeW / 2) * dw, sx1 = left + (fr.cx + fr.safeW / 2) * dw;
-      const sy0 = top + (fr.cy - fr.safeH / 2) * dh, sy1 = top + (fr.cy + fr.safeH / 2) * dh;
-      const coverOk = sx0 >= ax0 - eps && sx1 <= ax1 + eps && sy0 >= ay0 - eps && sy1 <= ay1 + eps;
 
-      let feather = false;
-      if (!coverOk) {
-        // Attempt 2: shrink until the safe box fits, centred on the available rect (no clamping).
-        const s = Math.min(sCover, sFit);
-        dw = vw * s; dh = vh * s;
+      let dw, dh, left, top, coverOk = false;
+      if (isDesktop) {
+        const maxSafeHFrac = 0.58;
+        const sComfort = (availH * maxSafeHFrac) / (fr.safeH * vh);
+        const s = Math.min(sCover, sFit, sComfort);
+        dw = vw * s;
+        dh = vh * s;
         left = acx - fr.cx * dw;
         top = acy - fr.cy * dh;
-        feather = left > eps || top > eps || (left + dw) < W - eps || (top + dh) < H - eps;
+        if (dw >= W - eps) left = Math.min(0, Math.max(W - dw, left));
+        if (dh >= H - eps) top = Math.min(0, Math.max(H - dh, top));
+      } else {
+        dw = vw * sCover;
+        dh = vh * sCover;
+        left = Math.min(0, Math.max(W - dw, acx - fr.cx * dw));
+        top = Math.min(0, Math.max(H - dh, acy - fr.cy * dh));
+        const sx0 = left + (fr.cx - fr.safeW / 2) * dw, sx1 = left + (fr.cx + fr.safeW / 2) * dw;
+        const sy0 = top + (fr.cy - fr.safeH / 2) * dh, sy1 = top + (fr.cy + fr.safeH / 2) * dh;
+        coverOk = sx0 >= ax0 - eps && sx1 <= ax1 + eps && sy0 >= ay0 - eps && sy1 <= ay1 + eps;
+        if (!coverOk) {
+          const s = Math.min(sCover, sFit);
+          dw = vw * s;
+          dh = vh * s;
+          left = acx - fr.cx * dw;
+          top = acy - fr.cy * dh;
+          if (dw >= W - eps) left = Math.min(0, Math.max(W - dw, left));
+          if (dh >= H - eps) top = Math.min(0, Math.max(H - dh, top));
+        }
       }
 
-      // Radial feather centred on the safe box; solid core always contains the safe box.
-      const rx = Math.max(0.05, Math.min(fr.cx, 1 - fr.cx));
-      const ry = Math.max(0.05, Math.min(fr.cy, 1 - fr.cy));
-      const need = Math.sqrt(Math.pow((fr.safeW / 2) / rx, 2) + Math.pow((fr.safeH / 2) / ry, 2));
-      const solid = Math.max(0.55, Math.min(0.92, need * 1.04));
+      const fadeL = left > eps;
+      const fadeR = (left + dw) < W - eps;
+      const fadeT = top > eps;
+      const fadeB = (top + dh) < H - eps;
+      const feather = fadeL || fadeR || fadeT || fadeB;
+      const fx0 = fadeL ? '8%' : '0%';
+      const fx1 = fadeR ? '92%' : '100%';
+      const fy0 = fadeT ? '8%' : '0%';
+      const fy1 = fadeB ? '94%' : '100%';
 
       const framedTargets = [build, loop];
       if (img && img.style.display !== 'none') framedTargets.push(img);
@@ -1110,11 +1291,10 @@
         v.style.height = dh.toFixed(2) + 'px';
         v.style.right = 'auto';
         v.style.bottom = 'auto';
-        v.style.setProperty('--sd-mrx', (rx * 100).toFixed(2) + '%');
-        v.style.setProperty('--sd-mry', (ry * 100).toFixed(2) + '%');
-        v.style.setProperty('--sd-mcx', (fr.cx * 100).toFixed(2) + '%');
-        v.style.setProperty('--sd-mcy', (fr.cy * 100).toFixed(2) + '%');
-        v.style.setProperty('--sd-msolid', (solid * 100).toFixed(1) + '%');
+        v.style.setProperty('--sd-fx0', fx0);
+        v.style.setProperty('--sd-fx1', fx1);
+        v.style.setProperty('--sd-fy0', fy0);
+        v.style.setProperty('--sd-fy1', fy1);
       });
       showcase.setAttribute('data-sd-framing', coverOk ? 'cover' : (feather ? 'fit-feather' : 'fit'));
     }
@@ -1506,7 +1686,7 @@
           img.style.display = 'block';
           img.classList.remove('hidden');
           img.style.opacity = '1';
-          img.style.transform = 'scale(1.05)';
+          img.style.transform = 'scale(1)';
         } else {
           img.style.display = 'none';
           img.classList.add('hidden');
@@ -1535,7 +1715,7 @@
         
         // Keep video opacity 0 until it actually starts playing
         video.style.opacity = '0';
-        video.style.transform = 'scale(1.05)';
+        video.style.transform = 'scale(1)';
         
         // Attempt immediate playback to trigger active streaming and detect blocks
         const playPromise = video.play();
@@ -1563,7 +1743,7 @@
               img.style.display = 'block';
               img.classList.remove('hidden');
               img.style.opacity = '1';
-              img.style.transform = 'scale(1.05)';
+              img.style.transform = 'scale(1)';
             } else {
               // No image fallback. Set video to a subtle backdrop opacity.
               video.style.opacity = '0.2';
@@ -1600,7 +1780,7 @@
         img.classList.remove('hidden');
         img.src = config.img;
         img.style.opacity = '1';
-        img.style.transform = 'scale(1.05)';
+        img.style.transform = 'scale(1)';
         
         if (logo) logo.classList.remove('logo-loading');
       }
@@ -1657,7 +1837,7 @@
         document.getElementById('drink-text').innerText = config.text;
         document.getElementById('drink-price').innerText = config.price;
 
-        applyAmbientColor(config.ambient);
+        applyAmbientColor(config.ambient, config);
         applyOrderLink(config.orderUrl ? config : liveDrink);
 
         // Update media background
@@ -1731,7 +1911,7 @@
         document.getElementById('drink-text').innerText = config.text;
         document.getElementById('drink-price').innerText = config.price;
 
-        applyAmbientColor(config.ambient);
+        applyAmbientColor(config.ambient, config);
         applyOrderLink(config.orderUrl ? config : liveDrink);
 
         // Update media background
@@ -1760,9 +1940,9 @@
           if (loopLayer) loopLayer.style.opacity = '0';
         } else {
           img.style.opacity = '0';
-          img.style.transform = 'scale(1.1)';
+          img.style.transform = 'scale(1.02)';
           video.style.opacity = '0';
-          video.style.transform = 'scale(1.1)';
+          video.style.transform = 'scale(1.02)';
         }
 
         uiTransitionTimer = setTimeout(() => {
@@ -1771,13 +1951,14 @@
         }, 400);
       }
 
-      // Close sidebar drawer automatically on mobile when a drink is selected
-      if (window.innerWidth < 768) {
+      // Close sidebar drawer automatically on mobile / tablet portrait when a drink is selected
+      if (window.innerWidth < 1024) {
         document.body.classList.remove('sidebar-open');
       }
     }
 
     function hidePanel() {
+      if (window.innerWidth < 1024) return; // Dedicated bottom slot stays visible below 1024px
       const panel = document.getElementById('drink-description');
       panel.style.display = 'none';
       panel.classList.add('panel-hidden');
@@ -1802,10 +1983,7 @@
     // Toggles the mobile collection menu drawer
     function toggleMobileMenu(event) {
       if (event) event.stopPropagation();
-      const isOpen = document.body.classList.toggle('sidebar-open');
-      if (isOpen && window.innerWidth < 768) {
-        hidePanel();
-      }
+      document.body.classList.toggle('sidebar-open');
       sdScheduleLayout();
     }
 
@@ -1974,6 +2152,10 @@
       const onWinResize = () => {
         if (Math.abs(window.innerWidth - sdLastWidth) > 2) {
           sdLastWidth = window.innerWidth;
+          if (window.innerWidth < 1024 && panelManuallyClosed) {
+            panelManuallyClosed = false;
+            revealPanel();
+          }
           sdScheduleLayout();
         }
       };
@@ -2232,7 +2414,7 @@
           if (titleEl) titleEl.innerText = activeCfg.title;
           if (textEl) textEl.innerText = activeCfg.text;
           if (priceEl) priceEl.innerText = activeCfg.price;
-          applyAmbientColor(activeCfg.ambient);
+          applyAmbientColor(activeCfg.ambient, activeCfg);
           applyOrderLink(activeCfg.orderUrl ? activeCfg : activeDrink);
           if (mediaSig(activeCfg) !== prevMediaSig && (activeCfg.video || activeCfg.img || sdIsSequenceConfig(activeCfg))) {
             updateMedia(activeCfg, document.getElementById('drink-image'), document.getElementById('drink-video'));
