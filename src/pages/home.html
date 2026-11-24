@@ -104,6 +104,17 @@
                 transform: scaleX(0) !important;
             }
         }
+        .smoothie-carousel-track {
+            scroll-snap-type: x mandatory;
+            -webkit-overflow-scrolling: touch;
+            scrollbar-width: none;
+        }
+        .smoothie-carousel-track::-webkit-scrollbar {
+            display: none;
+        }
+        .smoothie-slide-card {
+            scroll-snap-align: start;
+        }
     </style>
 <body>
 
@@ -112,8 +123,8 @@
 <!-- Hero Section -->
 <section class="relative flex items-center justify-center py-24 md:py-36 overflow-hidden full-width-breakout bg-primary">
 <div class="absolute inset-0 z-0">
-<img alt="Pony White Hero" class="w-full h-full object-cover" fetchpriority="high" decoding="async" src="../../assets/hero-table.jpg"/>
-<div class="absolute inset-0 bg-gradient-to-b from-primary/20 via-transparent to-background"></div>
+<img alt="Pony White Cafe artisanal coffee, smoothie and granola table in Fitzroy" class="w-full h-full object-cover" fetchpriority="high" decoding="async" src="https://storage.googleapis.com/nucleus-file-hosting/Pony_White/website_assets/hero-home.jpg"/>
+<div class="absolute inset-0 bg-gradient-to-b from-primary/45 via-primary/20 to-background"></div>
 </div>
 <div class="relative z-10 max-w-container-max mx-auto px-gutter text-center">
 <div class="glass-effect p-8 md:p-12 rounded-xl ambient-float max-w-6xl mx-auto border border-white/20">
@@ -123,7 +134,7 @@
 <h1 class="font-headline-xl text-headline-xl mb-6 text-primary">Artisanal Flavours, Warmly Served</h1>
 <p class="font-body-lg text-body-lg text-on-surface-variant mb-10">A neighborhood sanctuary where gourmet breakfast meets meticulous roasting. Join us at the heart of Fitzroy.</p>
 <div class="flex flex-col sm:flex-row gap-4 justify-center">
-<a href="https://pony-white-cafe.square.site/s/order" target="_blank" rel="noopener noreferrer" class="bg-primary text-on-primary px-8 py-4 rounded-full font-label-md hover:bg-primary-container transition-all duration-300 transform active:scale-95 no-underline inline-flex items-center justify-center">
+<a href="https://www.ponywhite.com.au/s/order" target="_blank" rel="noopener noreferrer" class="bg-primary text-on-primary px-8 py-4 rounded-full font-label-md hover:bg-primary-container transition-all duration-300 transform active:scale-95 no-underline inline-flex items-center justify-center">
                         Order for Pickup
                     </a>
 <a href="#kitchen-showcase" class="bg-transparent text-primary border-2 border-secondary-fixed-dim px-8 py-4 rounded-full font-label-md hover:bg-secondary-fixed/10 transition-all duration-300 transform active:scale-95 no-underline inline-flex items-center justify-center">
@@ -152,10 +163,10 @@
 <img data-src="../../assets/gourmet-burger.jpg" loading="lazy" decoding="async" class="absolute inset-0 w-full h-full object-cover transition-all duration-[800ms] ease-in-out transform scale-100 opacity-0 pointer-events-none z-0 rounded-[2.5rem_6rem_2.5rem_6rem]" id="slide-img-2" alt="Pony's Classic Burger">
 <img data-src="../../assets/french-toast.jpg" loading="lazy" decoding="async" class="absolute inset-0 w-full h-full object-cover transition-all duration-[800ms] ease-in-out transform scale-100 opacity-0 pointer-events-none z-0 rounded-[2.5rem_6rem_2.5rem_6rem]" id="slide-img-3" alt="French Toast Dé Matcha">
 <img data-src="../../assets/wild-mushroom.jpg" loading="lazy" decoding="async" class="absolute inset-0 w-full h-full object-cover transition-all duration-[800ms] ease-in-out transform scale-100 opacity-0 pointer-events-none z-0 rounded-[2.5rem_6rem_2.5rem_6rem]" id="slide-img-4" alt="Wild Mushroom">
-<img data-src="../../assets/acai-bowl.jpg" loading="lazy" decoding="async" class="absolute inset-0 w-full h-full object-cover transition-all duration-[800ms] ease-in-out transform scale-100 opacity-0 pointer-events-none z-0 rounded-[2.5rem_6rem_2.5rem_6rem]" id="slide-img-5" alt="Açaí Bowl">
+<img data-src="https://items-images-production.s3.us-west-2.amazonaws.com/files/ba5fc954661414a70764dbff96e4a1a44e9442c1/original.png" loading="lazy" decoding="async" class="absolute inset-0 w-full h-full object-cover transition-all duration-[800ms] ease-in-out transform scale-100 opacity-0 pointer-events-none z-0 rounded-[2.5rem_6rem_2.5rem_6rem]" id="slide-img-5" alt="Cured Salmon Bagel">
 <img data-src="../../assets/chilli-cheese-croissant.jpg" loading="lazy" decoding="async" class="absolute inset-0 w-full h-full object-cover transition-all duration-[800ms] ease-in-out transform scale-100 opacity-0 pointer-events-none z-0 rounded-[2.5rem_6rem_2.5rem_6rem]" id="slide-img-6" alt="Chilli Cheese Croissant">
 <img data-src="../../assets/spaghetti-marinara.jpg" loading="lazy" decoding="async" class="absolute inset-0 w-full h-full object-cover transition-all duration-[800ms] ease-in-out transform scale-100 opacity-0 pointer-events-none z-0 rounded-[2.5rem_6rem_2.5rem_6rem]" id="slide-img-7" alt="Spaghetti Marinara">
-<img data-src="../../assets/zaalouk-prawns.jpg" loading="lazy" decoding="async" class="absolute inset-0 w-full h-full object-cover transition-all duration-[800ms] ease-in-out transform scale-100 opacity-0 pointer-events-none z-0 rounded-[2.5rem_6rem_2.5rem_6rem]" id="slide-img-8" alt="Zaalou'k Prawns">
+<img data-src="https://items-images-production.s3.us-west-2.amazonaws.com/files/a854c2d6280f59bbddca6298df8ac9987be9d765/original.jpeg" loading="lazy" decoding="async" class="absolute inset-0 w-full h-full object-cover transition-all duration-[800ms] ease-in-out transform scale-100 opacity-0 pointer-events-none z-0 rounded-[2.5rem_6rem_2.5rem_6rem]" id="slide-img-8" alt="Ricotta Pancakes">
 <img data-src="../../assets/big-breakfast.jpg" loading="lazy" decoding="async" class="absolute inset-0 w-full h-full object-cover transition-all duration-[800ms] ease-in-out transform scale-100 opacity-0 pointer-events-none z-0 rounded-[2.5rem_6rem_2.5rem_6rem]" id="slide-img-9" alt="Big Breakfast">
 </div>
 <div class="absolute inset-x-6 top-1/2 -translate-y-1/2 flex justify-between items-center pointer-events-none z-20" style="z-index: 30; pointer-events: none;">
@@ -194,7 +205,7 @@
 </div>
 <div class="mt-auto">
 <div class="flex flex-col sm:flex-row gap-4 items-center justify-start w-full">
-<a id="order-btn" href="https://pony-white-cafe.square.site/s/order" target="_blank" rel="noopener noreferrer" class="bg-primary text-on-primary px-8 py-4 rounded-full font-label-md hover:bg-primary-container transition-all duration-300 shadow-md flex items-center justify-center gap-2 group text-center flex-1 sm:flex-none no-underline">
+<a id="order-btn" href="https://www.ponywhite.com.au/s/order" target="_blank" rel="noopener noreferrer" class="bg-primary text-on-primary px-8 py-4 rounded-full font-label-md hover:bg-primary-container transition-all duration-300 shadow-md flex items-center justify-center gap-2 group text-center flex-1 sm:flex-none no-underline">
                 Order Takeaway
                 <span class="material-symbols-outlined text-secondary group-hover:scale-110 transition-transform">restaurant_menu</span>
 </a>
@@ -239,19 +250,19 @@
                     <span class="material-symbols-outlined text-sm">visibility</span>
 </a>
 </div>
-<!-- Category 2: Smoothies & Juices -->
+<!-- Category 2: Smoothies -->
 <div class="group flex flex-col justify-between bg-[#001f16] p-6 rounded-2xl border border-white/5 hover:border-secondary/30 transition-all duration-500 shadow-xl">
 <div>
 <div class="relative overflow-hidden rounded-xl mb-6 h-80">
-<img class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" data-alt="A vibrant layered superfood smoothie." loading="lazy" decoding="async" src="../../assets/layered-smoothie.jpg"/>
+<img alt="Dragonberry Glaze Superfood Smoothie at Pony White" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" loading="lazy" decoding="async" src="https://storage.googleapis.com/nucleus-file-hosting/Pony_White/website_assets/smoothie-dragonberry.png"/>
 </div>
 <span class="font-label-sm uppercase tracking-widest block gold-gradient-text font-bold mb-2">Pure &amp; Fresh</span>
-<h3 class="font-headline-md text-2xl text-white mb-3">Smoothies &amp; Juices</h3>
-<p class="text-on-primary/70 font-body-md leading-relaxed mb-6">Vibrant, raw superfood smoothies and cold-pressed juices crafted daily from local ingredients.</p>
+<h3 class="font-headline-md text-2xl text-white mb-3">Superfood Smoothies</h3>
+<p class="text-on-primary/70 font-body-md leading-relaxed mb-6">Six vibrant superfood smoothies crafted daily with real fruit, organic coyo, and house botanical blends.</p>
 </div>
-<a class="gold-gradient-bg text-on-secondary-fixed py-3.5 rounded-full font-label-md hover:brightness-110 transition-all font-bold shadow-md text-center no-underline flex items-center justify-center gap-2 group-hover:translate-y-[-1px]" href="smoothies-juices.html">
-                    Take a Sip
-                    <span class="material-symbols-outlined text-sm">arrow_forward</span>
+<a class="gold-gradient-bg text-on-secondary-fixed py-3.5 rounded-full font-label-md hover:brightness-110 transition-all font-bold shadow-md text-center no-underline flex items-center justify-center gap-2 group-hover:translate-y-[-1px]" href="https://www.ponywhite.com.au/shop/smoothies/3HB3TPEQK5JGTB4WMLLVYMNG" target="_blank" rel="noopener noreferrer">
+                    Order Smoothies
+                    <span class="material-symbols-outlined text-sm" aria-hidden="true">arrow_forward</span>
 </a>
 </div>
 <!-- Category 3: Specialty Coffee -->
@@ -264,9 +275,147 @@
 <h3 class="font-headline-md text-2xl text-white mb-3">Specialty Coffee</h3>
 <p class="text-on-primary/70 font-body-md leading-relaxed mb-6">Barista-crafted coffee from local beans, featuring our velvet Iced Specialty Coconut Latte.</p>
 </div>
-<a class="gold-gradient-bg text-on-secondary-fixed py-3.5 rounded-full font-label-md hover:brightness-110 transition-all font-bold shadow-md text-center no-underline flex items-center justify-center gap-2 group-hover:translate-y-[-1px]" href="https://pony-white-cafe.square.site/s/order">
+<a class="gold-gradient-bg text-on-secondary-fixed py-3.5 rounded-full font-label-md hover:brightness-110 transition-all font-bold shadow-md text-center no-underline flex items-center justify-center gap-2 group-hover:translate-y-[-1px]" href="https://www.ponywhite.com.au/s/order">
                     Order Takeaway
                     <span class="material-symbols-outlined text-sm">restaurant_menu</span>
+</a>
+</div>
+</div>
+
+<!-- 6 Active Smoothies Showcase Carousel -->
+<div id="smoothies-showcase" role="region" aria-roledescription="carousel" aria-label="Fresh Superfood Smoothies" class="mt-20 pt-16 border-t border-white/10">
+<div class="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-10">
+<div>
+<span class="font-label-sm uppercase tracking-widest mb-3 block gold-gradient-text font-bold">Superfood &amp; Coyo Blends</span>
+<h3 class="font-headline-xl text-3xl md:text-4xl text-white font-bold">Explore All 6 Smoothies</h3>
+<p class="font-body-md text-on-primary/75 max-w-2xl mt-2">Blended to order at our George St bar — $14.00 each. Swipe or step through our full smoothie lineup below.</p>
+</div>
+<div class="flex items-center gap-3 shrink-0">
+<span id="smoothie-carousel-status" class="sr-only" aria-live="polite">Showing smoothie 1 of 6</span>
+<button id="smoothie-prev-btn" type="button" aria-label="Previous smoothie" class="w-11 h-11 rounded-full bg-[#001f16] border border-white/15 text-white hover:border-secondary hover:text-secondary flex items-center justify-center transition-all cursor-pointer">
+<span class="material-symbols-outlined text-xl" aria-hidden="true">chevron_left</span>
+</button>
+<button id="smoothie-next-btn" type="button" aria-label="Next smoothie" class="w-11 h-11 rounded-full bg-[#001f16] border border-white/15 text-white hover:border-secondary hover:text-secondary flex items-center justify-center transition-all cursor-pointer">
+<span class="material-symbols-outlined text-xl" aria-hidden="true">chevron_right</span>
+</button>
+</div>
+</div>
+
+<div id="smoothie-carousel-track" tabindex="0" class="smoothie-carousel-track flex gap-6 overflow-x-auto pb-4 -mx-1 px-1">
+<!-- 1: Cocobliss -->
+<article class="smoothie-slide-card flex-none w-[84%] sm:w-[47%] lg:w-[31.8%] bg-[#001f16] rounded-2xl border border-white/10 hover:border-secondary/40 p-5 flex flex-col justify-between shadow-xl transition-all duration-300">
+<div>
+<div class="aspect-square rounded-xl overflow-hidden mb-4 bg-[#00140e]">
+<img src="https://storage.googleapis.com/nucleus-file-hosting/Pony_White/website_assets/smoothie-cocobliss.jpg" alt="Cocobliss Smoothie with blue spirulina, mango, and coconut" loading="lazy" decoding="async" class="w-full h-full object-cover transition-transform duration-700 hover:scale-105"/>
+</div>
+<div class="flex items-baseline justify-between gap-2 mb-2">
+<h4 class="font-headline-md text-xl text-white font-bold">Cocobliss Smoothie</h4>
+<span class="text-secondary font-bold text-sm shrink-0">$14.00</span>
+</div>
+<p class="text-on-primary/70 font-body-md text-sm leading-relaxed mb-5">Mango, pineapple, blue spirulina, coyo, coconut milk &amp; water.</p>
+</div>
+<a href="https://www.ponywhite.com.au/shop/smoothies/3HB3TPEQK5JGTB4WMLLVYMNG" target="_blank" rel="noopener noreferrer" class="w-full gold-gradient-bg text-on-secondary-fixed py-3 rounded-full font-label-md text-xs uppercase tracking-wider font-bold text-center no-underline inline-flex items-center justify-center gap-2 hover:brightness-110 transition-all">
+<span>Order Now</span>
+<span class="material-symbols-outlined text-sm" aria-hidden="true">arrow_forward</span>
+</a>
+</article>
+
+<!-- 2: Mango Tango -->
+<article class="smoothie-slide-card flex-none w-[84%] sm:w-[47%] lg:w-[31.8%] bg-[#001f16] rounded-2xl border border-white/10 hover:border-secondary/40 p-5 flex flex-col justify-between shadow-xl transition-all duration-300">
+<div>
+<div class="aspect-square rounded-xl overflow-hidden mb-4 bg-[#00140e]">
+<img src="https://storage.googleapis.com/nucleus-file-hosting/Pony_White/website_assets/smoothie-mango-tango.jpg" alt="Mango Tango Smoothie with mango and raspberry swirl" loading="lazy" decoding="async" class="w-full h-full object-cover transition-transform duration-700 hover:scale-105"/>
+</div>
+<div class="flex items-baseline justify-between gap-2 mb-2">
+<h4 class="font-headline-md text-xl text-white font-bold">Mango Tango Smoothie</h4>
+<span class="text-secondary font-bold text-sm shrink-0">$14.00</span>
+</div>
+<p class="text-on-primary/70 font-body-md text-sm leading-relaxed mb-5">Mango, raspberry, coconut milk &amp; water.</p>
+</div>
+<a href="https://www.ponywhite.com.au/shop/smoothies/3HB3TPEQK5JGTB4WMLLVYMNG" target="_blank" rel="noopener noreferrer" class="w-full gold-gradient-bg text-on-secondary-fixed py-3 rounded-full font-label-md text-xs uppercase tracking-wider font-bold text-center no-underline inline-flex items-center justify-center gap-2 hover:brightness-110 transition-all">
+<span>Order Now</span>
+<span class="material-symbols-outlined text-sm" aria-hidden="true">arrow_forward</span>
+</a>
+</article>
+
+<!-- 3: Galaxy -->
+<article class="smoothie-slide-card flex-none w-[84%] sm:w-[47%] lg:w-[31.8%] bg-[#001f16] rounded-2xl border border-white/10 hover:border-secondary/40 p-5 flex flex-col justify-between shadow-xl transition-all duration-300">
+<div>
+<div class="aspect-square rounded-xl overflow-hidden mb-4 bg-[#00140e]">
+<img src="https://storage.googleapis.com/nucleus-file-hosting/Pony_White/website_assets/smoothie-galaxy.jpg" alt="Galaxy Smoothie with blueberry, pineapple, coyo, and goji berry" loading="lazy" decoding="async" class="w-full h-full object-cover transition-transform duration-700 hover:scale-105"/>
+</div>
+<div class="flex items-baseline justify-between gap-2 mb-2">
+<h4 class="font-headline-md text-xl text-white font-bold">Galaxy Smoothie</h4>
+<span class="text-secondary font-bold text-sm shrink-0">$14.00</span>
+</div>
+<p class="text-on-primary/70 font-body-md text-sm leading-relaxed mb-5">Blueberry, pineapple, coyo, banana, goji berry, coconut milk &amp; water.</p>
+</div>
+<a href="https://www.ponywhite.com.au/shop/smoothies/3HB3TPEQK5JGTB4WMLLVYMNG" target="_blank" rel="noopener noreferrer" class="w-full gold-gradient-bg text-on-secondary-fixed py-3 rounded-full font-label-md text-xs uppercase tracking-wider font-bold text-center no-underline inline-flex items-center justify-center gap-2 hover:brightness-110 transition-all">
+<span>Order Now</span>
+<span class="material-symbols-outlined text-sm" aria-hidden="true">arrow_forward</span>
+</a>
+</article>
+
+<!-- 4: Green But Not -->
+<article class="smoothie-slide-card flex-none w-[84%] sm:w-[47%] lg:w-[31.8%] bg-[#001f16] rounded-2xl border border-white/10 hover:border-secondary/40 p-5 flex flex-col justify-between shadow-xl transition-all duration-300">
+<div>
+<div class="aspect-square rounded-xl overflow-hidden mb-4 bg-[#00140e]">
+<img src="https://storage.googleapis.com/nucleus-file-hosting/Pony_White/website_assets/smoothie-green-but-not.jpg" alt="Green But Not Smoothie with kale, spinach, mango, and banana" loading="lazy" decoding="async" class="w-full h-full object-cover transition-transform duration-700 hover:scale-105"/>
+</div>
+<div class="flex items-baseline justify-between gap-2 mb-2">
+<h4 class="font-headline-md text-xl text-white font-bold">Green But Not Smoothie</h4>
+<span class="text-secondary font-bold text-sm shrink-0">$14.00</span>
+</div>
+<p class="text-on-primary/70 font-body-md text-sm leading-relaxed mb-5">Kale, spinach, mango, banana, coconut milk &amp; water.</p>
+</div>
+<a href="https://www.ponywhite.com.au/shop/smoothies/3HB3TPEQK5JGTB4WMLLVYMNG" target="_blank" rel="noopener noreferrer" class="w-full gold-gradient-bg text-on-secondary-fixed py-3 rounded-full font-label-md text-xs uppercase tracking-wider font-bold text-center no-underline inline-flex items-center justify-center gap-2 hover:brightness-110 transition-all">
+<span>Order Now</span>
+<span class="material-symbols-outlined text-sm" aria-hidden="true">arrow_forward</span>
+</a>
+</article>
+
+<!-- 5: Bananarific -->
+<article class="smoothie-slide-card flex-none w-[84%] sm:w-[47%] lg:w-[31.8%] bg-[#001f16] rounded-2xl border border-white/10 hover:border-secondary/40 p-5 flex flex-col justify-between shadow-xl transition-all duration-300">
+<div>
+<div class="aspect-square rounded-xl overflow-hidden mb-4 bg-[#00140e]">
+<img src="https://storage.googleapis.com/nucleus-file-hosting/Pony_White/website_assets/smoothie-bananarific.jpg" alt="Bananarific Smoothie with banana, peanut butter, chia seeds, and honey" loading="lazy" decoding="async" class="w-full h-full object-cover transition-transform duration-700 hover:scale-105"/>
+</div>
+<div class="flex items-baseline justify-between gap-2 mb-2">
+<h4 class="font-headline-md text-xl text-white font-bold">Bananarific Smoothie</h4>
+<span class="text-secondary font-bold text-sm shrink-0">$14.00</span>
+</div>
+<p class="text-on-primary/70 font-body-md text-sm leading-relaxed mb-5">Banana, peanut butter, chia seeds, cinnamon, honey &amp; milk.</p>
+</div>
+<a href="https://www.ponywhite.com.au/shop/smoothies/3HB3TPEQK5JGTB4WMLLVYMNG" target="_blank" rel="noopener noreferrer" class="w-full gold-gradient-bg text-on-secondary-fixed py-3 rounded-full font-label-md text-xs uppercase tracking-wider font-bold text-center no-underline inline-flex items-center justify-center gap-2 hover:brightness-110 transition-all">
+<span>Order Now</span>
+<span class="material-symbols-outlined text-sm" aria-hidden="true">arrow_forward</span>
+</a>
+</article>
+
+<!-- 6: Dragonberry Glaze -->
+<article class="smoothie-slide-card flex-none w-[84%] sm:w-[47%] lg:w-[31.8%] bg-[#001f16] rounded-2xl border border-white/10 hover:border-secondary/40 p-5 flex flex-col justify-between shadow-xl transition-all duration-300">
+<div>
+<div class="aspect-square rounded-xl overflow-hidden mb-4 bg-[#00140e]">
+<img src="https://storage.googleapis.com/nucleus-file-hosting/Pony_White/website_assets/smoothie-dragonberry.png" alt="Dragonberry Glaze Smoothie with dragonfruit, strawberry, and coconut milk" loading="lazy" decoding="async" class="w-full h-full object-cover transition-transform duration-700 hover:scale-105"/>
+</div>
+<div class="flex items-baseline justify-between gap-2 mb-2">
+<h4 class="font-headline-md text-xl text-white font-bold">Dragonberry Glaze Smoothie</h4>
+<span class="text-secondary font-bold text-sm shrink-0">$14.00</span>
+</div>
+<p class="text-on-primary/70 font-body-md text-sm leading-relaxed mb-5">Dragonfruit, strawberry, banana, coyo, strawberry purée, coconut milk &amp; water.</p>
+</div>
+<a href="https://www.ponywhite.com.au/shop/smoothies/3HB3TPEQK5JGTB4WMLLVYMNG" target="_blank" rel="noopener noreferrer" class="w-full gold-gradient-bg text-on-secondary-fixed py-3 rounded-full font-label-md text-xs uppercase tracking-wider font-bold text-center no-underline inline-flex items-center justify-center gap-2 hover:brightness-110 transition-all">
+<span>Order Now</span>
+<span class="material-symbols-outlined text-sm" aria-hidden="true">arrow_forward</span>
+</a>
+</article>
+</div>
+
+<div class="flex flex-col sm:flex-row items-center justify-between gap-4 mt-6">
+<div id="smoothie-carousel-dots" class="flex items-center gap-2" aria-label="Smoothie slide pagination"></div>
+<a href="https://www.ponywhite.com.au/shop/smoothies/3HB3TPEQK5JGTB4WMLLVYMNG" target="_blank" rel="noopener noreferrer" class="text-xs uppercase tracking-widest font-bold text-secondary hover:text-white border border-secondary/40 hover:border-white px-6 py-3 rounded-full no-underline transition-all inline-flex items-center gap-2">
+<span>Shop All 6 Smoothies Online</span>
+<span class="material-symbols-outlined text-sm" aria-hidden="true">open_in_new</span>
 </a>
 </div>
 </div>
@@ -373,7 +522,7 @@
 <span class="font-label-sm uppercase tracking-widest mb-4 block gold-gradient-text font-bold">Pony White at Home</span>
 <h2 class="font-headline-xl text-headline-xl text-primary mb-6">Take the Experience Home</h2>
 <p class="font-body-lg text-body-lg text-on-surface-variant mb-10">If you've fallen in love with our signature coffee served in-cafe, you can now purchase our roasted beans to enjoy every morning. We are incredibly proud of our signature <strong class="text-primary font-bold">San Pedro</strong> beans, roasted with meticulous care to highlight their rich notes of dark chocolate, toasted almond, and velvety caramel. Beyond coffee, we also offer our curated specialty chocolate powders and premium chais, so you can craft your favorite house beverages in the comfort of your own home.</p>
-<a href="https://pony-white-cafe.square.site/s/shop" target="_blank" class="gold-gradient-bg text-on-secondary-fixed px-8 py-4 rounded-full font-label-md hover:brightness-110 transition-all font-bold shadow-md inline-block text-center no-underline">
+<a href="https://www.ponywhite.com.au/s/shop" target="_blank" class="gold-gradient-bg text-on-secondary-fixed px-8 py-4 rounded-full font-label-md hover:brightness-110 transition-all font-bold shadow-md inline-block text-center no-underline">
                         Shop the Collection
                     </a>
 </div>
@@ -396,7 +545,7 @@
   "Such a gem in Fitzroy! Their specialty drinks are next level! We tried the Banaoffee and the Tiramisu Affogato, both were absolutely delicious. Food was amazing too—the prawn marinara was rich and prawns were fresh, the salmon bagel was spot on, and the Okonomiyaki Benedict was such a unique twist! Definitely coming back here."
 </p>
 <p class="font-label-md uppercase tracking-wider text-secondary font-bold mt-4 mb-12">— Shanyan Hai</p>
-<a href="contact.html" class="bg-white text-primary border-2 border-secondary-fixed-dim px-8 py-4 rounded-full font-label-md hover:bg-primary hover:text-white transition-all duration-300 shadow-sm no-underline inline-block">
+<a href="contact.html?feedback=1#feedback" class="bg-white text-primary border-2 border-secondary-fixed-dim px-8 py-4 rounded-full font-label-md hover:bg-primary hover:text-white transition-all duration-300 shadow-sm no-underline inline-block">
                 Leave us a Review
             </a>
 </div>
@@ -507,7 +656,7 @@
         </div>
 
         <div class="flex flex-col sm:flex-row gap-4 items-center justify-start">
-          <a href="https://pony-white-cafe.square.site/s/gift-cards" target="_blank" class="gold-gradient-bg text-on-secondary-fixed px-8 py-4 rounded-full font-label-md hover:brightness-110 transition-all font-bold shadow-md inline-block text-center no-underline flex-1 sm:flex-none">
+          <a href="https://www.ponywhite.com.au/s/gift-cards" target="_blank" class="gold-gradient-bg text-on-secondary-fixed px-8 py-4 rounded-full font-label-md hover:brightness-110 transition-all font-bold shadow-md inline-block text-center no-underline flex-1 sm:flex-none">
             Purchase E-Gift Card
           </a>
           <a href="gift-cards.html" class="bg-transparent text-white border-2 border-secondary-fixed-dim px-8 py-4 rounded-full font-label-md hover:bg-secondary-fixed/10 transition-all duration-300 text-center no-underline flex-1 sm:flex-none">
@@ -654,7 +803,7 @@
                     "Smoky hollandaise, crispy kale, pickled ginger & lotus chips",
                     "Finished with special sauce, sumac & bonito flakes (VO, GF)"
                 ],
-                orderUrl: "https://pony-white-cafe.square.site/s/order"
+                orderUrl: "https://www.ponywhite.com.au/s/order"
             },
             {
                 title: "Avocado Toast",
@@ -666,7 +815,7 @@
                     "Poached egg, pickled beetroot & beetroot hummus on multigrain",
                     "Toasted mixed seeds, zaatar & fragrant herb oil (V, VGO, GFO)"
                 ],
-                orderUrl: "https://pony-white-cafe.square.site/s/order"
+                orderUrl: "https://www.ponywhite.com.au/s/order"
             },
             {
                 title: "Pony's Classic Burger",
@@ -678,7 +827,7 @@
                     "Fried egg, butter lettuce, pickles, tomato & house burger sauce",
                     "Served with golden crunchy chips & tomato sauce (GFO)"
                 ],
-                orderUrl: "https://pony-white-cafe.square.site/s/order"
+                orderUrl: "https://www.ponywhite.com.au/s/order"
             },
             {
                 title: "French Toast Dé Matcha",
@@ -690,7 +839,7 @@
                     "Vanilla ice-cream, strawberry bliss & delicate pink pashmak",
                     "Topped with seasonal fruits & white chocolate strawberries (V)"
                 ],
-                orderUrl: "https://pony-white-cafe.square.site/s/order"
+                orderUrl: "https://www.ponywhite.com.au/s/order"
             },
             {
                 title: "Wild Mushroom",
@@ -702,55 +851,55 @@
                     "Poached eggs, house basil pesto & fragrant herb oil",
                     "Crunchy crispy enoki & sweet potato crisps (V, VGO, GFO)"
                 ],
-                orderUrl: "https://pony-white-cafe.square.site/s/order"
+                orderUrl: "https://www.ponywhite.com.au/s/order"
             },
             {
-                title: "Açaí Bowl",
-                category: "All Day Meals",
-                price: "$22.00",
-                description: "Açaí berry smoothie, seasonal fruits, grains, and granola.",
+                title: "Cured Salmon Bagel",
+                category: "All Day Lunch",
+                price: "$32.00",
+                description: "Crème fraîche on bagel with roquette, beetroot cured salmon, guacamole, balsamic glaze, poached egg, beetroot & mango coulis with chardonnay vinaigrette, cucumber ribbon, pickled onion, caper & grape salad. (VO, GFO)(A)",
                 features: [
-                    "Velvety organic Açaí berry smoothie base",
-                    "Hand-sliced fresh seasonal fruits & berries",
-                    "Wholesome toasted grains & crunchy granola"
+                    "Beetroot cured salmon on toasted bagel with crème fraîche & guacamole",
+                    "Poached egg, balsamic glaze, beetroot & mango coulis",
+                    "Cucumber ribbon, pickled onion, caper & grape salad (VO, GFO)"
                 ],
-                orderUrl: "https://pony-white-cafe.square.site/s/order"
+                orderUrl: "https://www.ponywhite.com.au/s/order"
             },
             {
                 title: "Chilli Cheese Croissant",
                 category: "All Day Breakfast",
                 price: "$27.50",
-                description: "Scrambled eggs with chilli corn salsa & mozzarella, served on a croissant with spring onions, angel chilli hair, parmesan & shichimi togarashi. (V, GFO)",
+                description: "Scrambled eggs with house-made fermented chilli served on croissant with parmesan, sliced chilli & shichimi togarashi. (V, GFO)",
                 features: [
-                    "Flaky butter croissant with folded mozzarella scrambled eggs",
-                    "House chilli corn salsa & shaved parmesan",
-                    "Finished with spring onions, angel chilli hair & shichimi togarashi (V, GFO)"
+                    "Flaky butter croissant topped with folded scrambled eggs",
+                    "House-made fermented chilli & aged shaved parmesan",
+                    "Finished with fresh sliced chilli & shichimi togarashi (V, GFO)"
                 ],
-                orderUrl: "https://pony-white-cafe.square.site/s/order"
+                orderUrl: "https://www.ponywhite.com.au/s/order"
             },
             {
                 title: "Spaghetti Marinara",
                 category: "All Day Lunch",
                 price: "$30.00",
-                description: "Squid ink spaghetti, seafood mix, chilli blend, confit garlic, roquette, butter wine sauce, fresh parsley & parmesan.",
+                description: "Squid ink spaghetti, seafood mix, chilli blend, confit garlic, roquette, butter wine sauce, fresh parsley & parmesan. (M)",
                 features: [
                     "Artisanal squid ink spaghetti tossed in butter wine sauce",
                     "Sautéed premium seafood mix with confit garlic & chilli blend",
                     "Fresh roquette, parsley & shaved parmesan"
                 ],
-                orderUrl: "https://pony-white-cafe.square.site/s/order"
+                orderUrl: "https://www.ponywhite.com.au/s/order"
             },
             {
-                title: "Zaalou'k Prawns",
-                category: "All Day Lunch",
-                price: "$32.00",
-                description: "Sautéed chilli garlic prawns with sweet pepper eggplant zaalouk served with coriander zhoug & preserved lemon. (GF)",
+                title: "Ricotta Pancakes",
+                category: "All Day Breakfast",
+                price: "$26.00",
+                description: "Ricotta pancakes served with vanilla mascarpone, bruléed banana, berry compote, seasonal fruits & maple syrup. (V)",
                 features: [
-                    "Sautéed chilli garlic prawns over smoky sweet pepper eggplant zaalouk",
-                    "Vibrant house-made coriander zhoug",
-                    "Finished with aromatic preserved lemon (GF)"
+                    "Fluffy golden ricotta pancakes with whipped vanilla mascarpone",
+                    "Caramelised bruléed banana & house-made berry compote",
+                    "Topped with seasonal fruits & pure maple syrup (V)"
                 ],
-                orderUrl: "https://pony-white-cafe.square.site/s/order"
+                orderUrl: "https://www.ponywhite.com.au/s/order"
             },
             {
                 title: "Big Breakfast",
@@ -762,7 +911,7 @@
                     "Smoky bacon, seared chorizo & golden crunchy hashbrowns",
                     "Sautéed mushrooms, baby spinach & roasted vine tomato (VO, GFO)"
                 ],
-                orderUrl: "https://pony-white-cafe.square.site/s/order"
+                orderUrl: "https://www.ponywhite.com.au/s/order"
             }
         ];
 
@@ -772,10 +921,10 @@
             "../../assets/gourmet-burger.jpg",
             "../../assets/french-toast.jpg",
             "../../assets/wild-mushroom.jpg",
-            "../../assets/acai-bowl.jpg",
+            "https://items-images-production.s3.us-west-2.amazonaws.com/files/ba5fc954661414a70764dbff96e4a1a44e9442c1/original.png",
             "../../assets/chilli-cheese-croissant.jpg",
             "../../assets/spaghetti-marinara.jpg",
-            "../../assets/zaalouk-prawns.jpg",
+            "https://items-images-production.s3.us-west-2.amazonaws.com/files/a854c2d6280f59bbddca6298df8ac9987be9d765/original.jpeg",
             "../../assets/big-breakfast.jpg"
         ];
 
@@ -1101,7 +1250,7 @@
                         price: slide.price || '',
                         description: slide.description || '',
                         features: Array.isArray(slide.features) ? slide.features : [],
-                        orderUrl: slide.orderUrl || config.orderUrl || 'https://pony-white-cafe.square.site/s/order',
+                        orderUrl: slide.orderUrl || config.orderUrl || 'https://www.ponywhite.com.au/s/order',
                         img: activeImg,
                         fallbackImg: fallbackLocal
                     });
@@ -1263,9 +1412,105 @@
             indicators.forEach(el => { if (el.innerHTML !== stateHtml) el.innerHTML = stateHtml; });
         }
 
+        function initSmoothieCarousel() {
+            const track = document.getElementById('smoothie-carousel-track');
+            const prevBtn = document.getElementById('smoothie-prev-btn');
+            const nextBtn = document.getElementById('smoothie-next-btn');
+            const dotsEl = document.getElementById('smoothie-carousel-dots');
+            const statusEl = document.getElementById('smoothie-carousel-status');
+            if (!track) return;
+
+            const cards = Array.from(track.querySelectorAll('.smoothie-slide-card'));
+            if (!cards.length) return;
+
+            const reduceMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+            const behavior = reduceMotion ? 'auto' : 'smooth';
+
+            function getCardStep() {
+                const c0 = cards[0];
+                const gap = parseFloat(window.getComputedStyle(track).columnGap || window.getComputedStyle(track).gap || '24') || 24;
+                return c0 ? c0.getBoundingClientRect().width + gap : 340;
+            }
+
+            function getActiveIdx() {
+                const step = getCardStep();
+                if (step <= 0) return 0;
+                return Math.max(0, Math.min(cards.length - 1, Math.round(track.scrollLeft / step)));
+            }
+
+            function updateDotsAndStatus(activeIdx) {
+                if (statusEl) statusEl.textContent = `Showing smoothie ${activeIdx + 1} of ${cards.length}`;
+                if (!dotsEl) return;
+                Array.from(dotsEl.children).forEach((dot, i) => {
+                    const active = i === activeIdx;
+                    dot.setAttribute('aria-pressed', active ? 'true' : 'false');
+                    dot.className = active
+                        ? 'h-2.5 w-7 rounded-full bg-secondary transition-all duration-300 cursor-pointer border-0'
+                        : 'h-2.5 w-2.5 rounded-full bg-white/25 hover:bg-white/50 transition-all duration-300 cursor-pointer border-0';
+                });
+            }
+
+            if (dotsEl) {
+                dotsEl.innerHTML = '';
+                cards.forEach((card, i) => {
+                    const titleEl = card.querySelector('h4');
+                    const dot = document.createElement('button');
+                    dot.type = 'button';
+                    dot.setAttribute('aria-label', `Show smoothie ${i + 1}: ${titleEl ? titleEl.textContent : 'Smoothie'}`);
+                    dot.addEventListener('click', () => {
+                        track.scrollTo({ left: i * getCardStep(), behavior });
+                    });
+                    dotsEl.appendChild(dot);
+                });
+            }
+
+            if (prevBtn) {
+                prevBtn.addEventListener('click', () => {
+                    const step = getCardStep();
+                    if (track.scrollLeft <= 10) {
+                        track.scrollTo({ left: track.scrollWidth, behavior });
+                    } else {
+                        track.scrollBy({ left: -step, behavior });
+                    }
+                });
+            }
+            if (nextBtn) {
+                nextBtn.addEventListener('click', () => {
+                    const step = getCardStep();
+                    if (track.scrollLeft + track.clientWidth >= track.scrollWidth - 10) {
+                        track.scrollTo({ left: 0, behavior });
+                    } else {
+                        track.scrollBy({ left: step, behavior });
+                    }
+                });
+            }
+
+            track.addEventListener('keydown', (e) => {
+                if (e.key === 'ArrowRight') {
+                    e.preventDefault();
+                    nextBtn && nextBtn.click();
+                } else if (e.key === 'ArrowLeft') {
+                    e.preventDefault();
+                    prevBtn && prevBtn.click();
+                }
+            });
+
+            let scrollRaf = 0;
+            track.addEventListener('scroll', () => {
+                if (scrollRaf) return;
+                scrollRaf = requestAnimationFrame(() => {
+                    scrollRaf = 0;
+                    updateDotsAndStatus(getActiveIdx());
+                });
+            }, { passive: true });
+
+            updateDotsAndStatus(0);
+        }
+
         // Initialize on DOM load
         function init() {
             initSlideshow();
+            initSmoothieCarousel();
             initGiftCardSelector();
             updateLiveStoreStatus();
             setInterval(updateLiveStoreStatus, 60000);
