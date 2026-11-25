@@ -40,7 +40,7 @@
 <img alt="Pony White Fitzroy signature Pistachio Crème Brûlée latte pour" class="w-full h-full object-cover brightness-75" fetchpriority="high" decoding="async" src="https://storage.googleapis.com/nucleus-file-hosting/Pony_White/website_assets/hero-hiring.jpg"/>
 <div class="absolute inset-0 bg-gradient-to-r from-[#071f19]/90 via-[#0B3027]/80 to-[#0B3027]/45"></div>
 </div>
-<div class="relative z-10 px-margin-desktop w-full max-w-screen-2xl mx-auto">
+<div class="relative z-10 px-4 sm:px-6 md:px-margin-desktop w-full max-w-screen-2xl mx-auto">
 <div class="max-w-2xl">
 <span class="font-label-caps text-label-caps gold-gradient-text mb-stack-md block tracking-[0.22em] font-bold">HIRING AT PONY WHITE</span>
 <h1 class="font-display-lg text-display-lg md:text-[80px] leading-tight text-marble-white mb-stack-lg">Join Our <br/>Team</h1>
@@ -55,7 +55,7 @@
 </div>
 </header>
 <!-- Culture Section -->
-<section class="py-section-padding px-margin-desktop max-w-screen-2xl mx-auto">
+<section class="py-section-padding px-4 sm:px-6 md:px-margin-desktop max-w-screen-2xl mx-auto">
 <div class="grid grid-cols-1 md:grid-cols-2 gap-section-padding items-center">
 <div>
 <h2 class="font-display-lg text-display-lg text-forest-velvet mb-stack-lg">Artisanal craft meets <br/>Fitzroy hospitality.</h2>
@@ -87,8 +87,8 @@
 </section>
 
 <!-- Application Q&A Wizard Widget -->
-<section class="py-section-padding px-margin-desktop max-w-screen-2xl mx-auto" id="apply">
-  <div class="w-full max-w-4xl mx-auto bg-forest-velvet border border-premium-gold-light/20 p-8 md:p-12 rounded-2xl shadow-xl relative text-left min-h-[560px] flex flex-col justify-between">
+<section class="py-section-padding px-4 sm:px-6 md:px-margin-desktop max-w-screen-2xl mx-auto" id="apply">
+  <div class="w-full max-w-4xl mx-auto bg-forest-velvet border border-premium-gold-light/20 p-5 sm:p-8 md:p-12 rounded-2xl shadow-xl relative text-left min-h-[560px] flex flex-col justify-between">
     
     <!-- Progress Bar -->
     <div id="pw-progress-container" class="relative w-full h-1 bg-premium-gold-light/10 rounded-full mb-8 overflow-hidden">
@@ -334,6 +334,10 @@
         </div>
 
         <div id="pw-hiring-error" role="alert" class="hidden rounded-lg border border-red-400/40 bg-red-950/50 px-4 py-3 text-xs text-red-200"></div>
+
+        <p class="text-[11px] text-marble-white/65 leading-relaxed">
+          Privacy Notice (Australian Privacy Principles): Your application details, visa status, and uploaded resume are stored privately and used solely by Pony White Cafe to assess your suitability for employment. To access or request deletion of your details, reach out via our <a href="contact.html" class="text-premium-gold-light underline">Contact Us form</a>.
+        </p>
         
         <div class="pt-2 flex justify-between items-center gap-4">
           <button type="button" onclick="nextStep(4)" class="px-8 py-3 bg-black/20 border border-premium-gold-light/20 text-marble-white/80 hover:text-marble-white transition-all rounded font-label-caps text-sm tracking-wider cursor-pointer">Back</button>
@@ -530,48 +534,49 @@
       applicationState.skills = document.getElementById('pw-input-skills').value || 'Not specified';
       applicationState.qualifications = document.getElementById('pw-input-quals').value || 'Not specified';
 
-      // Build summary view
+      // Build summary view (HTML-escaped to prevent DOM XSS)
+      const esc = (s) => String(s ?? '').replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;').replace(/'/g, '&#39;');
       const recap = document.getElementById('pw-summary-content');
       if (recap) {
         recap.innerHTML = `
           <div>
             <h4 class="text-premium-gold-light font-semibold text-xs uppercase tracking-wider mb-1">Selected Role(s)</h4>
-            <p class="font-medium text-white">${applicationState.positions.join(', ')}</p>
+            <p class="font-medium text-white">${esc(applicationState.positions.join(', '))}</p>
           </div>
           <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 border-t border-premium-gold-light/10 pt-3">
             <div>
               <h4 class="text-premium-gold-light font-semibold text-xs uppercase tracking-wider mb-1">Country of Origin</h4>
-              <p>${applicationState.country}</p>
+              <p>${esc(applicationState.country)}</p>
             </div>
             <div>
               <h4 class="text-premium-gold-light font-semibold text-xs uppercase tracking-wider mb-1">Visa Type</h4>
-              <p>${applicationState.visaType} ${applicationState.visaType !== 'Citizen or PR' ? `(Expires: ${applicationState.visaExpiry})` : ''}</p>
+              <p>${esc(applicationState.visaType)} ${applicationState.visaType !== 'Citizen or PR' ? `(Expires: ${esc(applicationState.visaExpiry)})` : ''}</p>
             </div>
             <div>
               <h4 class="text-premium-gold-light font-semibold text-xs uppercase tracking-wider mb-1">Weekly Hours Desired</h4>
-              <p>${applicationState.hopingHours} hours</p>
+              <p>${esc(applicationState.hopingHours)} hours</p>
             </div>
             <div>
               <h4 class="text-premium-gold-light font-semibold text-xs uppercase tracking-wider mb-1">English Proficiency</h4>
-              <p>${applicationState.englishProficiency} / 10</p>
+              <p>${esc(applicationState.englishProficiency)} / 10</p>
             </div>
           </div>
           <div class="border-t border-premium-gold-light/10 pt-3">
             <h4 class="text-premium-gold-light font-semibold text-xs uppercase tracking-wider mb-1">Experience Status</h4>
-            <p>${applicationState.experience ? `Yes — ${applicationState.yearsExperience} of experience` : 'No direct experience'}</p>
+            <p>${applicationState.experience ? `Yes — ${esc(applicationState.yearsExperience)} of experience` : 'No direct experience'}</p>
           </div>
           <div class="border-t border-premium-gold-light/10 pt-3">
             <h4 class="text-premium-gold-light font-semibold text-xs uppercase tracking-wider mb-1">Schedule Availability</h4>
-            <p>${applicationState.availableDays.length > 0 ? applicationState.availableDays.join(', ') : 'Not specified'}</p>
+            <p>${applicationState.availableDays.length > 0 ? esc(applicationState.availableDays.join(', ')) : 'Not specified'}</p>
           </div>
           <div class="border-t border-premium-gold-light/10 pt-3">
             <h4 class="text-premium-gold-light font-semibold text-xs uppercase tracking-wider mb-1">About Me</h4>
-            <p class="italic text-marble-white/80">"${applicationState.aboutMe}"</p>
+            <p class="italic text-marble-white/80">"${esc(applicationState.aboutMe)}"</p>
           </div>
           <div class="border-t border-premium-gold-light/10 pt-3 space-y-2">
             <h4 class="text-premium-gold-light font-semibold text-xs uppercase tracking-wider mb-1">Additional Information</h4>
-            <p><strong class="text-marble-white">Skills:</strong> ${applicationState.skills}</p>
-            <p><strong class="text-marble-white">Qualifications:</strong> ${applicationState.qualifications}</p>
+            <p><strong class="text-marble-white">Skills:</strong> ${esc(applicationState.skills)}</p>
+            <p><strong class="text-marble-white">Qualifications:</strong> ${esc(applicationState.qualifications)}</p>
           </div>
         `;
       }

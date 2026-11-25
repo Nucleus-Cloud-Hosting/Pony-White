@@ -43,7 +43,7 @@
 <p class="font-body-lg text-body-lg text-marble-white opacity-90 max-w-2xl mx-auto">Step into an atmosphere of quiet luxury and botanical freshness. Secure your table at Pony White for an artisanal journey.</p>
 </header>
 <!-- Mock Wix Booking Widget -->
-<div class="glass-card rounded-lg p-stack-lg md:p-12 shadow-2xl">
+<div class="glass-card rounded-lg p-5 sm:p-8 md:p-12 shadow-2xl">
 <div class="grid grid-cols-1 md:grid-cols-3 gap-gutter mb-stack-lg">
 <!-- Date Picker -->
 <div class="flex flex-col gap-stack-sm">
@@ -111,9 +111,17 @@
 <p id="booking-validation-msg" role="alert" class="hidden text-xs text-[#ffe088] font-bold mt-4 text-center md:text-left"></p>
 
 <div id="booking-action-bar" class="flex flex-col md:flex-row items-center justify-between gap-gutter mt-stack-lg border-t-2 border-premium-gold/30 pt-stack-lg">
-<p class="font-body-md text-body-md text-marble-white opacity-80 italic text-center md:text-left">
+<div class="space-y-1.5 text-center md:text-left max-w-xl">
+<p class="font-body-md text-body-md text-marble-white opacity-80 italic">
                         * Standard bookings are for 90 minutes. For longer stays, please contact us.
                     </p>
+<p class="text-xs text-marble-white/85 font-semibold leading-relaxed">
+                        Surcharge Notice: A 10% weekend surcharge and 15% public holiday surcharge apply. No weekday surcharge and no card/EFTPOS surcharge (same price for card or cash).
+                    </p>
+<p class="text-[11px] text-marble-white/70 leading-relaxed">
+                        Privacy &amp; Dietary Notice: By submitting, you consent to Pony White Cafe using your contact details and any dietary or allergy information solely to manage your booking and accommodate your visit (Australian Privacy Principles). Privacy requests: <a href="contact.html" class="text-premium-gold underline">Contact Us</a>. Our kitchen handles dairy, tree nuts, peanuts, gluten, soy, sesame, and egg — please advise staff on arrival.
+                    </p>
+</div>
 <button type="button" id="confirm-booking-btn" class="w-full md:w-auto premium-gold-gradient text-forest-velvet px-12 py-4 font-label-caps text-label-caps uppercase tracking-widest hover:brightness-110 active:scale-95 transition-all rounded-lg font-bold shadow-lg cursor-pointer">
                         Confirm Reservation
                     </button>
@@ -317,7 +325,8 @@
                         throw new Error(resJson.error || 'Could not confirm your reservation right now. Please call (03) 9314 7273.');
                     }
                     if (confirmedSummary) {
-                        confirmedSummary.innerHTML = `Thank you, <strong>${nameVal}</strong>! We have received your table request for <strong>${guests} ${guests === 1 ? 'guest' : 'guests'}</strong> on <strong>${dateVal}</strong> at <strong>${selectedTime}</strong>. Our Fitzroy team will confirm via email at <strong>${emailVal}</strong> (${phoneVal}).`;
+                        const esc = (s) => String(s ?? '').replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;').replace(/'/g, '&#39;');
+                        confirmedSummary.innerHTML = `Thank you, <strong>${esc(nameVal)}</strong>! We have received your table request for <strong>${esc(guests)} ${guests === 1 ? 'guest' : 'guests'}</strong> on <strong>${esc(dateVal)}</strong> at <strong>${esc(selectedTime)}</strong>. Our Fitzroy team will confirm via email at <strong>${esc(emailVal)}</strong> (${esc(phoneVal)}).`;
                     }
                     if (confirmedView) confirmedView.classList.remove('hidden');
                     const actionBar = document.getElementById('booking-action-bar');

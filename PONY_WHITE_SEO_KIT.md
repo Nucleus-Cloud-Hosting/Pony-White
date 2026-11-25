@@ -2,7 +2,7 @@
 
 Complete SEO metadata, canonical URLs, Square Online navigation slugs, and JSON-LD `CafeOrCoffeeShop` structured data ready to paste into **Square Online → Website → Edit Site → Page Settings / Site Header Code**.
 
-> **Note:** Keep `/smoothies-juices` hidden from navigation (the 6 active superfood smoothies are showcased directly on `/` and linked to `/shop/smoothies/3HB3TPEQK5JGTB4WMLLVYMNG`).
+> **Note:** Keep `/smoothies-juices` hidden from navigation (the 6 active wholefood smoothies are showcased directly on `/` and linked to `/shop/smoothies/3HB3TPEQK5JGTB4WMLLVYMNG`).
 
 ---
 
@@ -10,7 +10,7 @@ Complete SEO metadata, canonical URLs, Square Online navigation slugs, and JSON-
 
 | Square Route | Embed File | SEO Title (`50–60 chars`) | Meta Description (`120–160 chars`) | Canonical URL |
 | :--- | :--- | :--- | :--- | :--- |
-| `/` (`/home`) | `home.html` | `Pony White Cafe Fitzroy \| Artisanal Brunch & Coffee` | `Specialty coffee, signature matcha and hojicha drinks, superfood smoothies, and all-day brunch in Fitzroy. Visit 379 George St or order online today.` | `https://www.ponywhite.com.au/` |
+| `/` | `home.html` | `Pony White Cafe Fitzroy \| Artisanal Brunch & Coffee` | `Specialty coffee, signature matcha and hojicha drinks, wholefood smoothies, and all-day brunch in Fitzroy. Visit 379 George St or order online today.` | `https://www.ponywhite.com.au/` |
 | `/signature-drinks` | `signature-drinks.html` | `Signature Drinks \| Pony White Cafe Fitzroy` | `Explore Pony White's signature Blush Rose, Coconut Cloud, Banoffee, Pistachio Crème Brûlée, ceremonial matcha, and roasted hojicha pours in Fitzroy.` | `https://www.ponywhite.com.au/signature-drinks` |
 | `/reservations` | `book-table.html` | `Book a Table \| Pony White Cafe Fitzroy` | `Reserve your table at Pony White Cafe on George St, Fitzroy for artisanal brunch, specialty coffee, group celebrations, or private cafe events.` | `https://www.ponywhite.com.au/reservations` |
 | `/contact-us` | `contact.html` | `Contact Us & Opening Hours \| Pony White Fitzroy` | `Get in touch with Pony White Cafe at 379 George St, Fitzroy. Check daily opening hours, send an inquiry, or share feedback with our hospitality team.` | `https://www.ponywhite.com.au/contact-us` |
@@ -36,7 +36,6 @@ Paste into **Square Online → Settings → Tracking Tools → Header Code**:
   "image": "https://storage.googleapis.com/nucleus-file-hosting/Pony_White/website_assets/hero-home.jpg",
   "logo": "https://storage.googleapis.com/nucleus-file-hosting/Pony_White/1772198572891-pg.png",
   "telephone": "+61393147273",
-  "email": "info@ponywhite.com.au",
   "priceRange": "$$",
   "servesCuisine": ["Cafe", "Australian Brunch", "Specialty Coffee", "Matcha", "Smoothies"],
   "acceptsReservations": true,
@@ -57,27 +56,15 @@ Paste into **Square Online → Settings → Tracking Tools → Header Code**:
   "openingHoursSpecification": [
     {
       "@type": "OpeningHoursSpecification",
-      "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday"],
+      "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
       "opens": "07:00",
       "closes": "15:00"
     },
     {
       "@type": "OpeningHoursSpecification",
-      "dayOfWeek": "Friday",
-      "opens": "07:00",
-      "closes": "15:30"
-    },
-    {
-      "@type": "OpeningHoursSpecification",
-      "dayOfWeek": "Saturday",
-      "opens": "07:30",
-      "closes": "15:30"
-    },
-    {
-      "@type": "OpeningHoursSpecification",
-      "dayOfWeek": "Sunday",
+      "dayOfWeek": ["Saturday", "Sunday"],
       "opens": "08:00",
-      "closes": "15:30"
+      "closes": "15:00"
     }
   ],
   "sameAs": [

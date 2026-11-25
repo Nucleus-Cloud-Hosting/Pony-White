@@ -189,9 +189,184 @@ function compilePage(filePath) {
                        `  .font-serif, h1, .font-headline-xl, .font-headline-md, .font-headline-lg, .font-headline-xl-mobile {\n` +
                        `    font-family: 'Playfair Display', ui-serif, Georgia, Cambria, serif !important;\n` +
                        `  }\n\n` +
+                       `  /* Site-Wide Image Skeleton Shimmer & Smooth Reveal */\n` +
+                       `  @keyframes pwSkeletonSweep {\n` +
+                       `    0% { transform: translateX(-100%); }\n` +
+                       `    100% { transform: translateX(100%); }\n` +
+                       `  }\n` +
+                       `  .pw-skel-host {\n` +
+                       `    overflow: hidden;\n` +
+                       `  }\n` +
+                       `  .pw-skel-rel {\n` +
+                       `    position: relative;\n` +
+                       `  }\n` +
+                       `  .pw-skel-host::before,\n` +
+                       `  .pw-skel-host::after {\n` +
+                       `    content: '';\n` +
+                       `    position: absolute;\n` +
+                       `    inset: 0;\n` +
+                       `    pointer-events: none;\n` +
+                       `    border-radius: inherit;\n` +
+                       `    transition: opacity 0.42s cubic-bezier(0.22, 1, 0.36, 1), visibility 0.42s ease;\n` +
+                       `  }\n` +
+                       `  .pw-skel-host::before {\n` +
+                       `    z-index: 2;\n` +
+                       `    background: rgba(182, 168, 144, 0.22);\n` +
+                       `  }\n` +
+                       `  .pw-skel-host::after {\n` +
+                       `    z-index: 3;\n` +
+                       `    background: linear-gradient(105deg, transparent 18%, rgba(233, 195, 73, 0.14) 38%, rgba(255, 250, 236, 0.52) 50%, rgba(233, 195, 73, 0.14) 62%, transparent 82%);\n` +
+                       `    transform: translateX(-100%);\n` +
+                       `    animation: pwSkeletonSweep 1.45s cubic-bezier(0.4, 0, 0.2, 1) infinite;\n` +
+                       `  }\n` +
+                       `  .pw-skel-host.pw-skel-dark::before {\n` +
+                       `    background: rgba(255, 255, 255, 0.06);\n` +
+                       `  }\n` +
+                       `  .pw-skel-host.pw-skel-dark::after {\n` +
+                       `    background: linear-gradient(105deg, transparent 18%, rgba(233, 195, 73, 0.09) 38%, rgba(255, 245, 214, 0.20) 50%, rgba(233, 195, 73, 0.09) 62%, transparent 82%);\n` +
+                       `  }\n` +
+                       `  .pw-skel-host.pw-skel-done::before,\n` +
+                       `  .pw-skel-host.pw-skel-done::after {\n` +
+                       `    opacity: 0;\n` +
+                       `    visibility: hidden;\n` +
+                       `    animation: none;\n` +
+                       `  }\n` +
+                       `  .pw-skel-ready img.pw-img-pending {\n` +
+                       `    opacity: 0 !important;\n` +
+                       `  }\n` +
+                       `  img.pw-img-reveal {\n` +
+                       `    transition: opacity 0.45s cubic-bezier(0.22, 1, 0.36, 1), transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);\n` +
+                       `  }\n` +
+                       `  @media (prefers-reduced-motion: reduce) {\n` +
+                       `    .pw-skel-host::after {\n` +
+                       `      animation: none !important;\n` +
+                       `      transform: none !important;\n` +
+                       `      opacity: 0 !important;\n` +
+                       `    }\n` +
+                       `    img.pw-img-reveal {\n` +
+                       `      transition-duration: 0.01ms !important;\n` +
+                       `    }\n` +
+                       `  }\n\n` +
                        `  /* Compiled Page Styles */\n` +
                        `  ${combinedCss}\n` +
-                       `</style>\n`;
+                       `</style>\n` +
+                       `<script data-pw-early="1">\n` +
+                       `  // Early Image Skeleton Shimmer Controller (prevents progressive flash-loading)\n` +
+                       `  (function() {\n` +
+                       `    if (window.__pwImageSkeletonInit) return;\n` +
+                       `    window.__pwImageSkeletonInit = true;\n` +
+                       `    document.documentElement.classList.add('pw-skel-ready');\n` +
+                       `    var DARK_SELECTOR = '.bg-primary, .bg-forest-velvet, .smoothies-juices-showcase, .signature-drinks-showcase, [class*="bg-[#00"], [class*="bg-[#06"], [class*="bg-[#07"], [class*="bg-[#0B"]';\n` +
+                       `    function isTinyOrExcluded(img) {\n` +
+                       `      if (!img || img.nodeType !== 1 || img.tagName !== 'IMG') return true;\n` +
+                       `      if (img.hasAttribute('data-no-skeleton') || img.getAttribute('aria-hidden') === 'true') return true;\n` +
+                       `      if (img.closest('svg, .gold-reflection')) return true;\n` +
+                       `      var cls = typeof img.className === 'string' ? img.className : '';\n` +
+                       `      if (/\\b(w-5|w-6|w-8|w-10|h-5|h-6|h-8|h-10)\\b/.test(cls)) return true;\n` +
+                       `      return false;\n` +
+                       `    }\n` +
+                       `    function getHost(img) {\n` +
+                       `      var p = img.parentElement;\n` +
+                       `      if (!p || /^(BODY|HTML|SECTION|MAIN|HEADER|FOOTER)$/i.test(p.tagName)) return null;\n` +
+                       `      return p;\n` +
+                       `    }\n` +
+                       `    function prepHost(host) {\n` +
+                       `      if (!host) return;\n` +
+                       `      host.classList.add('pw-skel-host');\n` +
+                       `      host.classList.remove('pw-skel-done');\n` +
+                       `      try {\n` +
+                       `        if (window.getComputedStyle(host).position === 'static') {\n` +
+                       `          host.classList.add('pw-skel-rel');\n` +
+                       `        }\n` +
+                       `      } catch (e) {}\n` +
+                       `      if (host.closest && host.closest(DARK_SELECTOR)) {\n` +
+                       `        host.classList.add('pw-skel-dark');\n` +
+                       `      }\n` +
+                       `    }\n` +
+                       `    function finishReveal(img, host) {\n` +
+                       `      if (img._pwSkelTimer) { clearTimeout(img._pwSkelTimer); img._pwSkelTimer = null; }\n` +
+                       `      img.classList.remove('pw-img-pending');\n` +
+                       `      if (host) {\n` +
+                       `        if (host.id === 'slideshow-image-container') {\n` +
+                       `          var active = host.querySelector('img.z-10') || img;\n` +
+                       `          if (active === img || (active.complete && active.naturalWidth > 0)) {\n` +
+                       `            host.classList.add('pw-skel-done');\n` +
+                       `          }\n` +
+                       `        } else {\n` +
+                       `          host.classList.add('pw-skel-done');\n` +
+                       `        }\n` +
+                       `      }\n` +
+                       `    }\n` +
+                       `    function bindImg(img) {\n` +
+                       `      if (isTinyOrExcluded(img)) return;\n` +
+                       `      var src = img.getAttribute('src');\n` +
+                       `      if (!src) return;\n` +
+                       `      var host = getHost(img);\n` +
+                       `      var isSlide = img.id && img.id.indexOf('slide-img-') === 0;\n` +
+                       `      if (isSlide && !img.classList.contains('z-10') && img.style.zIndex !== '10') return;\n` +
+                       `      if (img._pwSkelBoundSrc === src) return;\n` +
+                       `      img._pwSkelBoundSrc = src;\n` +
+                       `      if (img.complete && img.naturalWidth > 0) {\n` +
+                       `        img.classList.remove('pw-img-pending');\n` +
+                       `        if (host) host.classList.add('pw-skel-done');\n` +
+                       `        return;\n` +
+                       `      }\n` +
+                       `      img.classList.add('pw-img-reveal', 'pw-img-pending');\n` +
+                       `      prepHost(host);\n` +
+                       `      var settled = false;\n` +
+                       `      function onReady() {\n` +
+                       `        if (settled) return;\n` +
+                       `        settled = true;\n` +
+                       `        if (typeof img.decode === 'function') {\n` +
+                       `          img.decode().then(function() { finishReveal(img, host); }, function() { finishReveal(img, host); });\n` +
+                       `        } else {\n` +
+                       `          finishReveal(img, host);\n` +
+                       `        }\n` +
+                       `      }\n` +
+                       `      img.addEventListener('load', onReady, { once: true });\n` +
+                       `      img.addEventListener('error', function() { settled = true; finishReveal(img, host); }, { once: true });\n` +
+                       `      img._pwSkelTimer = setTimeout(function() { if (!settled) { settled = true; finishReveal(img, host); } }, 6500);\n` +
+                       `    }\n` +
+                       `    window.__pwSyncSlideshowSkeleton = function(activeImg) {\n` +
+                       `      if (!activeImg) return;\n` +
+                       `      var host = getHost(activeImg);\n` +
+                       `      if (activeImg.complete && activeImg.naturalWidth > 0) {\n` +
+                       `        activeImg.classList.remove('pw-img-pending');\n` +
+                       `        if (host) host.classList.add('pw-skel-done');\n` +
+                       `      } else {\n` +
+                       `        activeImg._pwSkelBoundSrc = '';\n` +
+                       `        bindImg(activeImg);\n` +
+                       `      }\n` +
+                       `    };\n` +
+                       `    function scan(root) {\n` +
+                       `      if (!root || !root.querySelectorAll) return;\n` +
+                       `      var imgs = root.querySelectorAll('img');\n` +
+                       `      for (var i = 0; i < imgs.length; i++) bindImg(imgs[i]);\n` +
+                       `    }\n` +
+                       `    if (window.MutationObserver) {\n` +
+                       `      new MutationObserver(function(mutations) {\n` +
+                       `        for (var i = 0; i < mutations.length; i++) {\n` +
+                       `          var m = mutations[i];\n` +
+                       `          if (m.type === 'attributes' && m.target && m.target.tagName === 'IMG') {\n` +
+                       `            bindImg(m.target);\n` +
+                       `          } else if (m.addedNodes && m.addedNodes.length) {\n` +
+                       `            for (var j = 0; j < m.addedNodes.length; j++) {\n` +
+                       `              var n = m.addedNodes[j];\n` +
+                       `              if (n.nodeType !== 1) continue;\n` +
+                       `              if (n.tagName === 'IMG') bindImg(n);\n` +
+                       `              else if (n.querySelectorAll) scan(n);\n` +
+                       `            }\n` +
+                       `          }\n` +
+                       `        }\n` +
+                       `      }).observe(document.documentElement, { childList: true, subtree: true, attributes: true, attributeFilter: ['src'] });\n` +
+                       `    }\n` +
+                       `    if (document.readyState === 'loading') {\n` +
+                       `      document.addEventListener('DOMContentLoaded', function() { scan(document); });\n` +
+                       `    } else {\n` +
+                       `      scan(document);\n` +
+                       `    }\n` +
+                       `  })();\n` +
+                       `</script>\n`;
   const inlinedHtml = globalStyles + html;
 
   // 2. Process image/asset paths
@@ -228,7 +403,7 @@ function compilePage(filePath) {
                             `      if (window.ResizeObserver) {\n` +
                             `        new ResizeObserver(function() {\n` +
                             `          if (roTimer) clearTimeout(roTimer);\n` +
-                            `          roTimer = setTimeout(function() { sendHeight(false); }, 60);\n` +
+                            `          roTimer = setTimeout(function() { sendHeight(false); }, 150);\n` +
                             `        }).observe(document.body);\n` +
                             `      } else {\n` +
                             `        window.addEventListener('resize', function() {\n` +
@@ -245,10 +420,10 @@ function compilePage(filePath) {
                             `    (function() {\n` +
                             `      const LIVE_SITE_ORIGIN = 'https://www.ponywhite.com.au';\n` +
                             `      const SLUG_MAP = {\n` +
-                            `        'home.html': '/home',\n` +
+                            `        'home.html': '/',\n` +
                             `        'book-table.html': '/reservations',\n` +
                             `        'signature-drinks.html': '/signature-drinks',\n` +
-                            `        'smoothies-juices.html': '/smoothies-juices',\n` +
+                            `        'smoothies-juices.html': '/shop/smoothies/3HB3TPEQK5JGTB4WMLLVYMNG',\n` +
                             `        'gift-cards.html': '/gift-card',\n` +
                             `        'loyalty.html': '/loyalty',\n` +
                             `        'contact.html': '/contact-us',\n` +
@@ -370,8 +545,8 @@ function compilePage(filePath) {
                             `      };\n` +
                             `    })();\n`;
                             
-  if (/<script[^>]*>/i.test(processedHtml)) {
-    processedHtml = processedHtml.replace(/<script[^>]*>/i, (match) => {
+  if (/<script(?![^>]*data-pw-early)[^>]*>/i.test(processedHtml)) {
+    processedHtml = processedHtml.replace(/<script(?![^>]*data-pw-early)[^>]*>/i, (match) => {
       return `${match}${dynamicFontScript}`;
     });
   } else {

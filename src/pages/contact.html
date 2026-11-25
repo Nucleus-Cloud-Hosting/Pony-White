@@ -235,15 +235,15 @@
 
 <!-- TopNavBar -->
 
-<main class="pt-[120px]">
+<main class="pt-16 md:pt-[120px]">
 <!-- Hero Title Section -->
-<section class="px-margin-desktop py-stack-lg text-center max-w-4xl mx-auto">
-<h1 class="font-display-lg text-display-lg md:text-display-lg text-marble-white mb-stack-sm">Get in Touch</h1>
+<section class="px-4 sm:px-6 md:px-margin-desktop py-stack-lg text-center max-w-4xl mx-auto">
+<h1 class="font-display-lg text-4xl sm:text-5xl md:text-display-lg text-marble-white mb-stack-sm">Get in Touch</h1>
 <p class="font-body-lg text-body-lg text-marble-white/80 max-w-2xl mx-auto">Whether you're visiting our George St home or brewing from afar, we're here to help make your coffee experience extraordinary.</p>
 </section>
 
 <!-- Main Content Bento Grid -->
-<div class="max-w-screen-2xl mx-auto px-margin-desktop pb-section-padding grid grid-cols-1 lg:grid-cols-12 gap-gutter">
+<div class="max-w-screen-2xl mx-auto px-4 sm:px-6 md:px-margin-desktop pb-section-padding grid grid-cols-1 lg:grid-cols-12 gap-gutter">
 <!-- Premium Interactive Choice Panel (Main Element) -->
 <div class="lg:col-span-12 mb-stack-lg text-center">
     <span class="font-label-caps text-label-caps text-premium-gold block mb-stack-sm tracking-[0.2em]">CHOOSE AN OPTION</span>
@@ -289,7 +289,7 @@
 </div>
 
 <!-- Form & Interactive Section -->
-<section id="contact-inquiry-panel" class="lg:col-span-8 glass-panel rounded-xl p-stack-lg flex flex-col justify-between min-h-[420px]">
+<section id="contact-inquiry-panel" class="lg:col-span-8 glass-panel rounded-xl p-5 sm:p-6 md:p-stack-lg flex flex-col justify-between min-h-[420px]">
     <!-- Interactive General Inquiry & Event Form -->
     <div id="selection-inquiry-view" class="fade-in">
         <div class="flex flex-wrap items-center justify-between gap-2 mb-6 border-b border-white/10 pb-4">
@@ -297,7 +297,7 @@
                 <span class="font-label-caps text-xs text-premium-gold tracking-[0.2em] block mb-1">DIRECT CONCIERGE</span>
                 <h3 class="font-headline-md text-2xl text-marble-white">Send Us a Message</h3>
             </div>
-            <span class="text-xs text-marble-white/60">Replies within 24 hours • info@ponywhite.com.au</span>
+            <span class="text-xs text-marble-white/60">Replies within 24 hours</span>
         </div>
 
             <div id="inq-feedback-badge" class="hidden mb-4 inline-flex items-center gap-2 rounded-full border border-premium-gold/40 bg-premium-gold/10 px-4 py-1.5 text-xs font-semibold text-premium-gold"></div>
@@ -343,6 +343,9 @@
                     <span class="material-symbols-outlined text-sm">send</span>
                 </button>
             </div>
+            <p class="text-[11px] text-marble-white/55 leading-relaxed pt-1">
+                Privacy Notice: Your details are collected and used solely to respond to your inquiry in accordance with the Australian Privacy Principles. Submit a request via this form or call <a href="tel:+61393147273" class="text-premium-gold underline">(03) 9314 7273</a> to access or delete your information.
+            </p>
         </form>
     </div>
 
@@ -364,7 +367,7 @@
 <!-- General Inquiries Sidebar -->
 <aside class="lg:col-span-4 space-y-gutter">
 <!-- Contact Details -->
-<div class="glass-panel rounded-xl p-stack-lg shadow-lg">
+<div class="glass-panel rounded-xl p-5 sm:p-6 md:p-stack-lg shadow-lg">
 <h3 class="font-headline-md text-headline-md text-marble-white mb-stack-md">General Inquiries</h3>
 <div class="space-y-stack-lg">
 <div class="flex items-start gap-4">
@@ -372,13 +375,6 @@
 <div>
 <p class="font-label-caps text-label-caps text-premium-gold">Phone</p>
 <a class="font-body-md text-body-md text-marble-white/80 hover:text-premium-gold transition-colors" href="tel:+61393147273">(03) 9314 7273</a>
-</div>
-</div>
-<div class="flex items-start gap-4">
-<span class="material-symbols-outlined text-premium-gold">mail</span>
-<div>
-<p class="font-label-caps text-label-caps text-premium-gold">Email</p>
-<a class="font-body-md text-body-md text-marble-white/80 hover:text-premium-gold transition-colors" href="mailto:info@ponywhite.com.au">info@ponywhite.com.au</a>
 </div>
 </div>
 <div class="flex items-start gap-4">
@@ -392,13 +388,11 @@
 <div class="mt-stack-lg pt-stack-lg border-t border-white/10">
 <p class="font-label-caps text-label-caps text-premium-gold mb-stack-md">Opening Hours</p>
 <ul class="font-body-md text-body-md text-marble-white/70 space-y-2 mb-3">
-<li class="flex justify-between items-baseline gap-3 flex-wrap"><span>Monday – Thursday</span> <span class="whitespace-nowrap">7am — 3pm</span></li>
-<li class="flex justify-between items-baseline gap-3 flex-wrap"><span>Friday</span> <span class="whitespace-nowrap">7am — 3:30pm</span></li>
-<li class="flex justify-between items-baseline gap-3 flex-wrap"><span>Saturday</span> <span class="whitespace-nowrap">7:30am — 3:30pm</span></li>
-<li class="flex justify-between items-baseline gap-3 flex-wrap"><span>Sunday</span> <span class="whitespace-nowrap">8am — 3:30pm</span></li>
+<li class="flex justify-between items-baseline gap-3 flex-wrap"><span>Monday – Friday</span> <span class="whitespace-nowrap">7am — 3pm</span></li>
+<li class="flex justify-between items-baseline gap-3 flex-wrap"><span>Saturday &amp; Sunday</span> <span class="whitespace-nowrap">8am — 3pm</span></li>
 </ul>
 <p class="text-xs text-premium-gold font-bold">Kitchen closes at 2:30pm daily</p>
-<div class="store-state-indicator mt-3 text-xs px-3.5 py-2.5 rounded-xl border border-premium-gold/40 shadow-sm leading-relaxed" style="background-color:#ffffff;color:#0B3027;">Open daily from 7am • Kitchen closes at 2:30pm</div>
+<div class="store-state-indicator mt-3 text-xs px-3.5 py-2.5 rounded-xl border border-premium-gold/40 shadow-sm leading-relaxed" style="background-color:#ffffff;color:#0B3027;">Mon–Fri 7am–3pm • Sat–Sun 8am–3pm • Kitchen closes 2:30pm</div>
 </div>
 </div>
 <!-- Location Map Embedded Live -->
@@ -411,11 +405,11 @@
 </div>
 
 <!-- High-End Local Interior Shot bottom section -->
-<section class="max-w-screen-2xl mx-auto px-margin-desktop pb-section-padding">
-<div class="relative h-[400px] rounded-xl overflow-hidden group shadow-lg">
+<section class="max-w-screen-2xl mx-auto px-4 sm:px-6 md:px-margin-desktop pb-section-padding">
+<div class="relative h-[320px] sm:h-[400px] rounded-xl overflow-hidden group shadow-lg">
 <img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-[1500ms]" loading="lazy" decoding="async" alt="Pony White Cafe sanctuary tabletop in Fitzroy" src="https://storage.googleapis.com/nucleus-file-hosting/Pony_White/website_assets/sanctuary-table.jpg"/>
-<div class="absolute inset-0 flex items-end p-stack-lg" style="background: linear-gradient(to top, rgba(4, 34, 24, 0.88) 0%, rgba(4, 34, 24, 0.48) 55%, rgba(4, 34, 24, 0.12) 100%);">
-<h2 class="text-marble-white font-display-lg text-display-lg max-w-lg leading-tight" style="text-shadow: 0 2px 10px rgba(0, 0, 0, 0.45);">A sanctuary of craft and quiet luxury.</h2>
+<div class="absolute inset-0 flex items-end p-6 md:p-stack-lg" style="background: linear-gradient(to top, rgba(4, 34, 24, 0.88) 0%, rgba(4, 34, 24, 0.48) 55%, rgba(4, 34, 24, 0.12) 100%);">
+<h2 class="text-marble-white font-display-lg text-3xl sm:text-4xl md:text-display-lg max-w-lg leading-tight" style="text-shadow: 0 2px 10px rgba(0, 0, 0, 0.45);">A sanctuary of craft and quiet luxury.</h2>
 </div>
 </div>
 </section>
@@ -657,13 +651,13 @@
             const day = days.indexOf(dayStr);
             const currentMins = (parseInt(hourStr, 10) || 0) * 60 + (parseInt(minuteStr, 10) || 0);
             const schedule = {
-                0: { open: 8 * 60, close: 15 * 60 + 30 },
+                0: { open: 8 * 60, close: 15 * 60 },
                 1: { open: 7 * 60, close: 15 * 60 },
                 2: { open: 7 * 60, close: 15 * 60 },
                 3: { open: 7 * 60, close: 15 * 60 },
                 4: { open: 7 * 60, close: 15 * 60 },
-                5: { open: 7 * 60, close: 15 * 60 + 30 },
-                6: { open: 7 * 60 + 30, close: 15 * 60 + 30 }
+                5: { open: 7 * 60, close: 15 * 60 },
+                6: { open: 8 * 60, close: 15 * 60 }
             };
             const today = schedule[day] || schedule[1];
             const kitchenCloseMins = 14 * 60 + 30;
