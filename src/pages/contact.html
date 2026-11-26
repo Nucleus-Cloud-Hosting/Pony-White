@@ -152,15 +152,16 @@
             color: #FFFFFF !important;
         }
 
-        /* Feedback Modal Styles */
+        /* Feedback Modal Styles — top-anchored near trigger so it never hides mid-page in tall Square iframes */
         #pw-feedback-modal {
             position: fixed !important;
             inset: 0 !important;
             z-index: 99999 !important;
             display: none;
-            align-items: center;
-            justify-content: center;
-            padding: 16px;
+            align-items: flex-start !important;
+            justify-content: center !important;
+            padding: 72px 16px 32px;
+            overflow-y: auto;
         }
 
         #pw-feedback-modal.pw-modal-active {
@@ -168,11 +169,23 @@
         }
 
         .pw-modal-backdrop {
-            position: absolute;
+            position: fixed;
             inset: 0;
             background: rgba(6, 24, 20, 0.92) !important;
             cursor: pointer;
             transition: all 0.4s ease;
+        }
+
+        @media (max-width: 480px) {
+            #pw-feedback-modal .gold-shine-stars-container {
+                gap: 10px !important;
+            }
+            .pw-modal-star-btn span {
+                font-size: 44px !important;
+            }
+            .pw-modal-card {
+                padding: 24px 20px !important;
+            }
         }
 
         .pw-modal-card {
@@ -417,7 +430,7 @@
 <!-- Footer -->
 
 <!-- Premium Feedback Modal Pop-up -->
-<div id="pw-feedback-modal" role="dialog" aria-modal="true" aria-labelledby="pw-feedback-modal-title" class="fixed inset-0 z-[9999] hidden flex items-center justify-center p-4">
+<div id="pw-feedback-modal" role="dialog" aria-modal="true" aria-labelledby="pw-feedback-modal-title" class="fixed inset-0 z-[9999] hidden flex items-start justify-center p-4">
     <!-- Backdrop Blur with dark color overlay -->
     <div onclick="closeFeedbackModal()" class="pw-modal-backdrop"></div>
     
@@ -482,7 +495,7 @@
                 <p class="font-body-md text-xs text-[#0B3027]/70 mb-6 max-w-sm mx-auto leading-relaxed">
                     We are absolutely thrilled you enjoyed your visit to Pony White! Your support means the world to our team. We are opening our Google listing so you can share your review.
                 </p>
-                <a class="inline-flex items-center premium-gold-gradient text-white font-label-caps text-xs px-6 py-3 rounded-full hover:scale-[1.02] transition-all shadow-md font-bold no-underline" href="https://www.google.com/maps?cid=16519698501644055786" target="_blank" rel="noopener noreferrer" id="pw-thanks-redirect-btn-modal">
+                <a class="inline-flex items-center premium-gold-gradient text-white font-label-caps text-xs px-6 py-3 rounded-full hover:scale-[1.02] transition-all shadow-md font-bold no-underline" href="https://g.page/r/CWiLgrU6S0esEBM/review" target="_blank" rel="noopener noreferrer" id="pw-thanks-redirect-btn-modal">
                     Leave a Google Review
                     <span class="material-symbols-outlined ml-1.5 text-xs" aria-hidden="true">open_in_new</span>
                 </a>
@@ -492,7 +505,7 @@
 </div>
 
 <script>
-    const GOOGLE_REVIEWS_URL = 'https://www.google.com/maps?cid=16519698501644055786';
+    const GOOGLE_REVIEWS_URL = 'https://g.page/r/CWiLgrU6S0esEBM/review';
     const WIDGET_FORMS_URL = 'https://nucleuscloud.net/api/widget/forms/nYaZ4T5qRKS3Z9EG5mrl';
     let selectedStarRating = null;
 
@@ -695,9 +708,31 @@
 
     function openFeedbackModal() {
         const modal = document.getElementById('pw-feedback-modal');
+        const card = document.getElementById('pw-feedback-modal-card');
         if (modal) {
+            if (card) {
+                const anchor = document.getElementById('btn-feedback') || document.querySelector('main');
+                const isStandaloneScrolled = window.self === window.top && (window.scrollY || 0) > 20;
+                if (isStandaloneScrolled) {
+                    modal.style.paddingTop = '72px';
+                } else if (anchor) {
+                    const rect = anchor.getBoundingClientRect();
+                    const anchorTop = Math.round(rect.top);
+                    const maxTop = Math.max(48, (document.documentElement.scrollHeight || 900) - 520);
+                    // Anchor popup right around the clicked Feedback & Reviews card near the top of the desktop viewport
+                    const topOffset = Math.max(40, Math.min(Math.max(40, anchorTop - 80), maxTop));
+                    modal.style.paddingTop = topOffset + 'px';
+                } else {
+                    modal.style.paddingTop = '120px';
+                }
+            }
             modal.classList.add('pw-modal-active');
             resetStarSystemModal();
+            if (card && typeof card.scrollIntoView === 'function') {
+                setTimeout(() => {
+                    try { card.scrollIntoView({ behavior: 'smooth', block: 'center' }); } catch (e) {}
+                }, 60);
+            }
         }
     }
 
