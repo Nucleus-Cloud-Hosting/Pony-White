@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Pony White — A5 Marble Acrylic QR Stand (ponywhite.com.au/console)</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,700;0,800;1,600&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <style>
+    @page {
+      size: 148mm 210mm;
+      margin: 0;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      -webkit-print-color-adjust: exact;
+      print-color-adjust: exact;
+    }
+
+    html, body {
+      width: 148mm;
+      height: 210mm;
+      overflow: hidden;
+      background: transparent;
+      color: #000000;
+      font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    }
+
+    /* ?mode=marble preview surface (Carrara marble acrylic + stand slot indicator) */
+    body.marble-preview {
+      background-color: #f6f4ef;
+      background-image:
+        radial-gradient(ellipse at 18% 12%, rgba(255, 255, 255, 0.92) 0%, transparent 55%),
+        radial-gradient(ellipse at 82% 76%, rgba(232, 227, 218, 0.65) 0%, transparent 60%),
+        url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='600' height='850' viewBox='0 0 600 850'%3E%3Cdefs%3E%3Cfilter id='v' x='-20%25' y='-20%25' width='140%25' height='140%25'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.011 0.018' numOctaves='5' seed='7' result='n'/%3E%3CfeColorMatrix type='matrix' values='1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 22 -11' in='n' result='c'/%3E%3CfeGaussianBlur stdDeviation='1.4' in='c'/%3E%3C/filter%3E%3C/defs%3E%3Crect width='600' height='850' fill='%23f7f5f0'/%3E%3Cg opacity='0.22' filter='url(%23v)'%3E%3Cpath d='M-40,110 C120,160 220,75 370,130 C490,175 560,95 650,150' fill='none' stroke='%239b958b' stroke-width='9'/%3E%3Cpath d='M-20,390 C140,340 270,455 410,370 C505,315 565,360 640,320' fill='none' stroke='%23aba49a' stroke-width='7'/%3E%3Cpath d='M40,670 C190,610 310,735 480,645 C540,615 590,655 640,625' fill='none' stroke='%239b958b' stroke-width='8'/%3E%3Cpath d='M90,-20 C160,180 70,320 210,510 C295,625 180,740 260,880' fill='none' stroke='%23b5aea3' stroke-width='4'/%3E%3Cpath d='M460,-20 C400,200 520,360 390,560 C320,665 440,760 370,880' fill='none' stroke='%23b5aea3' stroke-width='4'/%3E%3C/g%3E%3Cpath d='M-30,130 C130,175 235,95 390,145 C495,180 560,115 630,160' fill='none' stroke='%23bdb6aa' stroke-width='1.1' opacity='0.45'/%3E%3Cpath d='M-10,415 C150,365 280,465 425,385 C510,338 565,375 630,340' fill='none' stroke='%23c4bdb0' stroke-width='1' opacity='0.42'/%3E%3Cpath d='M25,690 C180,635 305,745 470,660 C540,625 585,665 635,638' fill='none' stroke='%23bdb6aa' stroke-width='1.1' opacity='0.42'/%3E%3C/svg%3E");
+      background-size: cover;
+    }
+
+    .sheet {
+      position: relative;
+      width: 148mm;
+      height: 210mm;
+      /* 10mm top, 11mm L/R, 21mm bottom clearance for acrylic base holder */
+      padding: 9.5mm 11mm 21mm 11mm;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: space-between;
+      text-align: center;
+    }
+
+    /* Subtle interior architectural frame */
+    .inner-border {
+      position: absolute;
+      top: 5.5mm;
+      left: 5.5mm;
+      right: 5.5mm;
+      bottom: 17mm;
+      border: 0.35mm solid rgba(0, 0, 0, 0.28);
+      border-radius: 3mm;
+      pointer-events: none;
+    }
+
+    /* Optional acrylic stand base zone visual in marble mockup mode */
+    .stand-slot-preview {
+      display: none;
+    }
+    body.marble-preview .stand-slot-preview {
+      display: flex;
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      height: 12mm;
+      background: linear-gradient(180deg, rgba(0, 0, 0, 0.04) 0%, rgba(0, 0, 0, 0.11) 100%);
+      border-top: 0.3mm dashed rgba(0, 0, 0, 0.25);
+      align-items: center;
+      justify-content: center;
+      font-size: 6.5pt;
+      font-weight: 700;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: rgba(0, 0, 0, 0.45);
+      pointer-events: none;
+    }
+
+    /* Top Brand Lockup */
+    .header-lockup {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      width: 100%;
+    }
+
+    .logo-wrap {
+      width: 24mm;
+      height: 24mm;
+      margin-bottom: 3mm;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .logo-wrap img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      display: block;
+    }
+
+    .location-line {
+      display: flex;
+      align-items: center;
+      gap: 3mm;
+      width: 82%;
+      justify-content: center;
+      margin-bottom: 3.5mm;
+    }
+
+    .location-line::before,
+    .location-line::after {
+      content: "";
+      flex: 1;
+      height: 0.28mm;
+      background: #000000;
+      opacity: 0.35;
+    }
+
+    .location-text {
+      font-size: 7pt;
+      font-weight: 800;
+      letter-spacing: 0.24em;
+      text-transform: uppercase;
+      color: #000000;
+      white-space: nowrap;
+    }
+
+    .headline {
+      font-family: 'Playfair Display', Georgia, serif;
+      font-size: 21.5pt;
+      font-weight: 700;
+      line-height: 1.12;
+      color: #000000;
+      letter-spacing: -0.01em;
+      margin-bottom: 2.2mm;
+    }
+
+    .subheadline {
+      font-size: 9pt;
+      font-weight: 500;
+      line-height: 1.42;
+      color: #000000;
+      max-width: 104mm;
+    }
+
+    /* Centerpiece QR Code Block */
+    .qr-stage {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin: 2mm 0;
+    }
+
+    .qr-frame {
+      position: relative;
+      padding: 4.5mm;
+      border: 0.45mm solid #000000;
+      border-radius: 3.5mm;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: rgba(255, 255, 255, 0.35);
+    }
+
+    body:not(.marble-preview) .qr-frame {
+      background: transparent;
+    }
+
+    .qr-frame-inner {
+      width: 55mm;
+      height: 55mm;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .qr-frame-inner img {
+      width: 100%;
+      height: 100%;
+      display: block;
+    }
+
+    .qr-url-pill {
+      margin-top: 2.6mm;
+      font-size: 7.4pt;
+      font-weight: 800;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: #000000;
+    }
+
+    /* 2x2 Feature Cards */
+    .features-grid {
+      width: 100%;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 3mm;
+    }
+
+    .feature-card {
+      border: 0.35mm solid #000000;
+      border-radius: 2.5mm;
+      padding: 3.2mm 3.6mm;
+      display: flex;
+      align-items: center;
+      gap: 3mm;
+      text-align: left;
+    }
+
+    .feature-icon {
+      width: 8mm;
+      height: 8mm;
+      border: 0.35mm solid #000000;
+      border-radius: 2mm;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .feature-title {
+      font-size: 8.6pt;
+      font-weight: 800;
+      color: #000000;
+      line-height: 1.2;
+      margin-bottom: 0.6mm;
+    }
+
+    .feature-desc {
+      font-size: 7.1pt;
+      font-weight: 500;
+      color: #000000;
+      line-height: 1.3;
+      opacity: 0.88;
+    }
+
+    /* Footer */
+    .footer-note {
+      font-size: 7.2pt;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: #000000;
+      padding-top: 1mm;
+    }
+  </style>
+</head>
+<body>
+  <div class="sheet">
+    <div class="inner-border"></div>
+    <div class="stand-slot-preview">Stand Base Grip Zone (Keep Clear)</div>
+
+    <!-- Top Brand Header -->
+    <div class="header-lockup">
+      <div class="logo-wrap">
+        <img src="logo-black-transparent.png" alt="Pony White Cafe" />
+      </div>
+      <div class="location-line">
+        <span class="location-text">379–381 George St, Fitzroy</span>
+      </div>
+      <h1 class="headline">G'day! Scan Here</h1>
+      <p class="subheadline">
+        Join or manage your Beans Loyalty account, connect to Wi-Fi, leave us feedback &amp; more.
+      </p>
+    </div>
+
+    <!-- Scannable Vector QR Code -->
+    <div class="qr-stage">
+      <div class="qr-frame">
+        <div class="qr-frame-inner">
+          <img src="qr-console.svg" alt="QR code to www.ponywhite.com.au/console" />
+        </div>
+      </div>
+      <div class="qr-url-pill">www.ponywhite.com.au/console</div>
+    </div>
+
+    <!-- 2x2 Feature Cards -->
+    <div class="features-grid">
+      <div class="feature-card">
+        <div class="feature-icon">
+          <!-- Gift / Loyalty icon -->
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#000000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <polyline points="20 12 20 22 4 22 4 12"></polyline>
+            <rect x="2" y="7" width="20" height="5"></rect>
+            <line x1="12" y1="22" x2="12" y2="7"></line>
+            <path d="M12 7H7.5a2.5 2.5 0 0 1 0-5C11 2 12 7 12 7z"></path>
+            <path d="M12 7h4.5a2.5 2.5 0 0 0 0-5C13 2 12 7 12 7z"></path>
+          </svg>
+        </div>
+        <div>
+          <div class="feature-title">Beans Loyalty</div>
+          <div class="feature-desc">Join, check balance &amp; manage linked cards</div>
+        </div>
+      </div>
+
+      <div class="feature-card">
+        <div class="feature-icon">
+          <!-- Wi-Fi icon -->
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#000000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M5 12.55a11 11 0 0 1 14.08 0"></path>
+            <path d="M1.42 9a16 16 0 0 1 21.16 0"></path>
+            <path d="M8.53 16.11a6 6 0 0 1 6.95 0"></path>
+            <circle cx="12" cy="20" r="1" fill="#000000"></circle>
+          </svg>
+        </div>
+        <div>
+          <div class="feature-title">Free Guest Wi-Fi</div>
+          <div class="feature-desc">One-tap auto-join &amp; instant password</div>
+        </div>
+      </div>
+
+      <div class="feature-card">
+        <div class="feature-icon">
+          <!-- Star / Feedback icon -->
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#000000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
+          </svg>
+        </div>
+        <div>
+          <div class="feature-title">Leave Feedback</div>
+          <div class="feature-desc">Leave a review or message our team</div>
+        </div>
+      </div>
+
+      <div class="feature-card">
+        <div class="feature-icon">
+          <!-- Utensils / Menu & More icon -->
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#000000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M3 2v7c0 1.1.9 2 2 2h4a2 2 0 0 0 2-2V2"></path>
+            <path d="M7 2v20"></path>
+            <path d="M21 15V2a5 5 0 0 0-5 5v6c0 1.1.9 2 2 2h3Zm0 0v7"></path>
+          </svg>
+        </div>
+        <div>
+          <div class="feature-title">Menu &amp; More</div>
+          <div class="feature-desc">Book a table, careers &amp; Instagram</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Bottom Tagline (Safely above 12-17mm stand slot) -->
+    <div class="footer-note">@ponywhite.fitzroy &nbsp;•&nbsp; ponywhite.com.au</div>
+  </div>
+
+  <script>
+    if (new URLSearchParams(window.location.search).get('mode') === 'marble') {
+      document.body.classList.add('marble-preview');
+    }
+  </script>
+</body>
+</html>

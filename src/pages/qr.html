@@ -2,119 +2,536 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&display=swap" rel="stylesheet">
-<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@300..700,0..1&display=swap" rel="stylesheet"/>
 <link rel="stylesheet" href="../styles/qr.css">
 
-    <style>
-        .qr-wrapper {
-            font-family: 'Plus Jakarta Sans', sans-serif;
-            background-color: #00261b;
-            color: #fbf9f8;
-        }
-        .font-serif {
-            font-family: 'Playfair Display', serif;
-        }
-        .glass-panel {
-            background: rgba(10, 22, 17, 0.92);
-            border: 1px solid rgba(255, 255, 255, 0.08);
-            box-shadow: 0 30px 60px -15px rgba(0, 0, 0, 0.6);
-        }
-        .link-card {
-            transition: all 0.3s ease;
-        }
-        .link-card:hover {
-            transform: translateY(-2px);
-            border-color: rgba(233, 195, 73, 0.4);
-            box-shadow: 0 10px 25px -5px rgba(0,0,0,0.5);
-        }
-    </style>
+<style>
+    .qr-wrapper, .qr-wrapper * {
+        font-family: 'Plus Jakarta Sans', ui-sans-serif, system-ui, -apple-system, sans-serif !important;
+    }
+    .qr-wrapper .font-serif, .qr-wrapper h1, .qr-wrapper h2 {
+        font-family: 'Playfair Display', ui-serif, Georgia, Cambria, serif !important;
+    }
+    .qr-wrapper {
+        background-color: #00261b;
+        color: #fbf9f8;
+    }
+    .qr-panel {
+        background: linear-gradient(165deg, rgba(6, 34, 25, 0.96) 0%, rgba(2, 22, 16, 0.98) 100%);
+        border: 1px solid rgba(233, 195, 73, 0.28);
+        box-shadow: 0 28px 64px -16px rgba(0, 0, 0, 0.72), inset 0 1px 0 rgba(255, 224, 136, 0.14);
+    }
+    .gold-gradient-text {
+        background: linear-gradient(135deg, #c9a227 0%, #ffe088 50%, #d4af37 100%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+    }
+    .gold-gradient-bg {
+        background: linear-gradient(135deg, #9a7b1c 0%, #e9c349 48%, #ffe088 62%, #9a7b1c 100%);
+    }
+    .qr-link-card {
+        background: rgba(255, 255, 255, 0.045);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        transition: transform 0.25s ease, border-color 0.25s ease, background-color 0.25s ease, box-shadow 0.25s ease;
+    }
+    .qr-link-card:hover {
+        transform: translateY(-3px);
+        background: rgba(233, 195, 73, 0.1);
+        border-color: rgba(233, 195, 73, 0.48);
+        box-shadow: 0 14px 28px -8px rgba(0, 0, 0, 0.48);
+    }
+    .qr-wifi-card {
+        background: linear-gradient(135deg, rgba(233, 195, 73, 0.16) 0%, rgba(11, 61, 46, 0.65) 100%);
+        border: 1px solid rgba(233, 195, 73, 0.42);
+        transition: transform 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
+    }
+    .qr-wifi-card:hover {
+        transform: translateY(-2px);
+        border-color: rgba(255, 224, 136, 0.72);
+        box-shadow: 0 14px 28px -8px rgba(0, 0, 0, 0.5);
+    }
+    .qr-icon-badge {
+        background: linear-gradient(135deg, rgba(233, 195, 73, 0.18) 0%, rgba(255, 224, 136, 0.06) 100%);
+        border: 1px solid rgba(233, 195, 73, 0.28);
+    }
+    .qr-section-divider {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        margin: 20px 0 12px;
+    }
+    .qr-section-divider::before,
+    .qr-section-divider::after {
+        content: "";
+        flex: 1;
+        height: 1px;
+        background: linear-gradient(90deg, transparent, rgba(233, 195, 73, 0.28), transparent);
+    }
+</style>
 
-<div class="qr-wrapper flex items-center justify-center py-16 px-4 min-h-[680px] relative overflow-hidden">
-    <img src="../../assets/hero-table.jpg" fetchpriority="high" decoding="async" alt="" class="absolute inset-0 w-full h-full object-cover z-0"/>
-    <!-- Overlay -->
-    <div class="absolute inset-0 bg-[#00261b]/85 z-0"></div>
+<div class="qr-wrapper flex items-center justify-center py-10 md:py-16 px-4 sm:px-6 lg:px-8 relative overflow-hidden">
+    <img src="../../assets/hero-table.jpg" fetchpriority="high" decoding="async" alt="" class="absolute inset-0 w-full h-full object-cover z-0 opacity-30"/>
+    <div class="absolute inset-0 bg-[#00261b]/88 z-0"></div>
 
-    <div class="glass-panel w-full max-w-md mx-auto p-8 rounded-3xl relative z-10 text-center">
-        <!-- Logo -->
-        <div class="w-20 h-20 bg-white/90 rounded-full flex items-center justify-center mx-auto mb-6 shadow-lg border border-white/40 overflow-hidden">
-            <img src="../../assets/logo.png" decoding="async" alt="Pony White Logo" class="w-full h-full object-cover">
+    <div class="qr-panel w-full max-w-md md:max-w-3xl lg:max-w-5xl mx-auto p-6 sm:p-8 lg:p-10 rounded-3xl relative z-10">
+        <!-- Responsive Header: Centered on Mobile, Horizontal Brand Bar on Tablet/Desktop -->
+        <div class="text-center md:text-left md:flex md:items-center md:justify-between md:gap-6 md:pb-6 md:border-b md:border-white/10 mb-6">
+            <div class="md:flex md:items-center md:gap-5">
+                <div class="w-20 h-20 md:w-20 md:h-20 bg-white rounded-full flex items-center justify-center mx-auto md:mx-0 mb-4 md:mb-0 shadow-xl border-2 border-[#e9c349]/70 overflow-hidden p-0.5 flex-shrink-0">
+                    <img src="../../assets/logo.png" decoding="async" alt="Pony White Logo" class="w-full h-full object-cover rounded-full">
+                </div>
+                <div>
+                    <span class="block text-[11px] uppercase tracking-[0.25em] gold-gradient-text font-bold mb-1">379–381 George St, Fitzroy</span>
+                    <h1 class="font-serif text-3xl sm:text-4xl font-bold text-white mb-1.5 md:mb-1">G'day mate!</h1>
+                    <p class="text-white/75 text-sm">Thanks for stopping by — how can we help you?</p>
+                </div>
+            </div>
+
+            <div class="mt-4 md:mt-0 md:text-right flex flex-col items-center md:items-end gap-2 flex-shrink-0">
+                <!-- Live Fitzroy Status Pill -->
+                <div id="qr-store-status" class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/5 border border-white/10 text-[11px] text-white/90 whitespace-nowrap">
+                    <span class="w-2 h-2 rounded-full bg-[#e9c349]"></span>
+                    <span>Fitzroy Cafe • Open Daily</span>
+                </div>
+                <span class="hidden md:block text-[11px] text-white/55">Kitchen open daily until 2:30pm</span>
+            </div>
         </div>
-        
-        <h1 class="font-serif text-3xl font-bold mb-2">G'day!</h1>
-        <p class="text-white/80 mb-8 font-medium">What were you looking for?</p>
-        
-        <div class="flex flex-col gap-4">
-            <!-- Website -->
-            <a href="home.html" class="link-card block w-full p-4 rounded-xl border border-white/10 bg-white/5 flex items-center justify-between text-left group">
-                <div class="flex items-center gap-4">
-                    <div class="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center group-hover:bg-[#e9c349]/20 transition-colors">
-                        <span class="material-symbols-outlined text-white group-hover:text-[#e9c349]">home</span>
+
+        <!-- ==============================================================
+             FEATURED: JOIN OUR WI-FI NETWORK (INTERACTIVE EXPAND + AUTO-JOIN)
+             ============================================================== -->
+        <div class="mb-5 text-left">
+            <button id="wifi-toggle-btn" type="button" onclick="window.toggleWifiPanel && window.toggleWifiPanel()" style="cursor: pointer;" class="qr-wifi-card w-full p-4 md:p-5 rounded-2xl flex items-center justify-between gap-4 text-left group">
+                <div class="flex items-center gap-3.5 md:gap-4 min-w-0">
+                    <div class="w-11 h-11 md:w-12 md:h-12 rounded-xl gold-gradient-bg flex items-center justify-center text-[#001a12] shadow-md flex-shrink-0">
+                        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                            <path d="M5 12.55a11 11 0 0 1 14.08 0"/>
+                            <path d="M1.42 9a16 16 0 0 1 21.16 0"/>
+                            <path d="M8.53 16.11a6 6 0 0 1 6.95 0"/>
+                            <circle cx="12" cy="20" r="1" fill="currentColor"/>
+                        </svg>
                     </div>
-                    <div>
-                        <span class="block font-bold text-white text-sm">Website</span>
-                        <span class="text-[11px] text-white/60">View the full menu and info</span>
+                    <div class="min-w-0">
+                        <div class="flex items-center gap-2 flex-wrap">
+                            <span class="font-bold text-white text-sm md:text-base whitespace-nowrap">Join Our Wi-Fi Network</span>
+                            <span class="text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-full bg-[#e9c349]/25 text-[#ffe088] border border-[#e9c349]/40 whitespace-nowrap flex-shrink-0">Free</span>
+                        </div>
+                        <span class="block text-[11px] md:text-xs text-white/75 mt-0.5">Tap to connect automatically &amp; view guest Wi-Fi password</span>
                     </div>
                 </div>
-                <span class="material-symbols-outlined text-white/30 group-hover:text-white/70">chevron_right</span>
+                <div class="flex items-center gap-2 flex-shrink-0">
+                    <span class="hidden sm:inline-block text-xs font-semibold text-[#ffe088]">Show Wi-Fi</span>
+                    <svg id="wifi-chevron" class="text-[#ffe088] transition-transform duration-300 flex-shrink-0" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                        <polyline points="6 9 12 15 18 9"/>
+                    </svg>
+                </div>
+            </button>
+
+            <!-- Expandable Wi-Fi Credentials & Auto-Join Drawer -->
+            <div id="wifi-details-panel" class="hidden mt-3 p-4 md:p-5 rounded-2xl bg-[#031a13] border border-[#e9c349]/35 text-left space-y-3.5">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-2.5 md:gap-3.5">
+                    <div class="flex items-center justify-between gap-2 bg-white/5 rounded-xl px-4 py-3 border border-white/10">
+                        <div class="min-w-0">
+                            <span class="block text-[10px] uppercase tracking-wider text-white/55 font-bold">Network Name (SSID)</span>
+                            <span id="wifi-ssid-display" class="font-bold text-sm text-white block truncate">Pony White Guest</span>
+                        </div>
+                        <svg class="text-[#e9c349] flex-shrink-0" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                            <rect x="2" y="14" width="20" height="6" rx="2"/>
+                            <path d="M6.01 17h.01M10.01 17h.01M15 10v4"/>
+                            <path d="M17.84 7.17a4 4 0 0 0-5.66 0"/>
+                            <path d="M20.66 4.34a8 8 0 0 0-11.31 0"/>
+                        </svg>
+                    </div>
+
+                    <div class="flex items-center justify-between gap-2 bg-white/5 rounded-xl px-4 py-3 border border-white/10">
+                        <div class="min-w-0">
+                            <span class="block text-[10px] uppercase tracking-wider text-white/55 font-bold">Wi-Fi Password</span>
+                            <span id="wifi-password-display" class="font-mono font-bold text-sm text-[#ffe088] tracking-wide select-all block truncate">Ponywhite123</span>
+                        </div>
+                        <button id="wifi-copy-btn" type="button" onclick="window.copyWifiPassword && window.copyWifiPassword()" style="cursor: pointer;" class="px-3 py-1.5 rounded-lg bg-[#e9c349]/20 hover:bg-[#e9c349]/35 text-[#ffe088] border border-[#e9c349]/40 text-xs font-bold inline-flex items-center gap-1.5 transition-colors whitespace-nowrap flex-shrink-0">
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                                <rect x="9" y="9" width="13" height="13" rx="2" ry="2"/>
+                                <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/>
+                            </svg>
+                            <span id="wifi-copy-label">Copy</span>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- 1-Tap Device Auto-Join + Instructions -->
+                <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-3 pt-1">
+                    <button id="wifi-autojoin-btn" type="button" onclick="window.triggerWifiAutoJoin && window.triggerWifiAutoJoin()" style="cursor: pointer;" class="w-full md:w-auto gold-gradient-bg text-[#001a12] py-2.5 px-5 rounded-xl font-bold text-xs inline-flex items-center justify-center gap-2 shadow-md hover:brightness-110 transition-all whitespace-nowrap flex-shrink-0">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                            <rect x="5" y="2" width="14" height="20" rx="2" ry="2"/>
+                            <line x1="12" y1="18" x2="12.01" y2="18"/>
+                        </svg>
+                        <span>Auto-Join Wi-Fi (iPhone / iPad)</span>
+                    </button>
+
+                    <p id="wifi-helper-note" class="text-[11px] text-white/65 leading-relaxed md:text-right">
+                        On iPhone/iPad, tap <strong class="text-white/90">Auto-Join Wi-Fi</strong> to install the guest Wi-Fi profile, or copy the password and select <strong class="text-white/90" id="wifi-ssid-inline">Pony White Guest</strong> in Wi-Fi settings.
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Section 1: Explore & Dine (1-col Mobile -> 3-col Desktop Bento Cards) -->
+        <div class="qr-section-divider">
+            <span class="text-[10px] uppercase tracking-[0.22em] text-[#ffe088]/80 font-bold whitespace-nowrap">Explore &amp; Dine</span>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-3 md:gap-4">
+            <!-- Website -->
+            <a href="home.html" class="qr-link-card relative w-full p-3.5 md:p-5 rounded-2xl flex items-center md:flex-col md:items-start justify-between gap-3 md:gap-4 text-left group no-underline">
+                <div class="flex items-center md:flex-col md:items-start gap-3.5 md:gap-4 min-w-0 w-full">
+                    <div class="qr-icon-badge w-10 h-10 md:w-11 md:h-11 rounded-xl flex items-center justify-center flex-shrink-0 text-[#ffe088]">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                            <path d="M3 2v7c0 1.1.9 2 2 2h4a2 2 0 0 0 2-2V2"/>
+                            <path d="M7 2v20"/>
+                            <path d="M21 15V2v0a5 5 0 0 0-5 5v6c0 1.1.9 2 2 2h3Zm0 0v7"/>
+                        </svg>
+                    </div>
+                    <div class="min-w-0">
+                        <span class="block font-bold text-white text-sm md:text-base">Website &amp; Full Menu</span>
+                        <span class="block text-[11px] md:text-xs text-white/60 mt-0.5 leading-relaxed">All-day brunch, signature drinks &amp; hours</span>
+                    </div>
+                </div>
+                <svg class="text-white/35 group-hover:text-[#ffe088] transition-colors flex-shrink-0 md:absolute md:top-5 md:right-5" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <polyline points="9 18 15 12 9 6"/>
+                </svg>
             </a>
 
             <!-- Bookings -->
-            <a href="book-table.html" class="link-card block w-full p-4 rounded-xl border border-white/10 bg-white/5 flex items-center justify-between text-left group">
-                <div class="flex items-center gap-4">
-                    <div class="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center group-hover:bg-[#e9c349]/20 transition-colors">
-                        <span class="material-symbols-outlined text-white group-hover:text-[#e9c349]">restaurant</span>
+            <a href="book-table.html" class="qr-link-card relative w-full p-3.5 md:p-5 rounded-2xl flex items-center md:flex-col md:items-start justify-between gap-3 md:gap-4 text-left group no-underline">
+                <div class="flex items-center md:flex-col md:items-start gap-3.5 md:gap-4 min-w-0 w-full">
+                    <div class="qr-icon-badge w-10 h-10 md:w-11 md:h-11 rounded-xl flex items-center justify-center flex-shrink-0 text-[#ffe088]">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                            <rect x="3" y="4" width="18" height="18" rx="2" ry="2"/>
+                            <line x1="16" y1="2" x2="16" y2="6"/>
+                            <line x1="8" y1="2" x2="8" y2="6"/>
+                            <line x1="3" y1="10" x2="21" y2="10"/>
+                        </svg>
                     </div>
-                    <div>
-                        <span class="block font-bold text-white text-sm">Bookings</span>
-                        <span class="text-[11px] text-white/60">Reserve a table</span>
-                    </div>
-                </div>
-                <span class="material-symbols-outlined text-white/30 group-hover:text-white/70">chevron_right</span>
-            </a>
-
-            <!-- Review -->
-            <a href="contact.html" class="link-card block w-full p-4 rounded-xl border border-white/10 bg-white/5 flex items-center justify-between text-left group">
-                <div class="flex items-center gap-4">
-                    <div class="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center group-hover:bg-[#e9c349]/20 transition-colors">
-                        <span class="material-symbols-outlined text-white group-hover:text-[#e9c349]">rate_review</span>
-                    </div>
-                    <div>
-                        <span class="block font-bold text-white text-sm">Leave a review</span>
-                        <span class="text-[11px] text-white/60">Share your experience</span>
+                    <div class="min-w-0">
+                        <span class="block font-bold text-white text-sm md:text-base">Book a Table</span>
+                        <span class="block text-[11px] md:text-xs text-white/60 mt-0.5 leading-relaxed">Reserve your table at George St, Fitzroy</span>
                     </div>
                 </div>
-                <span class="material-symbols-outlined text-white/30 group-hover:text-white/70">chevron_right</span>
+                <svg class="text-white/35 group-hover:text-[#ffe088] transition-colors flex-shrink-0 md:absolute md:top-5 md:right-5" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <polyline points="9 18 15 12 9 6"/>
+                </svg>
             </a>
 
             <!-- Loyalty -->
-            <a href="loyalty.html" class="link-card block w-full p-4 rounded-xl border border-white/10 bg-white/5 flex items-center justify-between text-left group">
-                <div class="flex items-center gap-4">
-                    <div class="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center group-hover:bg-[#e9c349]/20 transition-colors">
-                        <span class="material-symbols-outlined text-white group-hover:text-[#e9c349]">loyalty</span>
+            <a href="loyalty.html" class="qr-link-card relative w-full p-3.5 md:p-5 rounded-2xl flex items-center md:flex-col md:items-start justify-between gap-3 md:gap-4 text-left group no-underline">
+                <div class="flex items-center md:flex-col md:items-start gap-3.5 md:gap-4 min-w-0 w-full">
+                    <div class="qr-icon-badge w-10 h-10 md:w-11 md:h-11 rounded-xl flex items-center justify-center flex-shrink-0 text-[#ffe088]">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                            <polyline points="20 12 20 22 4 22 4 12"/>
+                            <rect x="2" y="7" width="20" height="5"/>
+                            <line x1="12" y1="22" x2="12" y2="7"/>
+                            <path d="M12 7H7.5a2.5 2.5 0 0 1 0-5C11 2 12 7 12 7z"/>
+                            <path d="M12 7h4.5a2.5 2.5 0 0 0 0-5C13 2 12 7 12 7z"/>
+                        </svg>
                     </div>
-                    <div>
-                        <span class="block font-bold text-white text-sm">Sign up for Loyalty</span>
-                        <span class="text-[11px] text-white/60">Or manage your cards</span>
+                    <div class="min-w-0">
+                        <span class="block font-bold text-white text-sm md:text-base">Pony White Beans Loyalty</span>
+                        <span class="block text-[11px] md:text-xs text-white/60 mt-0.5 leading-relaxed">Check balance, sign up or manage cards</span>
                     </div>
                 </div>
-                <span class="material-symbols-outlined text-white/30 group-hover:text-white/70">chevron_right</span>
+                <svg class="text-white/35 group-hover:text-[#ffe088] transition-colors flex-shrink-0 md:absolute md:top-5 md:right-5" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <polyline points="9 18 15 12 9 6"/>
+                </svg>
             </a>
-            
+        </div>
+
+        <!-- Section 2: Connect & Careers (1-col Mobile -> 2-col Tablet -> 4-col Desktop Bento Cards) -->
+        <div class="qr-section-divider">
+            <span class="text-[10px] uppercase tracking-[0.22em] text-[#ffe088]/80 font-bold whitespace-nowrap">Connect &amp; Careers</span>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 md:gap-4">
+            <!-- Leave a Review -->
+            <a href="contact.html" class="qr-link-card relative w-full p-3.5 md:p-5 rounded-2xl flex items-center md:flex-col md:items-start justify-between gap-3 md:gap-4 text-left group no-underline">
+                <div class="flex items-center md:flex-col md:items-start gap-3.5 md:gap-4 min-w-0 w-full">
+                    <div class="qr-icon-badge w-10 h-10 md:w-11 md:h-11 rounded-xl flex items-center justify-center flex-shrink-0 text-[#ffe088]">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                            <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+                        </svg>
+                    </div>
+                    <div class="min-w-0">
+                        <span class="block font-bold text-white text-sm md:text-base">Leave a Review</span>
+                        <span class="block text-[11px] md:text-xs text-white/60 mt-0.5 leading-relaxed">Loved your visit? Share your experience</span>
+                    </div>
+                </div>
+                <svg class="text-white/35 group-hover:text-[#ffe088] transition-colors flex-shrink-0 md:absolute md:top-5 md:right-5" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <polyline points="9 18 15 12 9 6"/>
+                </svg>
+            </a>
+
+            <!-- We're Hiring -->
+            <a href="careers.html" class="qr-link-card relative w-full p-3.5 md:p-5 rounded-2xl flex items-center md:flex-col md:items-start justify-between gap-3 md:gap-4 text-left group no-underline">
+                <div class="flex items-center md:flex-col md:items-start gap-3.5 md:gap-4 min-w-0 w-full">
+                    <div class="qr-icon-badge w-10 h-10 md:w-11 md:h-11 rounded-xl flex items-center justify-center flex-shrink-0 text-[#ffe088]">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                            <rect x="2" y="7" width="20" height="14" rx="2" ry="2"/>
+                            <path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/>
+                        </svg>
+                    </div>
+                    <div class="min-w-0">
+                        <div class="flex items-center gap-2">
+                            <span class="font-bold text-white text-sm md:text-base whitespace-nowrap">We're Hiring!</span>
+                            <span class="text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-full bg-emerald-500/20 text-emerald-300 border border-emerald-400/30 whitespace-nowrap flex-shrink-0">Join Us</span>
+                        </div>
+                        <span class="block text-[11px] md:text-xs text-white/60 mt-0.5 leading-relaxed">Apply for barista, kitchen &amp; floor roles</span>
+                    </div>
+                </div>
+                <svg class="text-white/35 group-hover:text-[#ffe088] transition-colors flex-shrink-0 md:absolute md:top-5 md:right-5" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <polyline points="9 18 15 12 9 6"/>
+                </svg>
+            </a>
+
+            <!-- Contact Us -->
+            <a href="contact.html#inquiry" class="qr-link-card relative w-full p-3.5 md:p-5 rounded-2xl flex items-center md:flex-col md:items-start justify-between gap-3 md:gap-4 text-left group no-underline">
+                <div class="flex items-center md:flex-col md:items-start gap-3.5 md:gap-4 min-w-0 w-full">
+                    <div class="qr-icon-badge w-10 h-10 md:w-11 md:h-11 rounded-xl flex items-center justify-center flex-shrink-0 text-[#ffe088]">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                            <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+                            <polyline points="22,6 12,13 2,6"/>
+                        </svg>
+                    </div>
+                    <div class="min-w-0">
+                        <span class="block font-bold text-white text-sm md:text-base">Contact Us</span>
+                        <span class="block text-[11px] md:text-xs text-white/60 mt-0.5 leading-relaxed">Questions, catering &amp; private bookings</span>
+                    </div>
+                </div>
+                <svg class="text-white/35 group-hover:text-[#ffe088] transition-colors flex-shrink-0 md:absolute md:top-5 md:right-5" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <polyline points="9 18 15 12 9 6"/>
+                </svg>
+            </a>
+
             <!-- Instagram -->
-            <a href="https://www.instagram.com/ponywhite.fitzroy" target="_blank" rel="noopener noreferrer" class="link-card block w-full p-4 rounded-xl border border-white/10 bg-white/5 flex items-center justify-between text-left group">
-                <div class="flex items-center gap-4">
-                    <div class="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center group-hover:bg-[#e9c349]/20 transition-colors">
-                        <svg class="w-5 h-5 text-white group-hover:text-[#e9c349]" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+            <a href="https://www.instagram.com/ponywhite.fitzroy" target="_blank" rel="noopener noreferrer" class="qr-link-card relative w-full p-3.5 md:p-5 rounded-2xl flex items-center md:flex-col md:items-start justify-between gap-3 md:gap-4 text-left group no-underline">
+                <div class="flex items-center md:flex-col md:items-start gap-3.5 md:gap-4 min-w-0 w-full">
+                    <div class="qr-icon-badge w-10 h-10 md:w-11 md:h-11 rounded-xl flex items-center justify-center flex-shrink-0 text-[#ffe088]">
+                        <svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                             <path fill-rule="evenodd" d="M12.315 2c2.43 0 2.784.008 3.885.058 1.012.046 1.722.207 2.3.425a4.767 4.767 0 011.665 1.085 4.771 4.771 0 011.085 1.665c.218.578.379 1.288.425 2.3.05 1.101.058 1.455.058 3.885 0 2.43-.008 2.784-.058 3.885-.046 1.012-.207 1.722-.425 2.3a4.78 4.78 0 01-1.085 1.665 4.766 4.766 0 01-1.665 1.085c-.578.218-1.288.379-2.3.425-1.101.05-1.455.058-3.885.058-2.43 0-2.784-.008-3.885-.058-1.012-.046-1.722-.207-2.3-.425a4.79 4.79 0 01-1.665-1.085 4.778 4.778 0 01-1.085-1.665c-.218-.578-.379-1.288-.425-2.3-.05-1.101-.058-1.455-.058-3.885 0-2.43.008-2.784.058-3.885.046-1.012.207-1.722.425-2.3a4.765 4.765 0 011.085-1.665 4.766 4.766 0 011.665-1.085c.578-.218 1.288-.379 2.3-.425 1.101-.05 1.455-.058 3.885-.058zM12 6.865A5.135 5.135 0 1017.135 12 5.136 5.136 0 0012 6.865zm0 8.468a3.333 3.333 0 113.333-3.333 3.333 3.333 0 01-3.333 3.333zm5.902-8.351a1.2 1.2 0 100 2.4 1.2 1.2 0 000-2.4z" clip-rule="evenodd" />
                         </svg>
                     </div>
-                    <div>
-                        <span class="block font-bold text-white text-sm">Instagram</span>
-                        <span class="text-[11px] text-white/60">Follow our daily rituals</span>
+                    <div class="min-w-0">
+                        <span class="block font-bold text-white text-sm md:text-base">Instagram</span>
+                        <span class="block text-[11px] md:text-xs text-white/60 mt-0.5 leading-relaxed">@ponywhite.fitzroy • Daily rituals</span>
                     </div>
                 </div>
-                <span class="material-symbols-outlined text-white/30 group-hover:text-white/70">chevron_right</span>
+                <svg class="text-white/35 group-hover:text-[#ffe088] transition-colors flex-shrink-0 md:absolute md:top-5 md:right-5" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <polyline points="9 18 15 12 9 6"/>
+                </svg>
             </a>
+        </div>
+
+        <!-- Subtle Footer -->
+        <div class="mt-7 pt-5 border-t border-white/10 text-[11px] md:text-xs text-white/55 flex flex-wrap items-center justify-center md:justify-between gap-2">
+            <span>379–381 George Street, Fitzroy VIC 3065</span>
+            <div class="flex items-center gap-2">
+                <span>(03) 9314 7273</span>
+                <span>•</span>
+                <span>info@ponywhite.com.au</span>
+            </div>
         </div>
     </div>
 </div>
+
+<script>
+    // =========================================================
+    // PONY WHITE GUEST WI-FI CONFIG
+    // Update SSID & Password here (or sync via Nucleus CRM)
+    // =========================================================
+    const WIFI_CONFIG = {
+        ssid: 'Pony White Guest',
+        password: 'Ponywhite123',
+        encryption: 'WPA' // WPA, WEP, or nopass
+    };
+
+    function escapeXml(str) {
+        return String(str)
+            .replace(/&/g, '&amp;')
+            .replace(/</g, '&lt;')
+            .replace(/>/g, '&gt;')
+            .replace(/"/g, '&quot;')
+            .replace(/'/g, '&apos;');
+    }
+
+    function buildAppleMobileConfig(ssid, password) {
+        const s = escapeXml(ssid);
+        const p = escapeXml(password);
+        return `<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+  <key>PayloadContent</key>
+  <array>
+    <dict>
+      <key>AutoJoin</key>
+      <true/>
+      <key>EncryptionType</key>
+      <string>WPA</string>
+      <key>HIDDEN_NETWORK</key>
+      <false/>
+      <key>Password</key>
+      <string>${p}</string>
+      <key>PayloadDescription</key>
+      <string>Connects your device to Pony White Guest Wi-Fi</string>
+      <key>PayloadDisplayName</key>
+      <string>${s} Wi-Fi</string>
+      <key>PayloadIdentifier</key>
+      <string>au.com.ponywhite.wifi.config</string>
+      <key>PayloadType</key>
+      <string>com.apple.wifi.managed</string>
+      <key>PayloadUUID</key>
+      <string>8D9E3A64-91B2-4A4E-B8C3-112233445566</string>
+      <key>PayloadVersion</key>
+      <integer>1</integer>
+      <key>SSID_STR</key>
+      <string>${s}</string>
+    </dict>
+  </array>
+  <key>PayloadDescription</key>
+  <string>One-tap Wi-Fi setup for Pony White Fitzroy</string>
+  <key>PayloadDisplayName</key>
+  <string>Pony White Guest Wi-Fi</string>
+  <key>PayloadIdentifier</key>
+  <string>au.com.ponywhite.wifi.profile</string>
+  <key>PayloadOrganization</key>
+  <string>Pony White Cafe</string>
+  <key>PayloadRemovalDisallowed</key>
+  <false/>
+  <key>PayloadType</key>
+  <string>Configuration</string>
+  <key>PayloadUUID</key>
+  <string>A1B2C3D4-E5F6-4789-90AB-CDEF12345678</string>
+  <key>PayloadVersion</key>
+  <integer>1</integer>
+</dict>
+</plist>`;
+    }
+
+    function toggleWifiPanel() {
+        const panel = document.getElementById('wifi-details-panel');
+        const chevron = document.getElementById('wifi-chevron');
+        if (!panel) return;
+        const isHidden = panel.classList.contains('hidden');
+        if (isHidden) {
+            panel.classList.remove('hidden');
+            if (chevron) chevron.style.transform = 'rotate(180deg)';
+            copyWifiPassword(true);
+        } else {
+            panel.classList.add('hidden');
+            if (chevron) chevron.style.transform = 'rotate(0deg)';
+        }
+    }
+
+    function copyWifiPassword(silent) {
+        const label = document.getElementById('wifi-copy-label');
+        if (navigator.clipboard && navigator.clipboard.writeText) {
+            navigator.clipboard.writeText(WIFI_CONFIG.password).then(() => {
+                if (label) {
+                    label.textContent = 'Copied!';
+                    setTimeout(() => { label.textContent = 'Copy'; }, 2400);
+                }
+            }).catch(() => {});
+        } else if (!silent) {
+            const temp = document.createElement('textarea');
+            temp.value = WIFI_CONFIG.password;
+            document.body.appendChild(temp);
+            temp.select();
+            try { document.execCommand('copy'); } catch (e) {}
+            document.body.removeChild(temp);
+            if (label) {
+                label.textContent = 'Copied!';
+                setTimeout(() => { label.textContent = 'Copy'; }, 2400);
+            }
+        }
+    }
+
+    function triggerWifiAutoJoin() {
+        copyWifiPassword(true);
+        const xml = buildAppleMobileConfig(WIFI_CONFIG.ssid, WIFI_CONFIG.password);
+        const blob = new Blob([xml], { type: 'application/x-apple-aspen-config' });
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = 'PonyWhite-WiFi.mobileconfig';
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
+        setTimeout(() => URL.revokeObjectURL(url), 10000);
+
+        const note = document.getElementById('wifi-helper-note');
+        if (note) {
+            note.innerHTML = '✅ Profile downloaded &amp; password copied! On iPhone/iPad, tap <strong class="text-[#ffe088]">Allow</strong> → open <strong class="text-white">Settings → Profile Downloaded → Install</strong>. On Android, open Wi-Fi settings, tap <strong class="text-white">' + WIFI_CONFIG.ssid + '</strong>, and paste the password.';
+        }
+    }
+
+    function updateQrStoreStatus() {
+        const el = document.getElementById('qr-store-status');
+        if (!el) return;
+        const now = new Date();
+        const parts = new Intl.DateTimeFormat('en-AU', {
+            timeZone: 'Australia/Melbourne',
+            hour12: false,
+            weekday: 'short',
+            hour: 'numeric',
+            minute: 'numeric'
+        }).formatToParts(now);
+        let dayStr = '', hourStr = '', minuteStr = '';
+        for (const p of parts) {
+            if (p.type === 'weekday') dayStr = p.value;
+            if (p.type === 'hour') hourStr = p.value;
+            if (p.type === 'minute') minuteStr = p.value;
+        }
+        const days = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
+        const day = days.indexOf(dayStr);
+        const currentMins = parseInt(hourStr, 10) * 60 + parseInt(minuteStr, 10);
+        const schedule = {
+            0: { open: 8 * 60, close: 15 * 60 + 30 },
+            1: { open: 7 * 60, close: 15 * 60 },
+            2: { open: 7 * 60, close: 15 * 60 },
+            3: { open: 7 * 60, close: 15 * 60 },
+            4: { open: 7 * 60, close: 15 * 60 },
+            5: { open: 7 * 60, close: 15 * 60 + 30 },
+            6: { open: 7 * 60 + 30, close: 15 * 60 + 30 }
+        };
+        const today = schedule[day] || schedule[1];
+        const kitchenClose = 14 * 60 + 30;
+        const fmt = (m) => {
+            let h = Math.floor(m / 60), mn = m % 60, ap = h >= 12 ? 'pm' : 'am';
+            if (h > 12) h -= 12;
+            if (h === 0) h = 12;
+            return h + (mn === 0 ? '' : ':' + String(mn).padStart(2, '0')) + ap;
+        };
+        if (currentMins < today.open) {
+            el.innerHTML = `<span class="w-2 h-2 rounded-full bg-[#e9c349]"></span><span>Closed • Opens today at ${fmt(today.open)}</span>`;
+        } else if (currentMins >= today.close) {
+            const nextDay = (day + 1) % 7;
+            el.innerHTML = `<span class="w-2 h-2 rounded-full bg-red-400"></span><span>Closed • Opens tomorrow at ${fmt(schedule[nextDay].open)}</span>`;
+        } else if (currentMins >= kitchenClose) {
+            el.innerHTML = `<span class="w-2 h-2 rounded-full bg-[#e9c349]"></span><span>Open for Drinks until ${fmt(today.close)}</span>`;
+        } else {
+            el.innerHTML = `<span class="w-2 h-2 rounded-full bg-emerald-400"></span><span>Open Now • Kitchen until 2:30pm</span>`;
+        }
+    }
+
+    window.toggleWifiPanel = toggleWifiPanel;
+    window.copyWifiPassword = copyWifiPassword;
+    window.triggerWifiAutoJoin = triggerWifiAutoJoin;
+
+    (function initQrPage() {
+        const ssidEl = document.getElementById('wifi-ssid-display');
+        const ssidInline = document.getElementById('wifi-ssid-inline');
+        const passEl = document.getElementById('wifi-password-display');
+        if (ssidEl) ssidEl.textContent = WIFI_CONFIG.ssid;
+        if (ssidInline) ssidInline.textContent = WIFI_CONFIG.ssid;
+        if (passEl) passEl.textContent = WIFI_CONFIG.password;
+        updateQrStoreStatus();
+    })();
+</script>
